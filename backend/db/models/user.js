@@ -22,6 +22,9 @@ module.exports = (sequelize, DataTypes) => {
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
+    validatePassword(password) {
+      return bcrypt.compareSync(password, this.hashedPassword.toString())
+    };
     // login
     static async login({ credential, password }) {
       const { Op } = require('sequelize');
@@ -48,6 +51,7 @@ module.exports = (sequelize, DataTypes) => {
       return await User.scope('currentUser').findByPk(user.id);
     }
   }
+
   User.init({
     username:
     {type: DataTypes.STRING,
@@ -74,9 +78,6 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false,
         validate: {
           len: [60, 60]
-        },
-    validatePassword(password) {
-    return bcrypt.compareSync(password, this.hashedPassword.toString());
         }
       }
   }, {
