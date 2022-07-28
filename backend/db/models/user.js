@@ -10,8 +10,42 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+    toSafeObject () {
+      const {id, username, email} = this;
+      return {id, username, email}
+    }
     static associate(models) {
       // define association here
+
+    }
+    // get user 
+    static getCurrentUserById(id) {
+      return User.scope("currentUser").findByPk(id);
+    }
+    // login
+    static async login({ credential, password }) {
+      const { Op } = require('sequelize');
+      const user = await User.scope('loginUser').findOne({
+        where: {
+          [Op.or]: {
+            username: credential,
+            email: credential
+          }
+        }
+      });
+      if (user && user.validatePassword(password)) {
+        return await User.scope('currentUser').findByPk(user.id);
+      }
+    }
+    // signup
+    static async signup({ username, email, password }) {
+      const hashedPassword = bcrypt.hashSync(password);
+      const user = await User.create({
+        username,
+        email,
+        hashedPassword
+      });
+      return await User.scope('currentUser').findByPk(user.id);
     }
   }
   User.init({
@@ -41,11 +75,27 @@ module.exports = (sequelize, DataTypes) => {
     allowNull: false,
         validate: {
           len: [60, 60]
+        },
+    validatePassword(password) {
+    return bcrypt.compareSync(password, this.hashedPassword.toString());
         }
       }
   }, {
     sequelize,
     modelName: 'User',
+    defaultScope: {
+      attributes: {
+        exclude: ["hashedPassword", "email", "createdAt", "updatedAt"]
+      }
+    },
+    scopes: {
+      currentUser: {
+        attributes: { exclude: ["hashedPassword"] }
+      },
+      loginUser: {
+        attributes: {}
+      }
+    }
   });
   return User;
 };
