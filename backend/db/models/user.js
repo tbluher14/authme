@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
 
     }
-    // get user 
+    // get user
     static getCurrentUserById(id) {
       return User.scope("currentUser").findByPk(id);
     }
@@ -49,7 +49,6 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   User.init({
-    id: DataTypes.INTEGER,
     username:
     {type: DataTypes.STRING,
       allowNull: false,
