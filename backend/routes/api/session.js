@@ -77,15 +77,23 @@ router.post(
         return next(err);
       }
 
-      await setTokenCookie(res, user);
+      const token = await setTokenCookie(res, user);
 
-      return res.json({
-        user
-      });
-    }
-  );
 
-router.get()
+      const userRes = {
+        id: user.id,
+        username: user.username,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        email: user.email,
+        token: token
+      }
+      return res.json(userRes)
+    });
+
+router.get('/session', (req, res, next) => {
+
+})
 
 
 module.exports = router;

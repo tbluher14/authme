@@ -47,8 +47,24 @@ router.post(
     validateSignup,
     async (req, res) => {
       const { email, password, username } = req.body;
-      const user = await User.signup({ email, username, password });
+      const user = await User.signup({ email,
+        username,
+        password,
+        firstName,
+        lastName
+      })
 
+      if (!firstName){
+        res.status(400).json({
+          message: 'First Name is required'
+        })
+      }
+
+      if (!lastName) {
+        res.status(400).json({
+          message: 'Last Name is required'
+        })
+      }
       await setTokenCookie(res, user);
 
       return res.json({
@@ -56,5 +72,7 @@ router.post(
       });
     }
   );
+
+
 
 module.exports = router;
