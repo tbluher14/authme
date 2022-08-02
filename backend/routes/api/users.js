@@ -40,18 +40,28 @@ const validateSignup = [
 //       });
 //     }
 //   );
+router.get('/current', requireAuth, async (req, res) => {
+  const user = {
+    id: req.user.id,
+    firstName: req.user.firstName,
+    lastName: req.user.lastName,
+    email: req.user.email
+  }
+  return res.json(user)
+})
+
+
 
   // Sign up
-router.post(
-    '/',
-    validateSignup,
-    async (req, res) => {
-      const { email, password, username } = req.body;
-      const user = await User.signup({ email,
-        username,
-        password,
-        firstName,
-        lastName
+router.post('/', validateSignup, async (req, res) => {
+      const { email, firstName, lastName, password, username } = req.body;
+      console.log( { email, firstName, lastName, password, username })
+      const user = await User.signup({
+        email: email,
+        username: username,
+        password: password,
+        firstName: firstName,
+        lastName: lastName
       })
 
       if (!firstName){
@@ -67,9 +77,7 @@ router.post(
       }
       await setTokenCookie(res, user);
 
-      return res.json({
-        user,
-      });
+    res.json({user});
     }
   );
 

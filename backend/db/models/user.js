@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       return {id, username, email}
     }
     static associate(models) {
-     User.hasMany(models.Spot, {foreignKey: 'userId'})
+     User.hasMany(models.Spot, {foreignKey: 'ownerId'})
 
     }
     // get user
@@ -41,11 +41,13 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
     // signup
-    static async signup({ username, email, password }) {
+    static async signup({ username, email, firstName, lastName, password }) {
       const hashedPassword = bcrypt.hashSync(password);
       const user = await User.create({
         username,
         email,
+        firstName,
+        lastName,
         hashedPassword
       });
       return await User.scope('currentUser').findByPk(user.id);
@@ -73,9 +75,17 @@ module.exports = (sequelize, DataTypes) => {
           isEmail: true
         }
       },
+    firstName: {
+      type: DataTypes.STRING,
+      // allowNull: false
+      },
+    lastName: {
+      type: DataTypes.STRING,
+      // allowNull: false
+      },
     hashedPassword: {
-    type: DataTypes.STRING,
-    allowNull: false,
+      type: DataTypes.STRING,
+      allowNull: false,
         validate: {
           len: [60, 60]
         }
