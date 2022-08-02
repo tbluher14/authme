@@ -47,7 +47,8 @@ module.exports = {
       },
       ownerId: {
         type: Sequelize.INTEGER,
-        references: {model: 'Users'}
+        references: {model: 'Users'},
+        allowNull: false
       },
       previewImage: {
         type: Sequelize.STRING,
