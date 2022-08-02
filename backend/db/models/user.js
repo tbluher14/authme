@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       return {id, username, email}
     }
     static associate(models) {
-      // define association here
+     User.hasMany(models.Spot, {foreignKey: 'userId'})
 
     }
     // get user
