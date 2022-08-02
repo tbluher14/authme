@@ -1,7 +1,5 @@
 'use strict';
 
-const { query } = require("express");
-
 module.exports = {
   async up (queryInterface, Sequelize) {
     /**
@@ -13,22 +11,22 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-   return queryInterface.bulkInsert(
-    'Spots',
+   await queryInterface.bulkInsert(
+    "Bookings",
     [
       {
-        address: '82 Glenmoor Place',
-        city: 'Denver',
-        state: 'Colorado',
-        country: 'United States',
-        lat: 40.024245,
-        lng: 100.255322,
-        name: "My old house",
-        description: 'I used to live here',
-        price: 72,
-        ownerId: 1,
-      }
-    ]
+        propertyId: 1,
+        userId: 3,
+        startDate: '2022-8-1',
+        endDate: '2022-8-10'
+    },
+    {
+      propertyId: 2,
+      userId: 1,
+      startDate: '2022-7-1',
+      endDate: '2022-7-10'
+  }
+  ]
    )
   },
 
@@ -39,6 +37,12 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-    await queryInterface.dropTable('Spots')
+    const Op = Sequelize.op
+    await queryInterface.bulkDelete(
+      'Bookings',
+      {
+        propertyId: {[Op.in]: [1,2]}
+      }
+    )
   }
 };
