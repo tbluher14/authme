@@ -15,17 +15,17 @@ module.exports = {
     "Bookings",
     [
       {
-        propertyId: 1,
+        spotId: 1,
         userId: 3,
         startDate: '2022-8-1',
         endDate: '2022-8-10'
     },
     {
-      propertyId: 2,
+      spotId: 2,
       userId: 1,
       startDate: '2022-7-1',
       endDate: '2022-7-10'
-  }
+  },
   ]
    )
   },
@@ -41,7 +41,7 @@ module.exports = {
     await queryInterface.bulkDelete(
       'Bookings',
       {
-        propertyId: {[Op.in]: [1,2]}
+        spotId: {[Op.in]: [1,2]}
       }
     )
   }

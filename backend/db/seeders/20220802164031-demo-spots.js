@@ -27,6 +27,18 @@ module.exports = {
         description: 'I used to live here',
         price: 72,
         ownerId: 1,
+      },
+      {
+        address: '1744 Easy Downing',
+        city: 'Denver',
+        state: 'Colorado',
+        country: 'United States',
+        lat: 41.266787,
+        lng: 100.255322,
+        name: "My new house!",
+        description: 'I live (close to) here now',
+        price: 80,
+        ownerId: 1,
       }
     ]
    )

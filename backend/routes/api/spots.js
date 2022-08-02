@@ -1,7 +1,7 @@
 const express = require('express')
 const {Op} = require('sequelize')
 const { requireAuth } = require('../../utils/auth');
-const { User, Spot } = require('../../db/models');
+const { User, Spot, Image, Review } = require('../../db/models');
 const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
@@ -30,8 +30,6 @@ router.get("/", async (req, res) => {
       return res.json(allSpots)
     });
 
-// add an image to a spot by id
-router.post('/:spot/image')
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
     const {
@@ -107,5 +105,63 @@ router.put("/:spotId", requireAuth, validateProperty, async (req, res) => {
     return res.json(spot);
   });
 
+
+// delete a spot
+router.delete('/:spotId', requireAuth, async (req, res) => {
+    const spotId = req.params.spotId
+    const spot = await Spot.findByPk(spotId)
+
+    if (!spot) {
+        return res.json({
+            message: 'Spot could not be found',
+            status: 404
+        })
+    }
+
+    await spot.destroy()
+    return res.json({
+        message: "Successfully deleted",
+        status: 200
+    })
+})
+
+  // add an image to a spot by id
+router.post('/:spotId/images', requireAuth, async(req, res) => {
+    const {url} = req.body
+    const currentUserId = req.user.id
+    const spot = await Spot.findByPk(req.params.spotId, {
+        where: {ownerId: req.user.id}
+    })
+
+    if (!spot) {
+        return res.status(404).json({
+            message: 'Spot could not be found',
+            statusCode: 404
+        })
+    }
+    if (spot.ownerId !== currentUserId){
+        res.status(403)
+        res.json({
+            message: 'Only spot owners can add an image',
+            status: 403
+        })
+    }
+    const allImages = await Image.findAll({
+        where: {
+            [Op.and]: [
+               {spotId: req.params.spotId },
+               { imageableType: 'Spot'}
+            ],
+        }
+    })
+    let image = await Image.create({
+        url,
+        imageableId: allImages.length + 1,
+        imageableType: 'Spot',
+        spotId: req.params.spotId
+    })
+    image = image.toJSON()
+    res.json(image)
+})
 
 module.exports = router

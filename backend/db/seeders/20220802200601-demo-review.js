@@ -16,19 +16,19 @@ module.exports = {
     [
       {
         userId: 1,
-        propertyId: 1,
+        spotId: 1,
         review: 'This place is great, the backyard was great for the kids to play in',
         stars: 5
       },
       {
         userId: 2,
-        propertyId: 1,
+        spotId: 1,
         review: "I can imagine it was really awesome to grow up in this house!",
         stars: 4
       },
       {
-      userId: 4,
-      propertyId: 2,
+      userId: 3,
+      spotId: 2,
       review: 'What a lovely place to stay!',
       stars: 4
       },
@@ -48,7 +48,7 @@ module.exports = {
     await queryInterface.bulkDelete(
       'Reviews',
       {
-        propertyId: { [Op.in]: [1, 2]}
+        spotId: { [Op.in]: [1, 2]}
       }
     )
   }

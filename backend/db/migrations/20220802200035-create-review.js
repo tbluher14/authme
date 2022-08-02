@@ -12,7 +12,7 @@ module.exports = {
         type: Sequelize.INTEGER,
         references: {model: 'Users'}
       },
-      propertyId: {
+      spotId: {
         type: Sequelize.INTEGER,
         references: {model: 'Spots'}
       },
