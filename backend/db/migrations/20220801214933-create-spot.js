@@ -48,6 +48,11 @@ module.exports = {
       ownerId: {
         type: Sequelize.INTEGER,
         references: {model: 'Users'}
+      },
+      previewImage: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        unique: true
       }
     });
   },

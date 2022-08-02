@@ -164,4 +164,76 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
     res.json(image)
 })
 
+router.get('/current', requireAuth, async (req, res) => {
+
+  const spots = await Spot.findAll({
+      where: {ownerId: req.user.id}
+  })
+  if (spots.length<1){res.json({message: 'User has no reviews'})}
+
+  res.json(spots)
+})
+
+router.get('/:spotId', async(req, res) => {
+  const spot = await Spot.findByPk(req.params.spotId)
+  if (!spot) {
+    res.status(404)
+    return res.json({
+      message: "Spot couldn't be found"
+    })
+  }
+  return res.json(spot)
+})
+
+router.post('/:spotId/reviews', requireAuth, async (req, res) => {
+  const { review, stars } = req.body;
+  const spot = await Spot.findByPk(req.params.spotId);
+  const err = {
+    message: "Validation error",
+    statusCode: 400,
+    errors: {},
+  };
+
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+      statusCode: 404,
+    });
+  }
+
+  const checkIfReviewExists = await Review.findAll({
+    where: {
+      [Op.and]: [
+        { spotId: req.params.spotId },
+        { userId: req.user.id },
+      ],
+    },
+  });
+
+  if (checkIfReviewExists.length >= 1) {
+    return res.status(403).json({
+      message: "User already has a review for this spot",
+      statusCode: 403,
+    });
+  }
+
+  if (!review) err.errors.review = "Review text is required";
+  if (stars < 1 || stars > 5)
+    err.errors.stars = "Stars must be an integer from 1 to 5";
+  if (!review || !stars) {
+    return res.status(400).json(err);
+  }
+
+  const newReview = await Review.create({
+    userId: req.user.id,
+    spotId: req.params.spotId,
+    review,
+    stars,
+  });
+
+  res.json(newReview);
+});
+
+
+
 module.exports = router
