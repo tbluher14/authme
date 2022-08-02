@@ -30,6 +30,82 @@ router.get("/", async (req, res) => {
       return res.json(allSpots)
     });
 
+// add an image to a spot by id
+router.post('/:spot/image')
+// create a spot
+router.post('/', requireAuth, async (req, res, next) => {
+    const {
+        ownerId,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+      } = req.body;
+      const { id } = req.user;
+
+      const newSpot = await Spot.create({
+        ownerId: id,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price,
+      });
+      res.json(201, newSpot);
+})
+
+
+// edit a spot
+router.put("/:spotId", requireAuth, validateProperty, async (req, res) => {
+    let {
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+    } = req.body;
+
+    const spot = await Spot.findByPk(req.params.spotId);
+
+    if (!spot) {
+      res.status(404);
+      return res.json({
+        message: "Property couldn't be found",
+        statusCode: 404,
+      });
+    } else if (spot.ownerId !== req.user.id) {
+      return res
+        .status(403)
+        .json({ message: "You must be the owner to edit this property" });
+    }
+
+    spot.address = address;
+    spot.city = city;
+    spot.state = state;
+    spot.country = country;
+    spot.lat = lat;
+    spot.lng = lng;
+    spot.name = name;
+    spot.description = description;
+    spot.price = price;
+
+
+    await spot.save();
+    return res.json(spot);
+  });
 
 
 module.exports = router
