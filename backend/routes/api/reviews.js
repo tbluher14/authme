@@ -61,7 +61,30 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
 })
 
 
+// Edit a review
+router.put('/:reviewId', requireAuth, async (req, res)=> {
+    const reviewId = req.params.reviewId
+    const reviewToUpdate = await Review.findByPk(reviewId)
+    const {review, stars } = req.body
 
+    const error = {
+        message: 'Validation Error',
+        statusCode: 400,
+        errors: {}
+    }
+
+    if (!review){error.errors.review = 'Review text is required'}
+    if (stars < 1 || stars > 5){error.errors.stars = 'Stars must be an integer from 1 to 5'}
+    if (!review || !stars) {res.status(400).json(error)}
+
+    reviewToUpdate.review = review
+    reviewToUpdate.stars = stars
+
+    await reviewToUpdate.save()
+
+    return res.json(reviewToUpdate)
+
+})
 
 
 

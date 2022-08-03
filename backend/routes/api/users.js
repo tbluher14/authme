@@ -40,6 +40,8 @@ const validateSignup = [
 //       });
 //     }
 //   );
+
+// get current user
 router.get('/current', requireAuth, async (req, res) => {
   const user = {
     id: req.user.id,
@@ -49,7 +51,6 @@ router.get('/current', requireAuth, async (req, res) => {
   }
   return res.json(user)
 })
-
 
 
   // Sign up
@@ -80,8 +81,6 @@ router.post('/', validateSignup, async (req, res) => {
     res.json({user});
     }
   );
-
-
 
 
 
