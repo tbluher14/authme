@@ -26,9 +26,32 @@ router.get("/", async (req, res) => {
     const { ownerId, address, city, state,  country, lat, lng, name, description, price } = req.body;
 
       const allSpots = await Spot.findAll()
+        for (let i = 0; i < allSpots.length; i++) {
+            let spotsObj = allSpots[i].dataValues;
+            for (let key in spotsObj) {
+                if (true) {
+                    const avgRatingArray = await Review.findAll({
+                        where: { spotId: spotsObj.id },
+                        attributes: {
+                            include: [
+                                [
+                                    sequelize.fn("AVG", sequelize.col("stars")),
+                                    "avgStarRating"
+                                ]
+                            ]
+                        }
+                    })
+                    spotsObj.avgRating = avgRatingArray[0].dataValues.avgStarRating;
+                }
+            }
+            return res.json({
+                allSpots
+            })
+            // STILLNEEDS previewImg: images
+        }
+      });
 
-      return res.json(allSpots)
-    });
+  
 
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
