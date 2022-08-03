@@ -131,6 +131,7 @@ Returns the details of a spot specified by its id.
 - [ ] Error response with status 404 is given when a spot does not exist with
   the provided `id`
 
+_________________________________________________________________________________
 
 ### Edit a Spot
 
