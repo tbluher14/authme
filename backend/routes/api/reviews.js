@@ -5,7 +5,7 @@ const { Op } = require("sequelize");
 const router = express.Router();
 
 
-
+// get Current user's reviews
 router.get('/current', requireAuth, async (req, res) => {
 
     const reviews = await Review.findAll({
@@ -21,6 +21,7 @@ router.get('/current', requireAuth, async (req, res) => {
     res.json(reviews)
 })
 
+// add an imagine to a review based on review ID
 router.post('/:reviewId/images', requireAuth, async (req, res) => {
      const {url} = req.body
     const currentUserId = req.user.id
@@ -86,6 +87,22 @@ router.put('/:reviewId', requireAuth, async (req, res)=> {
 
 })
 
+// Delete a review
+router.delete('/:reviewId', requireAuth, async(req, res) => {
+    const selectReview = await Review.findByPk(req.params.reviewId)
 
+    if (!selectReview){
+        return res.json({
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
+
+    await selectReview.destroy()
+    return res.json({
+        message: "Successfully deleted",
+        statusCode: 200
+    })
+})
 
 module.exports = router

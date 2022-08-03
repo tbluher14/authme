@@ -341,6 +341,23 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
   return res.json(createBooking)
 })
 
+// Get all bookings for a spot based on spot ID
+router.get('/:spotId/bookings', requireAuth, async (req, res) => {
+  const spotBookings = await Booking.findAll({
+      where: {spotId: req.params.spotId}
+  })
+
+  const lookUpSpots = await Spot.findByPk(req.params.spotId)
+  if (!lookUpSpots){
+    return res.json({
+      message: "Spot could not be found",
+      statusCode: 404
+    })
+  }
+  return res.json(spotBookings)
+})
+
+
 
 
 module.exports = router

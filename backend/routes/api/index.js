@@ -5,6 +5,7 @@ const usersRouter = require('./users.js');
 const spotsRouter = require('./spots.js')
 const reviewRouter = require('./reviews.js')
 const bookingRouter = require('./bookings')
+const imageRouter = require('./images.js')
 
 
 // GET /api/restore-user
@@ -19,6 +20,7 @@ router.use('/users', usersRouter);
 router.use('/spots', spotsRouter);
 router.use('/reviews', reviewRouter)
 router.use('/bookings', bookingRouter)
+router.use('/images', imageRouter)
 
 
 router.post('/test', (req, res) => {
