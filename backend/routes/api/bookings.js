@@ -63,6 +63,7 @@ if (lookupBooking.endDate < currentDate) {
       raw: true,
     });
 
+
 // Error handling for conflicting booking
     err.message =
       "Sorry, this property is already booked for the specified dates";
@@ -95,13 +96,28 @@ if (lookupBooking.endDate < currentDate) {
 //delete a booking
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId)
+    const currentUser = req.user.id
+    const spot = await Spot.findByPk(booking.spotId)
+  
 
+    if (booking.userId !== currentUser && spot.ownerId !== currentUser ){
+        return res.json({
+            message: "Cannot delete a booking that isn't yours"
+        })
+    }
     if (!booking){
         return res.json({
             message: "Booking couldn't be found",
             statusCode: 404
         })
     }
+    const { startDate } = booking.toJSON();
+    if (new Date(startDate) < new Date()) {
+        return res.status(400).json({
+          message: "Bookings that have been started can't be deleted",
+          statusCode: 400,
+        });
+      }
 
     await booking.destroy()
     return res.json({

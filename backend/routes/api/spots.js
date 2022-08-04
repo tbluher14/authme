@@ -9,8 +9,8 @@ const sequelize = require('sequelize');
 const { route } = require('./reviews');
 const booking = require('../../db/models/booking');
 
-// validate property
-const validateProperty = [
+// validate spot
+const validateSpot = [
     check('address').exists({ checkFalsy: true }).withMessage('Please provide a valid address.'),
     check('city').exists({ checkFalsy: true }).withMessage('City is required'),
     check("state").exists({ checkFalsy: true }).withMessage("State is required"),
@@ -26,27 +26,132 @@ const validateProperty = [
 
 // get all spots
 router.get("/", async (req, res) => {
-      const spots = await Spot.findAll()
-      for (let i = 0; i < spots.length; i++) {
-        let allSpots = spots[i].dataValues;
-        for (let spot in allSpots) {
-            if (true) {
-                const avgRating = await Review.findAll({
-                    where: { spotId: allSpots.id },
-                    attributes: {
-                        include: [
-                            [
-                                sequelize.fn("AVG", sequelize.col("stars")),
-                                "avgStarRating"
-                            ]
-                        ]
-                    }
-                  })
-                  allSpots.avgRating = avgRating[0].dataValues.avgStarRating;
-              }
-            }
+          const pagination = {
+            filter: [],
+          };
+          let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } =
+            req.query;
+          const error = {
+            message: "Validation Error",
+            statusCode: 400,
+            errors: {},
+          };
+
+          page = Number(page);
+          size = Number(size);
+
+          if (Number.isNaN(page)) page = 0;
+          if (Number.isNaN(size)) size = 20;
+
+          if (page > 10) page = 10;
+          if (size > 40) size = 20;
+
+          if (page < 0) error.errors.page = "Page must be greater than or equal to 0";
+          if (size < 0) error.errors.size = "Size must be greater than or equal to 0";
+          if (Number(maxLat) > 90) {
+            error.errors.maxLat = "Maximum latitude is invalid";
+            maxLat = false;
           }
-          return res.json(spots)
+          if (Number(minLat) < -90) {
+            error.errors.maxLat = "Minimum latitude is invalid";
+            minLng = false;
+          }
+          if (Number(maxLng) > 180) {
+            error.errors.maxLng = "Maximum longitude is invalid";
+            maxLng = false;
+          }
+          if (Number(minLng) < -180) {
+            error.errors.minLng = "Minimum longitude is invalid";
+            minLng = false;
+          }
+          if (Number(minPrice) < 0) {
+            error.errors.minPrice = "Maximum price must be greater than 0";
+            minPrice = false;
+          }
+          if (Number(maxPrice) < 0) {
+            error.errors.maxPrice = "Minimum price must be greater than 0";
+            maxPrice = false;
+          }
+
+          if (
+            page < 0 ||
+            size < 0 ||
+            (!maxLat && maxLat !== undefined) ||
+            (!minLat && minLat !== undefined) ||
+            (!maxLng && maxLng !== undefined) ||
+            (!minLng && minLng !== undefined) ||
+            (!minPrice && minPrice !== undefined) ||
+            (!maxPrice && maxPrice !== undefined)
+          ) {
+            res.status(400);
+            res.json(error);
+          }
+
+          if (maxLat) {
+            pagination.filter.push({
+              lat: { [Op.lte]: Number(maxLat) },
+            });
+          }
+          if (minLat) {
+            pagination.filter.push({
+              lat: { [Op.gte]: Number(minLat) },
+            });
+          }
+          if (minLng) {
+            pagination.filter.push({
+              lng: { [Op.gte]: Number(minLng) },
+            });
+          }
+          if (maxLng) {
+            pagination.filter.push({
+              lng: { [Op.lte]: Number(maxLng) },
+            });
+          }
+          if (minPrice) {
+            pagination.filter.push({
+              price: { [Op.gte]: Number(minPrice) },
+            });
+          }
+          if (maxPrice) {
+            pagination.filter.push({
+              price: { [Op.lte]: Number(maxPrice) },
+            });
+          }
+
+          pagination.size = size;
+          pagination.page = page;
+
+          const spots = await Spot.findAll({
+            where: {
+              [Op.and]: pagination.filter,
+            },
+            limit: pagination.size,
+            offset: pagination.size * pagination.page,
+          });
+          for (let i = 0; i < spots.length; i++) {
+            let allSpots = spots[i].dataValues;
+            for (let spot in allSpots) {
+                if (true) {
+                    const avgRating = await Review.findAll({
+                        where: { spotId: allSpots.id },
+                        attributes: {
+                            include: [
+                                [
+                                    sequelize.fn("AVG", sequelize.col("stars")),
+                                    "avgStarRating"
+                                ]
+                            ]
+                        }
+                      })
+                      allSpots.avgRating = avgRating[0].dataValues.avgStarRating;
+                  }
+                }
+              }
+          res.json({
+            spots,
+            page: pagination.page,
+            size: pagination.size,
+          });
         })
 
 
@@ -103,7 +208,7 @@ const error = {
 
 
 // edit a spot
-router.put("/:spotId", requireAuth, validateProperty, async (req, res) => {
+router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
     let {
       address,
       city,
@@ -121,13 +226,13 @@ router.put("/:spotId", requireAuth, validateProperty, async (req, res) => {
     if (!spot) {
       res.status(404);
       return res.json({
-        message: "Property couldn't be found",
+        message: "Spot couldn't be found",
         statusCode: 404,
       });
     } else if (spot.ownerId !== req.user.id) {
       return res
         .status(403)
-        .json({ message: "You must be the owner to edit this property" });
+        .json({ message: "You must be the owner to edit this spot" });
     }
 
     spot.address = address;
@@ -386,7 +491,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     return res.status(400).json(error);
   }
   error.message =
-    "Sorry, this property is already booked for the specified dates";
+    "Sorry, this spot is already booked for the specified dates";
   error.statusCode = 403;
 
 
