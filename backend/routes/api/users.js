@@ -10,7 +10,7 @@ const validateSignup = [
     check('email')
       .exists({ checkFalsy: true })
       .isEmail()
-      .withMessage('Please provide a valid email.'),
+      .withMessage('User with that email already exists'),
     check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
@@ -74,6 +74,12 @@ router.post('/', validateSignup, async (req, res) => {
       if (!lastName) {
         res.status(400).json({
           message: 'Last Name is required'
+        })
+      }
+
+      if (!username){
+        res.status(400).json({
+          message: "Username is required"
         })
       }
       await setTokenCookie(res, user);
