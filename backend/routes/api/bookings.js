@@ -28,9 +28,6 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
     const lookupBooking = await Booking.findByPk(req.params.bookingId)
     const {startDate, endDate} = req.body
 
-    lookupBooking.startDate = startDate
-    lookupBooking.endDate = endDate
-
     const error = {
         message: 'Validation error',
         statusCode: 400,
@@ -39,10 +36,66 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
 
     if (startDate>endDate){
         error.errors.endDate = "endDate cannot come before startDate"
-    }
-    if (error.errors.length > 0){
         return res.json(error)
     }
+    if (!lookupBooking){
+        return res.json({
+            message: "Booking couldn't be found",
+            statusCode: 404
+        })
+    }
+    let currentDate = '2022-08-04'
+
+    if (currentDate>endDate){
+        return res.json({
+            message: "Past bookings can't be modified",
+            statusCode: 403
+        })
+    }
+    const allBookings = await Booking.findAll({
+        attributes: ["startDate", 'endDate'],
+        where: {
+          spotId: req.params.spotId
+        }
+      })
+
+      if (!startDate) error.errors.startDate = "Start date is required (YYYY-MM-DD)";
+      if (!endDate) error.errors.endDate = "End date is required (YYYY-MM-DD)";
+      if (startDate > endDate)
+        error.errors.endDate = "endDate cannot come before startDate";
+      if (!startDate || !endDate || startDate > endDate) {
+        return res.status(400).json(error);
+      }
+      error.message =
+        "Sorry, this spot is already booked for the specified dates";
+      error.statusCode = 403;
+
+
+      for (let allDates of allBookings){
+        let startOfBooking = allDates.startDate
+        let endOfBooking = allDates.endDate
+
+        if (startDate >= startOfBooking && startDate <= endOfBooking){
+          error.errors.startDate = 'Start date conflicts with an existing booking'
+          error.message =
+          "Sorry, this property is already booked for the specified dates";
+          error.statusCode = 403;
+          return res.json(error.errors.startDate)
+        }
+        if (endDate >= startOfBooking && endDate <= endOfBooking){
+          error.errors.endDate = 'End date conflicts with an existing booking'
+          error.message =
+          "Sorry, this property is already booked for the specified dates";
+          error.statusCode = 403;
+          return res.json(error.errors.endDate)
+        }
+      }
+      if (error.errors){
+        return res.status(403).json(error)
+      }
+    lookupBooking.startDate = startDate
+    lookupBooking.endDate = endDate
+
     await lookupBooking.save()
     return res.json(lookupBooking)
 })

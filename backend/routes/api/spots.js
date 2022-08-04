@@ -357,18 +357,12 @@ router.get('/:spotId/reviews', async (req, res) => {
 router.post('/:spotId/bookings', requireAuth, async(req, res) => {
   const spotId = req.params.spotId
   const spot = await Spot.findByPk(spotId)
-  const error = {
-    message: 'Validation error',
-    statusCode: 400,
-    errors: {}
-  }
-
   const {startDate, endDate } = req.body
 
   const allBookings = await Booking.findAll({
     attributes: ["startDate", 'endDate'],
     where: {
-      spotId: spotId
+      spotId: req.params.spotId
     }
   })
 
@@ -379,9 +373,22 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     });
   }
 
+  const error = {
+    message: 'Validation error',
+    statusCode: 400,
+    errors: {}
+  }
+  if (!startDate) error.errors.startDate = "Start date is required (YYYY-MM-DD)";
+  if (!endDate) error.errors.endDate = "End date is required (YYYY-MM-DD)";
+  if (startDate > endDate)
+    error.errors.endDate = "endDate cannot come before startDate";
   if (!startDate || !endDate || startDate > endDate) {
     return res.status(400).json(error);
   }
+  error.message =
+    "Sorry, this property is already booked for the specified dates";
+  error.statusCode = 403;
+
 
   for (let allDates of allBookings){
     let startOfBooking = allDates.startDate
@@ -389,12 +396,20 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
 
     if (startDate >= startOfBooking && startDate <= endOfBooking){
       error.errors.startDate = 'Start date conflicts with an existing booking'
+      error.message =
+      "Sorry, this spot is already booked for the specified dates";
+      error.statusCode = 403;
+      return res.json(error.errors.startDate)
     }
     if (endDate >= startOfBooking && endDate <= endOfBooking){
       error.errors.endDate = 'End date conflicts with an existing booking'
+      error.message =
+      "Sorry, this spot is already booked for the specified dates";
+      error.statusCode = 403;
+      return res.json(error.errors.endDate)
     }
   }
-  if ('startDate' in error.errors || 'endDate' in error.errors){
+  if (error.errors){
     return res.status(403).json(error)
   }
 
