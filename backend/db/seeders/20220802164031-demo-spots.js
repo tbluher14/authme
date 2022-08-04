@@ -39,6 +39,18 @@ module.exports = {
         description: 'I live (close to) here now',
         price: 80,
         ownerId: 1,
+      },
+      {
+        address: '1755 Easy Downing',
+        city: 'Ft. Collins',
+        state: 'Colorado',
+        country: 'United States',
+        lat: 40.436787,
+        lng: 100.255322,
+        name: "My vacation house!",
+        description: 'I visit here in the summer',
+        price: 90,
+        ownerId: 1,
       }
     ]
    )

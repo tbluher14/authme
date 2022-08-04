@@ -28,11 +28,11 @@ const validateProperty = [
 router.get("/", async (req, res) => {
       const spots = await Spot.findAll()
       for (let i = 0; i < spots.length; i++) {
-        let spotsObj = spots[i].dataValues;
-        for (let spot in spotsObj) {
+        let allSpots = spots[i].dataValues;
+        for (let spot in allSpots) {
             if (true) {
-                const avgRatingArray = await Review.findAll({
-                    where: { spotId: spotsObj.id },
+                const avgRating = await Review.findAll({
+                    where: { spotId: allSpots.id },
                     attributes: {
                         include: [
                             [
@@ -42,7 +42,7 @@ router.get("/", async (req, res) => {
                         ]
                     }
                   })
-                  spotsObj.avgRating = avgRatingArray[0].dataValues.avgStarRating;
+                  allSpots.avgRating = avgRating[0].dataValues.avgStarRating;
               }
             }
           }
@@ -79,7 +79,26 @@ router.post('/', requireAuth, async (req, res, next) => {
         description,
         price,
       });
-      res.json(201, newSpot);
+
+const error = {
+        message: "Validation error",
+        statusCode: 400,
+        errors: {},
+      }
+    if (!address) error.errors.address = "Street address is required"
+    if (!city) error.errors.city = "City is required"
+    if (!state) error.errors.state = "State is required"
+    if (!country) error.errors.country = "Country is required"
+    if (!lat) error.errors.lat = "Latitude is not valid"
+    if (!lng) error.errors.lng = "Longitude is not valid"
+    if (!name ) error.errors.name = "Name must be less than 50 characters"
+    if (!description) error.errors.description =  "Description is required"
+    if (!price) error.errors.price = "Price per day is required"
+
+  if (error.errors.length) {
+    return res.status(400).json(error);
+  }
+    return res.json(201, newSpot);
 })
 
 
@@ -123,6 +142,25 @@ router.put("/:spotId", requireAuth, validateProperty, async (req, res) => {
 
 
     await spot.save();
+
+    const error = {
+      message: "Validation error",
+      statusCode: 400,
+      errors: {},
+    }
+      if (!address) error.errors.address = "Street address is required"
+      if (!city) error.errors.city = "City is required"
+      if (!state) error.errors.state = "State is required"
+      if (!country) error.errors.country = "Country is required"
+      if (!lat) error.errors.lat = "Latitude is not valid"
+      if (!lng) error.errors.lng = "Longitude is not valid"
+      if (!name ) error.errors.name = "Name must be less than 50 characters"
+      if (!description) error.errors.description =  "Description is required"
+      if (!price) error.errors.price = "Price per day is required"
+
+if (error.errors.length) {
+  return res.status(400).json(error);
+}
     return res.json(spot);
   });
 
@@ -151,7 +189,8 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
     const {url} = req.body
     const currentUserId = req.user.id
     const spot = await Spot.findByPk(req.params.spotId, {
-        where: {ownerId: req.user.id}
+      where: {ownerId: req.user.id},
+
     })
 
     if (!spot) {
@@ -182,26 +221,21 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
         spotId: req.params.spotId
     })
     image = image.toJSON()
-    res.json(image)
+    const {id, imageableId, spotId, updatedAt, createdAt} = image
+    res.json({id: id, url: url, imageableId: imageableId})
 })
 
 // Get spots of current user
 router.get('/current', requireAuth, async (req, res) => {
 
   const spots = await Spot.findAll({
-      where: {ownerId: req.user.id}
+      where: {ownerId: req.user.id},
+      include: {model: Review, attributes: [
+            [sequelize.fn("AVG", sequelize.col("stars")), "avgRating"],
+          ],
+        raw: true
+        }
   })
-  const aggregateReviews = await Review.findAll({
-    attributes: [
-      [sequelize.fn("AVG", sequelize.col("stars")), "avgRating"],
-    ],
-    where: {spotId: spots.id},
-    raw: true,
-  });
-
-  const spotData = spots.toJSON();
-  spotData.avgRating = aggregateReviews.avgRating;
-
 
   return res.json(spots)
 })
@@ -243,11 +277,6 @@ router.get('/:spotId', async(req, res) => {
 router.post('/:spotId/reviews', requireAuth, async (req, res) => {
   const { review, stars } = req.body;
   const spot = await Spot.findByPk(req.params.spotId);
-  const err = {
-    message: "Validation error",
-    statusCode: 400,
-    errors: {},
-  };
 
   if (!spot) {
     return res.status(404).json({
@@ -271,11 +300,15 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
       statusCode: 403,
     });
   }
+  const err = {
+    message: "Validation error",
+    statusCode: 400,
+    errors: {},
+  };
 
   if (!review) err.errors.review = "Review text is required";
-  if (stars < 1 || stars > 5)
-    err.errors.stars = "Stars must be an integer from 1 to 5";
-  if (!review || !stars) {
+  if (stars < 1 || stars > 5) err.errors.stars = "Stars must be an integer from 1 to 5";
+  if (!review || stars < 1 || stars > 5) {
     return res.status(400).json(err);
   }
 
@@ -297,6 +330,9 @@ router.get('/:spotId/reviews', async (req, res) => {
   const spotId = req.params.spotId
   const reviews = await Review.findAll({
     include: [
+      {model: User,
+      attributes: {exclude: ['username', 'hashedPassword', 'createdAt', 'updatedAt', 'email']}
+    },
       {
         model: Image,
         attributes: ['id', 'url', 'imageableId']
@@ -306,6 +342,13 @@ router.get('/:spotId/reviews', async (req, res) => {
       spotId: spotId
     }
   })
+  const spot = await Spot.findByPk(spotId)
+  if (!spot){
+    return res.json({
+      message: "Spot couldn't be found",
+      statusCode: 404
+    })
+  }
   return res.json(reviews)
 })
 
@@ -361,24 +404,44 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     startDate,
     endDate
   })
+  await createBooking.save()
 
   return res.json(createBooking)
 })
 
 // Get all bookings for a spot based on spot ID
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
-  const spotBookings = await Booking.findAll({
-      where: {spotId: req.params.spotId}
-  })
 
-  const lookUpSpots = await Spot.findByPk(req.params.spotId)
-  if (!lookUpSpots){
-    return res.json({
-      message: "Spot could not be found",
-      statusCode: 404
-    })
+  const spot = await Spot.findByPk(req.params.spotId, {
+    where: { ownerId: req.user.id },
+    attributes: ["ownerId"],
+  });
+
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+      statusCode: 404,
+    });
   }
-  return res.json(spotBookings)
+
+  const allBookings = await Booking.findAll({
+    where: { spotId: req.params.spotId },
+    attributes: ["spotId", "startDate", "endDate"],
+  });
+
+  const ownerBookings = await Booking.findAll({
+    where: { spotId: req.params.spotId },
+    include: {
+      model: User,
+      attributes: ["id", "firstName", "lastName"],
+    },
+  });
+
+  if (spot.ownerId === req.user.id) {
+    return res.json({ Bookings: ownerBookings });
+  } else {
+    return res.json({ Bookings: allBookings });
+  }
 })
 
 

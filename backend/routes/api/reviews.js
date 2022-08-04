@@ -12,7 +12,7 @@ router.get('/current', requireAuth, async (req, res) => {
         include: [
             {model: User, attributes: ['id', 'firstName', 'lastName']},
             {model: Spot, attributes: {exclude: ['description', 'previewImage', 'createdAt', 'updatedAt']}},
-            {model: Image, attributes: ['url']}
+            {model: Image, attributes: ['id', 'imageableId','url']}
         ],
         where: {userId: req.user.id}
     })
@@ -57,8 +57,8 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         imageableType: 'Review',
         spotId: req.params.spotId
     })
-    image = image.toJSON()
-    res.json(image)
+
+    return res.json({id: image.id, imageableId: image.imageableId, url: image.url})
 })
 
 
@@ -77,6 +77,13 @@ router.put('/:reviewId', requireAuth, async (req, res)=> {
     if (!review){error.errors.review = 'Review text is required'}
     if (stars < 1 || stars > 5){error.errors.stars = 'Stars must be an integer from 1 to 5'}
     if (!review || !stars) {res.status(400).json(error)}
+
+    if (!reviewToUpdate){
+        return res.json( {
+            message: "Review couldn't be found",
+            statusCode: 404
+        })
+    }
 
     reviewToUpdate.review = review
     reviewToUpdate.stars = stars
@@ -104,5 +111,6 @@ router.delete('/:reviewId', requireAuth, async(req, res) => {
         statusCode: 200
     })
 })
+
 
 module.exports = router

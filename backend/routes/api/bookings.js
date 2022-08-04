@@ -14,10 +14,10 @@ const { route } = require('./reviews');
 router.get('/current', requireAuth, async (req, res) => {
 
     const userBookings = await Booking.findAll({
+        where: {userId: req.user.id},
         include: [
             {model: Spot, attributes: {exclude: ['description', 'previewImage', 'createdAt', 'updatedAt']}},
         ],
-        where: {userId: req.user.id}
     })
     return res.json(userBookings)
 })
