@@ -54,6 +54,9 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
         unique: true
+      },
+      avgStarRating: {
+        type: Sequelize.INTEGER,
       }
     });
   },
