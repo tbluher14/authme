@@ -271,7 +271,7 @@ router.get('/current', requireAuth, async (req, res) => {
           ],
         raw: true
         },
-        group: ['Spot.id'],
+        group: ['Spot.id', 'Review.id'],
   })
   return res.json(spots)
 })
