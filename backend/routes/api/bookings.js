@@ -27,12 +27,13 @@ router.get('/current', requireAuth, async (req, res) => {
 router.put('/:bookingId', requireAuth, async (req, res) => {
     const lookupBooking = await Booking.findByPk(req.params.bookingId)
     const {startDate, endDate} = req.body
+    console.log(lookupBooking)
 
-    const err = {
-        message: 'Validation error',
-        statusCode: 400,
-        errors: {}
-    }
+    // const err = {
+    //     message: 'Validation error',
+    //     statusCode: 400,
+    //     errors: {}
+    // }
 // End date comes before start date
     if (startDate>endDate){
         error.errors.endDate = "endDate cannot come before startDate"
@@ -65,11 +66,12 @@ if (lookupBooking.endDate < currentDate) {
 
 
 // Error handling for conflicting booking
-    err.message =
-      "Sorry, this property is already booked for the specified dates";
-    err.statusCode = 403;
-    err.errors = {};
-
+   const err = {
+    message:
+      "Sorry, this property is already booked for the specified dates",
+    statusCode: 403,
+    errors: {}
+   }
     for (let dates of allBookings) {
       let start = dates.startDate;
       let end = dates.endDate;
@@ -98,7 +100,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId)
     const currentUser = req.user.id
     const spot = await Spot.findByPk(booking.spotId)
-  
+
 
     if (booking.userId !== currentUser && spot.ownerId !== currentUser ){
         return res.json({

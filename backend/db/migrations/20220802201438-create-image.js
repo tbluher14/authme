@@ -25,6 +25,14 @@ module.exports = {
       imageableType: {
         type: Sequelize.STRING
       },
+      previewImage: {
+        type: Sequelize.BOOLEAN
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {model: 'Users'}
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

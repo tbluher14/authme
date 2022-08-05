@@ -50,14 +50,6 @@ module.exports = {
         references: {model: 'Users'},
         allowNull: false
       },
-      previewImage: {
-        type: Sequelize.STRING,
-        allowNull: true,
-        unique: true
-      },
-      avgStarRating: {
-        type: Sequelize.INTEGER,
-      }
     });
   },
   async down(queryInterface, Sequelize) {

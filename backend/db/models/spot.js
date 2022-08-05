@@ -64,14 +64,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
-    previewImage:{
-      type: DataTypes.STRING,
-      allowNull: true,
-      unique: true
-    },
-    avgStarRating: {
-      type: DataTypes.INTEGER,
-    }
   }, {
     sequelize,
     modelName: 'Spot',
