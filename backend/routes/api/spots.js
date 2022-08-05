@@ -48,6 +48,7 @@ router.get("/", async (req, res) => {
             include:
             [
                 {model: Review, attributes: []},
+                {model: Image, attributes: [previewImage]}
             ],
             group: ["Spot.id"],
             raw: true,
