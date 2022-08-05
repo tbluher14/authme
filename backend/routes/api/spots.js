@@ -445,7 +445,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
       return res.json(error.errors.endDate)
     }
   }
-  if (error.errors){
+  if (error.errors in 'startDate' || error.errors in 'endDate'){
     return res.status(403).json(error)
   }
 
