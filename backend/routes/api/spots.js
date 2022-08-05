@@ -49,7 +49,7 @@ router.get("/", async (req, res) => {
             [
                 {model: Review, attributes: []},
             ],
-            group: ["Spot.id", "Review.id"],
+            group: ["Spot.id"],
             raw: true,
             // where: {
             //   [Op.and]: pagination.filter,
@@ -58,8 +58,6 @@ router.get("/", async (req, res) => {
             // limit: pagination.size,
             // offset: pagination.size * pagination.page,
           });
-
-
         const images = await Image.findAll({
             where: {
                 previewImage: true
@@ -79,14 +77,12 @@ router.get("/", async (req, res) => {
         response.spots = spots
         res.status(200)
 
-
         res.json({
           response,
           page: pagination.page,
           size: pagination.size,
         });
       })
-
 
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
@@ -223,83 +219,45 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
 
   // add an image to a spot by id
 router.post('/:spotId/images', requireAuth, async(req, res) => {
-    const {url} = req.body
-    const currentUserId = req.user.id
-    const spot = await Spot.findByPk(req.params.spotId, {
-      where: {ownerId: req.user.id},
+    const { user } = req;
+    const { url, previewImage} = req.body
 
-    })
+    const spot = await Spot.findByPk(req.params.spotId)
 
-    if (!spot) {
-        return res.status(404).json({
-            message: 'Spot could not be found',
-            statusCode: 404
-        })
+    if(!spot){
+        res.json({
+            "message": "Spot couldn't be found",
+            "statusCode": 404
+          })
     }
-    if (spot.ownerId !== currentUserId){
+    console.log(spot.id, spot.ownerId, user.id)
+    if(spot.ownerId !== user.id) {
         res.status(403)
         res.json({
-            message: 'Only spot owners can add an image',
-            status: 403
-        })
+            "message": "Forbidden",
+            "statusCode": 403
+          })
     }
-    const allImages = await Image.findAll({
-        where: {
-            [Op.and]: [
-               {spotId: req.params.spotId },
-               { imageableType: 'Spot'}
-            ],
-        }
-    })
-    let image = await Image.create({
-        url,
-        imageableId: allImages.length + 1,
-        imageableType: 'Spot',
-        spotId: req.params.spotId
-    })
-    image = image.toJSON()
-    const {id, imageableId, spotId, updatedAt, createdAt} = image
-    res.json({id: id, url: url, imageableId: imageableId})
-  })
-//     const { user } = req;
-//     const { url, previewImage} = req.body
+    if(spot.ownerId === user.id) {
+        let response = {}
 
-//     const spot = await Spot.findByPk(req.params.spotId)
+        const newImage = Image.build({
+            url,
+            previewImage,
+            spotId: spot.id,
+            reviewId: null,
+            userId: user.id
+        })
+        await newImage.save()
 
-//     if(!spot){
-//         res.json({
-//             "message": "Spot couldn't be found",
-//             "statusCode": 404
-//           })
-//     }
-//     console.log(spot.id, spot.ownerId, user.id)
-//     if(spot.ownerId !== user.id) {
-//         res.status(403)
-//         res.json({
-//             "message": "Forbidden",
-//             "statusCode": 403
-//           })
-//     }
-//     if(spot.ownerId === user.id) {
-//         let response = {}
+        response.id = newImage.id
+        response.imageableId = newImage.spotId
+        response.url = newImage.url
 
-//         const newImage = Image.build({
-//             url,
-//             previewImage,
-//             spotId: spot.id,
-//             reviewId: null,
-//             userId: user.id
-//         })
-//         await newImage.save()
-
-//         response.id = newImage.id
-//         response.imageableId = newImage.spotId
-//         response.url = newImage.url
-
-//         res.status(200)
-//         res.json(response)
-//     }
-// })
+        res.status(200)
+        res.json(response)
+    }
+})
 
 // Get spots of current user
 router.get('/current', requireAuth, async (req, res) => {
@@ -447,52 +405,52 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     }
   })
 
-  // if (!spot) {
-  //   return res.status(404).json({
-  //     message: "Spot couldn't be found",
-  //     statusCode: 404,
-  //   });
-  // }
+  if (!spot) {
+    return res.status(404).json({
+      message: "Spot couldn't be found",
+      statusCode: 404,
+    });
+  }
 
-  // const error = {
-  //   message: 'Validation error',
-  //   statusCode: 400,
-  //   errors: {}
-  // }
-  // if (!startDate) error.errors.startDate = "Start date is required (YYYY-MM-DD)";
-  // if (!endDate) error.errors.endDate = "End date is required (YYYY-MM-DD)";
-  // if (startDate > endDate)
-  //   error.errors.endDate = "endDate cannot come before startDate";
-  // if (!startDate || !endDate || startDate > endDate) {
-  //   return res.status(400).json(error);
-  // }
-  // error.message =
-  //   "Sorry, this spot is already booked for the specified dates";
-  // error.statusCode = 403;
+  const error = {
+    message: 'Validation error',
+    statusCode: 400,
+    errors: {}
+  }
+  if (!startDate) error.errors.startDate = "Start date is required (YYYY-MM-DD)";
+  if (!endDate) error.errors.endDate = "End date is required (YYYY-MM-DD)";
+  if (startDate > endDate)
+    error.errors.endDate = "endDate cannot come before startDate";
+  if (!startDate || !endDate || startDate > endDate) {
+    return res.status(400).json(error);
+  }
+  error.message =
+    "Sorry, this spot is already booked for the specified dates";
+  error.statusCode = 403;
 
 
-  // for (let allDates of allBookings){
-  //   let startOfBooking = allDates.startDate
-  //   let endOfBooking = allDates.endDate
+  for (let allDates of allBookings){
+    let startOfBooking = allDates.startDate
+    let endOfBooking = allDates.endDate
 
-  //   if (startDate >= startOfBooking && startDate <= endOfBooking){
-  //     error.errors.startDate = 'Start date conflicts with an existing booking'
-  //     error.message =
-  //     "Sorry, this spot is already booked for the specified dates";
-  //     error.statusCode = 403;
-  //     return res.json(error.errors.startDate)
-  //   }
-  //   if (endDate >= startOfBooking && endDate <= endOfBooking){
-  //     error.errors.endDate = 'End date conflicts with an existing booking'
-  //     error.message =
-  //     "Sorry, this spot is already booked for the specified dates";
-  //     error.statusCode = 403;
-  //     return res.json(error.errors.endDate)
-  //   }
-  // }
-  // if (error.errors){
-  //   return res.status(403).json(error)
-  // }
+    if (startDate >= startOfBooking && startDate <= endOfBooking){
+      error.errors.startDate = 'Start date conflicts with an existing booking'
+      error.message =
+      "Sorry, this spot is already booked for the specified dates";
+      error.statusCode = 403;
+      return res.json(error.errors.startDate)
+    }
+    if (endDate >= startOfBooking && endDate <= endOfBooking){
+      error.errors.endDate = 'End date conflicts with an existing booking'
+      error.message =
+      "Sorry, this spot is already booked for the specified dates";
+      error.statusCode = 403;
+      return res.json(error.errors.endDate)
+    }
+  }
+  if (error.errors){
+    return res.status(403).json(error)
+  }
 
   const createBooking = await Booking.create({
     spotId: spotId,
