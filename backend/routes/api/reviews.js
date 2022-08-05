@@ -55,6 +55,8 @@ router.post('/:reviewId/images', requireAuth, async (req, res) => {
         reviewId: req.params.reviewId,
         imageableId: allImages.length + 1,
         imageableType: 'Review',
+        userId: currentUserId,
+        previewImage: true,
         spotId: req.params.spotId
     })
 
