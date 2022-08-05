@@ -463,10 +463,10 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
 // Get all bookings for a spot based on spot ID
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 
-  const spot = await Spot.findByPk(req.params.spotId, {
+  const spot = await Spot.findByPk(req.params.spotId)
     // where: { ownerId: req.user.id },
     // attributes: ["ownerId"],
-  });
+
 
   if (!spot) {
     return res.status(404).json({
