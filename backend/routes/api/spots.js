@@ -269,9 +269,10 @@ router.get('/current', requireAuth, async (req, res) => {
       {model: Review, attributes: [
             [sequelize.fn("AVG", sequelize.col("stars")), "avgRating"],
           ],
+        group: ['Review.id'],
         raw: true
         },
-        group: ['Spot.id', 'Review.id'],
+        group: ['Spot.id'],
   })
   return res.json(spots)
 })
