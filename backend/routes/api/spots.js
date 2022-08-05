@@ -267,9 +267,9 @@ router.get('/current', requireAuth, async (req, res) => {
       include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
       "avgRating"],
       ]},
-      where: {ownerId: req.user.id},
       include: [
-      {model: Review}],
+        {model: Review,  attributes: []}],
+        where: {ownerId: req.user.id},
       raw: true,
       group: ['Spot.id'],
     })
