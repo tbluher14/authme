@@ -22,7 +22,7 @@ module.exports = {
       },
       {
         userId: 2,
-        spotId: 1,
+        spotId: 3,
         review: "I can imagine it was really awesome to grow up in this house!",
         stars: 4
       },
