@@ -14,11 +14,7 @@ const validateSignup = [
     check('username')
       .exists({ checkFalsy: true })
       .isLength({ min: 4 })
-      .withMessage('Please provide a username with at least 4 characters.'),
-    check('username')
-      .not()
-      .isEmail()
-      .withMessage('Username cannot be an email.'),
+      .withMessage('User with that username already exists'),
     check('password')
       .exists({ checkFalsy: true })
       .isLength({ min: 6 })
@@ -57,13 +53,26 @@ router.get('/current', requireAuth, async (req, res) => {
 router.post('/', validateSignup, async (req, res) => {
       const { email, firstName, lastName, password, username } = req.body;
       console.log( { email, firstName, lastName, password, username })
-      const user = await User.signup({
-        firstName: firstName,
-        lastName: lastName,
-        email: email,
-        username: username,
-        password: password,
+
+      const findUserByUsername = await User.findAll({
+        where: {username: username}
       })
+      if (findUserByUsername.length > 0){
+        return res.json({
+          message: 'User with that email already exists',
+          statusCode: 403
+        })
+      }
+      const findUserByEmail = await User.findAll({
+        where: {email: email}
+      })
+ 
+      if (findUserByEmail.length > 0){
+        return res.json({
+          message: 'User with that username already exists',
+          statusCode: 403
+        })
+      }
 
       if (!firstName){
         res.status(400).json({
@@ -82,9 +91,18 @@ router.post('/', validateSignup, async (req, res) => {
           message: "Username is required"
         })
       }
-      await setTokenCookie(res, user);
 
-    res.json({user});
+      const user = await User.signup({
+        firstName: firstName,
+        lastName: lastName,
+        email: email,
+        username: username,
+        password: password,
+      })
+
+     const token = await setTokenCookie(res, user);
+
+    res.json({user, token});
     }
   );
 

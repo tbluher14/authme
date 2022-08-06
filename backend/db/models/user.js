@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     toSafeObject () {
       const {id, firstName, lastName, username, email} = this;
-      return {id, username, firstName, lastName, email}
+      return {id, firstName, lastName, username, email}
     }
     static associate(models) {
      User.hasMany(models.Spot, {foreignKey: 'ownerId'})

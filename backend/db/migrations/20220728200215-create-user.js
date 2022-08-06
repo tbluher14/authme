@@ -11,7 +11,7 @@ module.exports = {
       username: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        // unique: true
       },
       firstName: {
         type: Sequelize.STRING,
@@ -24,7 +24,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true
+        // unique: true
       },
       hashedPassword: {
         type: Sequelize.STRING.BINARY,
