@@ -159,7 +159,7 @@ const error = {
 
 
 // edit a spot
-router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
+router.put("/:spotId", requireAuth, async (req, res) => {
     let {
       address,
       city,
@@ -204,19 +204,41 @@ router.put("/:spotId", requireAuth, validateSpot, async (req, res) => {
       statusCode: 400,
       errors: {},
     }
-      if (!address) error.errors.address = "Street address is required"
-      if (!city) error.errors.city = "City is required"
-      if (!state) error.errors.state = "State is required"
-      if (!country) error.errors.country = "Country is required"
-      if (!lat) error.errors.lat = "Latitude is not valid"
-      if (!lng) error.errors.lng = "Longitude is not valid"
-      if (!name ) error.errors.name = "Name must be less than 50 characters"
-      if (!description) error.errors.description =  "Description is required"
-      if (!price) error.errors.price = "Price per day is required"
-
-if (error.errors.length) {
-  return res.status(400).json(error);
-}
+  if (!address) {
+    error.errors.address = "Street address is required"
+    return res.status(400).json(error)
+  }
+  if (!city) {
+    error.errors.city = "City is required"
+    return res.status(400).json(error)
+  }
+  if (!state) {
+    error.errors.state = "State is required"
+    return res.status(400).json(error)
+  }
+  if (!country) {
+    error.errors.country = "Country is required"
+    return res.status(400).json(error)
+  }
+  if (!lat){ error.errors.lat = "Latitude is not valid"
+  return res.status(400).json(error)
+  }
+  if (!lng) {
+    error.errors.lng = "Longitude is not valid"
+    return res.status(400).json(error)
+  }
+  if (!name ) {
+    error.errors.name = "Name must be less than 50 characters"
+    return res.status(400).json(error)
+  }
+  if (!description){
+     error.errors.description =  "Description is required"
+     return res.status(400).json(error)
+  }
+  if (!price) {
+    error.errors.price = "Price per day is required"
+    return res.status(400).json(error)
+  }
     return res.json(spot);
   });
 
@@ -412,15 +434,28 @@ router.get('/:spotId/reviews', async (req, res) => {
     },
       {
         model: Image,
-        attributes: ['id', 'url', 'imageableId']
+        attributes: ['id', 'url', 'imageableId'],
       }
     ],
     where: {
       spotId: spotId
     }
   })
-  const spot = await Spot.findByPk(spotId)
-  if (!spot){
+  const spot = await Spot.findAll({
+    include: {
+      model: Image, as: 'Images',
+      attributes: ['id', 'url', 'imageableId'],
+      where: {
+        id: spotId
+    },
+    where: {
+      id: spotId
+    }
+    }
+  })
+
+
+  if (spot.length < 1){
     return res.json({
       message: "Spot couldn't be found",
       statusCode: 404
