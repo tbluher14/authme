@@ -77,9 +77,11 @@ if (lookupBooking.endDate < currentDate) {
       let end = dates.endDate;
       if (startDate >= start && startDate <= end) {
         err.errors.startDate = "Start date conflicts with an existing booking";
+        return res.json(err)
       }
       if (endDate >= start && endDate <= end) {
         err.errors.endDate = "End date conflicts with an existing booking";
+        return res.json(err)
       }
     }
     if ("endDate" in err.errors || "startDate" in err.errors) {
