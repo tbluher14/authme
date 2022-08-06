@@ -239,6 +239,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     error.errors.price = "Price per day is required"
     return res.status(400).json(error)
   }
+  
     return res.json(spot);
   });
 
@@ -283,7 +284,7 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
           })
     }
     if(spot.ownerId === user.id) {
-        let response = {}
+        let image = {}
 
         const newImage = Image.build({
             url,
@@ -294,12 +295,12 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
         })
         await newImage.save()
 
-        response.id = newImage.id
-        response.imageableId = newImage.spotId
-        response.url = newImage.url
+        image.id = newImage.id
+        image.imageableId = newImage.spotId
+        image.url = newImage.url
 
         res.status(200)
-        res.json(response)
+        res.json(image)
     }
 })
 
