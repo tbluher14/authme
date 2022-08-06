@@ -37,14 +37,19 @@ const { handleValidationErrors } = require('../../utils/validation');
   );
 
   // restore session user
-  router.get(
-    '/',
-    restoreUser,
-    (req, res) => {
-      const { user } = req;
+  router.get('/', restoreUser, (req, res) => {
+
+    let { user } = req;
+
       if (user) {
         return res.json({
-          user: user.toSafeObject()
+          user: user.toSafeObject(),
+          // id: user.dataValues.id,
+          // firstName: user.dataValues.firstName,
+          // lastName: user.dataValues.lastName,
+          // email: user.dataValues.email,
+          // username: user.dataValues.username,
+
         });
       } else return res.json({});
     }
@@ -84,10 +89,10 @@ router.post(
 
       const userRes = {
         id: user.id,
-        username: user.username,
         firstName: user.firstName,
         lastName: user.lastName,
         email: user.email,
+        username: user.username,
         token: token
       }
       return res.json(userRes)
