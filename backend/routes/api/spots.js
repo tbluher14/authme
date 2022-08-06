@@ -39,6 +39,13 @@ router.get("/", async (req, res) => {
           };
 
           const response = {}
+          const images = await Image.findAll({
+            where: {
+                previewImage: true
+            },
+            attributes: ['id','url','spotId'],
+            raw: true
+        })
 
           const spots = await Spot.findAll({
             attributes: {
@@ -48,7 +55,7 @@ router.get("/", async (req, res) => {
             include:
             [
                 {model: Review, attributes: []},
-                {model: Image, attributes: [previewImage]}
+                {model: Image, as: 'Images', attributes: []}
             ],
             group: ["Spot.id"],
             raw: true,
@@ -59,13 +66,6 @@ router.get("/", async (req, res) => {
             // limit: pagination.size,
             // offset: pagination.size * pagination.page,
           });
-        const images = await Image.findAll({
-            where: {
-                previewImage: true
-            },
-            attributes: ['id','url','spotId'],
-            raw: true
-        })
 
         spots.forEach(spot => {
             images.forEach(image => {
@@ -210,7 +210,6 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
             status: 404
         })
     }
-
     await spot.destroy()
     return res.json({
         message: "Successfully deleted",
@@ -274,9 +273,23 @@ router.get('/current', requireAuth, async (req, res) => {
       raw: true,
       group: ['Spot.id'],
     })
+    const images = await Image.findAll({
+      where: {
+          previewImage: true
+      },
+      attributes: ['id','url','spotId'],
+      raw: true
+  })
+    spots.forEach(spot => {
+      images.forEach(image => {
+          if(image.spotId === spot.id) {
+              spot.previewImage = image.url
+          }
+      })
+  });
+
     return res.json(spots)
   })
-
 
 // Get Details of a Spot by ID
 router.get('/:spotId', async(req, res) => {

@@ -39,21 +39,15 @@ const { handleValidationErrors } = require('../../utils/validation');
   // restore session user
   router.get('/', restoreUser, (req, res) => {
 
-    let { user } = req;
+    const user = {
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+    };
+    return res.json(user);
+  });
 
-      if (user) {
-        return res.json({
-          // user: user.toSafeObject(),
-          id: user.dataValues.id,
-          firstName: user.dataValues.firstName,
-          lastName: user.dataValues.lastName,
-          email: user.dataValues.email,
-          username: user.dataValues.username,
-
-        });
-      } else return res.json({});
-    }
-  );
 
   const validateLogin = [
     check('credential')
@@ -73,36 +67,27 @@ router.post(
     async (req, res, next) => {
       const { credential, password } = req.body;
 
-      const error = {
-        message: 'Validation Error',
-        statusCode: 400,
-        errors: {}
-      }
-
       const user = await User.login({ credential, password });
-      const token = await setTokenCookie(res, user);
-      // const token = user.dataValues.token
-      // user.dataValues.token = token
-      // user.dataValues.token = token
-      // console.log(user, token)
+
       if (!user) {
-        error.errors = 'Email or username is required';
-        return res.status(400).json(error);
-      }
-      if (!password) {
-        error.errors = 'password is required';
-        return res.status(400).json(error);
-      }
-
-
-      let {id, firstName, lastName, email, username} = user
-      const userRes = {
-        id, firstName, lastName, email, username, token
+        const err = new Error('Login failed');
+        err.status = 401;
+        err.title = 'Login failed';
+        err.errors = ['The provided credentials were invalid.'];
+        return next(err);
       }
 
+      const token = await setTokenCookie(res, user);
 
-      res.json({userRes})
-    });
+
+      if(user){
+        res.status(200)
+      }
+      return res.json({
+        user, token
+      });
+    }
+  );
 
 
 
