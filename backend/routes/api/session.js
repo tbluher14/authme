@@ -43,12 +43,12 @@ const { handleValidationErrors } = require('../../utils/validation');
 
       if (user) {
         return res.json({
-          user: user.toSafeObject(),
-          // id: user.dataValues.id,
-          // firstName: user.dataValues.firstName,
-          // lastName: user.dataValues.lastName,
-          // email: user.dataValues.email,
-          // username: user.dataValues.username,
+          // user: user.toSafeObject(),
+          id: user.dataValues.id,
+          firstName: user.dataValues.firstName,
+          lastName: user.dataValues.lastName,
+          email: user.dataValues.email,
+          username: user.dataValues.username,
 
         });
       } else return res.json({});
@@ -73,29 +73,35 @@ router.post(
     async (req, res, next) => {
       const { credential, password } = req.body;
 
+      const error = {
+        message: 'Validation Error',
+        statusCode: 400,
+        errors: {}
+      }
+
       const user = await User.login({ credential, password });
-
-      if (!user) {
-        const err = new Error('Login failed');
-        err.status = 401;
-        err.title = 'Login failed';
-        err.errors = ['Invalid credentials'];
-        return next(err);
-      }
-
-
       const token = await setTokenCookie(res, user);
-
-
-      const userRes = {
-        id: user.id,
-        firstName: user.firstName,
-        lastName: user.lastName,
-        email: user.email,
-        username: user.username,
-        token: token
+      // const token = user.dataValues.token
+      // user.dataValues.token = token
+      // user.dataValues.token = token
+      // console.log(user, token)
+      if (!user) {
+        error.errors = 'Email or username is required';
+        return res.status(400).json(error);
       }
-      return res.json(userRes)
+      if (!password) {
+        error.errors = 'password is required';
+        return res.status(400).json(error);
+      }
+
+
+      let {id, firstName, lastName, email, username} = user
+      const userRes = {
+        id, firstName, lastName, email, username, token
+      }
+
+
+      res.json({userRes})
     });
 
 

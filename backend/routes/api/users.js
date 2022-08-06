@@ -53,43 +53,48 @@ router.get('/current', requireAuth, async (req, res) => {
 router.post('/', validateSignup, async (req, res) => {
       const { email, firstName, lastName, password, username } = req.body;
 
-    
+      const error = {
+        message: 'User Already Exists',
+        statusCode: 403,
+        errors: {}
+      }
       const findUserByUsername = await User.findAll({
         where: {username: username}
       })
       if (findUserByUsername.length > 0){
-        return res.json({
-          message: 'User with that email already exists',
-          statusCode: 403
-        })
+        error.errors = 'User with that username already exists'
+        return res.status(403).json(error)
       }
       const findUserByEmail = await User.findAll({
         where: {email: email}
       })
 
       if (findUserByEmail.length > 0){
-        return res.json({
-          message: 'User with that username already exists',
-          statusCode: 403
-        })
+        error.errors = 'User with that email already exists'
+        return res.status(403).json(error)
       }
 
+      const validationErrors ={
+        message: "Validation Error",
+        statusCode: 400,
+        errors: {}
+      }
       if (!firstName){
-        res.status(400).json({
-          message: 'First Name is required'
-        })
+        res.status(400)
+        validationErrors.errors = 'First Name is required'
+        return res.status(400).json(validationErrors)
       }
 
       if (!lastName) {
-        res.status(400).json({
-          message: 'Last Name is required'
-        })
+        res.status(400)
+        validationErrors.errors = 'Last Name is required'
+        return res.status(400).json(validationErrors)
       }
 
       if (!username){
-        res.status(400).json({
-          message: "Username is required"
-        })
+        res.status(400)
+        validationErrors.errors = 'Usename is required'
+        return res.status(400).json(validationErrors)
       }
 
       const user = await User.signup({

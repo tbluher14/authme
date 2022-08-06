@@ -9,7 +9,8 @@ const { secret, expiresIn } = jwtConfig;
 const setTokenCookie = (res, user) => {
     // Create the token.
     const token = jwt.sign(
-      { data: user.toSafeObject() },
+      // { data: user.toSafeObject() },
+      {data: user},
       secret,
       { expiresIn: parseInt(expiresIn) } // 604,800 seconds = 1 week
     );
