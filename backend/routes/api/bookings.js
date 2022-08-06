@@ -27,13 +27,9 @@ router.get('/current', requireAuth, async (req, res) => {
 router.put('/:bookingId', requireAuth, async (req, res) => {
     const lookupBooking = await Booking.findByPk(req.params.bookingId)
     const {startDate, endDate} = req.body
-    console.log(lookupBooking)
 
-    // const err = {
-    //     message: 'Validation error',
-    //     statusCode: 400,
-    //     errors: {}
-    // }
+
+
 // End date comes before start date
     if (startDate>endDate){
         error.errors.endDate = "endDate cannot come before startDate"
@@ -47,7 +43,7 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         })
     }
 // Past bookings cannot be edited
-let currentDate = '2022-08-04'
+let currentDate = '2022-08-06'
 if (lookupBooking.endDate < currentDate) {
     return res.status(403).json({
       message: "You cannot edit a past booking",
@@ -84,9 +80,9 @@ if (lookupBooking.endDate < currentDate) {
         return res.json(err)
       }
     }
-    if ("endDate" in err.errors || "startDate" in err.errors) {
-      return res.status(403).json(err);
-    }
+    // if ("endDate" in err.errors || "startDate" in err.errors) {
+    //   return res.status(403).json(err);
+    // }
 
 // update if no errors trigger
     lookupBooking.startDate = startDate
@@ -101,18 +97,18 @@ if (lookupBooking.endDate < currentDate) {
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId)
     const currentUser = req.user.id
-    const spot = await Spot.findByPk(booking.spotId)
 
+    if (!booking){
+      return res.json({
+          message: "Booking couldn't be found",
+          statusCode: 404
+      })
+  }
+    const spot = await Spot.findByPk(booking.spotId)
 
     if (booking.userId !== currentUser && spot.ownerId !== currentUser ){
         return res.json({
             message: "Cannot delete a booking that isn't yours"
-        })
-    }
-    if (!booking){
-        return res.json({
-            message: "Booking couldn't be found",
-            statusCode: 404
         })
     }
     const { startDate } = booking.toJSON();
