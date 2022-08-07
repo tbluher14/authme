@@ -39,25 +39,20 @@ router.get("/", async (req, res) => {
             errors: {},
           };
 
-          page = Number(page);
-          size = Number(size);
+          page = parseInt(page);
+          size = parseInt(size);
 
           if (Number.isNaN(page)) page = 0;
           if (Number.isNaN(size)) size = 20;
-
-          if (page > 10) page = 10;
-          if (size > 20) size = 20;
-
-          if (page < 0) error.errors.page = "Page must be greater than or equal to 0";
-          if (size < 0) error.errors.size = "Size must be greater than or equal to 0";
-
-          if (page < 0 || size < 0 ) {
-            res.status(400);
-            res.json(error);
+          if (minPrice < 0) minPrice = 0;
+          if (maxPrice < 0) maxPrice = 0
+          if (page >= 1 && size === 0){
+              size = 20
           }
-
-          pagination.limit = size;
-          pagination.offset = size *(page -1);
+          if (page >= 1 && size >= 1) {
+              pagination.limit = size
+              pagination.offset = size * (page-1)
+          }
 
 const spots = await Spot.findAll({
           // attributes: {
