@@ -78,7 +78,7 @@ router.get("/", async (req, res) => {
         spots.forEach(spot => {
             images.forEach(image => {
                 if(image.spotId === spot.id) {
-                    spot['previewImage'] = image.url
+                    spot['Image'] = image.url
                 }
             })
         });
