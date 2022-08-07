@@ -30,9 +30,10 @@ router.get("/", async (req, res) => {
           const pagination = {
             filter: [],
           };
-          let { page, size} = req.query;
+          let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } =
+            req.query;
 
-          const error = {
+            const error = {
             message: "Validation Error",
             statusCode: 400,
             errors: {},
@@ -56,33 +57,43 @@ router.get("/", async (req, res) => {
           }
 
           pagination.limit = size;
-          pagination.offset = size * (page -1);
+          pagination.offset = size *(page -1);
 
-        // find all spots
-        const spots = await Spot.findAll({
+const spots = await Spot.findAll({
+          // attributes: {
+          // include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
+          //       "avgRating"],
+          //   ],
+          // },
+          // include:
+          //   [
+          //   {model: Review, attributes: []},
+          //   {model: Image, as: 'Images', attributes: []}
+          //   ],
+          // group: ["Spot.id"],
           raw: true,
           ...pagination
           });
-        // find all images
-        const images = await Image.findAll({
+
+          const images = await Image.findAll({
             where: {
                 previewImage: true
             },
             attributes: ['id','url','spotId'],
             raw: true
         })
-        // find all reviews
         const reviews = await Review.findAll({raw:true})
 
-        // add images to spots
+        spot.previewImage = null
+
         spots.forEach(spot => {
             images.forEach(image => {
                 if(image.spotId === spot.id) {
-                    spot['Image'] = image.url
+                    spot.previewImage = image.url
                 }
             })
         });
-        // add reviews/average reviews to spots
+
         spots.forEach(spot => {
           let totalStars = 0
           let numReviews = 0
