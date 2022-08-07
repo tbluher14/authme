@@ -56,13 +56,14 @@ router.get("/", async (req, res) => {
           }
 
           pagination.limit = size;
-          pagination.offset = size *(page -1);
+          pagination.offset = size * (page -1);
 
+        // find all spots
         const spots = await Spot.findAll({
           raw: true,
           ...pagination
           });
-
+        // find all images
         const images = await Image.findAll({
             where: {
                 previewImage: true
@@ -70,16 +71,18 @@ router.get("/", async (req, res) => {
             attributes: ['id','url','spotId'],
             raw: true
         })
+        // find all reviews
         const reviews = await Review.findAll({raw:true})
 
+        // add images to spots
         spots.forEach(spot => {
             images.forEach(image => {
                 if(image.spotId === spot.id) {
-                    spot.previewImage = image.url
+                    spot['previewImage'] = image.url
                 }
             })
         });
-
+        // add reviews/average reviews to spots
         spots.forEach(spot => {
           let totalStars = 0
           let numReviews = 0
