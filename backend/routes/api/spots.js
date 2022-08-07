@@ -75,11 +75,11 @@ router.get("/", async (req, res) => {
             })
         });
 
-        response.spots = spots
+
         res.status(200)
 
         res.json({
-          response,
+          spots,
           page: pagination.page,
           size: pagination.size,
         });
