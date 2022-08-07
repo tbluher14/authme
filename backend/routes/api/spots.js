@@ -149,6 +149,18 @@ router.post('/', requireAuth, async (req, res, next) => {
         description,
         price,
       });
+      const response = {
+        ownerId: newSpot.ownerId,
+        address: newSpot.address,
+        city: newSpot.city,
+        state: newSpot.state,
+        country: newSpot.country,
+        lat: newSpot.lat,
+        lng: newSpot.lng,
+        name: newSpot.name,
+        description: newSpot.name,
+        price: newSpot.price
+      }
 
 const error = {
         message: "Validation error",
@@ -190,7 +202,7 @@ const error = {
       error.errors.price = "Price per day is required"
       return res.status(400).json(error)
     }
-    return res.json(201, newSpot);
+    return res.json(201, response);
 })
 // ***************************************************************************************
 
@@ -233,8 +245,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
         .status(403)
         .json({ message: "You must be the owner to edit this spot" });
     }
-
-
 
 
     // update spot if it belongs to user
