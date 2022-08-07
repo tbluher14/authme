@@ -64,6 +64,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false
     },
+    previewImage:
+    {
+      type: DataTypes.TEXT
+    }
   }, {
     sequelize,
     modelName: 'Spot',

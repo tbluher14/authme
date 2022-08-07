@@ -30,42 +30,47 @@ router.get("/", async (req, res) => {
           const pagination = {
             filter: [],
           };
-          let { page, size, maxLat, minLat, minLng, maxLng, minPrice, maxPrice } =
-            req.query;
+          let { page, size} = req.query;
+
           const error = {
             message: "Validation Error",
             statusCode: 400,
             errors: {},
           };
 
-          const response = {}
-          const images = await Image.findAll({
+          page = Number(page);
+          size = Number(size);
+
+          if (Number.isNaN(page)) page = 0;
+          if (Number.isNaN(size)) size = 20;
+
+          if (page > 10) page = 10;
+          if (size > 20) size = 20;
+
+          if (page < 0) error.errors.page = "Page must be greater than or equal to 0";
+          if (size < 0) error.errors.size = "Size must be greater than or equal to 0";
+
+          if (page < 0 || size < 0 ) {
+            res.status(400);
+            res.json(error);
+          }
+
+          pagination.limit = size;
+          pagination.offset = size *(page -1);
+
+        const spots = await Spot.findAll({
+          raw: true,
+          ...pagination
+          });
+
+        const images = await Image.findAll({
             where: {
                 previewImage: true
             },
             attributes: ['id','url','spotId'],
             raw: true
         })
-
-          const spots = await Spot.findAll({
-            attributes: {
-                include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
-                "avgRating"],
-            ]},
-            include:
-            [
-                {model: Review, attributes: []},
-                {model: Image, as: 'Images', attributes: []}
-            ],
-            group: ["Spot.id"],
-            // raw: true,
-            // where: {
-            //   [Op.and]: pagination.filter,
-            // },
-
-            // limit: pagination.size,
-            // offset: pagination.size * pagination.page,
-          });
+        const reviews = await Review.findAll({raw:true})
 
         spots.forEach(spot => {
             images.forEach(image => {
@@ -75,6 +80,20 @@ router.get("/", async (req, res) => {
             })
         });
 
+        spots.forEach(spot => {
+          let totalStars = 0
+          let numReviews = 0
+          for (let i = 0; i<reviews.length; i++){
+            if (spot.id === reviews[i].spotId){
+              console.log(reviews[i])
+              totalStars += reviews[i].stars
+              numReviews ++
+            }
+          }
+          if (numReviews > 0){
+          spot['avgRating'] = totalStars/numReviews
+          }
+        })
 
         res.status(200)
 
@@ -359,11 +378,12 @@ router.get('/:spotId', async(req, res) => {
       attributes: [],
     },
     attributes: [
-      [sequelize.fn("COUNT", sequelize.col("*")), "numReviews"],
+      [sequelize.fn("COUNT", sequelize.col("stars")), "numReviews"],
       [sequelize.fn("AVG", sequelize.col("stars")), "avgStarRating"],
     ],
     raw: true,
   });
+
  // error handling for spot
   if (!spot) {
     res.status(404)
@@ -543,9 +563,10 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
 // Get all bookings for a spot based on spot ID
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 
-  const spot = await Spot.findByPk(req.params.spotId)
-    // where: { ownerId: req.user.id },
-    // attributes: ["ownerId"],
+  const spot = await Spot.findByPk(req.params.spotId,{
+    where: { ownerId: req.user.id },
+    attributes: ["ownerId"],
+  })
 
 
   if (!spot) {

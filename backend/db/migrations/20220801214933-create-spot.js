@@ -50,6 +50,9 @@ module.exports = {
         references: {model: 'Users'},
         allowNull: false
       },
+      previewImage: {
+        type: Sequelize.TEXT
+      }
     });
   },
   async down(queryInterface, Sequelize) {
