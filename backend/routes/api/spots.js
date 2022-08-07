@@ -9,7 +9,6 @@ const sequelize = require('sequelize');
 const { route } = require('./reviews');
 const booking = require('../../db/models/booking');
 const spot = require('../../db/models/spot');
-const image = require('../../db/models/image');
 
 // validate spot
 const validateSpot = [
@@ -107,7 +106,6 @@ const spots = await Spot.findAll({
           spot['avgRating'] = totalStars/numReviews
           }
         })
-
 // response
         res.status(200)
         res.json({
@@ -123,8 +121,19 @@ const spots = await Spot.findAll({
 // ***************************************************************************************
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
-    const {address, city, state, country,lat,lng,name,description,price} = req.body;
-      const { id } = req.user.id;
+    const {
+        ownerId,
+        address,
+        city,
+        state,
+        country,
+        lat,
+        lng,
+        name,
+        description,
+        price
+      } = req.body;
+      const { id } = req.user;
 
       const newSpot = await Spot.create({
         ownerId: id,
@@ -138,20 +147,6 @@ router.post('/', requireAuth, async (req, res, next) => {
         description,
         price,
       });
-      const response = {
-        ownerId: newSpot.ownerId,
-        address: newSpot.address,
-        city: newSpot.city,
-        state: newSpot.state,
-        country: newSpot.country,
-        lat: newSpot.lat,
-        lng: newSpot.lng,
-        name: newSpot.name,
-        description: newSpot.name,
-        price: newSpot.price,
-        createdAt: newSpot.createdAt,
-        updatedAt: newSpot.updatedAt
-      }
 
 const error = {
         message: "Validation error",
@@ -193,7 +188,7 @@ const error = {
       error.errors.price = "Price per day is required"
       return res.status(400).json(error)
     }
-    return res.json(201, response);
+    return res.json(201, newSpot);
 })
 // ***************************************************************************************
 
@@ -215,13 +210,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     } = req.body;
 
     const spot = await Spot.findByPk(req.params.spotId);
-    // pull images if they exist
-    const images = await Image.findAll()
-      images.forEach(image => {
-          if(image.spotId === spot.id) {
-              spot.previewImage = image.url
-          }
-        })
 
     // check if spot exists
     if (!spot) {
@@ -236,8 +224,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
         .status(403)
         .json({ message: "You must be the owner to edit this spot" });
     }
-
-
     // update spot if it belongs to user
     spot.address = address;
     spot.city = city;
@@ -251,6 +237,21 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 
 
     await spot.save();
+
+    const response = {
+      ownerId: spot.ownerId,
+      address: spot.address,
+      city: spot.city,
+      state: spot.state,
+      country: spot.country,
+      lat: spot.lat,
+      lng: spot.lng,
+      name: spot.name,
+      description: spot.description,
+      price: spot.price,
+      createdAt: spot.createdAt,
+      updatedAt: spot.updatedAt
+    }
 
 
     // Error handling for validation errors
@@ -295,7 +296,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     return res.status(400).json(error)
   }
   // return the updated spot
-    return res.json(spot);
+    return res.json(response);
   });
 // ***************************************************************************************
 
