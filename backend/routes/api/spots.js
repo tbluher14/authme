@@ -526,6 +526,8 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     statusCode: 400,
     errors: {}
   }
+
+  // if start date or end date are missing or the start date is after the end date, throw error
   if (!startDate) error.errors.startDate = "Start date is required (YYYY-MM-DD)";
   if (!endDate) error.errors.endDate = "End date is required (YYYY-MM-DD)";
   if (startDate > endDate)
@@ -534,18 +536,22 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     return res.status(400).json(error);
   }
 
-  for (let allDates of allBookings){
-    let startOfBooking = allDates.startDate
-    let endOfBooking = allDates.endDate
 
-    if (startDate === startOfBooking && startDate === endOfBooking){
+  for (let allDates of allBookings){
+
+    let startOfBookingParse = Date.parse(allDates.startDate)
+    let startDateReqParse = Date.parse(startDate)
+    let endofBookingParse = Date.parse(allDates.endDate)
+    let endofReqParse = Date.parse(endDate)
+
+    if (startDateReqParse >= startOfBookingParse && startDateReqParse <= endofBookingParse){
       error.errors.startDate = 'Start date conflicts with an existing booking'
       error.message =
       "Sorry, this spot is already booked for the specified dates";
       error.statusCode = 403;
       return res.json(error)
     }
-    if (endDate === startOfBooking && endDate === endOfBooking){
+    if (endofReqParse >= startOfBookingParse && endofReqParse <= endofBookingParse){
       error.errors.endDate = 'End date conflicts with an existing booking'
       error.message =
       "Sorry, this spot is already booked for the specified dates";
