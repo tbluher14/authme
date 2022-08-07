@@ -9,6 +9,7 @@ const sequelize = require('sequelize');
 const { route } = require('./reviews');
 const booking = require('../../db/models/booking');
 const spot = require('../../db/models/spot');
+const image = require('../../db/models/image');
 
 // validate spot
 const validateSpot = [
@@ -24,7 +25,7 @@ const validateSpot = [
     handleValidationErrors,
     ];
 
-
+// ***************************************************************************************
 // get all spots
 router.get("/", async (req, res) => {
           const pagination = {
@@ -38,7 +39,7 @@ router.get("/", async (req, res) => {
             statusCode: 400,
             errors: {},
           };
-
+// Pagination query filters
           page = parseInt(page);
           size = parseInt(size);
 
@@ -69,19 +70,21 @@ const spots = await Spot.findAll({
           raw: true,
           ...pagination
           });
-
-          const images = await Image.findAll({
-            where: {
-                previewImage: true
+// lookup all images
+    const images = await Image.findAll({
+       where: {
+            previewImage: true
             },
-            attributes: ['id','url','spotId'],
+       attributes: ['id','url','spotId'],
             raw: true
         })
-        const reviews = await Review.findAll({raw:true})
-
+// lookup all reviews
+    const reviews = await Review.findAll({raw:true})
         spot.previewImage = null
 
-        spots.forEach(spot => {
+
+// attach images to spots
+    spots.forEach(spot => {
             images.forEach(image => {
                 if(image.spotId === spot.id) {
                     spot.previewImage = image.url
@@ -89,6 +92,7 @@ const spots = await Spot.findAll({
             })
         });
 
+// add reviews and stars to each spot
         spots.forEach(spot => {
           let totalStars = 0
           let numReviews = 0
@@ -104,15 +108,19 @@ const spots = await Spot.findAll({
           }
         })
 
+// response
         res.status(200)
-
         res.json({
           spots,
           page: pagination.page,
           size: pagination.size,
         });
       })
+// ***************************************************************************************
 
+
+
+// ***************************************************************************************
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
     const {
@@ -184,8 +192,11 @@ const error = {
     }
     return res.json(201, newSpot);
 })
+// ***************************************************************************************
 
 
+
+// ***************************************************************************************
 // edit a spot
 router.put("/:spotId", requireAuth, async (req, res) => {
     let {
@@ -201,6 +212,13 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     } = req.body;
 
     const spot = await Spot.findByPk(req.params.spotId);
+    // pull images if they exist
+    const images = await Image.findAll()
+      images.forEach(image => {
+          if(image.spotId === spot.id) {
+              spot.previewImage = image.url
+          }
+        })
 
     // check if spot exists
     if (!spot) {
@@ -215,6 +233,10 @@ router.put("/:spotId", requireAuth, async (req, res) => {
         .status(403)
         .json({ message: "You must be the owner to edit this spot" });
     }
+
+
+
+
     // update spot if it belongs to user
     spot.address = address;
     spot.city = city;
@@ -274,8 +296,11 @@ router.put("/:spotId", requireAuth, async (req, res) => {
   // return the updated spot
     return res.json(spot);
   });
+// ***************************************************************************************
 
 
+
+// ***************************************************************************************
 // delete a spot
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spotId = req.params.spotId
@@ -293,7 +318,10 @@ router.delete('/:spotId', requireAuth, async (req, res) => {
         status: 200
     })
 })
+// ***************************************************************************************
 
+
+// ***************************************************************************************
   // add an image to a spot by id
 router.post('/:spotId/images', requireAuth, async(req, res) => {
     const { user } = req;
@@ -336,7 +364,9 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
         res.json(image)
     }
 })
+// ***************************************************************************************
 
+// ***************************************************************************************
 // Get spots of current user
 router.get('/current', requireAuth, async (req, res) => {
 
@@ -368,7 +398,10 @@ router.get('/current', requireAuth, async (req, res) => {
 
     return res.json(spots)
   })
+// ***************************************************************************************
 
+
+// ***************************************************************************************
 // Get Details of a Spot by ID
 router.get('/:spotId', async(req, res) => {
   const spot = await Spot.findByPk(req.params.spotId, {
@@ -407,7 +440,10 @@ router.get('/:spotId', async(req, res) => {
 
   return res.json(spotData)
 })
+// ***************************************************************************************
 
+
+// ***************************************************************************************
 // Create review by spot id
 router.post('/:spotId/reviews', requireAuth, async (req, res) => {
   const { review, stars } = req.body;
@@ -459,8 +495,11 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
 
   return res.json(newReview);
 });
+// ***************************************************************************************
 
 
+
+// ***************************************************************************************
 // Get reviews by spot ID
 router.get('/:spotId/reviews', async (req, res) => {
   const spotId = req.params.spotId
@@ -490,7 +529,7 @@ router.get('/:spotId/reviews', async (req, res) => {
     }
     }
   })
-
+  // error handling
   if (spot.length < 1){
     return res.json({
       message: "Spot couldn't be found",
@@ -499,9 +538,12 @@ router.get('/:spotId/reviews', async (req, res) => {
   }
   return res.json(reviews)
 })
+// ***************************************************************************************
 
 
-// Create a booking based on a spot
+
+// ***************************************************************************************
+// Create a booking based on a spot id
 router.post('/:spotId/bookings', requireAuth, async(req, res) => {
   const spotId = req.params.spotId
   const spot = await Spot.findByPk(spotId)
@@ -536,7 +578,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     return res.status(400).json(error);
   }
 
-
+// iterate through all bookings and check for overlapping dates
   for (let allDates of allBookings){
 
     let startOfBookingParse = Date.parse(allDates.startDate)
@@ -574,7 +616,11 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
 
   return res.json(createBooking)
 })
+// ***************************************************************************************
 
+
+
+// ***************************************************************************************
 // Get all bookings for a spot based on spot ID
 router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 
@@ -590,12 +636,14 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
       statusCode: 404,
     });
   }
-
+// all bookings if the spot does not belong to current user
   const allBookings = await Booking.findAll({
     where: { spotId: req.params.spotId },
     attributes: ["spotId", "startDate", "endDate"],
   });
 
+
+  // booking for the owner
   const ownerBookings = await Booking.findAll({
     where: { spotId: req.params.spotId },
     include: {
@@ -610,7 +658,7 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
     return res.json({ Bookings: allBookings });
   }
 })
-
+// ***************************************************************************************
 
 
 
