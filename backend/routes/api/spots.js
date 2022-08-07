@@ -123,18 +123,7 @@ const spots = await Spot.findAll({
 // ***************************************************************************************
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
-    const {
-        ownerId,
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price
-      } = req.body;
+    const {ownerId, address, city, state, country,lat,lng,name,description,price} = req.body;
       const { id } = req.user;
 
       const newSpot = await Spot.create({
@@ -159,7 +148,9 @@ router.post('/', requireAuth, async (req, res, next) => {
         lng: newSpot.lng,
         name: newSpot.name,
         description: newSpot.name,
-        price: newSpot.price
+        price: newSpot.price,
+        createdAt: newSpot.createdAt,
+        updatedAt: newSpot.updatedAt
       }
 
 const error = {
