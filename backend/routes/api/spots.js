@@ -174,18 +174,20 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 
     const spot = await Spot.findByPk(req.params.spotId);
 
+    // check if spot exists
     if (!spot) {
       res.status(404);
       return res.json({
         message: "Spot couldn't be found",
         statusCode: 404,
       });
+      // check if spot belongs to user
     } else if (spot.ownerId !== req.user.id) {
       return res
         .status(403)
         .json({ message: "You must be the owner to edit this spot" });
     }
-
+    // update spot if it belongs to user
     spot.address = address;
     spot.city = city;
     spot.state = state;
@@ -199,6 +201,8 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 
     await spot.save();
 
+
+    // Error handling for validation errors
     const error = {
       message: "Validation error",
       statusCode: 400,
@@ -239,7 +243,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     error.errors.price = "Price per day is required"
     return res.status(400).json(error)
   }
-  
+  // return the updated spot
     return res.json(spot);
   });
 
@@ -268,14 +272,14 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
     const { url, previewImage} = req.body
 
     const spot = await Spot.findByPk(req.params.spotId)
-
+  // check if spot exists
     if(!spot){
         res.json({
             "message": "Spot couldn't be found",
             "statusCode": 404
           })
     }
-    console.log(spot.id, spot.ownerId, user.id)
+    // check if spot belongs to owner
     if(spot.ownerId !== user.id) {
         res.status(403)
         res.json({
@@ -283,6 +287,7 @@ router.post('/:spotId/images', requireAuth, async(req, res) => {
             "statusCode": 403
           })
     }
+    // if spot belongs to owner, add image and return response
     if(spot.ownerId === user.id) {
         let image = {}
 
@@ -347,6 +352,7 @@ router.get('/:spotId', async(req, res) => {
   },
 
   )
+  // look up all reviews
   const aggregateReviews = await Spot.findByPk(req.params.spotId, {
     include: {
       model: Review,
@@ -358,7 +364,7 @@ router.get('/:spotId', async(req, res) => {
     ],
     raw: true,
   });
-
+ // error handling for spot
   if (!spot) {
     res.status(404)
     return res.json({
@@ -384,7 +390,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
       statusCode: 404,
     });
   }
-
+// check if review exists
   const checkIfReviewExists = await Review.findAll({
     where: {
       [Op.and]: [
@@ -393,7 +399,7 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
       ],
     },
   });
-
+// error handling
   if (checkIfReviewExists.length >= 1) {
     return res.status(403).json({
       message: "User already has a review for this spot",
@@ -405,13 +411,14 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     statusCode: 400,
     errors: {},
   };
-
+// validation error handling
   if (!review) err.errors.review = "Review text is required";
   if (stars < 1 || stars > 5) err.errors.stars = "Stars must be an integer from 1 to 5";
   if (!review || stars < 1 || stars > 5) {
     return res.status(400).json(err);
   }
 
+// if no errors, create a review
   const newReview = await Review.create({
     userId: req.user.id,
     spotId: req.params.spotId,
@@ -455,7 +462,6 @@ router.get('/:spotId/reviews', async (req, res) => {
     }
   })
 
-
   if (spot.length < 1){
     return res.json({
       message: "Spot couldn't be found",
@@ -485,7 +491,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
       statusCode: 404,
     });
   }
-
+// error handling
   const error = {
     message: 'Validation error',
     statusCode: 400,
@@ -522,6 +528,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     return res.status(403).json(error)
   }
 
+  // if no errors, create booking
   const createBooking = await Booking.create({
     spotId: spotId,
     userId: req.user.id,
