@@ -440,7 +440,26 @@ router.get('/:spotId', async(req, res) => {
   spotData.numReviews = aggregateReviews.numReviews;
   spotData.avgStarRating = aggregateReviews.avgStarRating;
 
-  return res.json(spotData)
+  const response = {
+  id: spotData.id,
+  address: spotData.address,
+  city: spotData.city,
+  state: spotData.state,
+  country: spotData.country,
+  lat: spotData.lat,
+  lng: spotData.lng,
+  name: spotData.name,
+  description: spotData.description,
+  price: spotData.price,
+  ownerId: spotData.ownerId,
+  createdAt: spotData.createdAt,
+  updatedAt: spotData.updatedAt,
+  Images: spotData.Images,
+  Owner: spotData.Owner,
+  numReviews: spotData.numReviews,
+  avgStarRating: spotData.avgStarRating
+  }
+  return res.json(response)
 })
 // ***************************************************************************************
 
