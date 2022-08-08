@@ -27,7 +27,7 @@ router.get('/current', requireAuth, async (req, res) => {
 router.put('/:bookingId', requireAuth, async (req, res) => {
     const lookupBooking = await Booking.findByPk(req.params.bookingId)
     const {startDate, endDate} = req.body
-
+console.log(lookupBooking)
 
 
 // End date comes before start date
@@ -43,8 +43,8 @@ router.put('/:bookingId', requireAuth, async (req, res) => {
         })
     }
 // Past bookings cannot be edited
-let currentDate = '2022-08-06'
-if (lookupBooking.endDate < currentDate) {
+let currentDate = '2022-08-07'
+if (endDate < currentDate) {
     return res.status(403).json({
       message: "You cannot edit a past booking",
       statusCode: 403,
@@ -83,7 +83,14 @@ if (lookupBooking.endDate < currentDate) {
     // if ("endDate" in err.errors || "startDate" in err.errors) {
     //   return res.status(403).json(err);
     // }
+// check if current user is the owner of the booking
 
+    if (req.user.id !== lookupBooking.userId){
+      return res.status(403).json({
+        message: 'You must be the booking owner to edit',
+        statusCode: 403
+      })
+    }
 // update if no errors trigger
     lookupBooking.startDate = startDate
     lookupBooking.endDate = endDate
