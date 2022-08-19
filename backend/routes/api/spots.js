@@ -55,17 +55,6 @@ router.get("/", async (req, res) => {
           }
 
 const spots = await Spot.findAll({
-          // attributes: {
-          // include: [[sequelize.fn("AVG", sequelize.col("Reviews.stars")),
-          //       "avgRating"],
-          //   ],
-          // },
-          // include:
-          //   [
-          //   {model: Review, attributes: []},
-          //   {model: Image, as: 'Images', attributes: []}
-          //   ],
-          // group: ["Spot.id"],
           raw: true,
           ...pagination
           });
@@ -577,14 +566,14 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     }
   })
 
-
+  // if no spot, error
   if (!spot) {
     return res.status(404).json({
       message: "Spot couldn't be found",
       statusCode: 404,
     });
   }
-// error handling
+// error handling:
   const error = {
     message: 'Validation error',
     statusCode: 400,
