@@ -36,17 +36,30 @@ const { handleValidationErrors } = require('../../utils/validation');
     }
   );
 
-  // restore session user
-  router.get('/', restoreUser, (req, res) => {
+  // router.get('/', restoreUser, (req, res) => {
 
-    const user = {
-      id: req.user.id,
-      firstName: req.user.firstName,
-      lastName: req.user.lastName,
-      email: req.user.email,
-    };
-    return res.json(user);
-  });
+    //   const user = {
+      //     id: req.user.id,
+      //     firstName: req.user.firstName,
+      //     lastName: req.user.lastName,
+      //     email: req.user.email,
+      //   };
+      //   return res.json(user);
+      // });
+ // restore session user
+  router.get(
+    '/',
+    restoreUser,
+    (req, res) => {
+      const { user } = req;
+      if (user) {
+        return res.json({
+          user: user.toSafeObject()
+        });
+      } else return res.json({});
+    }
+  );
+
 
 
   const validateLogin = [

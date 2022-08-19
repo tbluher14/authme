@@ -9,8 +9,8 @@ const { secret, expiresIn } = jwtConfig;
 const setTokenCookie = (res, user) => {
     // Create the token.
     const token = jwt.sign(
-      // { data: user.toSafeObject() },
-      {data: user},
+      { data: user.toSafeObject() },
+      // {data: user},
       secret,
       { expiresIn: parseInt(expiresIn) } // 604,800 seconds = 1 week
     );
@@ -36,11 +36,13 @@ const restoreUser = (req, res, next) => {
 
     return jwt.verify(token, secret, null, async (err, jwtPayload) => {
       if (err) {
+        console.log("THIS IS THE STRING")
         return next();
       }
 
       try {
         const { id } = jwtPayload.data;
+        // console.log(id)
         req.user = await User.scope('currentUser').findByPk(id);
       } catch (e) {
         res.clearCookie('token');
