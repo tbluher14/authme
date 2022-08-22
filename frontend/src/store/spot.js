@@ -67,6 +67,12 @@ const spotReducer = (state = initialState, action) => {
       );
       return newState;
     }
+    case FIND_MY_SPOTS: {
+        newState = {};
+        action.currentUserSpots.forEach(spot=> newState[spot.id] = spot);
+        let allSpots = {...newState};
+        return allSpots;
+      }
 
     default:
       return state;
