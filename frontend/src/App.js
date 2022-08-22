@@ -5,24 +5,25 @@ import { Route, Switch } from "react-router-dom";
 import SignupFormPage from "./components/SignupFormPage";
 import * as sessionActions from "./store/session";
 import Navigation from "./components/Navigation";
+import UsersSpots from "./components/Spots/userSpots";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
-  }, [dispatch]);
+
 
   return (
     <>
-      <Navigation isLoaded={isLoaded} />
-      {isLoaded && (
+
+     <Navigation/>
         <Switch>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route exact path="/currentUser/spots">
+            <UsersSpots />
+         </Route>
         </Switch>
-      )}
     </>
   );
 }
