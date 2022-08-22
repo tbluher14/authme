@@ -13,6 +13,7 @@ const createSpot = (spot) => ({
   type: CREATE_SPOT,
   spot,
 });
+
 const getAllSpots = (spots) => ({
   type: GET_ALL_SPOTS,
   spots,
@@ -43,19 +44,46 @@ const deleteSpot = (spot) => ({
 // _____________________________________________________________
 // Thunks
 
+// Create Spot
+export const createNewSpot = (data) => async (dispatch) => {
+
+  const response = await csrfFetch("/api/spots", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  });
+
+  if (response.ok) {
+    const spot = await response.json();
+    dispatch(createSpot(spot));
+    return spot;
+  }
+};
+
 // Find all users spots
 export const getCurrentUsersSpots = () => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/current`);
-    console.log("response from fetch",response)
+    console.log("response from fetch", response)
     if (response.ok) {
       const spotsObj = await response.json();
         console.log("spotsObj in thunk", spotsObj)
       dispatch(findMySpots(spotsObj));
-    
+
       return response
     }
     return response;
   };
+
+// Get all Spots
+export const listAllSpots = () => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots`);
+  if (response.ok) {
+    const spotsObj = await response.json();
+    console.log(spotsObj)
+    dispatch(getAllSpots(spotsObj.spots));
+    return response;
+  }
+};
 
 // Store
 const initialState = {};
@@ -76,7 +104,11 @@ const spotReducer = (state = initialState, action) => {
         let allSpots = {...newState};
         return allSpots;
       }
-
+    case CREATE_SPOT: {
+      newState = {...state}
+      newState[action.spot.id]= action.spot
+      return newState
+    }
     default:
       return state;
   }
