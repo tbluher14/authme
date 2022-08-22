@@ -23,10 +23,11 @@ const findSpot = (spot) => ({
   spot,
 });
 
-const findMySpots = (currentUserSpots) => ({
-  type: FIND_MY_SPOTS,
-  currentUserSpots,
-});
+const findMySpots = (currentUserSpots) => {
+    const typeAndAction = { type: FIND_MY_SPOTS, currentUserSpots}
+    console.log("this is the action", typeAndAction)
+    return typeAndAction
+}
 
 const editSpot = (spot) => ({
   type: UPDATE_SPOT,
@@ -48,8 +49,9 @@ export const getCurrentUsersSpots = () => async (dispatch) => {
     console.log("response from fetch",response)
     if (response.ok) {
       const spotsObj = await response.json();
-
+        console.log("spotsObj in thunk", spotsObj)
       dispatch(findMySpots(spotsObj));
+    
       return response
     }
     return response;
@@ -58,6 +60,7 @@ export const getCurrentUsersSpots = () => async (dispatch) => {
 // Store
 const initialState = {};
 const spotReducer = (state = initialState, action) => {
+    console.log("this is the action in the reducer", action)
   let newState;
   switch (action.type) {
     case GET_ALL_SPOTS: {
