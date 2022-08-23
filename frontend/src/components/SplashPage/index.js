@@ -9,13 +9,14 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const allSpotsObj = useSelector((state) => state.spots);
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
+  
 
   useEffect(() => {
     dispatch(listAllSpots());
   }, [dispatch]);
 
   if (!allSpots) return null;
-  console.log(allSpots)
+
 
   return (
     <>

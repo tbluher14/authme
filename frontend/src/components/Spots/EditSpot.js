@@ -34,7 +34,7 @@ const EditSpot = () => {
   }, [dispatch, history, spotId]);
 
   if (submitSuccess) {
-    return <Redirect to={`/properties/${spotId}`} />;
+    return <Redirect to={`/spot/${spotId}`} />;
   }
 
   const handleSubmit = (e) => {

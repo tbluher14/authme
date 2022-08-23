@@ -44,7 +44,7 @@ function Navigation({ isLoaded }){
           </NavLink>
         </div>
         <div>
-          <NavLink to="/spots" className="become_a_host">
+          <NavLink to="/createSpot" className="become_a_host">
               Become a Host
           </NavLink>
         </div>
