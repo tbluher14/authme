@@ -19,6 +19,10 @@ const getAllSpots = (spots) => ({
   spots,
 });
 
+const findSpot = (spots) => ({
+  type: FIND_SPOT,
+  spots
+})
 
 
 const findMySpots = (currentUserSpots) => {
@@ -76,12 +80,24 @@ export const listAllSpots = () => async (dispatch) => {
   const response = await csrfFetch(`/api/spots`);
   if (response.ok) {
     const spotsObj = await response.json();
-    console.log(spotsObj)
+
     dispatch(getAllSpots(spotsObj.spots));
     return response;
   }
 };
 
+// Find spot by ID
+export const findSpotById = (spotId) => async (dispatch) => {
+  const response = await csrfFetch(`/api/spots/${spotId}`)
+  if (response.ok) {
+    const spot = await response.json()
+    dispatch(findSpot(spot))
+    return spot
+  }
+}
+
+
+// Edit a Spot
 export const editASpot = (data) => async (dispatch) => {
   const {
     id,
@@ -145,6 +161,11 @@ const spotReducer = (state = initialState, action) => {
     case CREATE_SPOT: {
       newState = {...state}
       newState[action.spot.id]= action.spot
+      return newState
+    }
+    case UPDATE_SPOT: {
+      newState={...state}
+      newState[action.spot.id] = action.spot
       return newState
     }
     default:

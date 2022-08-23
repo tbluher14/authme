@@ -8,6 +8,7 @@ import Navigation from "./components/Navigation";
 import UsersSpots from "./components/Spots/userSpots";
 import SpotForm from "./components/Spots/SpotForm";
 import SplashPage from "./components/SplashPage";
+import EditSpot from "./components/Spots/EditSpot";
 
 function App() {
   const dispatch = useDispatch();
@@ -35,6 +36,9 @@ function App() {
          </Route>
          <Route path='/'>
             <SplashPage />
+          </Route>
+          <Route exact path="/spots/:spotId/edit">
+            <EditSpot />
           </Route>
         </Switch>
       )}
