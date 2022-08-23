@@ -19,10 +19,7 @@ const getAllSpots = (spots) => ({
   spots,
 });
 
-const findSpot = (spot) => ({
-  type: FIND_SPOT,
-  spot,
-});
+
 
 const findMySpots = (currentUserSpots) => {
     const typeAndAction = { type: FIND_MY_SPOTS, currentUserSpots}
@@ -85,6 +82,47 @@ export const listAllSpots = () => async (dispatch) => {
   }
 };
 
+export const editASpot = (data) => async (dispatch) => {
+  const {
+    id,
+    ownerId,
+    address,
+    city,
+    state,
+    country,
+    lat,
+    lng,
+    name,
+    description,
+    price,
+    previewImage,
+  } = data;
+  const response = await csrfFetch(`/api/spot/${id}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      id,
+      ownerId,
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+      previewImage,
+    }),
+  });
+
+  if (response.ok) {
+    const updatedSpot = await response.json();
+    dispatch(editSpot(updatedSpot));
+    return updatedSpot;
+  }
+};
+
 // Store
 const initialState = {};
 const spotReducer = (state = initialState, action) => {
@@ -99,7 +137,7 @@ const spotReducer = (state = initialState, action) => {
       return newState;
     }
     case FIND_MY_SPOTS: {
-        newState = {};
+        newState = {state};
         action.currentUserSpots.forEach(spot=> newState[spot.id] = spot);
         let allSpots = {...newState};
         return allSpots;
