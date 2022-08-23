@@ -63,10 +63,10 @@ export const createNewSpot = (data) => async (dispatch) => {
 // Find all users spots
 export const getCurrentUsersSpots = () => async (dispatch) => {
     const response = await csrfFetch(`/api/spots/current`);
-    console.log("response from fetch", response)
+
     if (response.ok) {
       const spotsObj = await response.json();
-        console.log("spotsObj in thunk", spotsObj)
+
       dispatch(findMySpots(spotsObj));
 
       return response
@@ -166,7 +166,7 @@ const spotReducer = (state = initialState, action) => {
       return newState;
     }
     case FIND_MY_SPOTS: {
-        newState = {state};
+        newState = {};
         action.currentUserSpots.forEach(spot=> newState[spot.id] = spot);
         let allSpots = {...newState};
         return allSpots;

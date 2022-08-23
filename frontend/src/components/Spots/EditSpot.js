@@ -27,7 +27,7 @@ const EditSpot = () => {
     if (!spotId) history.push("/");
     async function fetchData() {
       const response = await dispatch(findSpotById(spotId));
-      // console.log(response)
+      console.log(response)
       setSelectedSpot(response)
     }
     fetchData();

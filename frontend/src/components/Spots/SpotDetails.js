@@ -51,9 +51,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                   <button onClick={removeSpot(spot.id)} className="button-23">Delete</button>
                 </div>
               )}
-            </>
-          ) : (
-            <></>
+              </>
+              ) : (
+              <></>
           )}
         </div>
         <br></br>
