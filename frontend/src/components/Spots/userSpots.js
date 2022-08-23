@@ -6,12 +6,11 @@ import  {getCurrentUsersSpots}  from "../../store/spot";
 const UsersSpots = () => {
   const dispatch = useDispatch();
   const userSpotsObj = useSelector(state => state.spots);
-  console.log("user spotsObj, useSelector", userSpotsObj)
   const userSpots = Object.values(userSpotsObj); //changing to array to .map
+  console.log("userspots", userSpots)
 
 
   useEffect(() => {
-    console.log("here is the useEffect in userSpots")
     dispatch(getCurrentUsersSpots());
 
   }, [dispatch]);

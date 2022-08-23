@@ -27,7 +27,6 @@ const findSpot = (spots) => ({
 
 const findMySpots = (currentUserSpots) => {
     const typeAndAction = { type: FIND_MY_SPOTS, currentUserSpots}
-    console.log("this is the action", typeAndAction)
     return typeAndAction
 }
 
@@ -156,7 +155,7 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
 // Store
 const initialState = {};
 const spotReducer = (state = initialState, action) => {
-    console.log("this is the action in the reducer", action)
+
   let newState;
   switch (action.type) {
     case GET_ALL_SPOTS: {

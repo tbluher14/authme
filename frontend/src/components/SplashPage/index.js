@@ -9,7 +9,7 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const allSpotsObj = useSelector((state) => state.spots);
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
-  
+
 
   useEffect(() => {
     dispatch(listAllSpots());
@@ -42,7 +42,6 @@ const Homepage = () => {
                 </h4>
                 <p className="spot_price"> Price: ${ele.price}/night</p>
                 <div className="Spot_rating" id="star_review_score">
-                  {/* <StarReviews property={ele} /> */}
                 </div>
               </div>
             </div>

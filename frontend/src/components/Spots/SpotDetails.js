@@ -15,7 +15,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   spotId = Number(spotId);
   const dispatch = useDispatch();
   const history = useHistory();
-  const prop = useSelector((state) => state.spots[spotId]);
+  const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
@@ -31,24 +31,24 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
   return (
     <div className="spot_details">
-      <div className="detail_border" key={prop?.id}>
-        <h3 className="spot_name">{prop?.name}</h3>
+      <div className="detail_border" key={spot?.id}>
+        <h3 className="spot_name">{spot?.name}</h3>
         <div className="avg_rating">
           {/* <StarReviews property={prop} /> */}
         </div>
         <br></br>
         <h4 className="specific_spot_location">
-          {prop?.city}, {prop?.state}
+          {spot?.city}, {spot?.state}
         </h4>
         <div>
           {sessionUser ? (
             <>
-              {!hideButtons && sessionUser?.id === prop?.ownerId && (
+              {!hideButtons && sessionUser?.id === spot?.ownerId && (
                 <div>
                   <NavLink to={`/spot/${spotId}/edit`}>
                     <button className="button-23">Edit</button>
                   </NavLink>
-                  <button onClick={removeSpot(prop.id)} className="button-23">Delete</button>
+                  <button onClick={removeSpot(spot.id)} className="button-23">Delete</button>
                 </div>
               )}
             </>
@@ -59,15 +59,15 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
         <br></br>
         <div className="specific_spot_info">
           <img
-            src={prop?.previewImage}
+            src={spot?.previewImage}
             alt="spot_preview_image"
             className="specific_spot_image"
           ></img>
           <br></br>
-          <p className="specific_spot_description">{prop?.description}</p>
+          <p className="specific_spot_description">{spot?.description}</p>
           <p className="specific_spot_price">
             {" "}
-            Price: ${prop?.price}/night
+            Price: ${spot?.price}/night
           </p>
         </div>
         <div className="spot_review_details">

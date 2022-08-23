@@ -40,7 +40,7 @@ function Navigation({ isLoaded }){
               data-icon="fa-brands:airbnb"
               data-width="40"
             ></span>
-            <span className="bestbnb_logo">bestbnb</span>
+            <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
         </div>
         <div>
