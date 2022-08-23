@@ -15,6 +15,7 @@ const Homepage = () => {
   }, [dispatch]);
 
   if (!allSpots) return null;
+  console.log(allSpots)
 
   return (
     <>
