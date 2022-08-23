@@ -23,7 +23,7 @@ const Homepage = () => {
 
         {allSpots.map((ele) => (
           <Link
-            to={`/properties/${ele.id}`}
+            to={`/spots/${ele.id}`}
             key={ele.id}
             className="single_spot"
           >

@@ -1,6 +1,7 @@
 // frontend/src/components/Navigation/ProfileButton.js
 import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
+import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
 
 function ProfileButton({ user }) {
@@ -29,21 +30,47 @@ function ProfileButton({ user }) {
     dispatch(sessionActions.logout());
   };
 
+  const showUsersSpots = (e) => {};
+  const showUsersReviews = (e) => {};
+
   return (
+    // <>
+    //   <button onClick={openMenu}>
+    //     <i className="fas fa-user-circle" />
+    //   </button>
+    //   {showMenu && (
+    //     <ul className="profile-dropdown">
+    //       <li>{user.username}</li>
+    //       <li>{user.email}</li>
+    //       <li>
+    //         <button onClick={logout}>Log Out</button>
+    //       </li>
+    //     </ul>
+    //   )}
+    // </>
     <>
-      <button onClick={openMenu}>
-        <i className="fas fa-user-circle" />
+    <div className="actions_button">
+      <button className="actions_menu" onClick={openMenu}>
+        <i className="fas fa-bars nav_bars_icon"></i>
+        <i className="fas fa-user-circle user_icon"></i>
       </button>
       {showMenu && (
-        <ul className="profile-dropdown">
-          <li>{user.username}</li>
-          <li>{user.email}</li>
-          <li>
-            <button onClick={logout}>Log Out</button>
-          </li>
-        </ul>
+        <div id="menu">
+          <NavLink to="/currentUser/spots">
+            <button onClick={showUsersSpots}>My spots</button>
+          </NavLink>
+          <NavLink to="/currentUser/reviews">
+            <button onClick={showUsersReviews}>My Reviews</button>
+          </NavLink>
+          <button onClick={logout}>
+            Log Out
+          </button>
+          <p>Hello {user.username}!</p>
+          <p>Email: {user.email}</p>
+        </div>
       )}
-    </>
+    </div>
+  </>
   );
 }
 
