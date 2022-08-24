@@ -20,14 +20,14 @@ const SpotForm = ({ spot }) => {
   const [price, setPrice] = useState(spot?.price ?? "");
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  // const showLoginModal = useSelector((state) => state.session.showLoginModal);
-  // const showSignupModal = useSelector((state) => state.session.showSignupModal);
+  const showLoginModal = useSelector((state) => state.session.showLoginModal);
+  const showSignupModal = useSelector((state) => state.session.showSignupModal);
 
-  // useEffect(() => {
-  //   if (!user && !showLoginModal && !showSignupModal) {
-  //     dispatch(sessionActions.setShowLoginModal(true));
-  //   }
-  // });
+  useEffect(() => {
+    if (!user && !showLoginModal && !showSignupModal) {
+      dispatch(sessionActions.setShowLoginModal(true));
+    }
+  });
 
   if (submitSuccess) {
     return <Redirect to="/" />;

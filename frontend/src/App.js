@@ -14,6 +14,7 @@ import {Modal} from './context/Modal'
 import { useSelector } from "react-redux";
 import LoginForm from "./components/LoginFormModal/LoginForm";
 import SignupForm from "./components/SignupFormPage/SignupForm";
+import SpotReviews from "./components/Reviews/SpotReviews";
 
 function App() {
   const dispatch = useDispatch();
@@ -34,6 +35,12 @@ function App() {
         <Switch>
           <Route exact path="/spots/:spotId/edit">
             <EditSpot />
+          </Route>
+          <Route exact path="/spots/:spotId/createReview">
+            {/* <ReviewForm  /> */}
+          </Route>
+          <Route exact path="/spots/:spotId/reviews">
+            <SpotReviews />
           </Route>
           <Route exact path='/spots/:spotId'>
             <SpotDetails />

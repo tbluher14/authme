@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findSpotById, deleteSpotById } from "../../store/spot";
+import SpotReviews from "../Reviews/SpotReviews";
 // import "./SpotDetails.css";
 // import "../Reviews/SpotReviews.css"
 // import SpotReviews from "../Reviews/SpotReviews";
-// import StarReviews from "../Reviews/StarReviews";
+import StarReviews from "../Reviews/StarReviews";
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams();
@@ -50,8 +51,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                   </NavLink>
                   <button onClick={removeSpot(spot.id)} className="editButton">Delete</button>
                 </div>
-              )}
-              </>
+               )}
+               </>
               ) : (
               <></>
           )}
@@ -74,7 +75,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           <div className="avg_rating_component_and_reviews">
             <div className="star_reviews_avg">
               Review Average:
-              {/* <StarReviews property={prop} /> */}
+              <StarReviews spot={spot} />
             </div>
             <div className="create_review_button">
               <NavLink to={`/spot/${spotId}/createReview`}>
@@ -83,7 +84,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             </div>
           </div>
           <div>
-            {/* <SpotReviews property={prop} /> */}
+          <SpotReviews spot={spot} />
           </div>
         </div>
       </div>

@@ -25,7 +25,7 @@ const EditSpot = () => {
 
 
 useEffect(() => {
-  // if (!spotId) history.push('/')
+  if (!spotId) history.push('/')
 
   async function fetchData() {
     const response = await dispatch(findSpotById(spotId));
@@ -36,9 +36,6 @@ useEffect(() => {
 
 }, [dispatch, history, spotId])
 
-  if (submitSuccess) {
-    return <Redirect to={`/spot/${spotId}`} />;
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -49,11 +46,11 @@ useEffect(() => {
         console.log("Success");
         setSubmitSuccess(true);
       })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
   };
+  
+  if (submitSuccess) {
+    return <Redirect to={`/spot/${spotId}`} />;
+  }
 
   return (
     <form className="create_spot" onSubmit={handleSubmit}>
