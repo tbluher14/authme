@@ -78,8 +78,8 @@ module.exports = {
       },
       {
         address: '8792 App Academy Dr.',
-        city: 'Colorado Springs',
-        state: 'Colorado',
+        city: 'Little Town',
+        state: 'Maine',
         country: 'United States',
         lat: 40.423432,
         lng: 100.23422,
