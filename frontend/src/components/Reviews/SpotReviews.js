@@ -7,16 +7,18 @@ function SpotReviews({ spot }) {
   const dispatch = useDispatch();
   const reviewsObj = useSelector((state) => state.reviews)
   const reviews = Object.values(reviewsObj);
-  
 
+  console.log(reviews)
 
   useEffect(() => {
     dispatch(getSpotReviews(spot.id));
   }, [dispatch, spot.id]);
 
-  if (reviews.length === 0) {
+  if (!reviews.length) {
     return <p>No reviews yet</p>;
   }
+
+
 
 return (
   <div className="reviews_div">

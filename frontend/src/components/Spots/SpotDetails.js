@@ -46,7 +46,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             <>
               {!hideButtons && sessionUser?.id === spot?.ownerId && (
                 <div>
-                  <NavLink to={`/spot/${spotId}/edit`}>
+                  <NavLink to={`/spots/${spotId}/edit`}>
                     <button className="editButton">Edit My Spot</button>
                   </NavLink>
                   <button onClick={removeSpot(spot.id)} className="editButton">Delete</button>

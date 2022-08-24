@@ -44,8 +44,6 @@ export const getSpotReviews = (spotId) => async (dispatch) => {
   }
 };
 
-
-
 const initialState = {};
 
 const reviewsReducer = (state = initialState, action) => {

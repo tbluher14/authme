@@ -112,7 +112,7 @@ export const editASpot = (data) => async (dispatch) => {
     price,
     previewImage,
   } = data;
-  const response = await csrfFetch(`/api/spot/${id}`, {
+  const response = await csrfFetch(`/api/spots/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

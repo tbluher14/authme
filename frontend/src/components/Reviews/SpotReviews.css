@@ -1,0 +1,17 @@
+.ind-review {
+    display: flex;
+    flex-direction: row;
+    border: 2px solid;
+    border: 2px double rgb(216, 203, 203);
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+
+  .star-info {
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: center;
+  }
+  
