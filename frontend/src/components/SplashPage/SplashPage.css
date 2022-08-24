@@ -17,7 +17,7 @@ img {
 #root {
     background-color: rgba(171, 231, 255, 0.66) ;
 }
-  .all_properties {
+  .all_spots {
     display: flex;
     flex-wrap: wrap;
     margin: 2rem;
@@ -25,11 +25,11 @@ img {
     justify-content: flex-start;
   }
 
-  .property_info {
+  .spot_info {
     margin-left: 19px;
   }
 
-  .property_price {
+  .spot_price {
     font-weight: bolder;
   }
 

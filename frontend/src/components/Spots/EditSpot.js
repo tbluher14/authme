@@ -12,26 +12,29 @@ const EditSpot = () => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [selectedSpot, setSelectedSpot] = useState({})
 
-  const updateLng = (e) => setSelectedSpot({...selectedSpot, lng:e.target.value});
+  const updateName = (e) => setSelectedSpot({...selectedSpot, name:e.target.value});
+  const updateAddress = (e) => setSelectedSpot({...selectedSpot, address:e.target.value});
   const updateCity = (e) => setSelectedSpot({...selectedSpot, city:e.target.value});
-  const updatePrice = (e) => setSelectedSpot({...selectedSpot, price:e.target.value});
   const updateState = (e) => setSelectedSpot({...selectedSpot, state:e.target.value});
   const updateCountry = (e) => setSelectedSpot({...selectedSpot, country:e.target.value});
-  const updateDescription = (e) => setSelectedSpot({...selectedSpot, description:e.target.value});
+  const updatePrice = (e) => setSelectedSpot({...selectedSpot, price:e.target.value});
   const updateLat = (e) => setSelectedSpot({...selectedSpot, lat:e.target.value});
-  const updateName = (e) => setSelectedSpot({...selectedSpot, name:e.target.value});
+  const updateLng = (e) => setSelectedSpot({...selectedSpot, lng:e.target.value});
+  const updateDescription = (e) => setSelectedSpot({...selectedSpot, description:e.target.value});
   const updatePreviewImage = (e) => setSelectedSpot({...selectedSpot, previewImage:e.target.value});
-  const updateAddress = (e) => setSelectedSpot({...selectedSpot, address:e.target.value});
 
-  useEffect(() => {
-    if (!spotId) history.push("/");
-    async function fetchData() {
-      const response = await dispatch(findSpotById(spotId));
-      console.log(response)
-      setSelectedSpot(response)
-    }
-    fetchData();
-  }, [dispatch, history, spotId]);
+
+useEffect(() => {
+  // if (!spotId) history.push('/')
+
+  async function fetchData() {
+    const response = await dispatch(findSpotById(spotId));
+    console.log("response from fetch findSpotById", response)
+    setSelectedSpot(response)
+  }
+  fetchData();
+
+}, [dispatch, history, spotId])
 
   if (submitSuccess) {
     return <Redirect to={`/spot/${spotId}`} />;

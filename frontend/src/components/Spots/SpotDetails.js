@@ -26,7 +26,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
     e.preventDefault();
     await dispatch(deleteSpotById(spotId));
 
-    history.push("/currentUser/spots");
+    history.push("/");
   };
 
   return (
@@ -34,7 +34,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
       <div className="detail_border" key={spot?.id}>
         <h3 className="spot_name">{spot?.name}</h3>
         <div className="avg_rating">
-          {/* <StarReviews property={prop} /> */}
+
         </div>
         <br></br>
         <h4 className="specific_spot_location">
@@ -46,9 +46,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
               {!hideButtons && sessionUser?.id === spot?.ownerId && (
                 <div>
                   <NavLink to={`/spot/${spotId}/edit`}>
-                    <button className="button-23">Edit</button>
+                    <button className="editButton">Edit My Spot</button>
                   </NavLink>
-                  <button onClick={removeSpot(spot.id)} className="button-23">Delete</button>
+                  <button onClick={removeSpot(spot.id)} className="editButton">Delete</button>
                 </div>
               )}
               </>

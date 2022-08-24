@@ -29,7 +29,7 @@ const Homepage = () => {
             className="single_spot"
           >
             <div key={ele.id}>
-              <div className="spot_image">
+              <div className="img">
                 <img
                   src={ele.previewImage}
                   alt={ele.name}
