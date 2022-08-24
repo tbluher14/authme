@@ -1,0 +1,89 @@
+.signupForm label {
+    display: grid;
+    flex-direction: column;
+    padding: 5px;
+  }
+
+  .signup_form span {
+    font-size: 15px;
+    margin-right: 30px;
+    margin-left: 20px;
+  }
+
+  .signup_form {
+    align-items: revert;
+    display: flex;
+    flex-direction: column;
+    height: 255px;
+    width: 500px;
+  }
+
+  input {
+    font-size: 16px;
+    padding-left: 10px;
+    width: 350px;
+    border: 2px double rgb(216, 203, 203);
+    border-radius: 10px;
+  }
+
+  .signup_button {
+    background-image: linear-gradient(
+      to right,
+      #e61e4d 0%,
+      #e31c5f 50%,
+      #d70466 100%
+    );
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: 18px;
+    height: 50px;
+    width: 370px;
+    margin-top: 20px;
+    margin-left: 60px;
+  }
+
+  .signup_form_container {
+    display: flex;
+    justify-content: center;
+    width: auto;
+    margin: auto;
+    margin-top: 0px;
+    padding: 40px;
+    /* border: 2px double rgb(216, 203, 203); */
+    border-radius: 20px;
+  }
+
+  .signup_form_container span {
+    font-size: 15px;
+    margin-right: 12px;
+  }
+
+  .signup_input_confirm_password {
+    width: 275px;
+  }
+
+  .button-23 {
+    background-color: #FFFFFF;
+    border: 1px solid #222222;
+    border-radius: 8px;
+    box-sizing: border-box;
+    color: #222222;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 10px;
+    margin: 0;
+    outline: none;
+    padding: 13px 23px;
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    touch-action: manipulation;
+    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
+    user-select: none;
+    -webkit-user-select: none;
+    width: auto;
+  }

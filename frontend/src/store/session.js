@@ -3,6 +3,8 @@ import { csrfFetch } from './csrf';
 
 const SET_USER = 'session/setUser';
 const REMOVE_USER = 'session/removeUser';
+const SET_SHOW_LOGIN_MODAL = "/session/setShowLoginModal";
+const SET_SHOW_SIGNUP_MODAL = "/session/setShowSignupModal";
 
 const setUser = (user) => {
   return {
@@ -14,6 +16,19 @@ const setUser = (user) => {
 const removeUser = () => {
   return {
     type: REMOVE_USER,
+  };
+};
+export const setShowLoginModal = (payload) => {
+  return {
+    type: SET_SHOW_LOGIN_MODAL,
+    payload,
+  };
+};
+
+export const setShowSignupModal = (payload) => {
+  return {
+    type: SET_SHOW_SIGNUP_MODAL,
+    payload,
   };
 };
 
@@ -72,6 +87,14 @@ const sessionReducer = (state = initialState, action) => {
       newState = Object.assign({}, state);
       newState.user = null;
       return newState;
+    case SET_SHOW_LOGIN_MODAL:
+        newState = Object.assign({}, state); // cloning state object so we dont mutate
+        newState.showLoginModal = action.payload; // setting equal to payload when we fire action
+        return newState;
+    case SET_SHOW_SIGNUP_MODAL:
+        newState = Object.assign({}, state); // cloning state object so we dont mutate
+        newState.showSignupModal = action.payload; // setting equal to payload when we fire action
+        return newState;
     default:
       return state;
   }

@@ -70,6 +70,10 @@
   }
 
   .button-23 {
+    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
+      "Helvetica Neue", sans-serif;
+      font-weight: 600;
+      line-height: 10px;
     background-color: #ffffff;
     border: 1px solid #222222;
     border-radius: 8px;
@@ -77,11 +81,7 @@
     color: #222222;
     cursor: pointer;
     display: inline-block;
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-      "Helvetica Neue", sans-serif;
     font-size: 12px;
-    font-weight: 500;
-    line-height: 10px;
     margin: 0;
     outline: none;
     padding: 13px 23px;

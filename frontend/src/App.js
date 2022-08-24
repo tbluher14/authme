@@ -10,10 +10,16 @@ import SpotForm from "./components/Spots/SpotForm";
 import SplashPage from "./components/SplashPage";
 import EditSpot from "./components/Spots/EditSpot";
 import SpotDetails from "./components/Spots/SpotDetails";
+import {Modal} from './context/Modal'
+import { useSelector } from "react-redux";
+import LoginForm from "./components/LoginFormModal/LoginForm";
+import SignupForm from "./components/SignupFormPage/SignupForm";
 
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
+  const showLoginModal = useSelector((state) => state.session.showLoginModal);
+  const showSignupModal = useSelector((state) => state.session.showSignupModal);
 
   useEffect(() => {
     dispatch(sessionActions.restoreUser()).then(() => setIsLoaded(true));
@@ -46,6 +52,21 @@ function App() {
           </Route>
         </Switch>
       )}
+        {showLoginModal && (
+        <Modal
+          onClose={() => dispatch(sessionActions.setShowLoginModal(false))}
+        >
+          You must be logged in to host a property.
+          <LoginForm />
+        </Modal>
+      )}
+      {showSignupModal && (
+        <Modal
+          onClose={() => dispatch(sessionActions.setShowSignupModal(false))}
+        >
+          <SignupForm/>
+        </Modal>
+)}
     </>
   );
 }
