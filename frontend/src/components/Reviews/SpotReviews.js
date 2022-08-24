@@ -17,27 +17,9 @@ function SpotReviews({ spot }) {
     return <p>No reviews yet</p>;
   }
 
-  return (
-    <div className="reviews_div">
-      {reviews && (
-        <>
-          {reviews.map((review) => (
-            <div key={review.id} className="ind-review">
-              <div className="review-list-rating">
-                <div className="star-info">
-                  <i className="fa-solid fa-star"></i>
-                  <p>{review.stars} out of 5 stars</p>
-                </div>
-                <div className="review-content">Message: "{review.review}"</div>
-              </div>
-              <div></div>
-              <br></br>
-            </div>
-          ))}
-        </>
-      )}
-    </div>
-  );
+return (
+    <div>{reviews}</div>
+)
 }
 
 export default SpotReviews;

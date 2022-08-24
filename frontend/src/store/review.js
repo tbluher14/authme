@@ -44,36 +44,7 @@ export const getSpotReviews = (spotId) => async (dispatch) => {
   }
 };
 
-export const getUserReviews = () => async (dispatch) => {
-  const response = await csrfFetch(`/api/users/currentUser/reviews`);
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(findMyReviews(data));
-  }
-  return response;
-};
 
-export const createNewReview = (data, spotId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/${spotId}`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(data),
-  });
-  if (response.ok) {
-    const review = await response.json();
-    dispatch(createAReview(review));
-    return review;
-  }
-};
-
-export const deleteReview = (reviewId) => async (dispatch) => {
-  const response = await csrfFetch(`/api/reviews/${reviewId}`, {
-    method: "DELETE",
-  });
-  const deletedReview = await response.json();
-  dispatch(deleteAReview(reviewId));
-  return deletedReview;
-};
 
 const initialState = {};
 
@@ -85,20 +56,6 @@ const reviewsReducer = (state = initialState, action) => {
       action.payload.forEach((review) => (newState[review.id] = review));
       return newState;
     }
-    case FIND_MY_REVIEWS: {
-      newState = {};
-      action.payload.forEach((review) => (newState[review.id] = review));
-      return newState;
-    }
-    case CREATE_REVIEW: {
-      newState = { ...state };
-      newState[action.payload.id] = action.payload;
-      return newState;
-    }
-    case DELETE_REVIEW:
-      newState = { ...state };
-      delete newState[action.payload.spotId];
-      return newState;
     default:
       return state;
   }
