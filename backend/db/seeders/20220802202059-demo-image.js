@@ -24,7 +24,7 @@ module.exports = {
         previewImage: true
       },
       {
-        url: "https://www.airbnb.com/rooms/548002056877123433?adults=1&category_tag=Tag%3A8522&children=0&infants=0&search_mode=flex_destinations_search&check_in=2022-09-18&check_out=2022-09-23&previous_page_section_name=1000&federated_search_id=4faafae3-b350-414c-856c-0a1db0d443cc",
+        url: "https://a0.muscache.com/im/pictures/7866f5df-f82f-45c6-9f08-4f8240784b80.jpg?im_w=1200",
         reviewId: 2,
         spotId: 3,
         imageableId: 1,
@@ -41,7 +41,7 @@ module.exports = {
       userId: 1,
       previewImage: true
       },{
-      url: 'https://www.airbnb.com/rooms/13681554?adults=1&category_tag=Tag%3A8522&children=0&infants=0&search_mode=flex_destinations_search&check_in=2022-09-11&check_out=2022-09-16&previous_page_section_name=1000&federated_search_id=4faafae3-b350-414c-856c-0a1db0d443cc',
+      url: 'https://a0.muscache.com/im/pictures/prohost-api/Hosting-659308860626057674/original/ce025367-590b-47c7-8c60-992226b8b35e.jpeg?im_w=720',
       reviewId: 3,
       spotId: 4,
       imageableId: 1,
