@@ -28,10 +28,10 @@ function StarReviews({spot }) {
   return (
     <>
       <>
-        <i className="fa-solid fa-star"></i>
-        <span className="avg-rating">
+        {/* <i className="fa-solid fa-star"></i> */}
+        {/* <span className="avg-rating"> */}
           {avgRating}
-        </span>
+        {/* </span> */}
       </>
     </>
   );

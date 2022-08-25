@@ -163,7 +163,7 @@ const SpotForm = ({ spot }) => {
             type="text"
             value={previewImage}
             placeholder="img-url"
-            onChange={(e) => setPreviewImage(e.target.value)}
+            onChange={(e) => setPreviewImage((e.target.value))}
             required
           />
         </label>

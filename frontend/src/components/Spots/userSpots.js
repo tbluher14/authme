@@ -2,11 +2,12 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import  {getCurrentUsersSpots}  from "../../store/spot";
+import './userSpots.css'
 
 const UsersSpots = () => {
   const dispatch = useDispatch();
   const userSpotsObj = useSelector(state => state.spots);
-  console.log("userspots", userSpotsObj)
+
   const userSpots = Object.values(userSpotsObj); //changing to array to .map
 
 
@@ -21,7 +22,7 @@ const UsersSpots = () => {
 
   return (
     <div>
-      <h2 className="my_spots">My Spots</h2>
+      <h2 className="my_spots_title">My Spots</h2>
       {userSpots.map((ele) => (
         <Link to={`/spots/${ele.id}`} key={ele.id}>
           <div key={ele.id} className="users_spots">

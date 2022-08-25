@@ -78,7 +78,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
               <StarReviews spot={spot} />
             </div>
             <div className="create_review_button">
-              <NavLink to={`/spot/${spotId}/createReview`}>
+              <NavLink to={`/spots/${spotId}/createReview`}>
                 <button className="button-23">Create Review</button>
               </NavLink>
             </div>

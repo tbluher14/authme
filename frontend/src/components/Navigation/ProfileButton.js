@@ -59,7 +59,7 @@ function ProfileButton({ user }) {
           <NavLink to="/currentUser/spots">
             <button onClick={showUsersSpots}>My spots</button>
           </NavLink>
-          <NavLink to="/currentUser/reviews">
+          <NavLink to="/reviews/current">
             <button onClick={showUsersReviews}>My Reviews</button>
           </NavLink>
           <button onClick={logout}>

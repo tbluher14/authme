@@ -28,7 +28,7 @@ return (
         <div key={review.id} className="ind-review">
           <div className="review-list-rating">
             <div className="star-info">
-              <i className="fa-solid fa-star"></i>
+              {/* <i className="fa-solid fa-star"></i> */}
               <p>{review.stars} out of 5 stars</p>
             </div>
             <div className="review-content">Message: "{review.review}"</div>

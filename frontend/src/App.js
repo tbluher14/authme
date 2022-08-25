@@ -15,6 +15,8 @@ import { useSelector } from "react-redux";
 import LoginForm from "./components/LoginFormModal/LoginForm";
 import SignupForm from "./components/SignupFormPage/SignupForm";
 import SpotReviews from "./components/Reviews/SpotReviews";
+import UsersReviews from "./components/Reviews/UserReviews";
+import ReviewForm from "./components/Reviews/CreateReview";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,7 +39,10 @@ function App() {
             <EditSpot />
           </Route>
           <Route exact path="/spots/:spotId/createReview">
-            {/* <ReviewForm  /> */}
+            <ReviewForm  />
+          </Route>
+          <Route exact path='/reviews/current'>
+            <UsersReviews />
           </Route>
           <Route exact path="/spots/:spotId/reviews">
             <SpotReviews />
