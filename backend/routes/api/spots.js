@@ -120,7 +120,8 @@ router.post('/', requireAuth, async (req, res, next) => {
         lng,
         name,
         description,
-        price
+        price,
+        previewImage
       } = req.body;
       const { id } = req.user;
 
@@ -135,6 +136,7 @@ router.post('/', requireAuth, async (req, res, next) => {
         name,
         description,
         price,
+        previewImage
       });
 
 const error = {
