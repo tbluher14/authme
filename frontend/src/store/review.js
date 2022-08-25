@@ -36,9 +36,9 @@ const deleteAReview = (payload) => {
 
 export const getSpotReviews = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
-  console.log('getspotreviews in store', response)
   if (response.ok) {
     const data = await response.json();
+
     dispatch(findSpotReviews(data));
     return data;
   }
@@ -51,8 +51,10 @@ const reviewsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FIND_SPOT_REVIEWS: {
       newState = {};
+      if (Array.isArray(action.payload)){
       action.payload.forEach((review) => (newState[review.id] = review));
-      return newState;
+    }
+    return newState;
     }
     default:
       return state;
