@@ -15,7 +15,7 @@ module.exports = {
     'Images',
     [
       {
-        url: "https://images.unsplash.com/photo-1502675135487-e971002a6adb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=688&q=80",
+        url: "https://tinyurl.com/3j53bw6n",
         reviewId: 1,
         spotId: 1,
         imageableId: 1,
@@ -24,7 +24,7 @@ module.exports = {
         previewImage: true
       },
       {
-        url: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80",
+        url: "https://tinyurl.com/2n97wfjz",
         reviewId: 2,
         spotId: 3,
         imageableId: 1,
@@ -33,7 +33,7 @@ module.exports = {
         previewImage: true,
       },
       {
-      url: 'https://images.unsplash.com/photo-1600585154363-67eb9e2e2099?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      url: 'https://tinyurl.com/mrx93eu6',
       reviewId: 3,
       spotId: 2,
       imageableId: 1,
@@ -41,7 +41,7 @@ module.exports = {
       userId: 1,
       previewImage: true
       },{
-      url: 'https://images.unsplash.com/photo-1486509556775-a2404e7d7d7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
+      url: 'https://tinyurl.com/3d4whb7e',
       reviewId: 3,
       spotId: 4,
       imageableId: 1,
@@ -50,7 +50,7 @@ module.exports = {
       previewImage: true
       },
       {
-        url: 'https://images.unsplash.com/photo-1615066037363-874e46d27090?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80',
+        url: 'https://tinyurl.com/hemd4722',
         reviewId: 3,
         spotId: 6,
         imageableId: 1,
@@ -59,7 +59,7 @@ module.exports = {
         previewImage: true
         },
         {
-          url: 'https://images.unsplash.com/photo-1650812158381-ccf1e328c45d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=871&q=80',
+          url: 'https://tinyurl.com/27y2bnce',
           reviewId: 3,
           spotId: 5,
           imageableId: 1,
