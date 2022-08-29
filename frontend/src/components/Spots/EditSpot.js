@@ -49,7 +49,7 @@ useEffect(() => {
   };
 
   if (submitSuccess) {
-    return <Redirect to={`/spots`} />;
+    return <Redirect to={`/`} />;
   }
 
   return (
