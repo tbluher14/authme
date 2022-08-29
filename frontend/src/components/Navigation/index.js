@@ -6,6 +6,7 @@ import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
 
 import './Navigation.css';
+import DemoUser from '../DemoUser';
 
 function Navigation({ isLoaded }){
   const sessionUser = useSelector(state => state.session.user);
@@ -43,10 +44,14 @@ function Navigation({ isLoaded }){
             <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
         </div>
+        <span className="demo_user">
+            <DemoUser />
+          </span>
         <div>
           <NavLink to="/createSpot" className="become_a_host">
               Become a Host
           </NavLink>
+
         </div>
         <div>{isLoaded && sessionLinks}</div>
       </div>
