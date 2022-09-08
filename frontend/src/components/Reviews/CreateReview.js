@@ -24,6 +24,7 @@ const ReviewForm = () => {
       review: reviewMessage,
       stars: stars,
     };
+    console.log("this is the handle submit data input to fn", data)
     return dispatch(createNewReview(data, spotId))
       .then(async (res) => {
         setSubmitSuccess(true);

@@ -9,6 +9,7 @@ const UPDATE_SPOT = "spots/UPDATE_SPOT";
 const DELETE_SPOT = "spots/DELETE_SPOT";
 
 
+
 const createSpot = (spot) => ({
   type: CREATE_SPOT,
   spot,
@@ -29,6 +30,8 @@ const findMySpots = (currentUserSpots) => {
     const typeAndAction = { type: FIND_MY_SPOTS, currentUserSpots}
     return typeAndAction
 }
+
+
 
 const editSpot = (spot) => ({
   type: UPDATE_SPOT,
@@ -138,6 +141,7 @@ export const editASpot = (data) => async (dispatch) => {
   }
 };
 
+// delete spot by id
 export const deleteSpotById = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "DELETE",
@@ -152,6 +156,7 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
     return deletedSpot
   }
 }
+
 
 // Store
 const initialState = {};

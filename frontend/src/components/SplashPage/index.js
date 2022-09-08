@@ -41,7 +41,7 @@ const Homepage = () => {
                   {ele.city}, {ele.state}
                 </h4>
                 <p className="spot_price"> Price: ${ele.price}/night</p>
-                <div className="Spot_rating" id="star_review_score">
+                <div className="spot_rating" id="star_review_score">
                 </div>
               </div>
             </div>

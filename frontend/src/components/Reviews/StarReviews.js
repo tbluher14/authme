@@ -15,7 +15,8 @@ function StarReviews({spot }) {
       const response = await dispatch(getSpotReviews(spot?.id));
 
       if (!response?.length) {
-        return setAvgRating('New')
+        console.log(response)
+        return setAvgRating(spot.avgRating)
       }
       // get average and set
       const sum = response.reduce((acc, review) => (review?.stars ?? 0) + acc, 0)
@@ -23,7 +24,7 @@ function StarReviews({spot }) {
       setAvgRating(avg)
     }
     fetchData();
-  }, [dispatch, spot?.id]);
+  }, [dispatch, spot?.id, spot?.avgRating]);
 
   return (
     <>

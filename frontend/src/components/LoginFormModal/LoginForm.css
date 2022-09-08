@@ -1,4 +1,4 @@
-.login_container {
+.login_box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -7,12 +7,8 @@
     margin-bottom: -55px
   }
 
-  .login_container span {
-    font-size: 15px;
-    margin-right: 12px;
-  }
 
-  .welcome_container {
+  .welcome {
     display: flex;
     align-content: center;
     text-align: center;
@@ -55,14 +51,14 @@
     margin-bottom: 30px;
   }
 
-  .login_input_password {
+  .password {
     font-size: 16px;
     padding-left: 10px;
     width: 260px;
     border-radius: 20px;
   }
 
-  .login_input_credentials {
+  .login_input {
     font-size: 16px;
     padding-left: 10px;
     width: 200px;

@@ -74,8 +74,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
         <div className="spot_review_details">
           <div className="avg_rating_component_and_reviews">
             <div className="star_reviews_avg">
-              Review Average:
-              <StarReviews spot={spot} />
+              Review Average: <StarReviews spot={spot} /> out of 5
             </div>
             <div className="create_review_button">
               <NavLink to={`/spots/${spotId}/createReview`}>

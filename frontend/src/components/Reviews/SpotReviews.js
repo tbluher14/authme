@@ -6,13 +6,15 @@ import { getSpotReviews } from "../../store/review";
 function SpotReviews({ spot }) {
   const dispatch = useDispatch();
   const reviewsObj = useSelector((state) => state.reviews)
+  // console.log('this is the reviews obj', reviewsObj)
   const reviews = Object.values(reviewsObj);
 
-  console.log(reviews)
+
 
   useEffect(() => {
-    dispatch(getSpotReviews(spot.id));
-  }, [dispatch, spot.id]);
+    dispatch(getSpotReviews(spot?.id));
+  }, [dispatch, spot?.id]);
+
 
   if (!reviews.length) {
     return <p>No reviews yet</p>;
