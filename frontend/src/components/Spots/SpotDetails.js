@@ -3,9 +3,6 @@ import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findSpotById, deleteSpotById } from "../../store/spot";
 import SpotReviews from "../Reviews/SpotReviews";
-// import "./SpotDetails.css";
-// import "../Reviews/SpotReviews.css"
-// import SpotReviews from "../Reviews/SpotReviews";
 import StarReviews from "../Reviews/StarReviews";
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {

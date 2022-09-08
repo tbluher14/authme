@@ -1,9 +1,9 @@
-.create_property label {
+.create_spot label {
     display: flex;
     padding: 5px;
   }
 
-  .create_property span {
+  .create_spot span {
     font-size: 15px;
     margin-right: 12px;
   }
@@ -27,7 +27,7 @@
     border-radius: 10px;
   }
 
-  .create_property_button {
+  .create_spot_button {
     background-color: white;
     margin-top: 20px;
     margin-left: 50px;
