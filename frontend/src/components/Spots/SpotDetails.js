@@ -31,14 +31,14 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   };
 
   return (
-    <div className="spot_details">
-      <div className="detail_border" key={spot?.id}>
-        <h3 className="spot_name">{spot?.name}</h3>
-        <div className="avg_rating">
+    <div>
+      <div key={spot?.id}>
+        <h3>{spot?.name}</h3>
+        <div>
 
         </div>
         <br></br>
-        <h4 className="specific_spot_location">
+        <h4>
           {spot?.city}, {spot?.state}
         </h4>
         <div>
@@ -47,9 +47,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
               {!hideButtons && sessionUser?.id === spot?.ownerId && (
                 <div>
                   <NavLink to={`/spots/${spotId}/edit`}>
-                    <button className="editButton">Edit My Spot</button>
+                    <button>Edit My Spot</button>
                   </NavLink>
-                  <button onClick={removeSpot(spot.id)} className="editButton">Delete</button>
+                  <button onClick={removeSpot(spot.id)}>Delete</button>
                 </div>
                )}
                </>
@@ -58,27 +58,27 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           )}
         </div>
         <br></br>
-        <div className="specific_spot_info">
+        <div>
           <img
             src={spot?.previewImage}
             alt="spot_preview_image"
-            className="specific_spot_image"
+
           ></img>
           <br></br>
-          <p className="specific_spot_description">{spot?.description}</p>
-          <p className="specific_spot_price">
+          <p>{spot?.description}</p>
+          <p >
             {" "}
             Price: ${spot?.price}/night
           </p>
         </div>
-        <div className="spot_review_details">
-          <div className="avg_rating_component_and_reviews">
-            <div className="star_reviews_avg">
+        <div>
+          <div>
+            <div>
               Review Average: <StarReviews spot={spot} /> out of 5
             </div>
-            <div className="create_review_button">
+            <div>
               <NavLink to={`/spots/${spotId}/createReview`}>
-                <button className="button-23">Create Review</button>
+                <button>Create Review</button>
               </NavLink>
             </div>
           </div>

@@ -30,20 +30,20 @@ function UsersReviews() {
   return (
     isLoaded && (
       <div>
-        <h2 className="my_reviews_title">My Reviews</h2>
+        <h2>My Reviews</h2>
         {userReviews.map((review) => (
-          <div key={review.id} className="ind_review">
-            <div className="ind_review_info">
-              <div className="review-list-rating">
-                <div className="star_info">
-                  <i className="fa-solid fa-star"></i>
-                  <p className="star_rating">{review.stars} out of 5 stars</p>
+          <div key={review.id}>
+            <div>
+              <div>
+                <div>
+                  <i></i>
+                  <p>{review.stars} out of 5 stars</p>
                 </div>
               </div>
-              <div className="review_content">{review.review}</div>
+              <div>{review.review}</div>
               <button
                 onClick={removeReview(review.id)}
-                className="button-23"
+               
               >
                 Delete Review
               </button>
