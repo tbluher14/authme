@@ -8,7 +8,7 @@
     margin-right: 12px;
   }
 
-  .form_container {
+  .form_input {
     display: flex;
     justify-content: center;
     width: auto;
@@ -23,26 +23,26 @@
     font-size: 16px;
     padding-left: 10px;
     width: 350px;
-    border: 2px double rgb(216, 203, 203);
+    border: 2px solid rgb(216, 203, 203);
     border-radius: 10px;
   }
 
   .create_spot_button {
     background-color: white;
     margin-top: 20px;
-    margin-left: 50px;
+    margin-left: 150px;
     background-image: linear-gradient(
-      to right,
-      #e61e4d 0%,
-      #e31c5f 50%,
+      to left,
+      #e61e4d 20%,
+      #e31c5f 80%,
       #d70466 100%
     );
-    border: none;
+    border: solid black;
     border-radius: 10px;
     color: white;
-    font-weight: 600;
-    height: 50px;
-    width: 370px;
+    font-weight: 900;
+    height: 40px;
+    width: 200px;
   }
 
   .form_requirements {

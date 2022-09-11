@@ -36,10 +36,8 @@ const deleteAReview = (payload) => {
 
 export const getSpotReviews = (spotId) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
-  console.log("this is the response from action creator's fetch", response)
   if (response) {
     const data = await response.json();
-    console.log('this is the data inside the response', data)
 
     dispatch(findSpotReviews(data));
     return data;
@@ -87,7 +85,6 @@ const reviewsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case FIND_SPOT_REVIEWS: {
-      console.log("heres the action payload in my reviews reducer", action.payload)
       newState = {};
       if (Array.isArray(action.payload)){
       action.payload.forEach((review) => (newState[review.id] = review));

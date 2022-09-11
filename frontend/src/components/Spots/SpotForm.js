@@ -48,7 +48,7 @@ const SpotForm = ({ spot }) => {
       price: price,
       previewImage: previewImage,
     };
-    console.log("this is the data from my handle submit on my create spot", data)
+
     return dispatch(createNewSpot(data))
       .then(async (res) => {
         setSubmitSuccess(true);
@@ -60,7 +60,7 @@ const SpotForm = ({ spot }) => {
   };
 
   return (
-    <div className="form_container">
+    <div className="form_input">
       <form className="create_spot" onSubmit={handleSubmit}>
         <h4 className="form_requirements">Please fill out all of the following fields below:</h4>
         <ul>
