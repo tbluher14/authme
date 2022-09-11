@@ -60,6 +60,6 @@ img {
   and (-webkit-min-device-pixel-ratio: 2)
   and (orientation: portrait) {
     .all-spots {
-      width: 90%;
+      width: 50%;
     }
 }
