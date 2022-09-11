@@ -56,9 +56,7 @@ img {
 
   @media screen
   and (min-width: 414px)
-  and (max-width: 896px)
-  and (-webkit-min-device-pixel-ratio: 2)
-  and (orientation: portrait) {
+  and (max-width: 896px) {
     .all-spots {
       width: 50%;
     }
