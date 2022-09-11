@@ -24,7 +24,7 @@ const ReviewForm = () => {
       review: reviewMessage,
       stars: stars,
     };
-    console.log("this is the handle submit data input to fn", data)
+
     return dispatch(createNewReview(data, spotId))
       .then(async (res) => {
         setSubmitSuccess(true);
@@ -52,10 +52,10 @@ const ReviewForm = () => {
             required
           />
           </label>
-      <label>
+      <label className="review_message">
         Message:
         <input
-          type="text"
+          type="text-area"
           placeholder="Review Message"
           value={reviewMessage}
           onChange={(e) => setReviewMessage(e.target.value)}

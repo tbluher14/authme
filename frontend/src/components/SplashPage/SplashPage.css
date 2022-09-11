@@ -14,9 +14,9 @@ img {
     text-decoration: none;
   }
 
-#root {
-    /* background-color: rgba(171, 231, 255, 0.66) ; */
-}
+/* #root {
+    background-color: rgba(171, 231, 255, 0.66) ; */
+/* } */
   .all_spots {
     display: flex;
     flex-wrap: wrap;

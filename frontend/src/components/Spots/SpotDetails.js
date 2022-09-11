@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { findSpotById, deleteSpotById } from "../../store/spot";
 import SpotReviews from "../Reviews/SpotReviews";
 import StarReviews from "../Reviews/StarReviews";
+import './SpotDetails.css'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams();
@@ -28,14 +29,13 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   };
 
   return (
-    <div>
-      <div key={spot?.id}>
-        <h3>{spot?.name}</h3>
-        <div>
-
+    <div className="spot_details">
+      <div key={spot?.id} className='details_container'>
+        <h3 className="spot_headline">{spot?.name}</h3>
+        <div className="avg_rating">
+          <StarReviews spot={spot}/> 
         </div>
-        <br></br>
-        <h4>
+        <h4 className="spot_location_details">
           {spot?.city}, {spot?.state}
         </h4>
         <div>
@@ -44,44 +44,42 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
               {!hideButtons && sessionUser?.id === spot?.ownerId && (
                 <div>
                   <NavLink to={`/spots/${spotId}/edit`}>
-                    <button>Edit My Spot</button>
+                    <button className="edit_button_2">Edit My Spot</button>
                   </NavLink>
-                  <button onClick={removeSpot(spot.id)}>Delete</button>
+                  <button className='edit_button_2'onClick={removeSpot(spot.id)}>Delete</button>
                 </div>
                )}
                </>
               ) : (
-              <></>
-          )}
+                <></>
+                )}
         </div>
         <br></br>
-        <div>
-          <img
-            src={spot?.previewImage}
-            alt="spot_preview_image"
+        <div className="spot_info_details">
+                <img
+                  src={spot?.previewImage}
+                  alt="spot_preview_image"
+                  className="spot_image"
 
-          ></img>
-          <br></br>
-          <p>{spot?.description}</p>
-          <p >
-            {" "}
+                ></img>
+
+          </div>
+          <div className="description">{spot?.description}</div>
+          <div className="price_per_night" >
             Price: ${spot?.price}/night
-          </p>
         </div>
-        <div>
-          <div>
-            <div>
+            <div className="review_average">
               Review Average: <StarReviews spot={spot} /> out of 5
             </div>
-            <div>
-              <NavLink to={`/spots/${spotId}/createReview`}>
-                <button>Create Review</button>
-              </NavLink>
-            </div>
-          </div>
-          <div>
+        <div className="spot_reviews">
+          <h2>Reviews</h2>
+          <div className="individual_review">
           <SpotReviews spot={spot} />
           </div>
+              <NavLink to={`/spots/${spotId}/createReview`}>
+                <button className="review_button">Create Review</button>
+              </NavLink>
+
         </div>
       </div>
     </div>
