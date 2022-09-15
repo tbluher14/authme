@@ -26,13 +26,10 @@ const findSpot = (spots) => ({
   spots
 })
 
-
 const findMySpots = (currentUserSpots) => {
     const typeAndAction = { type: FIND_MY_SPOTS, currentUserSpots}
     return typeAndAction
 }
-
-
 
 const editSpot = (spot) => ({
   type: UPDATE_SPOT,
@@ -148,9 +145,9 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
 
   const response = await csrfFetch(`/api/spots/${spotId}`, {
     method: "DELETE",
-    // body: JSON.stringify({
-    //   spotId
-    // })
+    body: JSON.stringify({
+      spotId
+    })
   })
   console.log("response for delete", response)
   if (response.ok){
@@ -176,11 +173,11 @@ const spotReducer = (state = initialState, action) => {
     }
     case FIND_MY_SPOTS: {
         newState = {};
-        action.currentUserSpots.forEach(spot=> newState[spot.id] = spot);
+        action.currentUserSpots.forEach(spot => newState[spot.id] = spot);
         let allSpots = {...newState};
         return allSpots;
       }
-    case CREATE_SPOT: { 
+    case CREATE_SPOT: {
       newState = {...state}
       newState[action.spot.id]= action.spot
       return newState

@@ -42,12 +42,13 @@ body {
   .become_a_host {
     color: black;
     margin-top: 14px;
-    border: white;
+    border: solid #ED6A6A;
     border-radius: 20px;
     height: auto;
     width: auto;
     padding: 10px 10px 10px 10px;
     font-size: 15px;
+    font: "Munken Sans";
     display: flex;
     text-align: start;
     justify-content: space-between;
@@ -59,12 +60,10 @@ body {
     background-color: rgba(211, 211, 211, 0.5);
   }
 
-  .nav_link {
-    text-decoration: none;
-  }
+
 
   .home_link {
-    color: #ff385c;
+    color: #ED6A6A;
     display: flex;
     font-weight: bold;
   }
@@ -75,12 +74,5 @@ body {
     font-weight: bold;
     line-height: 20px;
     padding-left: 8px;
-    padding-top: 14px;
-  }
-
-  .home_buttons {
-    display: flex;
-    font-size: 18px;
-    margin-right: 8px;
-    margin-top: 15px;
+    padding-top: 25px;
   }

@@ -11,7 +11,6 @@ const EditSpot = () => {
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [selectedSpot, setSelectedSpot] = useState({})
-
   const updateName = (e) => setSelectedSpot({...selectedSpot, name:e.target.value});
   const updateAddress = (e) => setSelectedSpot({...selectedSpot, address:e.target.value});
   const updateCity = (e) => setSelectedSpot({...selectedSpot, city:e.target.value});
@@ -45,11 +44,12 @@ useEffect(() => {
       .then(async (res) => {
         console.log("Success");
         setSubmitSuccess(true);
+
       })
   };
 
   if (submitSuccess) {
-    return <Redirect to={`/`} />;
+    history.push(`/spots/${spotId}`)
   }
 
   return (

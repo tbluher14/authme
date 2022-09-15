@@ -8,6 +8,7 @@ const UsersSpots = () => {
   const dispatch = useDispatch();
   const userSpotsObj = useSelector(state => state.spots);
 
+
   const userSpots = Object.values(userSpotsObj); //changing to array to .map
 
 

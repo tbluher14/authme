@@ -16,7 +16,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
-
+  
   useEffect(() => {
     dispatch(findSpotById(spotId));
   }, [dispatch, spotId]);
@@ -33,7 +33,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
       <div key={spot?.id} className='details_container'>
         <h3 className="spot_headline">{spot?.name}</h3>
         <div className="avg_rating">
-          <StarReviews spot={spot}/> 
+          <StarReviews spot={spot}/>
         </div>
         <h4 className="spot_location_details">
           {spot?.city}, {spot?.state}

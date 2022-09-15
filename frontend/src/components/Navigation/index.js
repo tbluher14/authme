@@ -33,7 +33,7 @@ function Navigation({ isLoaded }){
           <NavLink
             exact
             to="/"
-            className="nav_link home_link"
+            className="home_link"
             id="bestbnb_logo"
           >
             <span
