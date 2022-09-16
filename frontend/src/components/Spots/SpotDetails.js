@@ -16,7 +16,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
+
   
+
   useEffect(() => {
     dispatch(findSpotById(spotId));
   }, [dispatch, spotId]);
@@ -64,6 +66,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 ></img>
 
           </div>
+          <div className="host_info">{}</div>
           <div className="description">{spot?.description}</div>
           <div className="price_per_night" >
             Price: ${spot?.price}/night

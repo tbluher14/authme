@@ -36,12 +36,9 @@ function Navigation({ isLoaded }){
             className="home_link"
             id="bestbnb_logo"
           >
-            <span
-              className="iconify"
-              data-icon="fa-brands:airbnb"
-              data-width="40"
-            ></span>
+          
             <span className="bestbnb_logo">bestBnB</span>
+
           </NavLink>
         </div>
         <span className="demo_user">
