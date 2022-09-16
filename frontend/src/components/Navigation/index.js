@@ -1,13 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
+import { Dispatch } from 'react';
 import './Navigation.css';
 import DemoUser from '../DemoUser';
+import * as sessionActions from '../../store/session'
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch()
 
 
   let sessionLinks;
@@ -21,8 +24,10 @@ function Navigation({ isLoaded }) {
       <div className='logged_out_login'>
         <LoginFormModal />
       </div>
-      <button className='logged_out_signup'>
-        <NavLink to="/signup">Sign Up</NavLink>
+      <button className='logged_out_signup'
+
+        onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
+        >Sign Up!
       </button>
       </>
     );

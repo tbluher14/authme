@@ -43,10 +43,15 @@ const Homepage = () => {
                 <h4 className="spot_location">
                   {ele.city}, {ele.state}
                 </h4>
-                <p className="spot_price"> Price: ${ele.price}/night</p>
                 <div className="spot_rating" id="star_review_score">
-                  <div>Review: {ele?.avgRating === undefined ? 0 : ele.avgRating}/5</div>
+                  <h5>
+                    Review: {ele?.avgRating === undefined ? 0 : ele.avgRating}/5
+                    </h5>
+                  <div>
+
+                  </div>
                 </div>
+                <p className="spot_price">${ele.price}/night</p>
               </div>
             </div>
           </Link>
