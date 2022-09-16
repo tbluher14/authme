@@ -22,17 +22,17 @@ function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='login_box'>
+    <form onSubmit={handleSubmit} className='login_modal'>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-      <h1 className="welcome">Welcome Back to BestBnB</h1>
+      <h1 className="welcome_header">Welcome Back to BestBnB</h1>
       <label>
         Username or Email
         <input
-          className="login_input"
+          className="login_email"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
@@ -42,14 +42,14 @@ function LoginForm() {
       <label>
         Password
         <input
-          className="password"
+          className="login_password"
           type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
         />
       </label>
-      <button type="submit" className='login-button'>Log In</button>
+      <button type="submit" className='login_button'>Log In</button>
     </form>
   );
 }

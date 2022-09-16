@@ -34,28 +34,14 @@ function ProfileButton({ user }) {
   const showUsersReviews = (e) => {};
 
   return (
-    // <>
-    //   <button onClick={openMenu}>
-    //     <i className="fas fa-user-circle" />
-    //   </button>
-    //   {showMenu && (
-    //     <ul className="profile-dropdown">
-    //       <li>{user.username}</li>
-    //       <li>{user.email}</li>
-    //       <li>
-    //         <button onClick={logout}>Log Out</button>
-    //       </li>
-    //     </ul>
-    //   )}
-    // </>
     <>
-    <div className="actions_button">
-      <button className="actions_menu" onClick={openMenu}>
+    <div>
+      <button className="loggedIn_menu" onClick={openMenu}>
         <i className="fas fa-bars nav_bars_icon"></i>
         <i className="fas fa-user-circle user_icon"></i>
       </button>
       {showMenu && (
-        <div id="menu">
+        <div className="menu">
           <NavLink to="/currentUser/spots">
             <button onClick={showUsersSpots}>My spots</button>
           </NavLink>
