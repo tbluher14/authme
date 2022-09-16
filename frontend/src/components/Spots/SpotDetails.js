@@ -17,17 +17,20 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
 
-  
 
-  useEffect(() => {
+
+  useEffect((e) => {
+
     dispatch(findSpotById(spotId));
   }, [dispatch, spotId]);
 
   const removeSpot = (spotId) => async (e) => {
     e.preventDefault();
-    await dispatch(deleteSpotById(spotId));
-
+    const result = dispatch(deleteSpotById(spotId));
+    console.log('remove spot fn call')
     history.push("/");
+    return result
+
   };
 
   return (
@@ -48,7 +51,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                   <NavLink to={`/spots/${spotId}/edit`}>
                     <button className="edit_button_2">Edit My Spot</button>
                   </NavLink>
-                  <button className='edit_button_2'onClick={removeSpot(spot.id)}>Delete</button>
+                  <button className='edit_button_2'onClick={removeSpot(spotId)}>Delete</button>
                 </div>
                )}
                </>

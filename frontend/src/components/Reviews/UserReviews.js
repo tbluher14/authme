@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserReviews, deleteReview } from "../../store/review";
-// import "./UsersReviews.css";
+import "./UserReviews.css";
 
 function UsersReviews() {
   const dispatch = useDispatch();
   const history = useHistory();
   const userReviewsObj = useSelector((state) => state.reviews);
   const userReviews = Object.values(userReviewsObj);
+  console.log(userReviews)
+
   const [isLoaded, setIsloaded] = useState(false);
 
   useEffect(() => {
@@ -33,17 +35,20 @@ function UsersReviews() {
         <h2>My Reviews</h2>
         {userReviews.map((review) => (
           <div key={review.id}>
-            <div>
+            <div className="ind_review_box">
               <div>
-                <div>
-                  <i></i>
-                  <p>{review.stars} out of 5 stars</p>
+                <h2>
+                  Review for:
+                  </h2>
+                 <div className="review_for_name">
+                  {review.Spot.name}
                 </div>
               </div>
-              <div>{review.review}</div>
+                  <div className="ind_review_stars">{review.stars} out of 5 stars</div>
+              <div className="review_text">{review.review}</div>
               <button
                 onClick={removeReview(review.id)}
-               
+                className="delete_review"
               >
                 Delete Review
               </button>

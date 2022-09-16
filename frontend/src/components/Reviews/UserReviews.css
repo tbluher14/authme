@@ -1,0 +1,32 @@
+.ind_review_box {
+    border: 1px solid grey;
+    border-radius: 15px;
+    padding-bottom: 15px;
+    width: 600px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-inline: 10px;
+}
+
+.ind_review_stars {
+
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-end;
+    position: relative;
+
+}
+.review_text{
+    padding-bottom: 10px;
+}
+
+.review_for_name{
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
