@@ -298,7 +298,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId)
-
+  console.log("this is the delete fetch in the backend",spot)
     if (!spot) {
         return res.json({
             message: 'Spot could not be found',
@@ -541,13 +541,13 @@ router.get('/:spotId/reviews', async (req, res) => {
     }
     }
   })
-  // error handling
-  if (spot.length < 1){
-    return res.json({
-      message: "Spot couldn't be found",
-      statusCode: 404
-    })
-  }
+  // // error handling
+  // if (!spot.length){
+  //   return res.json({
+  //     message: "I FOUND THE ERROR",
+  //     statusCode: 404
+  //   })
+  // }
   return res.json(reviews)
 })
 // ***************************************************************************************
