@@ -1,15 +1,16 @@
-// frontend/src/components/Navigation/index.js
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import LoginFormModal from '../LoginFormModal';
-
+import { Dispatch } from 'react';
 import './Navigation.css';
 import DemoUser from '../DemoUser';
+import * as sessionActions from '../../store/session'
 
-function Navigation({ isLoaded }){
+function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
+  const dispatch = useDispatch()
 
 
   let sessionLinks;
@@ -20,8 +21,14 @@ function Navigation({ isLoaded }){
   } else {
     sessionLinks = (
       <>
+      <div className='logged_out_login'>
         <LoginFormModal />
-        <NavLink to="/signup">Sign Up</NavLink>
+      </div>
+      <button className='logged_out_signup'
+
+        onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
+        >Sign Up!
+      </button>
       </>
     );
   }
@@ -33,25 +40,21 @@ function Navigation({ isLoaded }){
           <NavLink
             exact
             to="/"
-            className="nav_link home_link"
+            className="home_link"
             id="bestbnb_logo"
           >
-            <span
-              className="iconify"
-              data-icon="fa-brands:airbnb"
-              data-width="40"
-            ></span>
             <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
         </div>
-        <span className="demo_user">
-            <DemoUser />
-          </span>
+        <div className="demo_user">
+          <DemoUser />
+        </div>
         <div>
-          <NavLink to="/createSpot" className="become_a_host">
-              Become a Host
+          <div className='become_host'>
+          <NavLink to="/createSpot">
+            Become a Host
           </NavLink>
-
+          </div>
         </div>
         <div>{isLoaded && sessionLinks}</div>
       </div>

@@ -1,9 +1,8 @@
 img {
-    height: 250px;
+    height: 200px;
     flex-wrap: wrap;
     float: left;
-    width: 300px;
-    height: 300px;
+    width: 200px;
     background-size: cover;
     border-radius: 15px;
     margin: 1rem;
@@ -12,6 +11,11 @@ img {
 
   a:link {
     text-decoration: none;
+  }
+
+  .single_spot{
+    align-items: center;
+    justify-content: space-between;
   }
 
 /* #root {
@@ -26,11 +30,28 @@ img {
   }
 
   .spot_info {
-    margin-left: 19px;
+    margin-left: 22px;
+    margin-bottom: -25px;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .spot_location{
+    font-size: 15px;
+    margin-bottom: -16px;
+    font-weight: bold;
   }
 
   .spot_price {
-    font-weight: bolder;
+    font-weight: bold;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+
+  .spot_rating{
+    font-size: 14px;
+    margin-bottom: -16px;
   }
 
   @media screen and (max-width: 2300px) and (min-width: 1900px) {

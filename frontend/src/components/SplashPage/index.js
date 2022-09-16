@@ -1,19 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listAllSpots } from "../../store/spot";
 import "./SplashPage.css";
-import StarReviews from "../Reviews/StarReviews";
-import { findSpotById } from "../../store/spot";
-// import StarReviews from "../Reviews/StarReviews";
-import { getSpotReviews } from "../../store/review";
+
+
 
 const Homepage = () => {
   const dispatch = useDispatch();
   const allSpotsObj = useSelector((state) => state.spots);
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
-  const spotIds = allSpots.map(spot => spot.id)
-  
+  // const spotIds = allSpots.map(spot => spot.id)
+  console.log("all spots", allSpots)
 
 
   useEffect(() => {
@@ -45,10 +43,15 @@ const Homepage = () => {
                 <h4 className="spot_location">
                   {ele.city}, {ele.state}
                 </h4>
-                <p className="spot_price"> Price: ${ele.price}/night</p>
                 <div className="spot_rating" id="star_review_score">
-                Review Average: <StarReviews spot={spotIds.map(spot => spot.id)} /> out of 5
+                  <h5>
+                    Review: {ele?.avgRating === undefined ? 0 : ele.avgRating}/5
+                    </h5>
+                  <div>
+
+                  </div>
                 </div>
+                <p className="spot_price">${ele.price}/night</p>
               </div>
             </div>
           </Link>

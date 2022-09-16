@@ -1,93 +1,62 @@
-.login_box {
+.login_modal{
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 255px;
-    width: 500px;
-    margin-bottom: -55px
+    border-radius: 100px;
+    /* border: solid black; */
+    height: 300px;
+    width: 575px;
+    margin-bottom: -75px;
   }
 
 
-  .welcome {
+  .welcome_header {
     display: flex;
+    font-weight: bold;
     align-content: center;
     text-align: center;
     margin-top: 0px;
-    font-size: 24px;
-    font-weight: 500px;
+    padding-bottom: 5px;
+    font-size: 25px;
+  }
+
+  .login_email {
+    border: solid grey;
+    border-radius: 10px;
+    color: black;
+    font-size: 18px;
+    height: 22px;
+    width: 325px;
+    margin-bottom: 5px;
+    margin-left: 6px;
+
+  }
+  .login_password {
+    font-size: 16px;
+    margin-left: 15px;
+    padding-left: 25px;
+    position: relative;
+    height: 22px;
+    width: 300px;
+    align-items: center;
+    border: solid grey;
+    border-radius: 10px;
   }
 
   .login_button {
-    background-image: linear-gradient(
-      to right,
-      #e61e4d 0%,
-      #e31c5f 50%,
-      #d70466 100%
-    );
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    height: 50px;
-    width: 370px;
-    margin-top: 20px;
-  }
-
-  .signup_button {
-    background-image: linear-gradient(
-      to right,
-      #e61e4d 0%,
-      #e31c5f 50%,
-      #d70466 100%
-    );
-    border: none;
-    border-radius: 10px;
-    color: white;
-    font-size: 18px;
-    height: 50px;
-    width: 370px;
-    margin-top: -14px;
-    margin-left: 65px;
-    margin-bottom: 30px;
-  }
-
-  .password {
-    font-size: 16px;
-    padding-left: 10px;
-    width: 260px;
-    border-radius: 20px;
-  }
-
-  .login_input {
-    font-size: 16px;
-    padding-left: 10px;
-    width: 200px;
-    border-radius: 20px;
-  }
-
-  .button-23 {
-    font-family: Circular, -apple-system, BlinkMacSystemFont, Roboto,
-      "Helvetica Neue", sans-serif;
-      font-weight: 600;
-      line-height: 10px;
-    background-color: #ffffff;
-    border: 1px solid #222222;
+    background-color: white;
+    border: 2px solid grey;
     border-radius: 8px;
-    box-sizing: border-box;
-    color: #222222;
-    cursor: pointer;
-    display: inline-block;
-    font-size: 12px;
-    margin: 0;
+    height: 10px;
+    width: 105px;
+    align-items: center;
+    justify-content: center;
+    color: black;
+    display: flex;
+    font-size: 14px;
+    margin-top: 20px;
     outline: none;
     padding: 13px 23px;
     position: relative;
     text-align: center;
-    text-decoration: none;
-    touch-action: manipulation;
-    transition: box-shadow 0.2s, -ms-transform 0.1s, -webkit-transform 0.1s,
-      transform 0.1s;
-    user-select: none;
-    -webkit-user-select: none;
-    width: auto;
   }

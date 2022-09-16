@@ -1,5 +1,4 @@
 body {
-    font-family: "Montserrat", sans-serif;
     font-family: "Open Sans", sans-serif;
   }
 
@@ -16,42 +15,70 @@ body {
     gap: 10px;
   }
 
-  .actions_menu {
-    color: gray;
-    background-color: white;
-    margin-top: 15px;
-    border: white;
-    border-radius: 20px;
-    height: 40px;
-    width: 80px;
-    padding-left: 17px;
-    padding-right: 15px;
-    font-size: 20px;
-    display: flex;
-    position: relative;
-    text-align: start;
-    justify-content: space-between;
-    align-items: center;
-    border: 1px solid #dddddd;
-  }
+.logged_out_signup{
+  display: flex;
+  position: absolute;
+  justify-content: center;
+  align-items: center;
+  right: 50px;
+  height: 35px;
+  margin-top: 10px;
+  width: 75px;
+
+
+}
+.loggedIn_menu{
+  position: absolute;
+  right: 50px;
+  top: 20px;
+  width: 75px;
+  height: 30px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 20px;
+  display: flex;
+}
+
+.logged_out_login{
+  display: inline-flex;
+  position: absolute;
+  width: 150px;
+  right: 50px;
+  height: 35px;
+  margin-top: 10px;
+}
+
+.demo_button{
+  display: flex;
+  position: absolute;
+  right: 230px;
+  margin-top: 10px;
+  width: 100px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
+  float: right;
+
+}
+
 
   .actions_menu:hover {
     box-shadow: 0px 0px 5px gray;
   }
 
-  .become_a_host {
-    color: black;
+  .become_host {
     margin-top: 14px;
-    border: white;
-    border-radius: 20px;
-    height: auto;
-    width: auto;
-    padding: 10px 10px 10px 10px;
-    font-size: 15px;
-    display: flex;
-    text-align: start;
-    justify-content: space-between;
+    font-family: "Open Sans", sans-serif;
+    font-weight: bold;
+    width: 150px;
+    height: 35px;
     align-items: center;
+    justify-content: center;
+    border-radius: 20px;
+    display: inline-flex;
+    position: absolute;
+    right: 360px;
+    float: right;
   }
 
   .become_a_host:hover {
@@ -59,12 +86,9 @@ body {
     background-color: rgba(211, 211, 211, 0.5);
   }
 
-  .nav_link {
-    text-decoration: none;
-  }
 
   .home_link {
-    color: #ff385c;
+    color: #ED6A6A;
     display: flex;
     font-weight: bold;
   }
@@ -75,12 +99,5 @@ body {
     font-weight: bold;
     line-height: 20px;
     padding-left: 8px;
-    padding-top: 14px;
-  }
-
-  .home_buttons {
-    display: flex;
-    font-size: 18px;
-    margin-right: 8px;
-    margin-top: 15px;
+    padding-top: 25px;
   }

@@ -51,7 +51,7 @@ function App() {
             <SpotDetails />
           </Route>
           <Route exact path="/signup">
-            <SignupFormPage />
+            {/* <SignupFormPage /> */}
           </Route>
           <Route exact path="/currentUser/spots">
             <UsersSpots />

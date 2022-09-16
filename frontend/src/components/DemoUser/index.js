@@ -1,7 +1,7 @@
 import React from "react";
 import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
-import './DemoUser.css'
+// import './DemoUser.css'
 
 export default function DemoUser() {
   const dispatch = useDispatch();
@@ -15,7 +15,7 @@ export default function DemoUser() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <button className="button-23" type="submit">Demo</button>
+      <button className="demo_button" type="submit">Demo User</button>
     </form>
   );
 }
