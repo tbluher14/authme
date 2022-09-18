@@ -27,6 +27,13 @@ body {
 
 
 }
+
+.logo{
+  width: 35px;
+  height: 35px;
+  margin-bottom: 0px;
+  margin-top: -5px;
+}
 .loggedIn_menu{
   position: absolute;
   right: 50px;

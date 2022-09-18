@@ -6,6 +6,7 @@ import LoginFormModal from '../LoginFormModal';
 import { Dispatch } from 'react';
 import './Navigation.css';
 import DemoUser from '../DemoUser';
+import logo from './staticAssets/logo.jpeg'
 import * as sessionActions from '../../store/session'
 
 function Navigation({ isLoaded }) {
@@ -43,6 +44,11 @@ function Navigation({ isLoaded }) {
             className="home_link"
             id="bestbnb_logo"
           >
+            <img
+            src={logo}
+            alt="logo"
+            className='logo'
+            />
             <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
         </div>

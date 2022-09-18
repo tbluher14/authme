@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listAllSpots } from "../../store/spot";
 import "./SplashPage.css";
+import starImage from '../Reviews/StaticAssets/starImage.jpeg'
 
 
 
@@ -20,6 +21,8 @@ const Homepage = () => {
   }, [dispatch]);
 
   if (!allSpots) return null;
+
+  const image = `<img src={starImage} alt='starimage' className="star_image"/>`
 
   return (
     <>
@@ -44,14 +47,19 @@ const Homepage = () => {
                   {ele.city}, {ele.state}
                 </h4>
                 <div className="spot_rating" id="star_review_score">
-                  <h5>
-                    Review: {ele?.avgRating === undefined ? 0 : ele.avgRating}/5
-                    </h5>
+
+                  <img
+                  src={starImage}
+                  alt='starimage'
+                  className="star_image"/>
+                  <div className="rating_tern">
+                  {ele?.avgRating === undefined ? "No Reviews Yet!" : `${ele.avgRating} / 5`}
+                  </div>
                   <div>
 
                   </div>
                 </div>
-                <p className="spot_price">${ele.price}/night</p>
+                <p className="spot_price">${ele.price} / night</p>
               </div>
             </div>
           </Link>

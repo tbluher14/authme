@@ -31,12 +31,6 @@
     background-color: white;
     margin-top: 20px;
     margin-left: 150px;
-    background-image: linear-gradient(
-      to left,
-      #e61e4d 20%,
-      #e31c5f 80%,
-      #d70466 100%
-    );
     border: solid black;
     border-radius: 10px;
     color: white;

@@ -46,9 +46,11 @@ useEffect(() => {
       })
       .catch(async (res) => {
           const data = await res.json();
-          console.log("data in submit", data.errors)
+          // console.log("data in submit", data.errors)
           if (data.errors) {setErrors(Object.values(data.errors))}
-          return errors
+          // console.log(data.errors)
+          // if (data?.message) setErrors([data.message]);
+          // return errors
       })
     }
 
@@ -74,6 +76,7 @@ useEffect(() => {
           placeholder="Spot Name"
           value={selectedSpot.name}
           onChange={updateName}
+          required
           />
       </label>
 
@@ -84,6 +87,7 @@ useEffect(() => {
           placeholder="Address"
           value={selectedSpot.address}
           onChange={updateAddress}
+          required
         />
       </label>
       <label className="spot_city">
@@ -93,6 +97,7 @@ useEffect(() => {
           placeholder="City"
           value={selectedSpot.city}
           onChange={updateCity}
+          required
         />
       </label>
       <label className="spot_state">
@@ -102,6 +107,7 @@ useEffect(() => {
           placeholder="State"
           value={selectedSpot.state}
           onChange={updateState}
+          required
         />
       </label>
       <label className="spot_country">
@@ -111,6 +117,7 @@ useEffect(() => {
           placeholder="Country"
           value={selectedSpot.country}
           onChange={updateCountry}
+          required
         />
       </label>
       <label className="spot_lat">
@@ -120,6 +127,7 @@ useEffect(() => {
           placeholder="Latitude"
           value={selectedSpot.lat}
           onChange={updateLat}
+          required
         />
       </label>
       <label className="spot_long">
@@ -129,6 +137,7 @@ useEffect(() => {
           placeholder="Longitude"
           value={selectedSpot.lng}
           onChange={updateLng}
+          required
         />
       </label>
       <label className="spot_description">
@@ -139,6 +148,7 @@ useEffect(() => {
           placeholder="Description"
           value={selectedSpot.description}
           onChange={updateDescription}
+          required
         />
       </label>
       <label className="spot_price">
@@ -148,6 +158,7 @@ useEffect(() => {
           placeholder="Price"
           value={selectedSpot.price}
           onChange={updatePrice}
+          required
         />
           </label>
         <label className="url">
@@ -157,6 +168,7 @@ useEffect(() => {
             placeholder="img-url"
             value={selectedSpot.previewImage}
             onChange={updatePreviewImage}
+            
           />
       </label>
       <button type="submit">Confirm Changes</button>

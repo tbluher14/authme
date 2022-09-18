@@ -48,6 +48,7 @@ const SpotForm = ({ spot }) => {
       price: price,
       previewImage: previewImage,
     };
+    console.log("errors in spot form", errors)
 
     return dispatch(createNewSpot(data))
       .then(async (res) => {
