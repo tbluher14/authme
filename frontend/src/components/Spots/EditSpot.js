@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { editASpot, editSpot, findSpotById } from "../../store/spot";
+import { editASpot, findSpotById } from "../../store/spot";
+import './EditSpot.css'
 
 const EditSpot = () => {
   const dispatch = useDispatch();
@@ -28,7 +29,6 @@ useEffect(() => {
 
   async function fetchData() {
     const response = await dispatch(findSpotById(spotId));
-    console.log("response from fetch findSpotById", response)
     setSelectedSpot(response)
   }
   fetchData();
@@ -38,36 +38,47 @@ useEffect(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
 
     return dispatch(editASpot(selectedSpot, spotId))
       .then(async (res) => {
-        console.log("Success");
+        // console.log("Success");
         setSubmitSuccess(true);
-
       })
-  };
+      .catch(async (res) => {
+          const data = await res.json();
+          console.log("data in submit", data.errors)
+          if (data.errors) {setErrors(Object.values(data.errors))}
+          return errors
+      })
+    }
+
 
   if (submitSuccess) {
     history.push(`/spots/${spotId}`)
   }
 
   return (
+
     <form className="create_spot" onSubmit={handleSubmit}>
+      <h2 className="edit_header">Edit My Spot</h2>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
-        ))}
+          ))}
       </ul>
-      <label>
+        <div>
+        <label className="spot_name">
+          Spot Name:
         <input
           type="text"
           placeholder="Spot Name"
           value={selectedSpot.name}
           onChange={updateName}
-        />
+          />
       </label>
-      <label>
+
+      <label className="spot_address">
+        Address:
         <input
           type="text"
           placeholder="Address"
@@ -75,7 +86,8 @@ useEffect(() => {
           onChange={updateAddress}
         />
       </label>
-      <label>
+      <label className="spot_city">
+        City:
         <input
           type="text"
           placeholder="City"
@@ -83,7 +95,8 @@ useEffect(() => {
           onChange={updateCity}
         />
       </label>
-      <label>
+      <label className="spot_state">
+        State:
         <input
           type="text"
           placeholder="State"
@@ -91,7 +104,8 @@ useEffect(() => {
           onChange={updateState}
         />
       </label>
-      <label>
+      <label className="spot_country">
+        Country:
         <input
           type="text"
           placeholder="Country"
@@ -99,7 +113,8 @@ useEffect(() => {
           onChange={updateCountry}
         />
       </label>
-      <label>
+      <label className="spot_lat">
+        Latitude:
         <input
           type="text"
           placeholder="Latitude"
@@ -107,7 +122,8 @@ useEffect(() => {
           onChange={updateLat}
         />
       </label>
-      <label>
+      <label className="spot_long">
+        Longitude:
         <input
           type="text"
           placeholder="Longitude"
@@ -115,31 +131,36 @@ useEffect(() => {
           onChange={updateLng}
         />
       </label>
-      <label>
+      <label className="spot_description">
+        Spot Description:
         <input
-          type="text"
+          type="textarea"
+          name="textvalue"
           placeholder="Description"
           value={selectedSpot.description}
           onChange={updateDescription}
         />
       </label>
-      <label>
+      <label className="spot_price">
+        Price Per Night:
         <input
           type="text"
           placeholder="Price"
           value={selectedSpot.price}
           onChange={updatePrice}
         />
-        <label>
+          </label>
+        <label className="url">
+          Image Url:
           <input
             type="text"
             placeholder="img-url"
             value={selectedSpot.previewImage}
             onChange={updatePreviewImage}
           />
-        </label>
       </label>
       <button type="submit">Confirm Changes</button>
+      </div>
     </form>
   );
 };

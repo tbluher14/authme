@@ -1,0 +1,10 @@
+.create_spot {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+
+}
+
+.edit_header{
+    padding-bottom: -5px;
+}
