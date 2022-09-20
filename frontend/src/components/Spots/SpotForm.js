@@ -29,9 +29,6 @@ const SpotForm = ({ spot }) => {
     }
   });
 
-  if (submitSuccess) {
-    return <Redirect to="/" />;
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -51,14 +48,18 @@ const SpotForm = ({ spot }) => {
     console.log("errors in spot form", errors)
 
     return dispatch(createNewSpot(data))
-      .then(async (res) => {
-        setSubmitSuccess(true);
-      })
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.errors) setErrors(data.errors);
-      });
+    .then(async (res) => {
+      setSubmitSuccess(true);
+    })
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) setErrors(data.errors);
+    });
   };
+
+  if (submitSuccess) {
+    return <Redirect to="/" />;
+  }
 
   return (
     <div className="form_input">

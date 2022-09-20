@@ -44,6 +44,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   // if (!isLoaded) {return null}
   return  (
     <div className="page_container">
+      <div className="content_container">
       <div key={spot?.id}>
         <div className="header_container">
         <div className="header_container_top_half">
@@ -74,10 +75,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
               ) : (
                 <></>
                 )}
-
-                </div>
         </div>
-        <br></br>
+        </div>
         <div>
                 {spot?.Images? (
                   <img
@@ -92,10 +91,16 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                     )
                   }
           </div>
-
-          <div>{spot?.description}</div>
-          <div >
+          </div>
+          <div className="bottom_half_price_description">
+            <br></br>
+          <div className="spot_description">{spot?.description}</div>
+          <div className='price_box'>
             Price: ${spot?.price}/night
+          <div >
+
+          </div>
+          </div>
           </div>
             <div>
               Review Average: <StarReviews spot={spot} /> out of 5
@@ -109,8 +114,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 <button className="review_button">Create Review</button>
               </NavLink>
         </div>
-      </div>
-    </div>
+        </div>
+        </div>
+
 
   );
 };
