@@ -225,7 +225,7 @@ const spotReducer = (state = initialState, action) => {
     }
     case UPDATE_IMAGE: {
       newState = {...state}
-      newState[action.spotId].Image = [action.image]
+      newState[action.spot.id] = action.spot
       return newState
     }
     case DELETE_SPOT: {

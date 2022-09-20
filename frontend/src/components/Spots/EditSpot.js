@@ -40,6 +40,7 @@ useEffect(() => {
 // HANDLE SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
+
     // if preview image IS NOT changing
     if (previewImage.length < 1) {
       return dispatch(editASpot(selectedSpot, spotId))
@@ -52,13 +53,15 @@ useEffect(() => {
           if (data.errors) {setErrors(Object.values(data.errors))}
       })
     }
+
     // if preview image changes:
     if (previewImage.length > 1){
+      dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
 
-    dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
-
-    return dispatch(editASpot(selectedSpot, spotId))
-    .then(() => {
+      return dispatch(editASpot(selectedSpot, spotId))
+      .then( () => {
+      })
+      .then(() => {
       dispatch(listAllSpots())
       setSubmitSuccess(true)
     })
@@ -73,7 +76,7 @@ useEffect(() => {
   if (submitSuccess) {
     history.push(`/spots/${spotId}`)
   }
-  
+
 // JSX
 // --------------------------------------------------------------------------------------------------
   return (
