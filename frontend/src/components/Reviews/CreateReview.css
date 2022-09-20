@@ -1,23 +1,28 @@
 .review_message{
-    position: absolute;
-    top: 210px;
-    left: 275px;
+    margin-bottom: 20px;
 }
 
 .header{
-    position: absolute;
+    /* position: absolute;
+    display: flex;
     left: 400px;
-    top: 100px;
+    top: 100px; */
 }
 
 .review_stars{
-    position: absolute;
-    left: 300px;
-    top: 170px;
+    margin-bottom: 10px;
 }
 
 .submit{
-    position: absolute;
+    /* position: absolute;
     left: 450px;
-    top: 270px;
+    top: 270px; */
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+
 }

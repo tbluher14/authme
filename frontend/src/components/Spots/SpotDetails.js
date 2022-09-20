@@ -5,7 +5,7 @@ import { findSpotById, deleteSpotById } from "../../store/spot";
 import SpotReviews from "../Reviews/SpotReviews";
 import StarReviews from "../Reviews/StarReviews";
 import starImage from '../Reviews/StaticAssets/starImage.png'
-import './SpotDetails.css'
+import './SpotDetails2.css'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams();
@@ -35,22 +35,26 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
   };
 
+
   // if (!isLoaded) {return null}
   return  (
-    <div className="spot_details">
-      <div key={spot?.id} className='details_container'>
+    <div className="page_container">
+      <div key={spot?.id}>
+        <div className="header_container">
+        <div className="header_container_top_half">
         <h3 className="spot_headline">{spot?.name}</h3>
-        <div className="avg_rating">
+        </div>
+        <div className="header_container_bottom_half">
           <img
           src={starImage}
           alt='starImage'
           className="starImage"
           /> <StarReviews spot={spot}/>
-        <h4 className="spot_location_details">
+        <h4>
           {spot?.city}, {spot?.state}
         </h4>
         </div>
-        <div>
+        <div className='header_container_bottom_half_edit_delete'>
           {sessionUser ? (
             <>
               {!hideButtons && sessionUser?.id === spot?.ownerId && (
@@ -65,37 +69,44 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
               ) : (
                 <></>
                 )}
+
+                </div>
         </div>
         <br></br>
-        <div className="spot_info_details">
-                <img
-                  src={spot?.previewImage}
+        <div>
+                {spot?.Images? (
+                  <img
+                  src={spot?.Images[spot.Images.length -1]}
                   alt="spot_preview_image"
                   className="spot_image"
-
-                ></img>
-
+                  >  </img>) :  ( <img
+                    src={spot?.previewImage}
+                    alt="spot_preview_image"
+                    className="spot_image"
+                    ></img>
+                    )
+                  }
           </div>
-          <div className="host_info">{}</div>
-          <div className="description">{spot?.description}</div>
-          <div className="price_per_night" >
+
+          <div>{spot?.description}</div>
+          <div >
             Price: ${spot?.price}/night
-        </div>
-            <div className="review_average">
+          </div>
+            <div>
               Review Average: <StarReviews spot={spot} /> out of 5
             </div>
-        <div className="spot_reviews">
+        <div>
           <h2>Reviews</h2>
-          <div className="individual_review">
+          <div>
           <SpotReviews spot={spot} />
           </div>
               <NavLink to={`/spots/${spotId}/createReview`}>
                 <button className="review_button">Create Review</button>
               </NavLink>
-
         </div>
       </div>
     </div>
+
   );
 };
 

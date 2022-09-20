@@ -14,6 +14,10 @@ const ReviewForm = () => {
   const [errors, setErrors] = useState([]);
   const [submitSuccess, setSubmitSuccess] = useState(false);
 
+  console.log('errors in create review', errors)
+  const errorsArr = Object.values(errors)
+  // console.log('errorsarr', errorsArr)
+
   if (submitSuccess) {
     return <Redirect to={`/spots/${spotId}`} />;
   }
@@ -29,20 +33,25 @@ const ReviewForm = () => {
     return dispatch(createNewReview(data, spotId))
       .then(async (res) => {
         setSubmitSuccess(true);
+
       })
       .catch(async (res) => {
         const data = await res.json();
-        if (data?.message) setErrors([data.message]);
+        console.log('data', data)
+        if (data.errors) setErrors(data.errors);
+        else (setErrors([data.message]))
       });
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      <div className="container">
       <h2 className="header">Create A Review:</h2>
-      <ul>
-        {errors.map((error, idx) => (
+      <ul className="errors">
+          {errorsArr.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
+
       </ul>
         <label className="review_stars">
           Stars:
@@ -65,6 +74,7 @@ const ReviewForm = () => {
         />
       </label>
       <button type="submit" className="submit">Create Review</button>
+      </div>
     </form>
   );
 };

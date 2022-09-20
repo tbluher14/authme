@@ -23,10 +23,11 @@ const EditSpot = () => {
   const updateLng = (e) => setSelectedSpot({...selectedSpot, lng:e.target.value});
   const updateDescription = (e) => setSelectedSpot({...selectedSpot, description:e.target.value});
   // const updatePreviewImage = (e) => setSelectedSpot({...selectedSpot, previewImage:e.target.value});
+  const [savedSpotId, setSavedSpotId] = useState(spotId)
   const [previewImage, setPreviewImage] = useState('')
 
 useEffect(() => {
-  if (!spotId) history.push('/')
+  // if (!spotId) history.push('/')
 
   async function fetchData() {
     const response = await dispatch(findSpotById(spotId));
@@ -48,8 +49,8 @@ console.log("selected spot", selectedSpot)
       e.preventDefault()
       return dispatch(editASpot(selectedSpot, spotId))
       .then(() => {
-        dispatch(listAllSpots())
         setSubmitSuccess(true)
+        dispatch(listAllSpots())
       })
       .catch(async (res) => {
           const data = await res.json();
@@ -62,13 +63,12 @@ console.log("selected spot", selectedSpot)
       await dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
       e.preventDefault()
       // to do: clear state
-      // dispatch(clearState())
+      // await dispatch(clearState())
       return dispatch(editASpot(selectedSpot, spotId))
 
       .then(() => {
-
-      dispatch(listAllSpots())
       setSubmitSuccess(true)
+      dispatch(listAllSpots())
     })
     .catch(async (res) => {
         const data = await res.json();
@@ -76,13 +76,19 @@ console.log("selected spot", selectedSpot)
     })
   }
 }
-// --------------------------------------------------------------------------------------------------
 
-  if (submitSuccess) {
-    // try down here too on clear state
-    dispatch(clearState())
-    history.push(`/spots/${spotId}`)
-  }
+// --------------------------------------------------------------------------------------------------
+const submitHelper = async (spotId) =>{
+  await dispatch(clearState())
+  history.push(`/spots/${spotId}`)
+}
+
+if (submitSuccess) {
+  // try down here too on clear state
+  // await dispatch(clearState())
+  // history.push(`/spots/${spotId}`)
+  submitHelper(spotId)
+}
 
 // JSX
 // --------------------------------------------------------------------------------------------------
