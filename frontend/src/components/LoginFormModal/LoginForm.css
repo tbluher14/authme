@@ -44,14 +44,14 @@
   }
 
   .login_button {
-    background-color: white;
+    background-color: black;
     border: 2px solid grey;
     border-radius: 8px;
     height: 10px;
     width: 105px;
     align-items: center;
     justify-content: center;
-    color: black;
+    color: white;
     display: flex;
     font-size: 14px;
     margin-top: 20px;

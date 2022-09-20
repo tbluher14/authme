@@ -8,7 +8,10 @@
     background-color: gray;
   }
 
-  #menu {
+  .menu {
     background-color: gray;
+    display: flex;
+    position: absolute;
+    bottom: 200px;
+    top: 100px;
   }
-

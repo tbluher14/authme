@@ -21,7 +21,12 @@
     height: 255px;
     width: 500px;
   }
+.h2_header{
 
+  position: absolute;
+  top: 5px;
+  right: 170px;
+}
   input {
     font-size: 16px;
     padding-left: 10px;
@@ -31,18 +36,18 @@
   }
 
   .signup_button {
-    background-image: linear-gradient(
-      to right,
-      #e61e4d 0%,
-      #e31c5f 50%,
-      #d70466 100%
-    );
     border: none;
     border-radius: 10px;
-    color: white;
     font-size: 18px;
-    height: 50px;
-    width: 370px;
+    background-color: black;
+    border: 2px solid grey;
+    color: white;
+    position: absolute;
+    bottom: 60px;
+    left: 150px;
+    height: 25px;
+    width: 150px;
+    top: 215px;
     margin-top: 70px;
     margin-left: 60px;
   }
@@ -54,10 +59,13 @@
     margin: auto;
     margin-top: 0px;
     padding: 40px;
-
-    border-radius: 20px;
+    /* border: 1px solid grey; */
+    /* border-radius: 10px; */
   }
-
+#modal-content{
+  padding: 1px solid black;
+  border-radius: 30px;
+}
   .signup_form_container span {
     font-size: 15px;
     margin-right: 12px;
@@ -65,29 +73,4 @@
 
   .signup_input_confirm_password {
     width: 275px;
-  }
-
-  .button-23 {
-    background-color: #FFFFFF;
-    border: 1px solid #222222;
-    border-radius: 8px;
-    box-sizing: border-box;
-    color: #222222;
-    cursor: pointer;
-    display: inline-block;
-    font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,"Helvetica Neue",sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    line-height: 10px;
-    margin: 0;
-    outline: none;
-    padding: 13px 23px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    touch-action: manipulation;
-    transition: box-shadow .2s,-ms-transform .1s,-webkit-transform .1s,transform .1s;
-    user-select: none;
-    -webkit-user-select: none;
-    width: auto;
   }

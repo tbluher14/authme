@@ -10,11 +10,11 @@
 .details_container {
     display: flex;
     align-content: center;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     flex-direction: column;
-    border: 2px solid grey;
+    /* border: 2px solid grey; */
     width: 70%;
-    border-radius: 12px;
+ border-radius: 12px;
 
 }
 
@@ -27,16 +27,16 @@
     margin-left: 10px;
     align-items: center;
     font-size: 30px;
-    margin-bottom: -1px;
+    margin-bottom: -20px;
 }
 
 .spot_location_details {
     display:flex;
-    justify-content: flex-start;
-    font-style: italic;
+    /* justify-content: flex-start; */
+    /* font-style: italic; */
     align-items: center;
     margin-left: 10px;
-    margin-bottom: 15px;
+    margin-bottom: 21px;
 }
 
 .avg_rating {
@@ -57,6 +57,8 @@
     border-radius: 20px;
     background-size: cover;
     position: static;
+    margin-left: -220px;
+    margin-top: 0px;
     float: left;
 }
 
@@ -71,8 +73,8 @@
     justify-content: center;
     margin-bottom: 20px;
     align-items: center;
-    margin-left: 100px;
-    margin-right: 100px;
+    margin-left: 10px;
+    margin-right: 230px;
 
 }
 .price_per_night {
@@ -87,6 +89,15 @@
     flex-direction: column;
     align-items: center;
 
+}
+
+.starImage{
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
+    /* margin-bottom: -px; */
+    margin-top: 12px;
+    margin-left: -4px;;
 }
 
 .spot_info_details{

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
-import { editASpot, findSpotById } from "../../store/spot";
+import { editASpot, findSpotById, listAllSpots } from "../../store/spot";
 import './EditSpot.css'
 
 const EditSpot = () => {
@@ -40,9 +40,15 @@ useEffect(() => {
     e.preventDefault();
 
     return dispatch(editASpot(selectedSpot, spotId))
-      .then(async (res) => {
-        // console.log("Success");
-        setSubmitSuccess(true);
+      // .then(async (res) => {
+      //   // console.log("Success");
+      //   dispatch(findSpotById(spotId))
+      //   setSubmitSuccess(true);
+      // })
+      .then(() => {
+        // dispatch(findSpotById(spotId))
+        dispatch(listAllSpots())
+        setSubmitSuccess(true)
       })
       .catch(async (res) => {
           const data = await res.json();
@@ -168,7 +174,7 @@ useEffect(() => {
             placeholder="img-url"
             value={selectedSpot.previewImage}
             onChange={updatePreviewImage}
-            
+
           />
       </label>
       <button type="submit">Confirm Changes</button>

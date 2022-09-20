@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { findSpotById, deleteSpotById } from "../../store/spot";
 import SpotReviews from "../Reviews/SpotReviews";
 import StarReviews from "../Reviews/StarReviews";
+import starImage from '../Reviews/StaticAssets/starImage.png'
 import './SpotDetails.css'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
@@ -27,7 +28,6 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const removeSpot = (spotId) => async (e) => {
     e.preventDefault();
     const result = dispatch(deleteSpotById(spotId));
-    console.log('remove spot fn call')
     history.push("/");
     return result
 
@@ -38,11 +38,15 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
       <div key={spot?.id} className='details_container'>
         <h3 className="spot_headline">{spot?.name}</h3>
         <div className="avg_rating">
-          <StarReviews spot={spot}/>
-        </div>
+          <img
+          src={starImage}
+          alt='starImage'
+          className="starImage"
+          /> <StarReviews spot={spot}/>
         <h4 className="spot_location_details">
           {spot?.city}, {spot?.state}
         </h4>
+        </div>
         <div>
           {sessionUser ? (
             <>

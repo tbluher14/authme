@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { createNewReview } from "../../store/review";
+import './CreateReview.css'
 
 
 const ReviewForm = () => {
@@ -37,12 +38,13 @@ const ReviewForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
+      <h2 className="header">Create A Review:</h2>
       <ul>
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
       </ul>
-        <label>
+        <label className="review_stars">
           Stars:
           <input
             type="number"
@@ -62,7 +64,7 @@ const ReviewForm = () => {
           required
         />
       </label>
-      <button type="submit">Create Review</button>
+      <button type="submit" className="submit">Create Review</button>
     </form>
   );
 };

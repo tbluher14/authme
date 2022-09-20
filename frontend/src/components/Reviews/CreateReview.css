@@ -1,4 +1,23 @@
 .review_message{
-    display: flex;
-    flex-direction: column;
+    position: absolute;
+    top: 210px;
+    left: 275px;
+}
+
+.header{
+    position: absolute;
+    left: 400px;
+    top: 100px;
+}
+
+.review_stars{
+    position: absolute;
+    left: 300px;
+    top: 170px;
+}
+
+.submit{
+    position: absolute;
+    left: 450px;
+    top: 270px;
 }

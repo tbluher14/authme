@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listAllSpots } from "../../store/spot";
 import "./SplashPage.css";
-import starImage from '../Reviews/StaticAssets/starImage.jpeg'
+import starImage from '../Reviews/StaticAssets/starImage.png'
 
 
 

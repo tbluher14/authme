@@ -33,6 +33,9 @@ function SignupForm() {
 
     return (
         <div className="signup_form_container">
+          <h2 className="h2_header">
+            Welcome to BestBnB!
+            </h2>
           <form className="signup_form" onSubmit={handleSubmit}>
             <ul>
               {errors.map((error, idx) => (
