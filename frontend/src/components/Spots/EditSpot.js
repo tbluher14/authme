@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Redirect, useHistory, useParams } from "react-router-dom";
-import { thunkUpdateImage } from "../../store/spot";
+import { useHistory, useParams } from "react-router-dom";
+import { clearState, thunkUpdateImage } from "../../store/spot";
 import { editASpot, findSpotById, listAllSpots } from "../../store/spot";
 import './EditSpot.css'
 
@@ -36,13 +36,16 @@ useEffect(() => {
 
 }, [dispatch, history, spotId])
 
+console.log("selected spot", selectedSpot)
+
 // --------------------------------------------------------------------------------------------------
 // HANDLE SUBMIT
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // if preview image IS NOT changing
     if (previewImage.length < 1) {
+      e.preventDefault()
       return dispatch(editASpot(selectedSpot, spotId))
       .then(() => {
         dispatch(listAllSpots())
@@ -56,12 +59,14 @@ useEffect(() => {
 
     // if preview image changes:
     if (previewImage.length > 1){
-      dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
-
+      await dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
+      e.preventDefault()
+      // to do: clear state
+      // dispatch(clearState())
       return dispatch(editASpot(selectedSpot, spotId))
-      .then( () => {
-      })
+
       .then(() => {
+
       dispatch(listAllSpots())
       setSubmitSuccess(true)
     })
@@ -74,6 +79,8 @@ useEffect(() => {
 // --------------------------------------------------------------------------------------------------
 
   if (submitSuccess) {
+    // try down here too on clear state
+    dispatch(clearState())
     history.push(`/spots/${spotId}`)
   }
 

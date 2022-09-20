@@ -9,8 +9,13 @@ const FIND_MY_SPOTS= "spots/FIND_MY_SPOTS";
 const UPDATE_SPOT = "spots/UPDATE_SPOT";
 const DELETE_SPOT = "spots/DELETE_SPOT";
 const UPDATE_IMAGE = 'images/UPDATE_IMAGE'
+const CLEAR_STATE = 'state/clear'
+// todo: create action to clear state
 
 
+export const clearState = () => ({
+  type: CLEAR_STATE
+})
 
 const createSpot = (spot) => ({
   type: CREATE_SPOT,
@@ -41,7 +46,6 @@ const updateImage = (spot) => ({
   type: UPDATE_IMAGE,
   spot
 })
-
 
 
 const deleteSpot = (spot) => ({
@@ -200,6 +204,11 @@ const spotReducer = (state = initialState, action) => {
 
   let newState;
   switch (action.type) {
+
+    case CLEAR_STATE: {
+      newState = {}
+      return newState
+    }
     case GET_ALL_SPOTS: {
       newState = {};
       action.spots.forEach(
@@ -225,8 +234,10 @@ const spotReducer = (state = initialState, action) => {
     }
     case UPDATE_IMAGE: {
       newState = {...state}
+      console.log('action.spot', action.spot)
       newState[action.spot.id] = action.spot
-      return newState
+      let allSpots = {...newState}
+      return allSpots
     }
     case DELETE_SPOT: {
       newState ={...state}
