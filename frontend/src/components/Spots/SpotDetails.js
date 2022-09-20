@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { findSpotById, deleteSpotById } from "../../store/spot";
@@ -17,12 +17,14 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
-
+  const [isLoaded, setIsLoaded]= useState(false)
 
 
   useEffect((e) => {
 
-    dispatch(findSpotById(spotId));
+    dispatch(findSpotById(spotId))
+    .then( () => setIsLoaded(true));
+
   }, [dispatch, spotId]);
 
   const removeSpot = (spotId) => async (e) => {
@@ -33,7 +35,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
   };
 
-  return (
+  if (!isLoaded) {return null}
+  return isLoaded && (
     <div className="spot_details">
       <div key={spot?.id} className='details_container'>
         <h3 className="spot_headline">{spot?.name}</h3>
