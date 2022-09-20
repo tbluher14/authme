@@ -12,7 +12,7 @@ const Homepage = () => {
   const allSpotsObj = useSelector((state) => state.spots);
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
   // const spotIds = allSpots.map(spot => spot.id)
-  console.log("all spots", allSpots)
+  // console.log("all spots", allSpots)
 
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Homepage = () => {
 
   if (!allSpots) return null;
 
-  const image = `<img src={starImage} alt='starimage' className="star_image"/>`
+  // const image = `<img src={starImage} alt='starimage' className="star_image"/>`
 
   return (
     <>

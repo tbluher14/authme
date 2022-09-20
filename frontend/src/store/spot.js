@@ -8,6 +8,7 @@ const FIND_SPOT= "spots/FIND_SPOT";
 const FIND_MY_SPOTS= "spots/FIND_MY_SPOTS";
 const UPDATE_SPOT = "spots/UPDATE_SPOT";
 const DELETE_SPOT = "spots/DELETE_SPOT";
+const UPDATE_IMAGE = 'images/UPDATE_IMAGE'
 
 
 
@@ -35,6 +36,12 @@ const editSpot = (spot) => ({
   type: UPDATE_SPOT,
   spot,
 });
+
+const updateImage = (spot) => ({
+  type: UPDATE_IMAGE,
+  spot
+})
+
 
 
 const deleteSpot = (spot) => ({
@@ -113,6 +120,7 @@ export const editASpot = (data) => async (dispatch) => {
     price,
     previewImage,
   } = data;
+
   const response = await csrfFetch(`/api/spots/${id}`, {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -138,6 +146,34 @@ export const editASpot = (data) => async (dispatch) => {
     return updatedSpot;
   }
 };
+
+// update spot image
+export const thunkUpdateImage = (spotId, imageId, url) => async (dispatch) => {
+  const deleteRes = await csrfFetch(`/api/images/${imageId}`, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': "application/json"
+      }
+  })
+
+  let response;
+  if (deleteRes.ok){
+      response = await csrfFetch(`/api/spots/${spotId}/images`, {
+          method: 'POST',
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({url, previewImage: true})
+      })
+
+      if (response.ok){
+          const newImage = await response.json()
+          dispatch((updateImage(newImage, spotId)))
+      }
+  }
+}
+
+
 
 // delete spot by id
 export const deleteSpotById = (spotId) => async (dispatch) => {
@@ -185,6 +221,11 @@ const spotReducer = (state = initialState, action) => {
     case UPDATE_SPOT: {
       newState={...state}
       newState[action.spot.id] = action.spot
+      return newState
+    }
+    case UPDATE_IMAGE: {
+      newState = {...state}
+      newState[action.spotId].Image = [action.image]
       return newState
     }
     case DELETE_SPOT: {

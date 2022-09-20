@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useHistory, useParams } from "react-router-dom";
+import { thunkUpdateImage } from "../../store/spot";
 import { editASpot, findSpotById, listAllSpots } from "../../store/spot";
 import './EditSpot.css'
 
@@ -21,8 +22,8 @@ const EditSpot = () => {
   const updateLat = (e) => setSelectedSpot({...selectedSpot, lat:e.target.value});
   const updateLng = (e) => setSelectedSpot({...selectedSpot, lng:e.target.value});
   const updateDescription = (e) => setSelectedSpot({...selectedSpot, description:e.target.value});
-  const updatePreviewImage = (e) => setSelectedSpot({...selectedSpot, previewImage:e.target.value});
-
+  // const updatePreviewImage = (e) => setSelectedSpot({...selectedSpot, previewImage:e.target.value});
+  const [previewImage, setPreviewImage] = useState('')
 
 useEffect(() => {
   if (!spotId) history.push('/')
@@ -38,28 +39,23 @@ useEffect(() => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
+    console.log("selected spot in edit spot", selectedSpot)
+    console.log('update Preview Image',)
+    dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
     return dispatch(editASpot(selectedSpot, spotId))
-      // .then(async (res) => {
-      //   // console.log("Success");
-      //   dispatch(findSpotById(spotId))
-      //   setSubmitSuccess(true);
-      // })
+
+
       .then(() => {
-        // dispatch(findSpotById(spotId))
         dispatch(listAllSpots())
+        // dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
+        // TODO: add delete / update image thunk here
         setSubmitSuccess(true)
       })
       .catch(async (res) => {
           const data = await res.json();
-          // console.log("data in submit", data.errors)
           if (data.errors) {setErrors(Object.values(data.errors))}
-          // console.log(data.errors)
-          // if (data?.message) setErrors([data.message]);
-          // return errors
       })
     }
-
 
   if (submitSuccess) {
     history.push(`/spots/${spotId}`)
@@ -172,8 +168,8 @@ useEffect(() => {
           <input
             type="text"
             placeholder="img-url"
-            value={selectedSpot.previewImage}
-            onChange={updatePreviewImage}
+            value={previewImage}
+            onChange={(e) => setPreviewImage(e.target.value)}
 
           />
       </label>
