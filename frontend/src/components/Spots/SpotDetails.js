@@ -21,17 +21,18 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
 
   useEffect((e) => {
-
     dispatch(findSpotById(spotId))
+
     // .then( () => setIsLoaded(true));
 
   }, [dispatch, spotId]);
 
   const removeSpot = (spotId) => async (e) => {
     e.preventDefault();
+
     const result = await dispatch(deleteSpotById(spotId))
-    .then (() => {
-      clearState()
+    .then (async () => {
+      await dispatch(clearState())
     })
 
     history.push("/");
