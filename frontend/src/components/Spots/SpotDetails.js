@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useHistory, NavLink } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { findSpotById, deleteSpotById } from "../../store/spot";
+import { findSpotById, deleteSpotById, clearState } from "../../store/spot";
 import SpotReviews from "../Reviews/SpotReviews";
 import StarReviews from "../Reviews/StarReviews";
 import starImage from '../Reviews/StaticAssets/starImage.png'
@@ -29,7 +29,11 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
   const removeSpot = (spotId) => async (e) => {
     e.preventDefault();
-    const result = dispatch(deleteSpotById(spotId));
+    const result = await dispatch(deleteSpotById(spotId))
+    .then (() => {
+      clearState()
+    })
+
     history.push("/");
     return result
 
