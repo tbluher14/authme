@@ -17,13 +17,13 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
   const sessionUser = useSelector((state) => state.session.user);
-  const [isLoaded, setIsLoaded]= useState(false)
+  // const [isLoaded, setIsLoaded]= useState(false)
 
 
   useEffect((e) => {
 
     dispatch(findSpotById(spotId))
-    .then( () => setIsLoaded(true));
+    // .then( () => setIsLoaded(true));
 
   }, [dispatch, spotId]);
 
@@ -35,8 +35,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
   };
 
-  if (!isLoaded) {return null}
-  return isLoaded && (
+  // if (!isLoaded) {return null}
+  return  (
     <div className="spot_details">
       <div key={spot?.id} className='details_container'>
         <h3 className="spot_headline">{spot?.name}</h3>
