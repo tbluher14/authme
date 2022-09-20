@@ -36,19 +36,15 @@ useEffect(() => {
 
 }, [dispatch, history, spotId])
 
-
+// --------------------------------------------------------------------------------------------------
+// HANDLE SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("selected spot in edit spot", selectedSpot)
-    console.log('update Preview Image',)
-    dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
-    return dispatch(editASpot(selectedSpot, spotId))
-
-
+    // if preview image IS NOT changing
+    if (previewImage.length < 1) {
+      return dispatch(editASpot(selectedSpot, spotId))
       .then(() => {
         dispatch(listAllSpots())
-        // dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
-        // TODO: add delete / update image thunk here
         setSubmitSuccess(true)
       })
       .catch(async (res) => {
@@ -56,11 +52,30 @@ useEffect(() => {
           if (data.errors) {setErrors(Object.values(data.errors))}
       })
     }
+    // if preview image changes:
+    if (previewImage.length > 1){
+
+    dispatch(thunkUpdateImage(selectedSpot.id, selectedSpot.id, previewImage))
+
+    return dispatch(editASpot(selectedSpot, spotId))
+    .then(() => {
+      dispatch(listAllSpots())
+      setSubmitSuccess(true)
+    })
+    .catch(async (res) => {
+        const data = await res.json();
+        if (data.errors) {setErrors(Object.values(data.errors))}
+    })
+  }
+}
+// --------------------------------------------------------------------------------------------------
 
   if (submitSuccess) {
     history.push(`/spots/${spotId}`)
   }
-
+  
+// JSX
+// --------------------------------------------------------------------------------------------------
   return (
 
     <form className="create_spot" onSubmit={handleSubmit}>
