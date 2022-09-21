@@ -5,6 +5,10 @@ import { findSpotById, deleteSpotById, clearState } from "../../store/spot";
 import SpotReviews from "../Reviews/SpotReviews";
 import StarReviews from "../Reviews/StarReviews";
 import starImage from '../Reviews/StaticAssets/starImage.png'
+import calendar from './staticAssets/calendar.png'
+import medal from './staticAssets/medal.png'
+import selfCheck from './staticAssets/selfcheck.png'
+
 import './SpotDetails2.css'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
@@ -60,7 +64,10 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           src={starImage}
           alt='starImage'
           className="starImage"
-          /> <StarReviews spot={spot}/>
+          />
+          <div className="stars_top">
+          <StarReviews spot={spot}/>
+          </div>
         <h4>
           {spot?.city}, {spot?.state}
         </h4>
@@ -99,18 +106,68 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           </div>
           <div className="bottom_half_price_description">
 
-          <div className="spot_description">{spot?.description}</div>
+          {/* <div className="spot_description">{spot?.description}</div> */}
+          <div className="amenities">Amenities
+          <div className="self_checkout_container">
+          <img
+          className="selfcheckpic"
+          src={selfCheck}
+          />
+          <h3>Self check-in</h3>
+          <h5 className="checkInInfo">Check yourself in with the lockbox</h5>
+          </div>
+          <div className="medal_container">
+          <img
+          className="medalpic"
+          src={medal}
+          />
+          <h3>Owner is a Superhost</h3>
+          <h5 className="checkInInfo">Superhosts are experienced, highly rated hosts </h5>
+          </div>
+          <div className="calendar_container">
+          <img
+          className="calendarpic"
+          src={calendar}
+          />
+          <h3>Free cancellation before March 21</h3>
+          <h5 className="calendarInInfo">No cancellation fees</h5>
+          </div>
+
+          </div>
           <div className='price_box'>
 
             <h2 className="price_in_box">
              ${spot?.price}/night
             </h2>
+            <a
+            href={'https://github.com/tbluher14'}
+            className={'reserve_button'}
+            target="_blank"
+            >
 
-
+            <button className="reserve_button">Reserve!</button>
+             </a>
             <div className="price_calculator">
-                  ${spot?.price}/night * 5 = {spot?.price * 5}
+              <div className="price_calculator_left">
+                 <ul>
+                  <p>${spot?.price} x 5 nights </p>
+                  <p>Cleaning Fee:</p>
+                  <p>Service Fee: </p>
+                 </ul>
+                 </div>
+                 <div className="price_calculator_right">
+                 <ul>
+                  <p> ${(spot?.price * 5).toFixed(2)}</p>
+                  <p>$95.00</p>
+                  <p>$207.00</p>
+                 </ul>
+                 </div>
             </div>
+                 <div className="total">Total Before Taxes: ${((spot?.price *5) + 95 +207).toFixed(2)}</div>
           </div>
+          </div>
+          <div className="spot_description">
+          <div className="spot_description">{spot?.description}</div>
           </div>
         <div className="bottom_page_review_container">
           <h2>Reviews</h2>
