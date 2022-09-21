@@ -16,6 +16,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
+  const reviews = useSelector ((state) => state.reviews)
   const sessionUser = useSelector((state) => state.session.user);
   // const [isLoaded, setIsLoaded]= useState(false)
 
@@ -93,20 +94,33 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           </div>
           </div>
           <div className="bottom_half_price_description">
-            <br></br>
+
           <div className="spot_description">{spot?.description}</div>
           <div className='price_box'>
-            Price: ${spot?.price}/night
-          <div >
 
-          </div>
-          </div>
-          </div>
-            <div>
-              Review Average: <StarReviews spot={spot} /> out of 5
+            <h2 className="price_in_box">
+             ${spot?.price}/night
+            </h2>
+
+
+            <div className="price_calculator">
+                  ${spot?.price}/night * 5 = {spot?.price * 5}
             </div>
-        <div>
+          </div>
+          </div>
+        <div className="bottom_page_review_container">
           <h2>Reviews</h2>
+            <h3>
+            Average Review:
+              </h3>
+          <div>
+             <img
+            src={starImage}
+            alt='starImage'
+          className="starImage_bottom_page"
+          />
+             {reviews? `${spot.avgRating} Stars! ` : `No Reviews Yet`}
+            </div>
           <div>
           <SpotReviews spot={spot} />
           </div>
