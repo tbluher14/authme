@@ -30,10 +30,8 @@ const SpotForm = ({ spot }) => {
 
   });
 
-  // useEffect(() => {
-  //   if (typeof price !== "number") {("Price must be a number")}
-  // }, [price])
 
+  
 
 
   const handleSubmit = (e) => {
@@ -52,6 +50,7 @@ const SpotForm = ({ spot }) => {
       previewImage: previewImage,
     };
 
+
     return dispatch(createNewSpot(data))
     .then(async (res) => {
       setSubmitSuccess(true);
@@ -62,6 +61,7 @@ const SpotForm = ({ spot }) => {
 
       if (data && data.errors) {
       setSubmitSuccess(false)
+      console.log('data', data)
       setErrors(Object.values(data.errors));
       }
     });
