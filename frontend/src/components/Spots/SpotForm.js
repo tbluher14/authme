@@ -29,6 +29,9 @@ const SpotForm = ({ spot }) => {
     }
   });
 
+  // const errorsArr = Object.values(errors)
+
+  // console.log("errorsArr in form submit", errorsArr)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -45,7 +48,6 @@ const SpotForm = ({ spot }) => {
       price: price,
       previewImage: previewImage,
     };
-    console.log("errors in spot form", errors)
 
     return dispatch(createNewSpot(data))
     .then(async (res) => {
@@ -53,7 +55,11 @@ const SpotForm = ({ spot }) => {
     })
     .catch(async (res) => {
       const data = await res.json();
-      if (data && data.errors) setErrors(data.errors);
+      console.log('data', data)
+      if (data && data.errors) {
+      setSubmitSuccess(false)
+      setErrors([data.errors]);
+      }
     });
   };
 
@@ -69,6 +75,7 @@ const SpotForm = ({ spot }) => {
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
+
         </ul>
         <label>
         <span>Address:</span>

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
+import './ProfileButton.css'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -42,17 +43,17 @@ function ProfileButton({ user }) {
       </button>
       {showMenu && (
         <div className="menu">
-          <NavLink to="/currentUser/spots">
-            <button onClick={showUsersSpots}>My spots</button>
+          <NavLink to="/currentUser/spots" >
+            <button onClick={showUsersSpots} className="userSpots_button">My spots</button>
           </NavLink>
           <NavLink to="/reviews/current">
-            <button onClick={showUsersReviews}>My Reviews</button>
+            <button onClick={showUsersReviews} className="userReviews_button">My Reviews</button>
           </NavLink>
-          <button onClick={logout}>
+          <button onClick={logout} className="logOut_button">
             Log Out
           </button>
-          <p>Hello {user.username}!</p>
-          <p>Email: {user.email}</p>
+          {/* <p>Hello {user.username}!</p>
+          <p>Email: {user.email}</p> */}
         </div>
       )}
     </div>

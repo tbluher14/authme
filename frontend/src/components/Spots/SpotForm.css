@@ -33,12 +33,12 @@
     margin-left: 150px;
     border: solid black;
     border-radius: 10px;
-    color: white;
+    color: black;
     font-weight: 900;
     height: 40px;
     width: 200px;
   }
 
   .form_requirements {
-    margin-bottom: 50px;
+    /* margin-bottom: 50px; */
    }

@@ -23,7 +23,7 @@ function SignupForm() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      // if (password === confirmPassword){
+
         await dispatch(
           sessionActions.signup({
             firstName,
@@ -39,7 +39,12 @@ function SignupForm() {
           .catch(async (res) => {
             const data = await res.json();
             // console.log("data",data)
+
             if (data?.message) setErrors([data.errors]);
+            if (password !== confirmPassword){
+              // errors.push("Passwords must match")
+              return "Password must match"
+              }
           });
       }
     // }
