@@ -51,8 +51,8 @@ router.get('/current', requireAuth, async (req, res) => {
 
   // Sign up
 router.post('/', validateSignup, async (req, res) => {
-      const { email, firstName, lastName, password, username } = req.body;
-  
+      const { email, firstName, lastName, password, username, } = req.body;
+
       const error = {
         message: 'User Already Exists',
         statusCode: 403,
@@ -69,8 +69,14 @@ router.post('/', validateSignup, async (req, res) => {
         where: {email: email}
       })
 
+
       if (findUserByEmail.length > 0){
         error.errors = 'User with that email already exists'
+        return res.status(403).json(error)
+      }
+
+      if (!email.includes("@")){
+        error.errors = 'Please enter a valid email'
         return res.status(403).json(error)
       }
 
@@ -90,6 +96,11 @@ router.post('/', validateSignup, async (req, res) => {
         validationErrors.errors = 'Last Name is required'
         return res.status(400).json(validationErrors)
       }
+      // if (password !== confirmPassword){
+      //   // error.errors = 'Passwords must match'
+      //   // console.log(confirmPassword)
+      //   // return res.status(403).json(error)
+      // }
 
       if (!username){
         res.status(400)

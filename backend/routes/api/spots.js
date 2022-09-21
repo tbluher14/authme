@@ -160,7 +160,7 @@ const error = {
       error.errors.country = "Country is required"
       return res.status(400).json(error)
     }
-    if (!lat){ error.errors.lat = "Latitude is not valid"
+    if (typeof lat !== "Number"){ error.errors.lat = "Latitude is not valid"
     return res.status(400).json(error)
   }
     if (!lng) {
