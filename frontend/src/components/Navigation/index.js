@@ -19,6 +19,7 @@ function Navigation({ isLoaded }) {
     sessionLinks = (
       <ProfileButton user={sessionUser} />
     );
+
   } else {
     sessionLinks = (
       <>
@@ -31,9 +32,6 @@ function Navigation({ isLoaded }) {
   >Sign Up!
 </button>
   <DemoUser />
-  <NavLink to="/createSpot">
-            Become a Host
-          </NavLink>
       </>
     );
   }
@@ -58,7 +56,9 @@ function Navigation({ isLoaded }) {
         </div>
         <div>
           <div className='become_host'>
-
+          <NavLink to="/createSpot">
+          Become a Host
+        </NavLink>
           </div>
         </div>
         <div>{isLoaded && sessionLinks}</div>
