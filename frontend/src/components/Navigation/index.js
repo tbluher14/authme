@@ -22,14 +22,18 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-      <div className='logged_out_login'>
-        <LoginFormModal />
-      </div>
-      <button className='logged_out_signup'
+  <div className='logged_out_login'>
+  <LoginFormModal />
+  </div>
 
-        onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
-        >Sign Up!
-      </button>
+<button className='logged_out_signup'
+  onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
+  >Sign Up!
+</button>
+  <DemoUser />
+  <NavLink to="/createSpot">
+            Become a Host
+          </NavLink>
       </>
     );
   }
@@ -52,14 +56,9 @@ function Navigation({ isLoaded }) {
             <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
         </div>
-        <div className="demo_user">
-          <DemoUser />
-        </div>
         <div>
           <div className='become_host'>
-          <NavLink to="/createSpot">
-            Become a Host
-          </NavLink>
+
           </div>
         </div>
         <div>{isLoaded && sessionLinks}</div>

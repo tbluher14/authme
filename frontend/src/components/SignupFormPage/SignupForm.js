@@ -18,12 +18,16 @@ function SignupForm() {
     const [errors, setErrors] = useState([]);
     // const history = useHistory()
 
-    if (sessionUser) return <Redirect to="/" />;
+    // if (sessionUser) return <Redirect to="/" />;
+    console.log("errors", errors)
+
 
 
     const handleSubmit = async (e) => {
       e.preventDefault();
 
+      // if (password === confirmPassword){
+        setErrors([])
         await dispatch(
           sessionActions.signup({
             firstName,
@@ -38,16 +42,19 @@ function SignupForm() {
           })
           .catch(async (res) => {
             const data = await res.json();
-            // console.log("data",data)
-
-            if (data?.message) setErrors([data.errors]);
-            if (password !== confirmPassword){
-              // errors.push("Passwords must match")
-              return "Password must match"
-              }
+            if (data?.errors) setErrors([data.errors]);
+            if (password!== confirmPassword){
+              errors.push(["Confirm password"])
+            }
+            // const dataString = data.errors
+            // if (dataString) {
+            //   setErrors([dataString])
+            //   return errors
+            // }
           });
-      }
-    // }
+        }
+      // }
+
 
     return (
         <div className="signup_form_container">

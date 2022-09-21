@@ -17,15 +17,33 @@ body {
 
 .logged_out_signup{
   display: flex;
-  position: absolute;
+  position: relative;
   justify-content: center;
   align-items: center;
-  right: 50px;
   height: 35px;
-  margin-top: 10px;
   width: 75px;
+  bottom: 27px;
+  left: 20px;
+}
 
-
+.logged_out_login{
+  display: flex;
+  position: relative;
+  width: 150px;
+  height: 35px;
+  right: 60px;
+  top: 9px;
+  border-radius: 20px;
+}
+.demo_button{
+  display: flex;
+  position: relative;
+  right: 190px;
+  bottom: 60px;
+  width: 100px;
+  height: 35px;
+  align-items: center;
+  justify-content: center;
 }
 
 .logo{
@@ -46,46 +64,17 @@ body {
   display: flex;
 }
 
-.logged_out_login{
-  display: inline-flex;
-  position: absolute;
-  width: 150px;
-  right: 50px;
-  height: 35px;
-  margin-top: 10px;
-}
 
-.demo_button{
-  display: flex;
-  position: absolute;
-  right: 230px;
-  margin-top: 10px;
-  width: 100px;
-  height: 35px;
-  align-items: center;
-  justify-content: center;
-  float: right;
-
-}
-
-
-  .actions_menu:hover {
-    box-shadow: 0px 0px 5px gray;
-  }
 
   .become_host {
-    margin-top: 14px;
     font-family: "Open Sans", sans-serif;
     font-weight: bold;
-    width: 150px;
-    height: 35px;
     align-items: center;
     justify-content: center;
-    border-radius: 20px;
-    display: inline-flex;
-    position: absolute;
-    right: 360px;
-    float: right;
+    display: flex;
+    position: relative;
+    top: 21px;
+    left: 255px;
   }
 
   .become_a_host:hover {
