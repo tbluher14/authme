@@ -6,9 +6,12 @@ import { getSpotReviews } from "../../store/review";
 function SpotReviews({ spot }) {
   const dispatch = useDispatch();
   const reviewsObj = useSelector((state) => state.reviews)
-  // console.log('this is the reviews obj', reviewsObj)
+  console.log('this is the reviews obj', reviewsObj)
   const reviews = Object.values(reviewsObj);
 
+  const userInfo = useSelector((state) => state.reviews)
+  const userArr = Object.values(userInfo)
+  console.log(userArr)
 
 
   useEffect(() => {
@@ -29,6 +32,8 @@ return (
       {reviews.map((review) => (
         <div key={review.id} className="ind-review">
           <div className="review-list-rating">
+        <i className="fas fa-user-circle user_icon"> {reviews.User}</i>
+
             <div className="star-info">
               {/* <i className="fa-solid fa-star"></i> */}
               <p>{review.stars} out of 5 stars</p>

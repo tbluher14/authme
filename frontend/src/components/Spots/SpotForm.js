@@ -31,7 +31,7 @@ const SpotForm = ({ spot }) => {
   });
 
 
-  
+
 
 
   const handleSubmit = (e) => {
@@ -61,8 +61,10 @@ const SpotForm = ({ spot }) => {
 
       if (data && data.errors) {
       setSubmitSuccess(false)
-      console.log('data', data)
-      setErrors(Object.values(data.errors));
+      // console.log('data', data)
+      const errors = [data.title, data.errors]
+      setErrors(Object.values(errors));
+
       }
     });
   };

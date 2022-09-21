@@ -107,7 +107,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           <div className="bottom_half_price_description">
 
           {/* <div className="spot_description">{spot?.description}</div> */}
-          <div className="amenities">Amenities
+          <div className="amenities">Amenities:
           <div className="self_checkout_container">
           <img
           className="selfcheckpic"
