@@ -17,7 +17,9 @@ function Navigation({ isLoaded }) {
   let sessionLinks;
   if (sessionUser) {
     sessionLinks = (
+      <>
       <ProfileButton user={sessionUser} />
+      </>
     );
 
   } else {
@@ -54,12 +56,13 @@ function Navigation({ isLoaded }) {
             <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
         </div>
-        <div>
-          <div className='become_host'>
-          <NavLink to="/createSpot">
+        <div>{sessionUser &&
+        <div className='become_host'>
+         <NavLink to="/createSpot">
           Become a Host
         </NavLink>
           </div>
+        }
         </div>
         <div>{isLoaded && sessionLinks}</div>
       </div>
