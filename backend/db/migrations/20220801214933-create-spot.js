@@ -21,10 +21,10 @@ module.exports = {
         type: Sequelize.STRING
       },
       lat: {
-        type: Sequelize.TEXT
+        type: Sequelize.INTEGER
       },
       lng: {
-        type: Sequelize.DECIMAL
+        type: Sequelize.INTEGER
       },
       name: {
         type: Sequelize.TEXT

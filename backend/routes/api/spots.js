@@ -160,9 +160,15 @@ const error = {
       error.errors.country = "Country is required"
       return res.status(400).json(error)
     }
-    if (typeof lat !== "Number"){ error.errors.lat = "Latitude is not valid"
-    return res.status(400).json(error)
-  }
+  //   if (typeof lat !== "number"){ error.errors.lat = "Latitude is not valid"
+  //   return res.status(400).json(error)
+  // }
+  // if (typeof lng !== "number"){ error.errors.lng = "Longitude is not valid"
+  // return res.status(400).json(error)
+  // }
+  // if (typeof price !== "number"){ error.errors.price = "Price is not a valid number"
+  //   return res.status(400).json(error)
+  // }
     if (!lng) {
       error.errors.lng = "Longitude is not valid"
       return res.status(400).json(error)
