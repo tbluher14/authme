@@ -170,11 +170,13 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           <div className="spot_description">{spot?.description}</div>
           </div>
         <div className="bottom_page_review_container">
+          <div className="reviews_header">
           <h2>Reviews</h2>
+          </div>
             <h3>
             Average Review:
               </h3>
-          <div>
+          <div className='bottom_stars_reviews'>
             <img
             src={starImage}
             alt='starImage'

@@ -14,7 +14,7 @@
     justify-content: center;
     width: 800px;
     height: auto;
-    border-bottom: 1px grey solid;
+
 }
 
 /* HEADER SECTION ------------------ */
@@ -209,52 +209,8 @@
     position: relative;
     bottom: 10px;
     left: 15px;
-}
-/* Description SECTION ------------------ */
-
-.spot_description{
-    display: flex;
-    position: relative;
-    align-items: left;
-    justify-content: flex-start;
-    width: 50%;
-    /* margin-left: 20px; */
-    margin-right: 15px;
-    height: 50%;
-}
-
-/* Reviews SECTION ------------------ */
-
-.starImage_bottom_page{
-    height: 15px;
-    width: 15px;
-    display: flex;
-    flex-direction: row;
-    margin: 2px;
-    margin-right: 7px;
-}
-
-
-.bottom_page_review_container{
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    top: 100px;
 
 }
-
-.review-list-rating {
-    border: 1px solid grey;
-    padding: 5px;
-    border-radius: 5px;
-    align-items: center;
-    justify-content: center;
-}
-
-.review_button{
-    /* margin-bottom: 20px; */
-}
-
 .reserve_button{
     display: flex;
     align-items: center;
@@ -284,3 +240,73 @@
     justify-content: center;
     position: relative;
 }
+/* Description SECTION ------------------ */
+
+.spot_description{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    /* margin-left: 20px; */
+    /* margin-right: 15px; */
+    height: 100%;
+    left: 5px;
+    /* padding-bottom: 5px; */
+    /* border-bottom: 1px solid grey; */
+}
+
+/* Reviews SECTION ------------------ */
+
+.starImage_bottom_page{
+    height: 15px;
+    width: 15px;
+    display: flex;
+    flex-direction: row;
+    margin: 2px;
+    margin-right: 7px;
+}
+
+.reviews_header{
+    display: flex;
+    position: relative;
+
+}
+.bottom_page_review_container{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 15px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+    height: 100%;
+    border-top: 1px solid grey;
+    margin-bottom: 100px;
+
+}
+
+.review-list-rating {
+    border: 1px solid grey;
+    padding: 5px;
+    border-radius: 5px;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.review_button{
+    /* margin-bottom: 20px; */
+    background-color: white;
+    box-shadow: 0 0 2 .5;
+    border-radius: 10px;
+}
+
+.bottom_stars_reviews{
+    display: inline-flex;
+    position: relative;
+    left: 160px;
+    bottom: 39px;
+ }
