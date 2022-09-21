@@ -17,6 +17,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
   const reviews = useSelector ((state) => state.reviews)
+  let reviewsExist = false
+
   const sessionUser = useSelector((state) => state.session.user);
   // const [isLoaded, setIsLoaded]= useState(false)
 
@@ -40,6 +42,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
     return result
 
   };
+
+  if (reviews.length>0){reviewsExist = true}
 
 
   // if (!isLoaded) {return null}
@@ -114,12 +118,12 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             Average Review:
               </h3>
           <div>
-             <img
+            <img
             src={starImage}
             alt='starImage'
           className="starImage_bottom_page"
           />
-             {reviews? `${spot.avgRating} Stars! ` : `No Reviews Yet`}
+            {spot.avgRating ? `${spot.avgRating} Stars! ` :  `No Reviews Yet!`}
             </div>
           <div>
           <SpotReviews spot={spot} />
