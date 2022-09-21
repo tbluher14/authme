@@ -79,7 +79,7 @@ console.log("selected spot", selectedSpot)
 
 // --------------------------------------------------------------------------------------------------
 const submitHelper = async (spotId) =>{
-  await dispatch(clearState())
+  // await dispatch(clearState())
   history.push(`/spots/${spotId}`)
 }
 

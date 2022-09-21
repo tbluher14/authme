@@ -35,7 +35,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
     const result = await dispatch(deleteSpotById(spotId))
     .then (async () => {
-      await dispatch(clearState())
+      // await dispatch(clearState())
     })
 
     history.push("/");

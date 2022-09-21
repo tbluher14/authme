@@ -23,12 +23,12 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className='login_modal'>
-      <ul>
+      <h1 className="welcome_header">Welcome Back to BestBnB</h1>
+      <ul className="errors">
         {errors.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          <li key={idx} className="errors">{error}</li>
         ))}
       </ul>
-      <h1 className="welcome_header">Welcome Back to BestBnB</h1>
       <label>
         Username or Email
         <input

@@ -4,19 +4,25 @@
     align-items: center;
     border-radius: 100px;
     /* border: solid black; */
-    height: 300px;
+    height: 320px;
     width: 575px;
     margin-bottom: -75px;
   }
 
+  .errors{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px ;
+  }
 
   .welcome_header {
     display: flex;
     font-weight: bold;
     align-content: center;
     text-align: center;
-    margin-top: 0px;
-    padding-bottom: 5px;
+    margin-top: 15px;
+    padding-bottom: 0px;
     font-size: 25px;
   }
 

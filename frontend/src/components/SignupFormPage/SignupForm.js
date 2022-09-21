@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import * as sessionActions from "../../store/session";
 import './SignupForm.css'
+import { useHistory } from "react-router-dom";
 
 
 function SignupForm() {
@@ -15,21 +16,31 @@ function SignupForm() {
     const [lastName, setLastName] = useState('')
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    // const history = useHistory()
 
     if (sessionUser) return <Redirect to="/" />;
 
-    const handleSubmit = (e) => {
+
+    const handleSubmit = async (e) => {
       e.preventDefault();
-      if (password === confirmPassword) {
-        setErrors([]);
-        return dispatch(sessionActions.signup({ email, firstName, lastName, username, password }))
+        await dispatch(
+          sessionActions.signup({
+            firstName,
+            lastName,
+            email,
+            username,
+            password,
+          })
+        )
+          .then(() => {
+            dispatch(sessionActions.setShowSignupModal(false));
+          })
           .catch(async (res) => {
             const data = await res.json();
-            if (data && data.errors) setErrors(data.errors);
+            // console.log("data",data)
+            if (data?.message) setErrors([data.errors]);
           });
       }
-      return setErrors(['Confirm Password field must be the same as the Password field']);
-    };
 
     return (
         <div className="signup_form_container">
@@ -37,10 +48,10 @@ function SignupForm() {
             Welcome to BestBnB!
             </h2>
           <form className="signup_form" onSubmit={handleSubmit}>
-            <ul>
-              {errors.map((error, idx) => (
-                <li key={idx}>{error}</li>
-              ))}
+            <ul className="errors">
+               {errors.map((error, idx) => (
+                 <li key={idx}>{error}</li>
+                 ))}
             </ul>
             <label>
               <span>First Name:</span>
