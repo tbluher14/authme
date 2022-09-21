@@ -27,15 +27,18 @@ const SpotForm = ({ spot }) => {
     if (!user && !showLoginModal && !showSignupModal) {
       dispatch(sessionActions.setShowLoginModal(true));
     }
+
   });
 
-  // const errorsArr = Object.values(errors)
+  // useEffect(() => {
+  //   if (typeof price !== "number") {("Price must be a number")}
+  // }, [price])
 
-  // console.log("errorsArr in form submit", errorsArr)
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
+    // setErrors([]);
     let data = {
       address: address,
       city: city,
@@ -52,19 +55,20 @@ const SpotForm = ({ spot }) => {
     return dispatch(createNewSpot(data))
     .then(async (res) => {
       setSubmitSuccess(true);
+      setErrors([])
     })
     .catch(async (res) => {
       const data = await res.json();
-      console.log('data', data)
+
       if (data && data.errors) {
       setSubmitSuccess(false)
-      setErrors([data.errors]);
+      setErrors(Object.values(data.errors));
       }
     });
   };
 
   if (submitSuccess) {
-    return <Redirect to="/" />;
+    return <Redirect to='/' />;
   }
 
   return (

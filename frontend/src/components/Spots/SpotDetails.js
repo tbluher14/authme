@@ -43,7 +43,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
   };
 
-  if (reviews.length>0){reviewsExist = true}
+
 
 
   // if (!isLoaded) {return null}
