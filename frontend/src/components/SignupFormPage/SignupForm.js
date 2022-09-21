@@ -23,7 +23,7 @@ function SignupForm() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-      if (password === confirmPassword){
+      // if (password === confirmPassword){
         await dispatch(
           sessionActions.signup({
             firstName,
@@ -42,7 +42,7 @@ function SignupForm() {
             if (data?.message) setErrors([data.errors]);
           });
       }
-    }
+    // }
 
     return (
         <div className="signup_form_container">
