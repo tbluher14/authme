@@ -11,6 +11,7 @@
   .form_input {
     display: flex;
     justify-content: center;
+    flex-direction: column;
     width: auto;
     margin: auto;
     margin-top: 20px;
@@ -43,4 +44,12 @@
     align-items: center;
     justify-content: center;
     display: flex;
+   }
+
+   .welcome_header{
+    display:flex;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 20px;
+
    }
