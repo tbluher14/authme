@@ -6,6 +6,7 @@ import * as sessionActions from "../../store/session";
 import "./SpotForm.css";
 
 const SpotForm = ({ spot }) => {
+  console.log("spot form running")
   const dispatch = useDispatch();
   const user = useSelector((state) => state.session.user);
   const [address, setAddress] = useState(spot?.address ?? "");
@@ -22,6 +23,8 @@ const SpotForm = ({ spot }) => {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const showLoginModal = useSelector((state) => state.session.showLoginModal);
   const showSignupModal = useSelector((state) => state.session.showSignupModal);
+  console.log("this is errors in usestate of spotform", errors)
+
 
   useEffect(() => {
     if (!user && !showLoginModal && !showSignupModal) {
@@ -32,6 +35,7 @@ const SpotForm = ({ spot }) => {
 
 
   const handleSubmit = (e) => {
+    console.log("handle submit function running")
     e.preventDefault();
     setErrors([]);
     let data = {
@@ -47,20 +51,28 @@ const SpotForm = ({ spot }) => {
       previewImage: previewImage,
     };
 
+    console.log("this is data in handle submit", data)
 
     return dispatch(createNewSpot(data))
+
     .then(async (res) => {
       setSubmitSuccess(true);
       setErrors([])
+      console.log(".then res", res)
     })
     .catch(async (res) => {
       const data = await res.json();
+      console.log(".catch data error", data)
 
       if (data && data.errors) {
+      console.log('if data and data.errors is running', data.errors)
+
       setSubmitSuccess(false)
-      console.log('data', data)
-      const errors = [data.title, data.errors]
-      setErrors(Object.values(errors));
+      console.log("this is object.values of data.errors",Object.values(data.errors))
+
+      // const errors = [data.errors]
+      // console.log('this is errors in the .catch', data.errors)
+      setErrors(Object.values(data.errors));
       }
     });
     return data
