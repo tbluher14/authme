@@ -98,8 +98,8 @@ router.post('/', validateSignup, async (req, res) => {
       }
       if (password !== confirmPassword){
         error.errors = 'Passwords must match'
-        console.log(confirmPassword)
-        return res.status(403).json(error)
+
+        return res.status(400).json(error)
       }
 
       if (!username){
@@ -114,6 +114,7 @@ router.post('/', validateSignup, async (req, res) => {
         email: email,
         username: username,
         password: password,
+        confirmPassword: confirmPassword
       })
 
       const token = await setTokenCookie(res, user);

@@ -125,19 +125,19 @@ router.post('/', requireAuth, async (req, res, next) => {
       } = req.body;
       const { id } = req.user;
 
-      const newSpot = await Spot.create({
-        ownerId: id,
-        address,
-        city,
-        state,
-        country,
-        lat,
-        lng,
-        name,
-        description,
-        price,
-        previewImage
-      });
+      // const newSpot = await Spot.create({
+      //   ownerId: id,
+      //   address,
+      //   city,
+      //   state,
+      //   country,
+      //   lat,
+      //   lng,
+      //   name,
+      //   description,
+      //   price,
+      //   previewImage
+      // });
 
 const error = {
         message: "Validation error",
@@ -185,6 +185,19 @@ const error = {
       error.errors.price = "Price per day is required"
       return res.status(400).json(error)
     }
+    const newSpot = await Spot.create({
+      ownerId: id,
+      address,
+      city,
+      state,
+      country,
+      lat,
+      lng,
+      name,
+      description,
+      price,
+      previewImage
+    });
     return res.json(201, newSpot);
 })
 // ***************************************************************************************
