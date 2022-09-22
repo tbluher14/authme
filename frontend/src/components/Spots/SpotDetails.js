@@ -8,6 +8,7 @@ import starImage from '../Reviews/StaticAssets/starImage.png'
 import calendar from './staticAssets/calendar.png'
 import medal from './staticAssets/medal.png'
 import selfCheck from './staticAssets/selfcheck.png'
+import {getSpotReviews} from '../../store/review'
 
 import './SpotDetails2.css'
 
@@ -21,7 +22,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
   const reviews = useSelector ((state) => state.reviews)
-  let reviewsExist = false
+
+  console.log("this is spot in spot details", spot)
+  console.log('this is reviews in spot details', reviews)
 
   const sessionUser = useSelector((state) => state.session.user);
   // const [isLoaded, setIsLoaded]= useState(false)
@@ -29,6 +32,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
 
   useEffect((e) => {
     dispatch(findSpotById(spotId))
+    // dispatch(getSpotReviews(spotId))
 
     // .then( () => setIsLoaded(true));
 
@@ -187,7 +191,10 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             alt='starImage'
           className="starImage_bottom_page"
           />
-            {spot.avgRating ? `${spot.avgRating} Stars! ` :  `No Reviews Yet!`}
+          <div>
+          <StarReviews spot={spot}/>
+          </div>
+            {/* {spot?.avgRating? `${spot.avgRating} Stars! ` :  `No Reviews Yet!`} */}
             </div>
           <div>
           <SpotReviews spot={spot} />

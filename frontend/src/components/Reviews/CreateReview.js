@@ -29,6 +29,7 @@ const ReviewForm = () => {
       review: reviewMessage,
       stars: stars,
     };
+    if (reviewMessage.length < 4){setErrors("please enter a review")}
 
     return dispatch(createNewReview(data, spotId))
       .then(async (res) => {

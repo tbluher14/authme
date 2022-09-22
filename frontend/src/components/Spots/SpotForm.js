@@ -58,20 +58,17 @@ const SpotForm = ({ spot }) => {
     .then(async (res) => {
       setSubmitSuccess(true);
       setErrors([])
-      console.log(".then res", res)
+
     })
     .catch(async (res) => {
       const data = await res.json();
-      console.log(".catch data error", data)
-
+      
       if (data && data.errors) {
-      console.log('if data and data.errors is running', data.errors)
 
       setSubmitSuccess(false)
-      console.log("this is object.values of data.errors",Object.values(data.errors))
 
       // const errors = [data.errors]
-      // console.log('this is errors in the .catch', data.errors)
+      console.log('this is errors in the .catch', data.errors)
       setErrors(Object.values(data.errors));
       }
     });
