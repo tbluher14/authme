@@ -600,7 +600,10 @@ router.post('/:spotId/reviews', requireAuth, async (req, res) => {
     errors: {},
   };
 // validation error handling
-  if (!review) err.errors.review = "Review text is required";
+  if (review.length<3) {
+    err.errors.review = "Review text is required";
+    return res.status(400).json(err)
+  }
   if (stars < 1 || stars > 5) err.errors.stars = "Stars must be an integer from 1 to 5";
   if (!review || stars < 1 || stars > 5) {
     return res.status(400).json(err);
