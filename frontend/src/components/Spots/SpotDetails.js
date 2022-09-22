@@ -53,6 +53,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   // if (!isLoaded) {return null}
   return  (
     <div className="page_container">
+      
       <div className="content_container">
       <div key={spot?.id}>
         <div className="header_container">

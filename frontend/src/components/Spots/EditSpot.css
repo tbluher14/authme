@@ -2,9 +2,32 @@
     display: flex;
     flex-direction: column;
     margin-left: 25px;
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 20px;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+
+
+        width: auto;
+        margin: auto;
+        
+        padding: 40px;
+        border: 2px solid rgb(216, 203, 203);
+        border-radius: 20px;
 
 }
 
 .edit_header{
     padding-bottom: -5px;
+}
+
+.edit_spot_container{
+    font-family: 'Montserrat', sans-serif;
+    margin-right: 10px;
+    align-items: space-evenly;
+    justify-content: space-evenly;
+}
+
+.spot_name{
+    margin-right: 10px;
 }

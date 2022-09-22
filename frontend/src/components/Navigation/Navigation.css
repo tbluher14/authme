@@ -13,6 +13,7 @@ body {
     font-size: 12px;
     height: 70px;
     gap: 10px;
+    font-family: 'Montserrat', sans-serif;
   }
 
 .logged_out_signup{
@@ -23,27 +24,50 @@ body {
   height: 35px;
   width: 75px;
   bottom: 27px;
-  left: 20px;
+  right: 20px;
+  border-radius: 7px;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8edf3;
+  padding: 7px;
+  border: .5px solid grey;
+  box-shadow: 0 0 0 .2px;
 }
 
 .logged_out_login{
   display: flex;
   position: relative;
-  width: 150px;
+  justify-content: center;
+  align-items: center;
   height: 35px;
-  right: 60px;
-  top: 9px;
-  border-radius: 20px;
+  width: 75px;
+  top: 8px;
+  right: 110px;
+  border-radius: 7px;
+  align-items: center;
+  justify-content: center;
+  background-color: #d8edf3;
+  padding: 7px;
+  border: .5px solid grey;
+  box-shadow: 0 0 0 .2px;
 }
+
 .demo_button{
   display: flex;
   position: relative;
-  right: 190px;
-  bottom: 60px;
-  width: 100px;
+  justify-content: center;
+  align-items: center;
   height: 35px;
+  width: 100px;
+  bottom: 62px;
+  right: 230px;
+  border-radius: 7px;
   align-items: center;
   justify-content: center;
+  background-color: #d8edf3;
+  padding: 7px;
+  border: .5px solid grey;
+  box-shadow: 0 0 0 .2px;
 }
 
 .logo{
@@ -67,19 +91,16 @@ body {
 
 
   .become_host {
-    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     align-items: center;
     justify-content: center;
     display: flex;
-    position: relative;
-    top: 21px;
-    left: 255px;
-  }
-
-  .become_a_host:hover {
-    border: 1px solid #dddddd;
-    background-color: rgba(211, 211, 211, 0.5);
+    flex-direction: row;
+    position: absolute;
+    top: 14px;
+    width: 100px;
+    right: 80px;
+    /* left: 255px; */
   }
 
 

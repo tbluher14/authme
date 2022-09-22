@@ -25,9 +25,9 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-  <div className='logged_out_login'>
-  <LoginFormModal />
-  </div>
+
+  <LoginFormModal className="logged_out_login"/>
+
 
 <button className='logged_out_signup'
   onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
@@ -58,7 +58,8 @@ function Navigation({ isLoaded }) {
         </div>
         <div>{sessionUser &&
         <div className='become_host'>
-         <NavLink to="/createSpot">
+         <NavLink to="/createSpot"
+         className="become_host">
           Become a Host
         </NavLink>
           </div>
