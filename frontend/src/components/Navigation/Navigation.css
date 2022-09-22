@@ -13,6 +13,7 @@ body {
     font-size: 12px;
     height: 70px;
     gap: 10px;
+    font-family: 'Montserrat', sans-serif;
   }
 
 .logged_out_signup{
@@ -67,19 +68,15 @@ body {
 
 
   .become_host {
-    font-family: "Open Sans", sans-serif;
     font-weight: bold;
     align-items: center;
     justify-content: center;
     display: flex;
+    flex-direction: row;
     position: relative;
-    top: 21px;
-    left: 255px;
-  }
-
-  .become_a_host:hover {
-    border: 1px solid #dddddd;
-    background-color: rgba(211, 211, 211, 0.5);
+    top: 12px;
+    left: 200px;
+    /* left: 255px; */
   }
 
 

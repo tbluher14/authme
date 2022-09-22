@@ -101,7 +101,7 @@ if (submitSuccess) {
           <li key={idx}>{error}</li>
           ))}
       </ul>
-        <div>
+        <div className="edit_spot_container">
         <label className="spot_name">
           Spot Name:
         <input

@@ -21,6 +21,7 @@ img {
     margin: 2rem;
     padding-left: 1rem;
     justify-content: flex-start;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .spot_info {

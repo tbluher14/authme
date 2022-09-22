@@ -58,7 +58,8 @@ function Navigation({ isLoaded }) {
         </div>
         <div>{sessionUser &&
         <div className='become_host'>
-         <NavLink to="/createSpot">
+         <NavLink to="/createSpot"
+         className="become_host">
           Become a Host
         </NavLink>
           </div>
