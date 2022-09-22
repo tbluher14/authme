@@ -110,6 +110,7 @@ const spots = await Spot.findAll({
 // ***************************************************************************************
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
+    console.log(" post/create/spot backend route is running")
     const {
         ownerId,
         address,
@@ -123,8 +124,10 @@ router.post('/', requireAuth, async (req, res, next) => {
         price,
         previewImage
       } = req.body;
-      const { id } = req.user;
 
+      console.log("this is the req.body in the backend post create spot route", req.body)
+      const { id } = req.user;
+      console.log("this is the req.user.id in the backend post create spot route", id )
       // const newSpot = await Spot.create({
       //   ownerId: id,
       //   address,
@@ -144,45 +147,60 @@ const error = {
         statusCode: 400,
         errors: {},
       }
+    console.log("this is type of lat as it comes in", typeof lat)
+    console.log("this is type of +lat as it comes in", (isNaN(+lat + 1)))
+
     if (!address) {
       error.errors.address = "Street address is required"
+      console.log("if not address running", error)
       return res.status(400).json(error)
     }
     if (!city) {
       error.errors.city = "City is required"
+      console.log("if not city running", error)
       return res.status(400).json(error)
     }
     if (!state) {
       error.errors.state = "State is required"
+      console.log("if not state running", error)
       return res.status(400).json(error)
     }
     if (!country) {
       error.errors.country = "Country is required"
+      console.log("if not country running", error)
       return res.status(400).json(error)
     }
-  //   if (typeof lat !== "number"){ error.errors.lat = "Latitude is not valid"
-  //   return res.status(400).json(error)
-  // }
-  // if (typeof lng !== "number"){ error.errors.lng = "Longitude is not valid"
-  // return res.status(400).json(error)
-  // }
-  // if (typeof price !== "number"){ error.errors.price = "Price is not a valid number"
-  //   return res.status(400).json(error)
-  // }
+    if (isNaN(+lat + 1)){ error.errors.lat = "Latitude is not valid"
+    console.log("this is errors in if lat +1", error)
+    return res.status(400).json(error)
+  }
+  if (isNaN(+lng + 1)){ error.errors.lng = "Longitude is not valid"
+  console.log("this is errors in if lng +1", error)
+  return res.status(400).json(error)
+  }
+  if (isNaN(+price + 1)){ error.errors.price = "Price is not a valid number"
+  console.log("this is errors in if price +1", error)
+    return res.status(400).json(error)
+  }
     if (!lng) {
+
       error.errors.lng = "Longitude is not valid"
+      console.log("if not long running", error)
       return res.status(400).json(error)
     }
     if (!name ) {
       error.errors.name = "Name must be less than 50 characters"
+      console.log("if not name running", error)
       return res.status(400).json(error)
     }
     if (!description){
        error.errors.description =  "Description is required"
+       console.log("if not description running", error)
        return res.status(400).json(error)
     }
     if (!price) {
       error.errors.price = "Price per day is required"
+      console.log("if not price running", error)
       return res.status(400).json(error)
     }
     const newSpot = await Spot.create({
@@ -198,6 +216,7 @@ const error = {
       price,
       previewImage
     });
+    console.log("this spot was created this is new spot", newSpot)
     return res.json(201, newSpot);
 })
 // ***************************************************************************************
