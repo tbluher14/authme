@@ -64,26 +64,28 @@ function SignupForm() {
                  <li key={idx}>{error}</li>
                  ))}
             </ul>
-            <label>
-              <span>First Name:</span>
+            <label className="firstName_container">
+              <span className="firstName">First Name:</span>
               <input
                 type="text"
+                className="firstName_input"
                 value={firstName}
                 onChange={(e) => setFirstName(e.target.value)}
                 required
               />
             </label>
-            <label>
-              <span>Last Name:</span>
+            <label className="lastName_container">
+              <span className="lastName">Last Name:</span>
               <input
                 type="text"
                 value={lastName}
+                className="firstName_input"
                 onChange={(e) => setLastName(e.target.value)}
                 required
               />
             </label>
-            <label>
-              <span>Email:</span>
+            <label className="lastName_container">
+              <span className="lastName">Email:</span>
               <input
                 type="text"
                 value={email}
@@ -91,8 +93,8 @@ function SignupForm() {
                 required
               />
             </label>
-            <label>
-              <span>Username:</span>
+            <label className="lastName_container">
+              <span className="lastName">Username:</span>
               <input
                 type="text"
                 value={username}
@@ -100,8 +102,8 @@ function SignupForm() {
                 required
               />
             </label>
-            <label>
-              <span>Password:</span>
+            <label className="lastName_container">
+              <span className="lastName">Password:</span>
               <input
                 type="password"
                 value={password}
@@ -109,8 +111,8 @@ function SignupForm() {
                 required
               />
             </label>
-            <label>
-              <span>Confirm Password:</span>
+            <label className="lastName_container">
+              <span className="lastName">Confirm Password:</span>
               <input
                 className="signup_input_confirm_password"
                 type="password"
@@ -119,10 +121,12 @@ function SignupForm() {
                 required
               />
             </label>
-            <button className="signup_button" type="submit">
+          </form>
+            <div>
+            <button className="this_motherfucking_this" type="submit">
               Sign Up
             </button>
-          </form>
+              </div>
         </div>
       );
     }
