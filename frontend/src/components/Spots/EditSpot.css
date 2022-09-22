@@ -4,16 +4,13 @@
     margin-left: 25px;
     font-family: 'Montserrat', sans-serif;
     margin-right: 20px;
-    align-items: space-evenly;
-    justify-content: space-evenly;
-
-
-        width: auto;
-        margin: auto;
-        
-        padding: 40px;
-        border: 2px solid rgb(216, 203, 203);
-        border-radius: 20px;
+    align-items: center;
+    justify-content: space-between;
+    width: auto;
+    margin: auto;
+    padding: 40px;
+    border: 2px solid rgb(216, 203, 203);
+    border-radius: 20px;
 
 }
 
@@ -26,8 +23,78 @@
     margin-right: 10px;
     align-items: space-evenly;
     justify-content: space-evenly;
+
 }
 
 .spot_name{
     margin-right: 10px;
+}
+
+.description_input{
+    overflow: scroll;
+    word-wrap: break-word;
+    word-break: break-all;
+
+}
+.spot_description_edit{
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    width: 470px;
+    height: 100px;
+    /* right: 30px; */
+    overflow: scroll;
+
+}
+
+.submit_edits{
+    border-radius: 7px;
+    align-items: center;
+    display: flex;
+    position: relative;
+    left: 150px;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #d8edf3;
+    padding: 7px;
+    border: .5px solid grey;
+    box-shadow: 0 0 0 .2px;
+    width: 200px;
+}
+
+.name_input{
+    margin-left: 10px;
+}
+
+.address_input{
+    margin-left: 35px;
+}
+
+.city_input{
+    margin-left: 70px;
+}
+
+.state_input{
+    margin-left: 60px;
+}
+.country_input{
+    margin-left: 35px;
+}
+
+.lat_input{
+    margin-left: 32px;
+}
+.lng_input{
+    margin-left: 18px;
+}
+
+.price_input{
+    margin-left: 10px;
+    width: 75px;
+    align-items: center;
+    justify-content: center;
+}
+
+.img_input{
+    margin-left: 20px;
 }

@@ -31,12 +31,16 @@
   .create_spot_button {
     border-radius: 7px;
     align-items: center;
+    display: flex;
+    position: relative;
+    left: 150px;
     justify-content: center;
     margin-top: 20px;
     background-color: #d8edf3;
     padding: 7px;
     border: .5px solid grey;
     box-shadow: 0 0 0 .2px;
+    width: 200px;
   }
 
   .form_requirements {

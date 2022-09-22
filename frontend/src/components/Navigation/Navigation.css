@@ -14,6 +14,8 @@ body {
     height: 70px;
     gap: 10px;
     font-family: 'Montserrat', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
   }
 
 .logged_out_signup{

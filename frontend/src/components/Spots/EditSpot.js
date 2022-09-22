@@ -107,6 +107,7 @@ if (submitSuccess) {
         <input
           type="text"
           placeholder="Spot Name"
+          className="name_input"
           value={selectedSpot.name}
           onChange={updateName}
           required
@@ -118,6 +119,7 @@ if (submitSuccess) {
         <input
           type="text"
           placeholder="Address"
+          className="address_input"
           value={selectedSpot.address}
           onChange={updateAddress}
           required
@@ -127,6 +129,7 @@ if (submitSuccess) {
         City:
         <input
           type="text"
+          className="city_input"
           placeholder="City"
           value={selectedSpot.city}
           onChange={updateCity}
@@ -138,6 +141,7 @@ if (submitSuccess) {
         <input
           type="text"
           placeholder="State"
+          className="state_input"
           value={selectedSpot.state}
           onChange={updateState}
           required
@@ -148,6 +152,7 @@ if (submitSuccess) {
         <input
           type="text"
           placeholder="Country"
+          className="country_input"
           value={selectedSpot.country}
           onChange={updateCountry}
           required
@@ -157,6 +162,7 @@ if (submitSuccess) {
         Latitude:
         <input
           type="text"
+          className="lat_input"
           placeholder="Latitude"
           value={selectedSpot.lat}
           onChange={updateLat}
@@ -167,18 +173,21 @@ if (submitSuccess) {
         Longitude:
         <input
           type="text"
+          className="lng_input"
           placeholder="Longitude"
           value={selectedSpot.lng}
           onChange={updateLng}
           required
         />
       </label>
-      <label className="spot_description">
+      <label className="spot_description_edit">
         Spot Description:
         <input
           type="textarea"
-          name="textvalue"
-          placeholder="Description"
+          rows="10"
+          cols='30'
+          className="description_input"
+
           value={selectedSpot.description}
           onChange={updateDescription}
           required
@@ -189,6 +198,7 @@ if (submitSuccess) {
         <input
           type="text"
           placeholder="Price"
+          className="price_input"
           value={selectedSpot.price}
           onChange={updatePrice}
           required
@@ -199,12 +209,13 @@ if (submitSuccess) {
           <input
             type="text"
             placeholder="img-url"
+            className="img_input"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
 
           />
       </label>
-      <button type="submit">Confirm Changes</button>
+      <button type="submit" className="submit_edits">Confirm Changes</button>
       </div>
     </form>
   );
