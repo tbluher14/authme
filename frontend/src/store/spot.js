@@ -70,6 +70,7 @@ export const createNewSpot = (data) => async (dispatch) => {
     dispatch(createSpot(spot));
     return spot;
   }
+  return response
 };
 
 // Find all users spots
