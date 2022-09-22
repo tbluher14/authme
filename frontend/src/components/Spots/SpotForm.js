@@ -31,9 +31,6 @@ const SpotForm = ({ spot }) => {
   });
 
 
-
-
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
@@ -64,8 +61,8 @@ const SpotForm = ({ spot }) => {
       console.log('data', data)
       const errors = [data.title, data.errors]
       setErrors(Object.values(errors));
-
       }
+      return data
     });
   };
 

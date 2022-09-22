@@ -64,6 +64,7 @@ export const createNewSpot = (data) => async (dispatch) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data),
   });
+  
 
   if (response.ok) {
     const spot = await response.json();
