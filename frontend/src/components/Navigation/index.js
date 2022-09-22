@@ -25,9 +25,9 @@ function Navigation({ isLoaded }) {
   } else {
     sessionLinks = (
       <>
-  <div className='logged_out_login'>
-  <LoginFormModal />
-  </div>
+
+  <LoginFormModal className="logged_out_login"/>
+
 
 <button className='logged_out_signup'
   onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
