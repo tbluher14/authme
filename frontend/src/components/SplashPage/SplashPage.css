@@ -18,9 +18,13 @@ img {
   .all_spots {
     display: flex;
     flex-wrap: wrap;
-    margin: 2rem;
-    padding-left: 1rem;
-    justify-content: flex-start;
+    min-width: 700px;
+    /* max-width: 1450px; */
+    flex-direction: row;
+    margin: 1rem;
+    /* padding-left: 11rem; */
+    justify-content: center;
+    align-items: center;
     font-family: 'Montserrat', sans-serif;
   }
 

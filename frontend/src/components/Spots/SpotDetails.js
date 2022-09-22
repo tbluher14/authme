@@ -53,7 +53,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   // if (!isLoaded) {return null}
   return  (
     <div className="page_container">
-      
+
       <div className="content_container">
       <div key={spot?.id}>
         <div className="header_container">
@@ -111,6 +111,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           <div className="amenities">Amenities:
           <div className="self_checkout_container">
           <img
+          alt={'selfcheckpick'}
           className="selfcheckpic"
           src={selfCheck}
           />
@@ -120,6 +121,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           <div className="medal_container">
           <img
           className="medalpic"
+          alt={'medalpick'}
           src={medal}
           />
           <h3>Owner is a Superhost</h3>
@@ -129,6 +131,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           <img
           className="calendarpic"
           src={calendar}
+          alt={'calendarpick'}
+
           />
           <h3>Free cancellation before March 21</h3>
           <h5 className="calendarInInfo">No cancellation fees</h5>
