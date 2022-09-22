@@ -36,7 +36,7 @@ const SpotForm = ({ spot }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // setErrors([]);
+    setErrors([]);
     let data = {
       address: address,
       city: city,
