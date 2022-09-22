@@ -31,13 +31,13 @@ function UsersReviews() {
 
   return (
     isLoaded && (
-      <div>
-        <h2>My Reviews</h2>
+      <div className="page_container">
+        <h2>My Reviews:</h2>
         {userReviews.map((review) => (
           <div key={review.id}>
             <div className="ind_review_box">
-              <div>
-                <h2>
+              <div className="ind_review_header">
+                <h2 className="header">
                   Review for:
                   </h2>
                  <div className="review_for_name">

@@ -72,6 +72,9 @@ const SpotForm = ({ spot }) => {
 
   return (
     <div className="form_input">
+      <div className='welcome_header'>
+      <h2>List your property on bestBnb</h2>
+      </div>
       <form className="create_spot" onSubmit={handleSubmit}>
         <h4 className="form_requirements">Please fill out all of the following fields below:</h4>
         <ul>

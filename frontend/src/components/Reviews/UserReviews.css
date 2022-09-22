@@ -1,15 +1,17 @@
 .ind_review_box {
     border: 1px solid grey;
     border-radius: 15px;
-    padding-bottom: 15px;
-    width: 600px;
+
+    width: 450px;
     height: auto;
     display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     position: relative;
     align-items: center;
     justify-content: space-evenly;
-    padding-inline: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
 }
 
 .ind_review_stars {
@@ -18,15 +20,43 @@
     justify-content: space-evenly;
     align-items: flex-end;
     position: relative;
+    margin-top: 5px;
 
 }
 .review_text{
     padding-bottom: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .review_for_name{
     font-size: 20px;
     align-items: center;
     justify-content: center;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
+}
+
+.ind_review_header{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* margin-bottom: -2px */
+    justify-content: center;
+    align-items: center;
+}
+
+.header {
+    margin-bottom: 5px;
+    border-bottom: 1px solid grey;
+}
+
+.delete_review{
+    border-radius: 7px;
+    align-items: center;
+    justify-content: center;
+ 
+    background-color: #d8edf3;
+    padding: 7px;
+    border: .5px solid grey;
+    box-shadow: 0 0 0 .2px;
 }
