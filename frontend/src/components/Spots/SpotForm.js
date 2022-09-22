@@ -61,7 +61,7 @@ const SpotForm = ({ spot }) => {
 
       if (data && data.errors) {
       setSubmitSuccess(false)
-      // console.log('data', data)
+      console.log('data', data)
       const errors = [data.title, data.errors]
       setErrors(Object.values(errors));
 
