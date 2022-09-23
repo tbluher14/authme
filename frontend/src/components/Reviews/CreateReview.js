@@ -48,7 +48,7 @@ const ReviewForm = () => {
     <form onSubmit={handleSubmit}>
       <div className="review_container">
       <h2 className="review_welcome_header">Create A Review:</h2>
-      <ul className="errors">
+      <ul className="errors_review_submit">
           {errorsArr.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}

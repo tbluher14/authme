@@ -52,3 +52,10 @@
     justify-content: space-around;
 
 }
+
+.errors_review_submit{
+    display: flex;
+    position: relative;
+    bottom: 30px;
+    right: 15px;
+}
