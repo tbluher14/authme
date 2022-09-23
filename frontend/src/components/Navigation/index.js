@@ -31,7 +31,7 @@ function Navigation({ isLoaded }) {
 
 <button className='logged_out_signup'
   onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
-  >Sign Up!
+  >Sign Up
 </button>
   <DemoUser />
       </>

@@ -36,18 +36,21 @@
     border-radius: 10px;
     padding: 5px;
     width: 370px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .edit_spot_text{
     position: relative;
     color: #545454;
     margin-bottom: 5px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .edit_spot_errors{
     display: flex;
     position: relative;
     bottom: 30px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 

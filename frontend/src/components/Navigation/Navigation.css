@@ -135,8 +135,9 @@ body {
 
   .become_host:hover {
     /* border: 1px solid grey; */
-    border-radius: 20px;
-    box-shadow: 0 0 0 .2px;
+    border-radius: 10px;
+    /* box-shadow: 0 0 0 .2px; */
+    background-color: 	#F5F5F5;
 
    }
 
