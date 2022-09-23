@@ -80,27 +80,31 @@ body {
 .loggedIn_menu{
   position: absolute;
   right: 50px;
-  top: 20px;
+  top: 26px;
   width: 75px;
   height: 30px;
   align-items: center;
   justify-content: space-evenly;
+  background-color: white;
   border-radius: 20px;
   display: flex;
+  color: grey;
 }
 
 
 
   .become_host {
-    font-weight: bold;
+    font-weight: bolder;
+    font-size: 16px;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 14px;
-    width: 100px;
+    top: 15px;
+    width: 150px;
     right: 80px;
+    color: black;
     /* left: 255px; */
   }
 

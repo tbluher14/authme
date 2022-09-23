@@ -43,9 +43,9 @@ const Homepage = () => {
                 ></img>
               </div>
               <div className="spot_info">
-                <h4 className="spot_location">
+                <h3 className="spot_location">
                   {ele.city}, {ele.state}
-                </h4>
+                </h3>
                 <div className="spot_rating" id="star_review_score">
 
                   <img
@@ -59,7 +59,8 @@ const Homepage = () => {
 
                   </div>
                 </div>
-                <p className="spot_price">${ele.price} / night</p>
+                <p className="spot_price">${ele.price}</p>
+                <p className="per_night">  / night</p>
               </div>
             </div>
           </Link>

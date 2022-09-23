@@ -33,13 +33,15 @@ img {
     margin-bottom: -25px;
     align-items: center;
     justify-content: center;
-
+    color: black;
   }
 
   .spot_location{
     font-size: 15px;
     margin-bottom: 5px;
-    font-weight: bold;
+    /* font-weight: bolder; */
+    font-weight: none;
+    font-family: sans-serif
   }
 
   .spot_price {
@@ -47,10 +49,23 @@ img {
     font-size: 14px;
     margin-bottom: 15px;
     margin-top: auto;
+    font-family: sans-serif;
     display: flex;
     flex-direction: row;
     position: relative;
     left: 0px;
+  }
+  .per_night{
+    font-size: 14px;
+    margin-bottom: 15px;
+    margin-top: auto;
+    font-family: sans-serif;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    left: 35px;
+    bottom: 31px;
+
   }
 
   .spot_rating{
