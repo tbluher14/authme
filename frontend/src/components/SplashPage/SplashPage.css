@@ -22,8 +22,8 @@ img {
     max-width: 1250px;
     /* max-width: 1450px; */
     flex-direction: row;
-    margin: 1rem;
-    /* padding-left: 11rem; */
+    margin: auto;
+    padding-left: auto;
     justify-content: center;
     align-items: center;
     font-family: 'Montserrat', sans-serif;
@@ -64,7 +64,7 @@ img {
     display: flex;
     flex-direction: column;
     position: relative;
-    left: 35px;
+    left: 38px;
     bottom: 31px;
 
   }

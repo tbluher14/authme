@@ -80,15 +80,39 @@
 
 
 .edit_button_2{
+    border: none;
     border-radius: 7px;
+    display: flex;
+
     align-items: center;
     justify-content: center;
-    margin-right: 10px;
-    background-color: #d8edf3;
-    padding: 7px;
-    border: .5px solid grey;
-    box-shadow: 0 0 0 .2px;
+    font-size: 14px;
+    background-color: #FF385C;
+    color: white;
+    position: relative;
+    left: 12px;
+    height: 30px;
+    top: 20px;
+    width: 100px;
 }
+.edit_button_3{
+    border: none;
+    border-radius: 7px;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    background-color: #FF385C;
+    color: white;
+    position: relative;
+    left: 130px;
+    bottom: 10px;
+    height: 30px;
+    width: 100px;
+}
+
+
 /* IMAGE SECTION ------------------ */
 .spot_image{
     height: 450px;
@@ -326,7 +350,7 @@
     background-color: #FF385C;
     color: white;
     position: relative;
-   
+
     height: 60px;
     width: 345px;
 }

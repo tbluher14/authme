@@ -85,7 +85,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                   <NavLink to={`/spots/${spotId}/edit`}>
                     <button className="edit_button_2">Edit My Spot</button>
                   </NavLink>
-                  <button className='edit_button_2'onClick={removeSpot(spotId)}>Delete</button>
+                  <button className='edit_button_3'onClick={removeSpot(spotId)}>Delete</button>
                 </div>
                )}
                </>
