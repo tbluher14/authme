@@ -48,6 +48,7 @@
     bottom: 10px;
     height: 60px;
     width: 385px;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .signup_form_container {
@@ -58,6 +59,7 @@
     width: auto;
     margin: auto;
     margin-top: 0px;
+    margin-bottom: 2px;
     padding: 40px;
     /* border: 1px solid grey; */
     /* border-radius: 10px; */
@@ -131,7 +133,7 @@
 
   .signUp_errors{
     position: relative;
-    right: 10px;
+    right: 15px;
     /* top: 365px; */
-    bottom: 25px;
+    bottom: 28px;
   }
