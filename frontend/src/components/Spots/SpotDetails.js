@@ -154,7 +154,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             target="_blank"
             >
 
-            <button className="reserve_button">Reserve!</button>
+            <button className="reserve_button">Reserve</button>
              </a>
             <div className="price_calculator">
               <div className="price_calculator_left">
@@ -200,7 +200,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           <SpotReviews spot={spot} />
           </div>
               <NavLink to={`/spots/${spotId}/createReview`}>
-                <button className="review_button">Create Review</button>
+                <button className="spot_details_review_button">Create Review</button>
               </NavLink>
         </div>
         </div>

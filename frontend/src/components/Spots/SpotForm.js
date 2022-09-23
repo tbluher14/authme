@@ -82,7 +82,7 @@ const SpotForm = ({ spot }) => {
   return (
     <div className="form_input">
       <div className='welcome_header_create_spot'>
-      <h2 className='welcome_header'>List your home on bestBnB!</h2>
+      <h2 className='welcome_header_create_spot'>List your home on bestBnB!</h2>
       </div>
       <form className="create_spot" onSubmit={handleSubmit}>
         <h4 className="form_requirements">Please fill out all of the following fields below:</h4>
@@ -95,7 +95,7 @@ const SpotForm = ({ spot }) => {
         <label className="address_container">
         <span className="address_text">Address:</span>
           <input
-            className="address_input"
+            className="create_address_input"
             type="text"
             value={address}
 
