@@ -23,6 +23,7 @@ img {
     /* max-width: 1450px; */
     flex-direction: row;
     margin: auto;
+    /* margin-bottom: 10px; */
     padding-left: auto;
     justify-content: center;
     align-items: center;

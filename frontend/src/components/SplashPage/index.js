@@ -59,8 +59,8 @@ const Homepage = () => {
 
                   </div>
                 </div>
-                <p className="spot_price">${ele.price}</p>
-                <p className="per_night">  / night</p>
+                <p className="spot_price">${ele.price} / night</p>
+                {/* <p className="per_night">  / night</p> */}
               </div>
             </div>
           </Link>

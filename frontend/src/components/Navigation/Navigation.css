@@ -31,6 +31,7 @@ body {
   /* flex-direction: column; */
   /* bottom: 58px; */
   bottom: 20px;
+  font-family: 'Montserrat', sans-serif;
   height: 35px;
 
   width: 100px;
@@ -51,6 +52,7 @@ body {
   top: 15px;
   height: 35px;
   width: 100px;
+  font-family: 'Montserrat', sans-serif;
   right: 25px;
 }
 
@@ -69,6 +71,7 @@ body {
   height: 35px;
   width: 100px;
   right: 280px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .logo{
