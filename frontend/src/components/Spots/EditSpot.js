@@ -104,120 +104,119 @@ if (submitSuccess) {
 
     <form className="create_spot" onSubmit={handleSubmit}>
       <h2 className="edit_header">Edit My Spot</h2>
-      <ul>
+      <ul className="edit_spot_errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
           ))}
       </ul>
         <div className="edit_spot_container">
-        <label className="spot_name">
-          Spot Name:
+        <label className="edit_address_container">
+         <span className="edit_spot_text"> Spot Name: </span>
         <input
+          className="edit_spot_input"
           type="text"
           placeholder="Spot Name"
-          className="name_input"
           value={selectedSpot.name}
           onChange={updateName}
           required
           />
       </label>
 
-      <label className="spot_address">
-        Address:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">Address:</span>
         <input
+          className="edit_spot_input"
           type="text"
           placeholder="Address"
-          className="address_input"
           value={selectedSpot.address}
           onChange={updateAddress}
           required
         />
       </label>
-      <label className="spot_city">
-        City:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">City:</span>
         <input
+          className="edit_spot_input"
           type="text"
-          className="city_input"
           placeholder="City"
           value={selectedSpot.city}
           onChange={updateCity}
           required
         />
       </label>
-      <label className="spot_state">
-        State:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">State:</span>
         <input
+          className="edit_spot_input"
           type="text"
           placeholder="State"
-          className="state_input"
           value={selectedSpot.state}
           onChange={updateState}
           required
         />
       </label>
-      <label className="spot_country">
-        Country:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">Country:</span>
         <input
+          className="edit_spot_input"
           type="text"
           placeholder="Country"
-          className="country_input"
           value={selectedSpot.country}
           onChange={updateCountry}
           required
         />
       </label>
-      <label className="spot_lat">
-        Latitude:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">Latitude:</span>
         <input
+          className="edit_spot_input"
           type="text"
-          className="lat_input"
           placeholder="Latitude"
           value={selectedSpot.lat}
           onChange={updateLat}
           required
         />
       </label>
-      <label className="spot_long">
-        Longitude:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">Longitude:</span>
         <input
+          className="edit_spot_input"
           type="text"
-          className="lng_input"
           placeholder="Longitude"
           value={selectedSpot.lng}
           onChange={updateLng}
           required
         />
       </label>
-      <label className="spot_description_edit">
-        Spot Description:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">Spot Description:</span>
         <input
+          className="edit_spot_input"
           type="textarea"
           rows="10"
           cols='30'
-          className="description_input"
-
           value={selectedSpot.description}
           onChange={updateDescription}
           required
         />
       </label>
-      <label className="spot_price">
-        Price Per Night:
+      <label className="edit_address_container">
+        <span className="edit_spot_text">Price Per Night:</span>
         <input
+          className="edit_spot_input"
           type="text"
           placeholder="Price"
-          className="price_input"
           value={selectedSpot.price}
           onChange={updatePrice}
           required
         />
           </label>
-        <label className="url">
-          Image Url:
+        <label className="edit_address_container">
+         <span className="edit_spot_text"> Image Url:</span>
           <input
+            className="edit_spot_input"
             type="text"
             placeholder="img-url"
-            className="img_input"
             value={previewImage}
             onChange={(e) => setPreviewImage(e.target.value)}
 

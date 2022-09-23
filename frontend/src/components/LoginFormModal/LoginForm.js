@@ -23,7 +23,7 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className='login_modal'>
-      <h1 className="welcome_header">Welcome Back to bestBnB</h1>
+      <h1 className="welcome_header_login">Welcome Back to bestBnB</h1>
       <ul className="errors">
         {errors.map((error, idx) => (
           <li key={idx} className="errors">{error}</li>

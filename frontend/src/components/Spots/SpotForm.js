@@ -62,7 +62,7 @@ const SpotForm = ({ spot }) => {
     })
     .catch(async (res) => {
       const data = await res.json();
-      
+
       if (data && data.errors) {
 
       setSubmitSuccess(false)
@@ -81,20 +81,21 @@ const SpotForm = ({ spot }) => {
 
   return (
     <div className="form_input">
-      <div className='welcome_header'>
+      <div className='welcome_header_create_spot'>
       <h2 className='welcome_header'>List your home on bestBnB!</h2>
       </div>
       <form className="create_spot" onSubmit={handleSubmit}>
         <h4 className="form_requirements">Please fill out all of the following fields below:</h4>
-        <ul>
+        <ul className="create_errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>
           ))}
 
         </ul>
-        <label>
-        <span>Address:</span>
+        <label className="address_container">
+        <span className="address_text">Address:</span>
           <input
+            className="address_input"
             type="text"
             value={address}
 
@@ -102,9 +103,10 @@ const SpotForm = ({ spot }) => {
             required
           />
         </label>
-        <label>
-        <span>City:</span>
+        <label className="address_container">
+        <span className="address_text">City:</span>
           <input
+            className="address_input"
             type="text"
             value={city}
 
@@ -112,78 +114,78 @@ const SpotForm = ({ spot }) => {
             required
           />
         </label>
-        <label>
-        <span>State:</span>
+        <label className="address_container">
+        <span className="address_text">State:</span>
           <input
             type="text"
             value={state}
-
+            className="address_input"
             onChange={(e) => setState(e.target.value)}
             required
           />
         </label>
-        <label>
-        <span>Country:</span>
+        <label className="address_container">
+        <span className="address_text">Country:</span>
           <input
             type="text"
             value={country}
-
+            className="address_input"
             onChange={(e) => setCountry(e.target.value)}
             required
           />
         </label>
-        <label>
-        <span>Latitude:</span>
+        <label className="address_container">
+        <span className="address_text">Latitude:</span>
           <input
             type="text"
             value={lat}
-
+            className="address_input"
             onChange={(e) => setLat(e.target.value)}
             required
           />
         </label>
-        <label>
-        <span>Longitude:</span>
+        <label className="address_container">
+        <span className="address_text">Longitude:</span>
           <input
             type="text"
             value={lng}
-
+            className="address_input"
             onChange={(e) => setLng(e.target.value)}
             required
           />
         </label>
-        <label>
-        <span> Name: </span>
+        <label className="address_container">
+        <span className="address_text"> Name: </span>
           <input
             type="text"
             value={name}
-
+            className="address_input"
             onChange={(e) => setName(e.target.value)}
             required
           />
         </label>
-        <label>
-        <span>Description:</span>
+        <label className="address_container">
+        <span className="address_text">Description:</span>
           <input
             type="text"
             value={description}
-
+            className="address_input"
             onChange={(e) => setDescription(e.target.value)}
             required
           />
         </label>
-        <label>
-        <span>Price per night:</span>
+        <label className="address_container">
+        <span className="address_text">Price per night:</span>
           <input
             type="text"
             value={price}
-
+            className="address_input"
             onChange={(e) => setPrice(e.target.value)}
             required
           />
         </label>
-        <label>
-        <span>Image Url:</span>
+        <label className="address_container">
+        <span className="address_text">Image Url:</span>
           <input
             type="text"
             value={previewImage}
