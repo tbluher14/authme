@@ -56,15 +56,15 @@ function Navigation({ isLoaded }) {
             <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
         </div>
-        <div>{sessionUser &&
-        <div className='become_host'>
+        {sessionUser &&
+        // <div className='become_host'>
          <NavLink to="/createSpot"
          className="become_host">
           Become a Host
         </NavLink>
-          </div>
+          // </div>
         }
-        </div>
+
         <div>{isLoaded && sessionLinks}</div>
       </div>
     </>

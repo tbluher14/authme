@@ -35,8 +35,15 @@ body {
   height: 35px;
 
   width: 100px;
-  right: 150px;
+  right: 145px;
 }
+.logged_out_signup:hover {
+  border: 3px solid grey;
+  /* border-radius: 20px; */
+  box-shadow: 0 0 2px 2px;
+  cursor: pointer;
+
+ }
 
 .logged_out_login{
   border: none;
@@ -56,6 +63,14 @@ body {
   right: 25px;
 }
 
+.logged_out_login:hover {
+  border: 3px solid grey;
+  /* border-radius: 20px; */
+  box-shadow: 0 0 2px 2px;
+  cursor: pointer;
+
+ }
+
 .demo_button{
   border: none;
   border-radius: 7px;
@@ -69,10 +84,17 @@ body {
   /* flex-direction: column; */
   bottom: 55px;
   height: 35px;
-  width: 100px;
+  width: 110px;
   right: 280px;
   font-family: 'Montserrat', sans-serif;
 }
+.demo_button:hover {
+  border: 3px solid grey;
+  /* border-radius: 20px; */
+  box-shadow: 0 0 2px 2px;
+  cursor: pointer;
+
+ }
 
 .logo{
   width: 35px;
@@ -104,12 +126,19 @@ body {
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 15px;
-    width: 150px;
-    right: 80px;
+    top: 30px;
+      width: 150px;
     color: black;
     /* left: 255px; */
+    right: 150px;
   }
+
+  .become_host:hover {
+    /* border: 1px solid grey; */
+    border-radius: 20px;
+    box-shadow: 0 0 0 .2px;
+
+   }
 
 
   .home_link {
