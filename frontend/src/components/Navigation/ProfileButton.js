@@ -41,6 +41,7 @@ function ProfileButton({ user }) {
         <i className="fas fa-bars nav_bars_icon"></i>
         <i className="fas fa-user-circle user_icon"></i>
       </button>
+      <div className="menu_modal">
       {showMenu && (
         <div className="menu">
           <NavLink to="/currentUser/spots" >
@@ -56,6 +57,7 @@ function ProfileButton({ user }) {
           <p>Email: {user.email}</p> */}
         </div>
       )}
+      </div>
     </div>
   </>
   );

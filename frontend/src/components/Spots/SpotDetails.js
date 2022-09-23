@@ -154,7 +154,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             target="_blank"
             >
 
-            <button className="reserve_button">Reserve</button>
+            <button className="reserve_button">Meet The Author!</button>
              </a>
             <div className="price_calculator">
               <div className="price_calculator_left">

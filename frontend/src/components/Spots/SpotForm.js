@@ -62,7 +62,7 @@ const SpotForm = ({ spot }) => {
     })
     .catch(async (res) => {
       const data = await res.json();
-
+      
       if (data && data.errors) {
 
       setSubmitSuccess(false)
