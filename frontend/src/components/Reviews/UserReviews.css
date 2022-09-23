@@ -1,62 +1,87 @@
-.ind_review_box {
+.my_ind_review_box {
     border: 1px solid grey;
     border-radius: 15px;
-
     width: 450px;
-    height: auto;
+    height: 270px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
     position: relative;
+
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-content: center;
     margin-bottom: 15px;
-    padding-bottom: 10px;
+    padding: 10px;
 }
 
-.ind_review_stars {
-
+.my_reviews_page_container{
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    font-family: 'Montserrat', sans-serif;
+}
+.my_ind_review_stars {
     display: flex;
     justify-content: space-evenly;
     align-items: flex-end;
     position: relative;
     margin-top: 5px;
+    margin-bottom: 0px;
+    padding: 10px;
 
 }
-.review_text{
-    padding-bottom: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
+.my_review_text{
+    display: flex;
+    position: relative;
+    left: 25px;
+    flex-wrap: wrap;
+    overflow: scroll;
+
 }
 
-.review_for_name{
+.my_review_for_name{
     font-size: 20px;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: relative;
+    left: 35px;
+    flex-wrap: wrap;
+    overflow: hidden;
     /* padding-bottom: 20px; */
 }
 
-.ind_review_header{
+.my_ind_review_header{
     display: flex;
     flex-direction: column;
     position: relative;
+    border-bottom: 1px solid grey;
     /* margin-bottom: -2px */
     justify-content: center;
     align-items: center;
 }
 
-.header {
-    margin-bottom: 5px;
-    border-bottom: 1px solid grey;
-}
+
 
 .delete_review{
+    border: none;
     border-radius: 7px;
+    display: flex;
     align-items: center;
     justify-content: center;
- 
-    background-color: #d8edf3;
-    padding: 7px;
-    border: .5px solid grey;
-    box-shadow: 0 0 0 .2px;
+    font-size: 15px;
+    background-color: #FF385C;
+    color: white;
+    position: relative;
+    /* flex-direction: column; */
+
+    height: 35px;
+    width: 100px;
+    top: 10px;
+    font-family: 'Montserrat', sans-serif;
 }

@@ -31,21 +31,19 @@ function UsersReviews() {
 
   return (
     isLoaded && (
-      <div className="page_container">
+      <div className="my_reviews_page_container">
         <h2>My Reviews:</h2>
         {userReviews.map((review) => (
           <div key={review.id}>
-            <div className="ind_review_box">
-              <div className="ind_review_header">
-                <h2 className="header">
+            <div className="my_ind_review_box">
+                <h2 className="my_ind_review_header">
                   Review for:
                   </h2>
-                 <div className="review_for_name">
+                 <div className="my_review_for_name">
                   {review.Spot.name}
                 </div>
-              </div>
-                  <div className="ind_review_stars">{review.stars} out of 5 stars</div>
-              <div className="review_text">{review.review}</div>
+                  <div className="my_ind_review_stars">{review.stars} out of 5 stars</div>
+              <div className="my_review_text">{review.review}</div>
               <button
                 onClick={removeReview(review.id)}
                 className="delete_review"
