@@ -43,6 +43,7 @@ function ProfileButton({ user }) {
       </button>
       <div className="menu_modal">
       {showMenu && (
+        <div className="menu_container">
         <div className="menu">
           <NavLink to="/currentUser/spots" >
             <button onClick={showUsersSpots} className="userSpots_button">My spots</button>
@@ -55,6 +56,7 @@ function ProfileButton({ user }) {
           </button>
           {/* <p>Hello {user.username}!</p>
           <p>Email: {user.email}</p> */}
+          </div>
         </div>
       )}
       </div>

@@ -19,11 +19,20 @@
     justify-content: space-evenly;
     /* align-content: space-evenly; */
     border-radius: 15px;
-
+    padding: 15px;
+    border: 1px solid black;
+    width: 225px;
+    box-shadow: 0 0 .2px;
   }
-
+/*
   .menu_modal{
-    
+    background-color: white;
+    width: 150px;
+    height: 150px;
+  } */
+
+  .menu_container{
+
   }
   .userSpots_button{
     display: flex;
@@ -33,27 +42,27 @@
     height: 40px;
     align-items: center;
     justify-content: center;
-    border: 1.5px solid black;
+    border: 1.5px solid white;
     font-weight: bold;
     border-radius: 5px;
-    margin-bottom: .5px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6)
+    margin-bottom: 3px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.6) */
   }
 
   .userReviews_button{
     display: flex;
     position: relative;
     font-weight: bold;
-    text-shadow: 1rem;
+    /* text-shadow: 1rem; */
     justify-content: space-between;
     width: 125px;
     justify-content: center;
     align-items: center;
     height: 40px;
-    border: 1.5px solid black;
+    border: 1.5px solid white;
     border-radius: 5px;
-    margin-bottom: .5px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5)
+    margin-bottom: 3px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5) */
   }
 
   .logOut_button{
@@ -65,7 +74,7 @@
     justify-content: center;
     align-items: center;
     height: 40px;
-    border: 1.5px solid black;
+    border: 1.5px solid white;
     border-radius: 5px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.7)
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.7) */
   }
