@@ -37,6 +37,8 @@
   .userSpots_button{
     display: flex;
     position: relative;
+    font-family: 'Montserrat', sans-serif;
+ 
     justify-content: space-between;
     width: 200px;
     height: 40px;
@@ -58,6 +60,7 @@
 
   .userReviews_button{
     display: flex;
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     justify-content: space-between;
     width: 200px;
@@ -80,6 +83,7 @@
 
   .logOut_button{
     display: flex;
+    font-family: 'Montserrat', sans-serif;
     position: relative;
     justify-content: space-between;
     width: 200px;

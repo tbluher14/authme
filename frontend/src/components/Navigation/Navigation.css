@@ -38,7 +38,7 @@ body {
   right: 145px;
 }
 .logged_out_signup:hover {
-  border: 3px solid grey;
+  border: 2px solid grey;
   /* border-radius: 20px; */
   box-shadow: 0 0 2px 2px;
   cursor: pointer;
@@ -64,7 +64,7 @@ body {
 }
 
 .logged_out_login:hover {
-  border: 3px solid grey;
+  border: 2px solid grey;
   /* border-radius: 20px; */
   box-shadow: 0 0 2px 2px;
   cursor: pointer;
@@ -89,7 +89,7 @@ body {
   font-family: 'Montserrat', sans-serif;
 }
 .demo_button:hover {
-  border: 3px solid grey;
+  border: 2px solid grey;
   /* border-radius: 20px; */
   box-shadow: 0 0 2px 2px;
   cursor: pointer;

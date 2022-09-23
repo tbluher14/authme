@@ -7,11 +7,13 @@
     margin-top: 20px;
     align-items: center;
     border-radius: 20px;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .my_spots_title {
     display: flex;
     justify-content: center;
     font-size: 25px;
+    font-family: 'Montserrat', sans-serif;
     font-weight: normal;
   }

@@ -96,7 +96,7 @@
     width: 110px;
 }
 .edit_button_2:hover {
-    border: 3px solid grey;
+    border: 2px solid grey;
     /* border-radius: 20px; */
     box-shadow: 0 0 2px 2px;
     cursor: pointer;
@@ -119,7 +119,7 @@
     width: 100px;
 }
 .edit_button_3:hover {
-    border: 3px solid grey;
+    border: 2px solid grey;
     /* border-radius: 20px; */
     box-shadow: 0 0 2px 2px;
     cursor: pointer;
@@ -278,7 +278,7 @@
 }
 .reserve_button:hover {
     cursor: pointer;
-    border: 3px solid grey;
+    border: 2px solid grey;
    }
 
 .total{
@@ -374,7 +374,7 @@
 }
 
 .spot_details_review_button:hover {
-    border: 3px solid grey;
+    border: 2px solid grey;
     /* border-radius: 20px; */
     box-shadow: 0 0 2px 2px;
     cursor: pointer;

@@ -67,4 +67,10 @@
     left: 15px;
     height: 50px;
     width: 385px;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit_edits:hover{
+    cursor: pointer;
+    border: 2px solid grey;
 }
