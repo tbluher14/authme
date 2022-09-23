@@ -191,7 +191,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             alt='starImage'
           className="starImage_bottom_page"
           />
-          <div>
+          <div className="review_avg_bottom">
           <StarReviews spot={spot}/>
           </div>
             {/* {spot?.avgRating? `${spot.avgRating} Stars! ` :  `No Reviews Yet!`} */}

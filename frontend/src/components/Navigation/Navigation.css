@@ -115,7 +115,9 @@ body {
   display: flex;
   color: grey;
 }
-
+.loggedIn_menu:hover{
+  background-color: #f5f5f5;
+}
 
 
   .become_host {

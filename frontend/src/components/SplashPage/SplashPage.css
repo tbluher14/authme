@@ -24,6 +24,7 @@ img {
     flex-direction: row;
     margin: auto;
     /* margin-bottom: 10px; */
+
     padding-left: auto;
     padding-bottom: 20px;
     justify-content: center;
@@ -44,6 +45,7 @@ img {
     margin-bottom: 5px;
     /* font-weight: bolder; */
     font-weight: none;
+    font-family: 'Montserrat', sans-serif;
     font-family: sans-serif
   }
 

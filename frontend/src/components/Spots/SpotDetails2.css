@@ -90,7 +90,8 @@
     background-color: #FF385C;
     color: white;
     position: relative;
-    left: 12px;
+    /* left: 0px; */
+    right: 5px;
     height: 30px;
     /* top: 20px; */
     width: 110px;
@@ -354,9 +355,14 @@
     align-items: center;
     justify-content: center;
     padding: 10px;
-
+    position: relative;
+    bottom: 10px;
 }
 
+.review_avg_bottom{
+    position: relative;
+    /* bottom: 10px; */
+}
 .spot_details_review_button{
     border: none;
     border-radius: 7px;
@@ -369,8 +375,8 @@
     position: relative;
     font-family: 'Montserrat', sans-serif;
 
-    height: 60px;
-    width: 345px;
+    height: 35px;
+    width: 250px;
 }
 
 .spot_details_review_button:hover {
