@@ -46,35 +46,37 @@ const ReviewForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="container">
-      <h2 className="header">Create A Review:</h2>
+      <div className="review_container">
+      <h2 className="review_welcome_header">Create A Review:</h2>
       <ul className="errors">
           {errorsArr.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
 
       </ul>
-        <label className="review_stars">
-          Stars:
+        <label className="review_stars_container">
+          <span className='review_stars_text'>Stars:</span>
           <input
             type="number"
             placeholder="Rating"
+            className="review_text_input"
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required
           />
           </label>
-      <label className="review_message">
-        Message:
+      <label className="review_stars_container">
+        <span className="review_stars_text"> Message: </span>
         <input
           type="text-area"
           placeholder="Review Message"
+          className="review_text_input"
           value={reviewMessage}
           onChange={(e) => setReviewMessage(e.target.value)}
           required
         />
       </label>
-      <button type="submit" className="submit">Create Review</button>
+      <button type="submit" className="review_submit">Create Review</button>
       </div>
     </form>
   );
