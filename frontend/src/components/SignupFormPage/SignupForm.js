@@ -17,7 +17,7 @@ function SignupForm() {
     const [errors, setErrors] = useState([]);
     // const history = useHistory()
 
-
+  console.log("errors in sign up", errors)
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -39,6 +39,7 @@ function SignupForm() {
           })
           .catch(async (res) => {
             const data = await res.json();
+            console.log(data)
             if (data?.errors) setErrors([data.errors]);
             if (password!== confirmPassword){
               errors.push(["Confirm password"])
@@ -59,7 +60,7 @@ function SignupForm() {
             Welcome to BestBnB!
             </h2>
           <form className="signup_form" onSubmit={handleSubmit}>
-            <ul className="errors">
+            <ul className="signUp_errors">
                {errors.map((error, idx) => (
                  <li key={idx}>{error}</li>
                  ))}
@@ -121,12 +122,12 @@ function SignupForm() {
                 required
               />
             </label>
-          </form>
             <div>
-            <button className="this_motherfucking_this" type="submit">
+            <button type="submit" className="this_motherfucking_this" >
               Sign Up
             </button>
               </div>
+          </form>
         </div>
       );
     }

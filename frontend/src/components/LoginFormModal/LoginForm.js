@@ -23,24 +23,24 @@ function LoginForm() {
 
   return (
     <form onSubmit={handleSubmit} className='login_modal'>
-      <h1 className="welcome_header">Welcome Back to BestBnB</h1>
+      <h1 className="welcome_header">Welcome Back to bestBnB</h1>
       <ul className="errors">
         {errors.map((error, idx) => (
           <li key={idx} className="errors">{error}</li>
         ))}
       </ul>
-      <label>
-        Username or Email
+      <label className="user_email_container">
+       <span className="user_text"> Username or Email </span>
         <input
-          className="login_email"
+          className="email_input"
           type="text"
           value={credential}
           onChange={(e) => setCredential(e.target.value)}
           required
         />
       </label>
-      <label>
-        Password
+      <label className="user_email_container">
+       <span className="user_text"> Password </span>
         <input
           className="login_password"
           type="password"

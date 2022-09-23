@@ -14,13 +14,14 @@
     /* align-items: revert; */
     display: flex;
     flex-direction: column;
+    bottom: 40px;
     position: relative;
 
   }
 .h2_header{
   position: relative;
   right: 60px;
-  bottom: 10px;
+  bottom: 35px;
   font-family: 'Montserrat', sans-serif;
   font-weight: bolder;
 }
@@ -43,11 +44,9 @@
     color: white;
     position: relative;
     /* flex-direction: column; */
+    top: 15px;
     height: 60px;
     width: 400px;
-
-
-
   }
 
   .signup_form_container {
@@ -66,7 +65,7 @@
   padding: 1px solid black;
   border-radius: 20px;
   width: 500px;
-  height: 600px;
+  height: 550px;
 }
   .signup_form_container span {
     font-size: 15px;
@@ -126,4 +125,11 @@
     border-radius: 10px;
     padding: 5px;
     width: 370px;
+  }
+
+
+  .signUp_errors{
+    position: relative;
+    right: 10px;
+    top: 365px;
   }
