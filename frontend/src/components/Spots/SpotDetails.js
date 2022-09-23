@@ -153,8 +153,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             className={'reserve_button'}
             target="_blank"
             >
-
-            <button className="reserve_button">Meet The Author!</button>
+              Meet the Author!
+            {/* <button className="reserve_button">Meet The Author!</button> */}
              </a>
             <div className="price_calculator">
               <div className="price_calculator_left">
