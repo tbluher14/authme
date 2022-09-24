@@ -1,8 +1,8 @@
 img {
-    height: 200px;
+    height: 220px;
     flex-wrap: wrap;
     float: left;
-    width: 200px;
+    width: 270px;
     background-size: cover;
     border-radius: 15px;
     margin: 1rem;
@@ -40,6 +40,8 @@ img {
     color: black;
   }
 
+
+
   .spot_location{
     font-size: 15px;
     margin-bottom: 5px;
@@ -58,9 +60,10 @@ img {
     display: flex;
     flex-direction: row;
     position: relative;
-    left: 0px;
+    left: 22px;
+    bottom: 12px;
   }
-  .per_night{
+  /* .per_night{
     font-size: 14px;
     margin-bottom: 15px;
     margin-top: auto;
@@ -68,30 +71,28 @@ img {
     display: flex;
     flex-direction: column;
     position: relative;
-    left: 38px;
-    bottom: 31px;
+    left: 40px;
+    bottom: 40px;
 
-  }
+  } */
 
   .spot_rating{
     font-size: 14px;
     /* font-weight: bolder; */
     margin-bottom: 5px;
+    position: relative;
+    left: 185px;
+    bottom: 22px;
   }
-
-  .star_image{
-    width:12px;
-    height:12px;
-    margin-left: -2px;
-    margin-bottom: auto;
-    margin-top: 2px;
-    margin-right: 4px;
-
-    /* padding-bottom: 10px; */
+  .fa-solid{
+    position: relative;
+    left: 17px;
   }
 
   .rating_tern{
-    display: inline;
+    position: relative;
+    left: 35px;
+    bottom: 17px;
   }
 
 

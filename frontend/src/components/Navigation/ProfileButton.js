@@ -46,11 +46,12 @@ function ProfileButton({ user }) {
         <div className="menu_container">
         <div className="menu">
           <NavLink to="/currentUser/spots" >
-            <button onClick={showUsersSpots} className="userSpots_button">My spots</button>
+            {/* <button onClick={showUsersSpots} className="userSpots_button">My spots</button> */}
+            My Spots
           </NavLink>
           <NavLink to="/reviews/current">
-            <button onClick={showUsersReviews} className="userReviews_button">My Reviews</button>
-          </NavLink>
+            {/* <button onClick={showUsersReviews} className="userReviews_button">My Reviews</button> */}
+          My Reviews</NavLink>
           <button onClick={logout} className="logOut_button">
             Log Out
           </button>
