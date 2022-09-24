@@ -22,6 +22,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const history = useHistory();
   const spot = useSelector((state) => state.spots[spotId]);
   const reviews = useSelector ((state) => state.reviews)
+  console.log('reviews obj', reviews)
 
   console.log("this is spot in spot details", spot)
   console.log('this is reviews in spot details', reviews)
@@ -198,6 +199,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             </div>
           <div>
           <SpotReviews spot={spot} />
+          {/* {sessionUser?.id === reviews?.userId ? <button>delete</button> : {}} */}
+
           </div>
               <NavLink to={`/spots/${spotId}/createReview`}>
                 <button className="spot_details_review_button">Create Review</button>

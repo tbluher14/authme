@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { getUserReviews, deleteReview } from "../../store/review";
+import * as sessionActions from '../../store/session';
 import "./UserReviews.css";
 
 function UsersReviews() {
@@ -9,7 +10,11 @@ function UsersReviews() {
   const history = useHistory();
   const userReviewsObj = useSelector((state) => state.reviews);
   const userReviews = Object.values(userReviewsObj);
-  console.log(userReviews)
+
+  const logOut = (e) => {
+    e.preventDefault()
+    dispatch( () => sessionActions.logout())
+  }
 
   const [isLoaded, setIsloaded] = useState(false);
 

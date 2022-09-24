@@ -3,14 +3,11 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from 'react-redux';
 import { NavLink } from "react-router-dom";
 import * as sessionActions from '../../store/session';
-import {Redirect, Link} from 'react-router-dom'
 import './ProfileButton.css'
-import {useHistory} from 'react-router-dom'
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
-  const history = useHistory()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -32,13 +29,10 @@ function ProfileButton({ user }) {
   const logout = (e) => {
     e.preventDefault();
     dispatch(sessionActions.logout());
-    history.push('/')
   };
 
-  const showUsersSpots = (e) => {history.push('/currentUser/spots')};
-  const showUsersReviews = (e) => {
-    e. preventDefault()
-    history.push('/reviews/current')};
+  const showUsersSpots = (e) => {};
+  const showUsersReviews = (e) => {};
 
   return (
     <>
@@ -51,16 +45,19 @@ function ProfileButton({ user }) {
       {showMenu && (
         <div className="menu_container">
         <div className="menu">
-          <button onClick={showUsersReviews} className="userReviews_button">My Reviews</button>
-          <button onClick={showUsersSpots} className="userSpots_button">My spots</button>
-          {/* <NavLink to="/currentUser/spots" className="my_spots">
+          <NavLink to="/currentUser/spots" >
+            {/* <button onClick={showUsersSpots} className="userSpots_button">My spots</button> */}
             My Spots
           </NavLink>
-          <NavLink to="/reviews/current" className="my_reviews">
-          My Reviews</NavLink> */}
+          <NavLink to="/reviews/current">
+            {/* <button onClick={showUsersReviews} className="userReviews_button">My Reviews</button> */}
+          My Reviews</NavLink>
+
           <button onClick={logout} className="logOut_button">
             Log Out
           </button>
+          {/* <p>Hello {user.username}!</p>
+          <p>Email: {user.email}</p> */}
           </div>
         </div>
       )}
