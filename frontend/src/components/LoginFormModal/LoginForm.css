@@ -36,7 +36,7 @@
   }
 
   .user_email_container{
-    border: .5px solid #CDCDCD;
+    /* border: .5px solid #CDCDCD; */
     align-items: flex-start;
     justify-content: flex-start;
     display: flex;

@@ -16,6 +16,7 @@ body {
     font-family: 'Montserrat', sans-serif;
     margin-left: auto;
     margin-right: auto;
+    min-width: 600px;
   }
 
 .logged_out_signup{
@@ -75,10 +76,12 @@ body {
  }
 
  .loggedInStuff{
-  /* align-items: center; */
-  display: flex;
-  /* justify-content: center; */
-  min-width: 400px;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width:503px;
+  position: static; */
+  /* right: 200px; */
  }
 
 
@@ -115,9 +118,10 @@ body {
 }
 
 .loggedIn_menu{
-  position: relative;
-  left: 100px;
-  top: 20px;
+  position: absolute;
+  /* left: 100px; */
+  right: 220px;
+  top: 30px;
   width: 75px;
   height: 30px;
   align-items: center;
@@ -144,7 +148,7 @@ body {
     display: flex;
     flex-direction: row;
     position: absolute;
-    top: 22px;
+    top: 25px;
     padding: 10px;
     color: black;
     /* left: 255px; */
@@ -170,5 +174,7 @@ body {
     font-weight: bold;
     line-height: 20px;
     padding-left: 8px;
-    padding-top: 25px;
+    padding-top: 20px;
+    font-family: 'Montserrat', sans-serif;
+    color:  #FF385C;
   }
