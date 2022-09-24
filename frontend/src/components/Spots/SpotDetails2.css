@@ -97,9 +97,6 @@
     width: 110px;
 }
 .edit_button_2:hover {
-    border: 2px solid grey;
-    /* border-radius: 20px; */
-    box-shadow: 0 0 2px 2px;
     cursor: pointer;
    }
 
@@ -120,9 +117,6 @@
     width: 100px;
 }
 .edit_button_3:hover {
-    border: 2px solid grey;
-    /* border-radius: 20px; */
-    box-shadow: 0 0 2px 2px;
     cursor: pointer;
    }
 
@@ -156,36 +150,53 @@
     flex-direction: column;
     width: auto;
     height: auto;
+    position: relative;
+    top: 40px;
 
 }
 
-.selfcheckpic{
-    height: 35px;
-    width: 35px;
-    display: flex;
+#door{
     position: relative;
-    flex-direction: column;
-
+    left: 5px;
+    top: 15px;
 }
 .self_checkout_container{
     width: 500px;
     height: auto;
+    position: relative;
+    margin-bottom: -30px;
+}
+.self_check{
+    position: relative;
+    left: 50px;
+    bottom: 32px;
 }
 
 .checkInInfo{
     font-weight: normal;
     position: relative;
-    bottom: 20px;
+    bottom: 50px;
+    left: 50px;
 }
 
-.medalpic {
-    height: 35px;
-    width: 35px;
-    display: flex;
+#medal{
     position: relative;
-    flex-direction: column;
-
+    left: 5px;
+    top: 15px;
 }
+
+.superhost{
+    position: relative;
+    left: 50px;
+    bottom: 32px;
+}
+
+.shinfo{
+    position: relative;
+    left: 52px;
+    bottom: 48px;
+}
+
 .medal_container{
     width: 500px;
     height: auto;
@@ -198,23 +209,20 @@
     position: relative;
     align-items: center;
     justify-content: center;
-
     bottom: 20px;
+    left: 12px;
 }
 
-.calendarpic {
-    height: 25px;
-    width: 25px;
-    display: flex;
+#calendar{
     position: relative;
-    flex-direction: column;
+    left: 1px;
 }
 
 .calendar_container{
     width: 500px;
     height: auto;
     position: relative;
-    bottom: 55px;
+    bottom: 70px;
     left: 5px;
 }
 .calendarInInfo{
@@ -222,8 +230,14 @@
     position: relative;
     align-items: center;
     justify-content: center;
-    left: 58px;
-    bottom: 20px;
+    left: 47px;
+    bottom: 55px;
+}
+
+.cancelation{
+    position: relative;
+    left: 45px;
+    bottom: 40px;
 }
 
 /* PRICE BOX SECTION ------------------ */
@@ -279,7 +293,7 @@
 }
 .reserve_button:hover {
     cursor: pointer;
-    border: 2px solid grey;
+
    }
 
 .total{
@@ -380,9 +394,7 @@
 }
 
 .spot_details_review_button:hover {
-    border: 2px solid grey;
-    /* border-radius: 20px; */
-    box-shadow: 0 0 2px 2px;
+
     cursor: pointer;
 
    }

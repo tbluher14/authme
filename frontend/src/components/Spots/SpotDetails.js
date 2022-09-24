@@ -5,9 +5,7 @@ import { findSpotById, deleteSpotById, clearState } from "../../store/spot";
 import SpotReviews from "../Reviews/SpotReviews";
 import StarReviews from "../Reviews/StarReviews";
 import starImage from '../Reviews/StaticAssets/starImage.png'
-import calendar from './staticAssets/calendar.png'
-import medal from './staticAssets/medal.png'
-import selfCheck from './staticAssets/selfcheck.png'
+
 import {getSpotReviews} from '../../store/review'
 
 import './SpotDetails2.css'
@@ -111,35 +109,20 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           </div>
           </div>
           <div className="bottom_half_price_description">
-
-          {/* <div className="spot_description">{spot?.description}</div> */}
-          <div className="amenities">Amenities:
+          <div className="amenities">
           <div className="self_checkout_container">
-          <img
-          alt={'selfcheckpick'}
-          className="selfcheckpic"
-          src={selfCheck}
-          />
-          <h3>Self check-in</h3>
+          <i  class="fa-solid fa-door-open" id="door"></i>
+          <h3 className="self_check">Self check-in</h3>
           <h5 className="checkInInfo">Check yourself in with the lockbox</h5>
           </div>
           <div className="medal_container">
-          <img
-          className="medalpic"
-          alt={'medalpick'}
-          src={medal}
-          />
-          <h3>Owner is a Superhost</h3>
-          <h5 className="checkInInfo">Superhosts are experienced, highly rated hosts </h5>
+          <i class="fa-solid fa-medal" id="medal"></i>
+          <h3 className="superhost">Owner is a Superhost</h3>
+          <h5 className="shinfo">Superhosts are experienced, highly rated hosts </h5>
           </div>
           <div className="calendar_container">
-          <img
-          className="calendarpic"
-          src={calendar}
-          alt={'calendarpick'}
-
-          />
-          <h3>Free cancellation before March 21</h3>
+          <i class="fa-regular fa-calendar" id="calendar"></i>
+          <h3 className="cancelation">Free cancellation before March 21</h3>
           <h5 className="calendarInInfo">No cancellation fees</h5>
           </div>
 
@@ -155,7 +138,6 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             target="_blank"
             >
               Meet the Author!
-            {/* <button className="reserve_button">Meet The Author!</button> */}
              </a>
             <div className="price_calculator">
               <div className="price_calculator_left">

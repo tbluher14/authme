@@ -102,14 +102,14 @@ if (submitSuccess) {
 // --------------------------------------------------------------------------------------------------
   return (
 
-    <form className="create_spot" onSubmit={handleSubmit}>
+    <form className="edit_spot" onSubmit={handleSubmit}>
       <h2 className="edit_header">Edit My Spot</h2>
+        <div className="edit_spot_container">
       <ul className="edit_spot_errors">
         {errors.map((error, idx) => (
           <li key={idx}>{error}</li>
           ))}
       </ul>
-        <div className="edit_spot_container">
         <label className="edit_address_container">
          <span className="edit_spot_text"> Spot Name: </span>
         <input

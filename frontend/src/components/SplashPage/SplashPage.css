@@ -14,6 +14,11 @@ img {
     text-decoration: none;
   }
 
+  #splash_page_star{
+    position: relative;
+    left: 205px;
+    bottom: 22px;
+  }
 
   .all_spots {
     display: flex;
@@ -48,7 +53,9 @@ img {
     /* font-weight: bolder; */
     font-weight: none;
     font-family: 'Montserrat', sans-serif;
-    font-family: sans-serif
+    font-family: sans-serif;
+    position: relative;
+    top: 0px;
   }
 
   .spot_price {
@@ -56,44 +63,35 @@ img {
     font-size: 14px;
     margin-bottom: 15px;
     margin-top: auto;
-    font-family: sans-serif;
+    font-family: 'Montserrat', sans-serif;
     display: flex;
     flex-direction: row;
     position: relative;
     left: 22px;
-    bottom: 12px;
+
+    bottom: 10px;
     color: black;
   }
-  /* .per_night{
-    font-size: 14px;
-    margin-bottom: 15px;
-    margin-top: auto;
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    left: 40px;
-    bottom: 40px;
-
-  } */
 
   .spot_rating{
     font-size: 14px;
     /* font-weight: bolder; */
     margin-bottom: 5px;
     position: relative;
-    left: 185px;
-    bottom: 22px;
+    top: 1px;
+    left: 190px;
+
   }
-  .fa-solid{
-    position: relative;
-    left: 17px;
-  }
+
+.rating_star_container{
+  display: flex;
+  flex-direction: column;
+}
 
   .rating_tern{
     position: relative;
     left: 35px;
-    bottom: 17px;
+    bottom: 40px;
   }
 
 

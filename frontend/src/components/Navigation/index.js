@@ -18,22 +18,23 @@ function Navigation({ isLoaded }) {
   if (sessionUser) {
     sessionLinks = (
       <>
+      <div className="loggedInStuff">
       <ProfileButton user={sessionUser} />
+      </div>
       </>
     );
 
   } else {
     sessionLinks = (
       <>
-
+  <div className="loggedOutStuff">
   <LoginFormModal className="logged_out_login"/>
-
-
-<button className='logged_out_signup'
+  <button className='logged_out_signup'
   onClick={() => dispatch(sessionActions.setShowSignupModal(true))}
   >Sign Up
-</button>
+  </button>
   <DemoUser />
+  </div>
       </>
     );
   }

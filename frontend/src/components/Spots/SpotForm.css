@@ -1,22 +1,27 @@
-.create_spot label {
+  .create_spot{
     display: flex;
-    padding: 5px;
-  }
-
-  .create_spot span {
-    font-size: 15px;
-    margin-right: 12px;
+    border: 1px solid lightgrey;
+    flex-direction: column;
+    width: 450px;
+    position: relative;
+    margin-left: 30rem;
+    margin-right: 30rem;
+    align-items: center;
+    justify-content: center;
+      padding: 15px;
+      bottom: 50px;
   }
 
   .form_input {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    align-items: center;
     width: auto;
     margin: auto;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     padding: 40px;
-    border: 2px solid rgb(216, 203, 203);
+    /* border: 2px solid rgb(216, 203, 203); */
     border-radius: 20px;
   }
 
@@ -24,8 +29,8 @@
     font-size: 16px;
     padding-left: 10px;
     width: 350px;
-    border: 2px solid rgb(216, 203, 203);
-    border-radius: 10px;
+    border: 1px solid gainsboro;
+    border-radius: 5px;
   }
 
   .create_spot_button {
@@ -48,7 +53,7 @@
 
   .create_spot_button:hover{
     cursor: pointer;
-    border: 2px solid grey;
+
   }
 
   .form_requirements {
@@ -67,12 +72,13 @@
     justify-content: center;
     position: relative;
     right: 3px;
+    bottom: 20px;
     /* margin-bottom: 20px; */
     font-family: 'Montserrat', sans-serif;
    }
 
    .address_container{
-    border: .5px solid #CDCDCD;
+    /* border: .5px solid #CDCDCD; */
     align-items: flex-start;
     justify-content: center;
     display: flex;
@@ -92,29 +98,13 @@
     margin-bottom: 2px;
    }
 
-   /* .create_address_input{
-    display: flex;
-    position: relative;
-    right: 35px;
-    font-size: 15px;
-    font-weight: none;
-    justify-content: center;
-    align-items: center;
-   } */
 
-   .create_spot{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px;
-    position: relative;
-    bottom: 20px;
-   }
 
    .create_errors{
     display: flex;
     position: relative;
     bottom: 30px;
-    right: 20px;
+    left: 5px;
     color: #545454;
+    font-family: 'Montserrat', sans-serif;
    }
