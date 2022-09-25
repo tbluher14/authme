@@ -7,13 +7,13 @@ body {
     background-color: white;
     display: flex;
     border-bottom: 0.5px solid #d3d3d3;
-    position: relative;
+    position: static;
+
     width: 100%;
     align-items: flex-start;
     justify-content: space-between;
     font-size: 12px;
     height: 70px;
-    gap: 10px;
     font-family: 'Montserrat', sans-serif;
     margin-left: auto;
     margin-right: auto;
@@ -119,9 +119,9 @@ body {
 }
 
 .loggedIn_menu{
-  position: fixed;
-  right: 75px;
-  top: 27px;
+  position: absolute;
+  right: 110px;
+  top: 30px;
   width: 75px;
   height: 30px;
   align-items: center;
@@ -132,28 +132,25 @@ body {
   color: grey;
 }
 
-
-
 .loggedIn_menu:hover{
   background-color: gainsboro;
-
-
 }
 
 
   .become_host {
     font-weight: bolder;
-    max-width: 400px;
+    /* min-width: 400px; */
+    right: 200px;
     font-size: 16px;
     align-items: center;
     justify-content: center;
     display: flex;
     flex-direction: row;
-    position: fixed;
-    top: 24px;
+    position: absolute;
+    top: 25px;
     padding: 10px;
     color: black;
-    right: 170px;
+
     border-radius: 5px;
   }
 
