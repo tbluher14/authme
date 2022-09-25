@@ -40,8 +40,8 @@ function SignupForm() {
           })
           .catch(async (res) => {
             const data = await res.json();
-            console.log(data)
-            if (data?.errors) setErrors(data.errors);
+            console.log("sign in error debug", data)
+            if (data?.errors) setErrors([data.errors]);
             if (password!== confirmPassword){
               errors.push(["Confirm password"])
             }
