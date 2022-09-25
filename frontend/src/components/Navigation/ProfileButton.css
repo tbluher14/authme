@@ -7,10 +7,10 @@
   .menu {
     background-color: white;
     display: inline-flex;
-    position: relative;
+    position: fixed;
     z-index: 10;
     top: 60px;
-    right: 210px;
+    right: 75px;
     flex-direction: column;
     /* align-items: center; */
     justify-content: space-evenly;
