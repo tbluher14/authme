@@ -85,7 +85,7 @@ const SpotForm = ({ spot }) => {
       <h2 className='welcome_header_create_spot'>List your home on bestBnB!</h2>
       </div>
       <form className="create_spot" onSubmit={handleSubmit}>
-        <h4 className="form_requirements">Please fill out all of the following fields below:</h4>
+        <h4 className="form_requirements">Please fill out all of the following fields:</h4>
         <ul className="create_errors">
           {errors.map((error, idx) => (
             <li key={idx}>{error}</li>

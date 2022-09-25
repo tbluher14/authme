@@ -10,6 +10,7 @@
     justify-content: center;
       padding: 15px;
       bottom: 50px;
+      font-family: 'Montserrat', sans-serif;
   }
 
   .form_input {
@@ -31,6 +32,7 @@
     width: 350px;
     border: 1px solid gainsboro;
     border-radius: 5px;
+    font-family: 'Montserrat', sans-serif;
   }
 
   .create_spot_button {
@@ -63,6 +65,8 @@
     display: flex;
     position: relative;
     right: 5px;
+    bottom: 15px;
+    font-family: 'Montserrat', sans-serif;
    }
 
    .welcome_header_create_spot{
@@ -103,8 +107,8 @@
    .create_errors{
     display: flex;
     position: relative;
-    bottom: 30px;
-    left: 5px;
+    bottom: 35px;
+    right: 15px;
     color: #545454;
     font-family: 'Montserrat', sans-serif;
    }
