@@ -53,18 +53,25 @@
     display: flex;
     /* flex-direction: row; */
     position: relative;
-    right: 16px;
+    right:0px;
     align-items: center;
-    justify-content: left;
+    justify-content: space-evenly;
 
 }
 
 .starImage{
-    width: 15px;
-    height: 15px;
+    width: 12px;
+    height: 12px;
     justify-content: flex-start;
     align-items: flex-start;
+    position: relative;
+    top: 2px;
+    margin-right: 15px;
+}
+#spot_details_star{
     margin-right: 5px;
+    position: relative;
+    top: 2px;
 }
 
 .stars_top{
@@ -331,14 +338,7 @@
 
 /* Reviews SECTION ------------------ */
 
-.starImage_bottom_page{
-    height: 15px;
-    width: 15px;
-    display: flex;
-    flex-direction: row;
-    margin: 2px;
-    margin-right: 7px;
-}
+
 
 .reviews_header{
     display: flex;
@@ -375,6 +375,7 @@
 
 .review_avg_bottom{
     position: relative;
+    
     /* bottom: 10px; */
 }
 .spot_details_review_button{

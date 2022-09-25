@@ -64,12 +64,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
         <h3 className="spot_headline">{spot?.name}</h3>
         </div>
         <div className="header_container_bottom_half">
-          <img
-          src={starImage}
-          alt='starImage'
-          className="starImage"
-          />
           <div className="stars_top">
+          <i className="starImage" class="fa-solid fa-star" id="spot_details_star" />
+          {}
           <StarReviews spot={spot}/>
           </div>
         <h4>
@@ -169,12 +166,10 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             Average Review:
               </h3>
           <div className='bottom_stars_reviews'>
-            <img
-            src={starImage}
-            alt='starImage'
-          className="starImage_bottom_page"
-          />
+
+
           <div className="review_avg_bottom">
+          <i className="starImage" class="fa-solid fa-star" id="spot_details_star" />
           <StarReviews spot={spot}/>
           </div>
             {/* {spot?.avgRating? `${spot.avgRating} Stars! ` :  `No Reviews Yet!`} */}
