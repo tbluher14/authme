@@ -9,9 +9,9 @@ followed by npm start in each. This should start the application on your machine
 Redux State Shape: 
 store = {
     session: {},
-    properties: {
-        property: {
-            propertyData,
+    spots: {
+        spots: {
+            spotData,
         }
     },
     reviews: {
