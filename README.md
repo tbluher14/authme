@@ -4,3 +4,21 @@ Here is the link to the deployed site on Heroku: https://authmetestdeploy.heroku
 
 To run locally, make sure ports 3000 and 8000 are not in use and run npm install at the root of both the backend and frontend folders, 
 followed by npm start in each. This should start the application on your machine. 
+
+
+Redux State Shape: 
+store = {
+    session: {},
+    properties: {
+        property: {
+            propertyData,
+        }
+    },
+    reviews: {
+        reviewId: {
+            reviewData,
+        }
+    }
+}
+
+
