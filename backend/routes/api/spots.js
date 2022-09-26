@@ -184,6 +184,16 @@ const error = {
       console.log("if not country running", error)
       return res.status(400).json(error)
     }
+    if (city.length>16){
+      error.errors.address = "Please only enter the first 16 characters of the city"
+      // console.log("if not address running", error)
+      return res.status(400).json(error)
+    }
+    if (state.length>16){
+      error.errors.address = "Please only enter the first 16 characters of the state"
+      // console.log("if not address running", error)
+      return res.status(400).json(error)
+    }
     if (country.length<3) {
       error.errors.address = "Please enter a valid country"
       console.log("if not address running", error)
@@ -329,6 +339,16 @@ router.put("/:spotId", requireAuth, async (req, res) => {
       if (country.length<3) {
         error.errors.address = "Please enter a valid country"
         console.log("if not address running", error)
+        return res.status(400).json(error)
+      }
+      if (city.length>16){
+        error.errors.address = "Please only enter the first 16 characters of the city"
+        // console.log("if not address running", error)
+        return res.status(400).json(error)
+      }
+      if (state.length>16){
+        error.errors.address = "Please only enter the first 16 characters of the state"
+        // console.log("if not address running", error)
         return res.status(400).json(error)
       }
       if (isNaN(+lat + 1)){ error.errors.lat = "Latitude is not a valid number"
