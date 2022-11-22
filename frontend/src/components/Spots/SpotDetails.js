@@ -4,13 +4,9 @@ import { useSelector, useDispatch } from 'react-redux'
 import { findSpotById, deleteSpotById, clearState, listAllSpots } from '../../store/spot'
 import SpotReviews from '../Reviews/SpotReviews'
 import StarReviews from '../Reviews/StarReviews'
-import starImage from '../Reviews/StaticAssets/starImage.png'
-
-import { getSpotReviews } from '../../store/review'
-
-import './SpotDetails2.css'
 import ReviewForm from '../Reviews/CreateReview'
 import LoginFormModal from '../LoginFormModal'
+import './SpotDetails2.css'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams()
@@ -190,6 +186,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
               </div>
             ))}
           </div>
+          </div>
+        <div className='create-review-spot-details'>
         {sessionUser ? (
           sessionUser && <ReviewForm spot={spotId} />
         ) : (

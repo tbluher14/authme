@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview, editReview, getSpotReviews } from "../../store/review";
-
+import "./SpotReviews.css";
 
 function SpotReviews({ review, spot }) {
   const dispatch = useDispatch();
@@ -50,18 +50,13 @@ function SpotReviews({ review, spot }) {
   }
 
 return (
-  <div className="reviews-card-container">
-    <div className="reviews-card">
-      <div className="reviews-card-header">
+  <>
         {sessionUser && sessionUser?.id === review?.userId && (
           <button className='edit-review-button' onClick={() => setEditing(true)}>Edit</button>
         )}
         {sessionUser && sessionUser?.id === review?.userId && (
           <button className='delete-review-button' onClick={() => dispatch(deleteReview(review?.id))}>Delete</button>
         )}
-        </div>
-    </div>
-
     {editing ?
         <form onSubmit={handleSubmit}>
           <textarea
@@ -89,14 +84,16 @@ return (
         <button className="form-button" type="submit">Submit</button>
       </form>
       :
-      <div className="reviews-card-header">
+      <>
+      <div className="review-message">
+      {review?.review}
+      </div>
+      <div className="review-stars">
       {review?.stars}
-      <div className="reviews-card-body">
-        {review?.review}
       </div>
-      </div>
+      </>
     }
-  </div>
+  </>
   )
 }
 

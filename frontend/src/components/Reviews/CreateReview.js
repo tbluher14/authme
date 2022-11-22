@@ -57,7 +57,7 @@ const ReviewForm = () => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <div className="review_container">
+      <div>
       <h2 className="review_welcome_header">Create A Review:</h2>
       <ul className="errors_review_submit">
           {submitted && errorsArr.map((error, idx) => (
