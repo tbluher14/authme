@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
-import { createNewReview } from "../../store/review";
+import { createNewReview, getSpotReviews } from "../../store/review";
+import { listAllSpots } from "../../store/spot";
 import './CreateReview.css'
 
 
@@ -12,36 +13,46 @@ const ReviewForm = () => {
   const [reviewMessage, setReviewMessage] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
-  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitted, setSubmitted] = useState(false);
 
-  console.log('errors in create review', errors)
+  // console.log('errors in create review', errors)
   const errorsArr = Object.values(errors)
   // console.log('errorsarr', errorsArr)
 
-  if (submitSuccess) {
-    return <Redirect to={`/spots/${spotId}`} />;
-  }
+  // if (submitSuccess) {
+  //   return <Redirect to={`/spots/${spotId}`} />;
+  // }
+
+  useEffect(() => {
+    dispatch (listAllSpots())
+    dispatch(getSpotReviews(spotId))
+  }, [dispatch, spotId])
+
+  useEffect(()=> {
+    const errors = []
+    if (reviewMessage.length === 1 || reviewMessage.length  > 255 || reviewMessage.length === 0) {
+        errors.push('Please enter a review between 2 and 255 characters.')
+    }
+    setErrors(errors)
+  }, [reviewMessage])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setErrors([]);
-    let data = {
-      review: reviewMessage,
-      stars: stars,
-    };
-    if (reviewMessage.length < 4){setErrors("please enter a review")}
+    setSubmitted(true)
+    if (errors.length === 0){
+      let data = {
+        review: reviewMessage,
+        stars: stars,
+      };
 
-    return dispatch(createNewReview(data, spotId))
-      .then(async (res) => {
-        setSubmitSuccess(true);
-
-      })
-      .catch(async (res) => {
-        const data = await res.json();
-        console.log('data', data)
-        if (data.errors) setErrors(data.errors);
-        else (setErrors([data.message]))
-      });
+      if (reviewMessage.length >= 1 && reviewMessage.length <= 255) {
+        const awaitedReview = dispatch(createNewReview(data, spotId));
+        dispatch(getSpotReviews(spotId));
+        setReviewMessage("")
+        setSubmitted(false)
+      }
+    }
   };
 
   return (
@@ -49,7 +60,7 @@ const ReviewForm = () => {
       <div className="review_container">
       <h2 className="review_welcome_header">Create A Review:</h2>
       <ul className="errors_review_submit">
-          {errorsArr.map((error, idx) => (
+          {submitted && errorsArr.map((error, idx) => (
           <li key={idx}>{error}</li>
         ))}
 
