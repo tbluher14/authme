@@ -11,9 +11,6 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const allSpotsObj = useSelector((state) => state.spots);
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
-  // const spotIds = allSpots.map(spot => spot.id)
-  // console.log("all spots", allSpots)
-
 
   useEffect(() => {
     dispatch(listAllSpots());
@@ -21,8 +18,6 @@ const Homepage = () => {
   }, [dispatch]);
 
   if (!allSpots) return null;
-
-  // const image = `<img src={starImage} alt='starimage' className="star_image"/>`
 
   return (
     <>
@@ -51,10 +46,6 @@ const Homepage = () => {
                 <i className="star_img" class="fa-solid fa-star" id="splash_page_star">
                   </i>
                 <div className="spot_rating" id="star_review_score">
-                  {/* <img
-                  src={starImage}
-                  alt='starimage'
-                  className="star_image"/> */}
                   <div className="rating_tern">
                   {ele?.avgRating === undefined ? "New!" : `${ele.avgRating} / 5`}
                   </div>
