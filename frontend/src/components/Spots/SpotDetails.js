@@ -22,6 +22,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const reviews = useSelector(state => state.reviews)
   const user = useSelector(state => state.session.user)
   const [isLoaded, setIsLoaded] = useState(false)
+  const reviewsArr = Object.values(reviews)
+
 
   const sessionUser = useSelector(state => state.session.user)
 
@@ -178,6 +180,15 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           </div>
           <div>
             <SpotReviews />
+            {reviewsArr.map(review => (
+              <div className='review_container'>
+                <SpotReviews
+                  review={review}
+                  spot={spot}
+                  key={review.id}
+                />
+              </div>
+            ))}
           </div>
         {sessionUser ? (
           sessionUser && <ReviewForm spot={spotId} />
