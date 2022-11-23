@@ -7,6 +7,7 @@ import StarReviews from '../Reviews/StarReviews'
 import ReviewForm from '../Reviews/CreateReview'
 import LoginFormModal from '../LoginFormModal'
 import './SpotDetails2.css'
+import CreateBooking from '../Bookings/BookingsBox'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams()
@@ -126,34 +127,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             </div>
           </div>
           <div className='price_box'>
-            <h2 className='price_in_box'>${spot?.price}/night</h2>
-            <a
-              href={'https://github.com/tbluher14'}
-              className={'reserve_button'}
-              target='_blank'
-              rel='noreferrer'
-            >
-              Meet the Author!
-            </a>
-            <div className='price_calculator'>
-              <div className='price_calculator_left'>
-                <ul>
-                  <p>${spot?.price} x 5 nights </p>
-                  <p>Cleaning Fee:</p>
-                  <p>Service Fee: </p>
-                </ul>
-              </div>
-              <div className='price_calculator_right'>
-                <ul>
-                  <p> ${(spot?.price * 5).toFixed(2)}</p>
-                  <p>$95.00</p>
-                  <p>$207.00</p>
-                </ul>
-              </div>
-            </div>
-            <div className='total'>
-              Total Before Taxes: ${(spot?.price * 5 + 95 + 207).toFixed(2)}
-            </div>
+            <CreateBooking />
           </div>
         </div>
         <div className='spot_description'>
