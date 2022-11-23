@@ -34,6 +34,7 @@ const deleteBookingAC = (payload) => {
 }
 
 // Thunks
+// Find all bookings
 export const findAllBookingsThunk = () => async (dispatch) => {
     const response = await csrfFetch('/api/bookings');
     if (response.ok) {
@@ -42,4 +43,51 @@ export const findAllBookingsThunk = () => async (dispatch) => {
     }
 }
 
+// Create a booking based on spot id
+export const createBookingThunk = (payload) => async (dispatch) => {
+    const response = await csrfFetch('/api/bookings', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(createBookingAC(data));
+    }
+}
 
+// Edit a booking based on booking id
+export const editBookingThunk = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${payload.id}`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(editBookingAC(data));
+    }
+}
+
+// Delete a booking based on booking id
+export const deleteBookingThunk = (payload) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${payload.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+    });
+    if (response.ok) {
+        const data = await response.json();
+        dispatch(deleteBookingAC(data));
+    }
+}
+
+
+// Reducer
+const initialState = {};

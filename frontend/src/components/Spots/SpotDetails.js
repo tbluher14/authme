@@ -175,7 +175,6 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
             </div>
           </div>
           <div>
-            <SpotReviews />
             {reviewsArr.map(review => (
               <div className='review_container'>
                 <SpotReviews

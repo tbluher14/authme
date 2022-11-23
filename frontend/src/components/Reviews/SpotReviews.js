@@ -49,14 +49,14 @@ function SpotReviews({ review, spot }) {
     }
   }
 
-return (
-  <>
-        {sessionUser && sessionUser?.id === review?.userId && (
-          <button className='edit-review-button' onClick={() => setEditing(true)}>Edit</button>
-        )}
-        {sessionUser && sessionUser?.id === review?.userId && (
-          <button className='delete-review-button' onClick={() => dispatch(deleteReview(review?.id))}>Delete</button>
-        )}
+  return (
+    <div>
+    {!editing && sessionUser && sessionUser?.id === review?.userId && (
+      <button className='edit-review-button' onClick={() => setEditing(true)}>Edit</button>
+      )}
+    {!editing && sessionUser && sessionUser?.id === review?.userId && (
+      <button className='delete-review-button' onClick={() => dispatch(deleteReview(review?.id))}>Delete</button>
+      )}
     {editing ?
         <form onSubmit={handleSubmit}>
           <textarea
@@ -79,21 +79,17 @@ return (
         <div>
           {submitted && errors.map(errors => (
             <div className='errors'>{errors}</div>
-          ))}
+            ))}
         </div>
         <button className="form-button" type="submit">Submit</button>
       </form>
       :
-      <>
-      <div className="review-message">
+      <div>
       {review?.review}
-      </div>
-      <div className="review-stars">
       {review?.stars}
       </div>
-      </>
     }
-  </>
+      </div>
   )
 }
 
