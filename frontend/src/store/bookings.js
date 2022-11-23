@@ -5,31 +5,31 @@ const EDIT_BOOKING = 'bookings/EDIT_BOOKING';
 const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
 
 
-const findAllBookingsAC = (payload) => {
+const findAllBookingsAC = (bookings) => {
     return {
         type: FIND_ALL_BOOKINGS,
-        payload
+        bookings
     }
 }
 
-const createBookingAC = (payload) => {
+const createBookingAC = (booking) => {
     return {
         type: CREATE_BOOKING,
-        payload
+        booking
     }
 }
 
-const editBookingAC = (payload) => {
+const editBookingAC = (booking) => {
     return {
         type: EDIT_BOOKING,
-        payload
+        booking
     }
 }
 
-const deleteBookingAC = (payload) => {
+const deleteBookingAC = (bookingId) => {
     return {
         type: DELETE_BOOKING,
-        payload
+        bookingId
     }
 }
 
@@ -91,3 +91,30 @@ export const deleteBookingThunk = (payload) => async (dispatch) => {
 
 // Reducer
 const initialState = {};
+const bookingsReducer = (state = initialState, action) => {
+    let newState;
+    switch (action.type) {
+        case FIND_ALL_BOOKINGS:
+            newState = { ...state };
+            action.bookings.forEach(booking => {
+                newState[booking.id] = booking;
+            });
+            return newState;
+        case CREATE_BOOKING:
+            newState = { ...state };
+            newState[action.booking.id] = action.booking;
+            return newState;
+        case EDIT_BOOKING:
+            newState = { ...state };
+            newState[action.booking.id] = action.booking;
+            return newState;
+        case DELETE_BOOKING:
+            newState = { ...state };
+            delete newState[action.bookingId];
+            return newState;
+        default:
+            return state;
+    }
+}
+
+export default bookingsReducer;
