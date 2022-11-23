@@ -59,7 +59,7 @@ function App() {
         <Modal
           onClose={() => dispatch(sessionActions.setShowLoginModal(false))}
         >
-          You must be logged in to host a property.
+          You must be logged in to host a spot.
           <LoginForm />
         </Modal>
       )}
