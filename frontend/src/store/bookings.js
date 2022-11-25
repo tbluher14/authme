@@ -44,8 +44,8 @@ export const findAllBookingsThunk = () => async (dispatch) => {
 }
 
 // Create a booking based on spot id
-export const createBookingThunk = (payload) => async (dispatch) => {
-    const response = await csrfFetch('/api/bookings', {
+export const createBookingThunk = (payload, spotId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/bookings/${spotId}`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'

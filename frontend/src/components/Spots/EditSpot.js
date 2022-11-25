@@ -49,13 +49,13 @@ useEffect(() => {
       return dispatch(editASpot(selectedSpot, spotId))
       .then((res) => {
         setSubmitSuccess(true)
-        console.log('this is res in the edit .then', res)
+
         dispatch(listAllSpots())
       })
       .catch(async (res) => {
           setSubmitSuccess(false)
           const data = await res.json();
-          console.log("this is data in catch", data)
+
           if (data && data.errors) {
             setErrors(Object.values(data.errors))
           }
@@ -73,13 +73,13 @@ useEffect(() => {
 
       .then((res) => {
       setSubmitSuccess(true)
-      console.log('this is res in the edit .then', res)
+
       dispatch(listAllSpots())
     })
     .catch(async (res) => {
         const data = await res.json();
         setSubmitSuccess(false)
-        console.log("this is data in the catch error", data)
+ 
         if (data.errors) {setErrors(Object.values(data.errors))}
     })
   }

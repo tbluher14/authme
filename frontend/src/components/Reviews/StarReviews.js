@@ -15,7 +15,7 @@ function StarReviews({spot }) {
       const response = await dispatch(getSpotReviews(spot?.id));
 
       if (!response?.length) {
-        console.log(response)
+  
         return setAvgRating(spot.avgRating)
       }
       // get average and set
@@ -31,7 +31,7 @@ function StarReviews({spot }) {
       <>
 
           {avgRating}
-     
+
       </>
     </>
   );

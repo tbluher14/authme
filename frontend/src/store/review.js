@@ -48,7 +48,7 @@ export const getSpotReviews = (spotId) => async (dispatch) => {
     const data = await response.json();
 
     dispatch(findSpotReviews(data));
-    console.log(" data dispatch in thunk ", data)
+
     return data;
   }
   else {

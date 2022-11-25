@@ -15,10 +15,9 @@ function SignupForm() {
     const [lastName, setLastName] = useState('')
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
-    console.log("this is errors" ,errors)
-    // const history = useHistory()
 
-  console.log("errors in sign up", errors)
+
+
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -40,7 +39,7 @@ function SignupForm() {
           })
           .catch(async (res) => {
             const data = await res.json();
-            console.log("sign in error debug", data)
+
             if (data?.errors) setErrors([data.errors]);
             if (password!== confirmPassword){
               errors.push(["Confirm password"])

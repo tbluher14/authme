@@ -15,13 +15,10 @@ const ReviewForm = () => {
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
-  // console.log('errors in create review', errors)
-  const errorsArr = Object.values(errors)
-  // console.log('errorsarr', errorsArr)
 
-  // if (submitSuccess) {
-  //   return <Redirect to={`/spots/${spotId}`} />;
-  // }
+  const errorsArr = Object.values(errors)
+
+
 
   useEffect(() => {
     dispatch (listAllSpots())

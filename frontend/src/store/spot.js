@@ -58,7 +58,7 @@ const deleteSpot = (spot) => ({
 
 // Create Spot
 export const createNewSpot = (data) => async (dispatch) => {
-  console.log("create NEw spot thunk running this is data variable", data)
+
 
   const response = await csrfFetch("/api/spots", {
     method: "POST",
@@ -66,13 +66,13 @@ export const createNewSpot = (data) => async (dispatch) => {
     body: JSON.stringify(data),
   });
 
-  console.log('this is new spot thunk running - repsonse variable', response)
+
   if (response.ok) {
-    console.log("if res.ok then this is running")
+
     const spot = await response.json();
-    console.log("this is the spot variable in the if res.ok block", spot)
+
     dispatch(createSpot(spot));
-    console.log("this is after we dispatch createspot")
+
     return spot;
   }
   return response
@@ -195,7 +195,7 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
       spotId
     })
   })
-  console.log("response for delete", response)
+
   if (response.ok){
     const deletedSpot = await response.json()
     dispatch(deleteSpot(spotId))
@@ -207,7 +207,7 @@ export const deleteSpotById = (spotId) => async (dispatch) => {
 // Store
 const initialState = {};
 const spotReducer = (state = initialState, action) => {
-  console.log("spot reducer running this is action", action)
+
   let newState;
   switch (action.type) {
 
@@ -229,10 +229,10 @@ const spotReducer = (state = initialState, action) => {
         return allSpots;
       }
     case CREATE_SPOT: {
-      console.log("create spot case running")
+
       newState = {...state}
       newState[action.spot.id]= action.spot
-      console.log('this new state before create spot case return', newState)
+
       return newState
     }
     case UPDATE_SPOT: {
@@ -242,7 +242,6 @@ const spotReducer = (state = initialState, action) => {
     }
     case UPDATE_IMAGE: {
       newState = {...state}
-      console.log('action.spot', action.spot)
       newState[action.spot.id] = action.spot
       let allSpots = {...newState}
       return allSpots
