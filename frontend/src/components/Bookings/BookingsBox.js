@@ -37,7 +37,7 @@ const CreateBooking = () => {
 
   // Date Variables
   const today = new Date();
-  const todayDate = format(today, 'yyyy-MM-dd');
+  // const todayDate = format(today, 'yyyy-MM-dd');
   // const daysElapsed = -(new Date(startDate)).getTime() - new Date(endDate).getTime() / (1000 * 3600 * 24)).toFixed(0) + 1;
 
   const cleaningFee = (spot?.price / 10).toFixed(2);
@@ -89,7 +89,7 @@ return (
               type="date"
               value={startDate}
               disabled={spotBookings.length > 0}
-              placeholder={todayDate}
+              // placeholder={todayDate}
               onChange={(e) => setStartDate(e.target.value)}
               required
               >
