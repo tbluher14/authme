@@ -6,9 +6,15 @@ const router = express.Router();
 const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 const sequelize = require('sequelize');
-const { route } = require('./reviews');
+// const { route } = require('./reviews');
 
 
+
+// Get all bookings
+router.get('/', async (req, res) => {
+  const bookings = await Booking.findAll();
+  return res.json(bookings);
+});
 
 // Get all current user's bookings
 router.get('/current', requireAuth, async (req, res) => {
@@ -135,67 +141,15 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 
 // Create a booking based on spot id
 router.post('/:spotId', requireAuth, async (req, res) => {
-    const { spotId } = req.params;
+    const { spotId } = Number(req.body.spotId)
     const spot = await Spot.findByPk(spotId);
-    const { startDate, endDate } = req.body;
-    const err = {
-      "message": "Validation error",
-      "statusCode": 400,
-      "errors": {}
-    }
-    if (!startDate){
-        err.errors.startDate = "Start date is required"
-    }
-    if (!endDate){
-        err.errors.endDate = "End date is required"
-    }
-    if (startDate > endDate){
-        err.errors.endDate = "End date cannot come before start date"
-    }
-    if (!startDate || !endDate || startDate > endDate){
-        return res.json(err)
-    }
-    const date1 = new Date(endDate).getTime();
-    const date2 = new Date().getTime()
+    console.log("this is req in the backend", req.body)
 
-    if (date1 < date2) {
-      return res.status(400).json({
-        "message": "Cannot create a booking in the past",
-        "statusCode": 400,
-      })
-    }
-
-    const allDates = await Booking.findAll({
-        attributes: ["startDate", "endDate"],
-        where: {
-          spotId: spot.id,
-        },
-    })
-
-    for (let dates of allDates) {
-      let start = dates.startDate;
-      let end = dates.endDate;
-      let formattedStart = new Date(start).getTime();
-      let formattedEnd = new Date(end).getTime();
-      let formattedStartDate = new Date(startDate).getTime();
-      let formattedEndDate = new Date(endDate).getTime();
-      if (formattedStartDate >= formattedStart && formattedStartDate <= formattedEnd) {
-        err.errors.startDate = "Start date conflicts with an existing booking";
-        return res.json(err)
-      }
-      if (formattedEndDate >= formattedStart && formattedEndDate <= formattedEnd) {
-        err.errors.endDate = "End date conflicts with an existing booking";
-        return res.json(err)
-      }
-    }
-    if (err.errors["endDate"] || err.errors["startDate"]) {
-      return res.status(400).json(err);
-    }
     const booking = await Booking.create({
         userId: req.user.id,
-        spotId,
-        startDate,
-        endDate
+        spotId: req.body.spotId,
+        startDate: req.body.startDate,
+        endDate: req.body.endDate
     })
     return res.json(booking)
 })

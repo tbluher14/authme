@@ -86,7 +86,7 @@ const spots = await Spot.findAll({
           let numReviews = 0
           for (let i = 0; i<reviews.length; i++){
             if (spot.id === reviews[i].spotId){
-              console.log(reviews[i])
+     
               totalStars += reviews[i].stars
               numReviews ++
             }
@@ -110,7 +110,7 @@ const spots = await Spot.findAll({
 // ***************************************************************************************
 // create a spot
 router.post('/', requireAuth, async (req, res, next) => {
-    console.log(" post/create/spot backend route is running")
+
     const {
         ownerId,
         address,
@@ -125,22 +125,8 @@ router.post('/', requireAuth, async (req, res, next) => {
         previewImage
       } = req.body;
 
-      console.log("this is the req.body in the backend post create spot route", req.body)
+
       const { id } = req.user;
-      console.log("this is the req.user.id in the backend post create spot route", id )
-      // const newSpot = await Spot.create({
-      //   ownerId: id,
-      //   address,
-      //   city,
-      //   state,
-      //   country,
-      //   lat,
-      //   lng,
-      //   name,
-      //   description,
-      //   price,
-      //   previewImage
-      // });
 
 const error = {
         message: "Validation error",
@@ -151,85 +137,84 @@ const error = {
 
     if (!address) {
       error.errors.address = "Street address is required"
-      console.log("if not address running", error)
+
       return res.status(400).json(error)
     }
     if (address.length<3) {
       error.errors.address = "Please enter a valid address"
-      console.log("if not address running", error)
+
       return res.status(400).json(error)
     }
     if (!city) {
       error.errors.city = "City is required"
-      console.log("if not city running", error)
+
       return res.status(400).json(error)
     }
     if (city.length<3) {
       error.errors.address = "Please enter a valid city"
-      console.log("if not address running", error)
+
       return res.status(400).json(error)
     }
     if (!state) {
       error.errors.state = "State is required"
-      console.log("if not state running", error)
       return res.status(400).json(error)
     }
     if (state.length<3) {
       error.errors.address = "Please enter a valid state"
-      console.log("if not address running", error)
+
       return res.status(400).json(error)
     }
     if (!country) {
       error.errors.country = "Country is required"
-      console.log("if not country running", error)
+
       return res.status(400).json(error)
     }
     if (city.length>16){
       error.errors.address = "Please only enter the first 16 characters of the city"
-      // console.log("if not address running", error)
+
       return res.status(400).json(error)
     }
     if (state.length>16){
       error.errors.address = "Please only enter the first 16 characters of the state"
-      // console.log("if not address running", error)
+
       return res.status(400).json(error)
     }
     if (country.length<3) {
       error.errors.address = "Please enter a valid country"
-      console.log("if not address running", error)
+
       return res.status(400).json(error)
     }
     if (isNaN(+lat + 1)){ error.errors.lat = "Latitude is not a valid number"
-    console.log("this is errors in if lat +1", error)
+
     return res.status(400).json(error)
   }
   if (isNaN(+lng + 1)){ error.errors.lng = "Longitude is not a valid number"
-  console.log("this is errors in if lng +1", error)
+
   return res.status(400).json(error)
   }
   if (isNaN(+price + 1)){ error.errors.price = "Price is not a valid number"
-  console.log("this is errors in if price +1", error)
+
     return res.status(400).json(error)
   }
     if (!lng) {
 
       error.errors.lng = "Longitude is not valid"
-      console.log("if not long running", error)
+
       return res.status(400).json(error)
     }
     if (!name ) {
       error.errors.name = "Name must be less than 50 characters"
-      console.log("if not name running", error)
+
       return res.status(400).json(error)
     }
     if (!description){
        error.errors.description =  "Description is required"
-       console.log("if not description running", error)
+
        return res.status(400).json(error)
     }
     if (!price) {
       error.errors.price = "Price per day is required"
-      console.log("if not price running", error)
+
       return res.status(400).json(error)
     }
     const jpeg = "jpg"
@@ -250,7 +235,7 @@ const error = {
       price,
       previewImage
     });
-    console.log("this spot was created this is new spot", newSpot)
+
     return res.json(201, newSpot);
 })
 // ***************************************************************************************
@@ -274,7 +259,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 
     const spot = await Spot.findByPk(req.params.spotId);
 
-    console.log("this is address in edit spot backend", address)
+
     // check if spot exists
     if (!spot) {
       res.status(404);
@@ -296,96 +281,94 @@ router.put("/:spotId", requireAuth, async (req, res) => {
         }
         if (name.length < 3) {
           error.errors.name = "Please Enter a valid spot name"
-          console.log("if not address running", error)
+
           return res.status(400).json(error)
         }
 
       if (!address) {
         error.errors.address = "Street address is required"
-        console.log("if not address running", error)
+
         return res.status(400).json(error)
       }
 
       if (address.length<3) {
         error.errors.address = "Please enter a valid address"
-        console.log("if not address running", error)
+
         return res.status(400).json(error)
       }
       if (!city) {
         error.errors.city = "City is required"
-        console.log("if not city running", error)
+
         return res.status(400).json(error)
       }
       if (city.length<3) {
         error.errors.address = "Please enter a valid city"
-        console.log("if not address running", error)
+
         return res.status(400).json(error)
       }
       if (!state) {
         error.errors.state = "State is required"
-        console.log("if not state running", error)
+
         return res.status(400).json(error)
       }
       if (state.length<3) {
         error.errors.address = "Please enter a valid state"
-        console.log("if not address running", error)
+
         return res.status(400).json(error)
       }
       if (!country) {
         error.errors.country = "Country is required"
-        console.log("if not country running", error)
+
         return res.status(400).json(error)
       }
       if (country.length<3) {
         error.errors.address = "Please enter a valid country"
-        console.log("if not address running", error)
+
         return res.status(400).json(error)
       }
       if (city.length>16){
         error.errors.address = "Please only enter the first 16 characters of the city"
-        // console.log("if not address running", error)
+
         return res.status(400).json(error)
       }
       if (state.length>16){
         error.errors.address = "Please only enter the first 16 characters of the state"
-        // console.log("if not address running", error)
+
         return res.status(400).json(error)
       }
       if (isNaN(+lat + 1)){ error.errors.lat = "Latitude is not a valid number"
-      console.log("this is errors in if lat +1", error)
+
       return res.status(400).json(error)
     }
     if (isNaN(+lng + 1)){ error.errors.lng = "Longitude is not a valid number"
-    console.log("this is errors in if lng +1", error)
+
     return res.status(400).json(error)
     }
     if (isNaN(+price + 1)){ error.errors.price = "Price is not a valid number"
-    console.log("this is errors in if price +1", error)
+
       return res.status(400).json(error)
     }
       if (!lng) {
 
         error.errors.lng = "Longitude is not valid"
-        console.log("if not long running", error)
+
         return res.status(400).json(error)
       }
       if (!name ) {
         error.errors.name = "Name must be less than 50 characters"
-        console.log("if not name running", error)
         return res.status(400).json(error)
       }
       if (!description){
          error.errors.description =  "Description is required"
-         console.log("if not description running", error)
          return res.status(400).json(error)
       }
       if (!price) {
         error.errors.price = "Price per day is required"
-        console.log("if not price running", error)
+
         return res.status(400).json(error)
       }
 
-      console.log('this is the errors in edit spot', error)
+
     // update spot if it belongs to user
     spot.address = address;
     spot.city = city;
@@ -429,7 +412,6 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 router.delete('/:spotId', requireAuth, async (req, res) => {
     const spotId = req.params.spotId
     const spot = await Spot.findByPk(spotId)
-  console.log("this is the delete fetch in the backend",spot)
     if (!spot) {
         return res.json({
             message: 'Spot could not be found',
