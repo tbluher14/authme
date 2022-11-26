@@ -156,4 +156,5 @@ router.post('/:spotId', requireAuth, async (req, res) => {
 
 
 
+
 module.exports = router
