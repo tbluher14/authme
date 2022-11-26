@@ -139,20 +139,20 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     })
 })
 
-// Create a booking based on spot id
-router.post('/:spotId', requireAuth, async (req, res) => {
-    const { spotId } = Number(req.body.spotId)
-    const spot = await Spot.findByPk(spotId);
-    console.log("this is req in the backend", req.body)
+// // Create a booking based on spot id
+// router.post('/:spotId', requireAuth, async (req, res) => {
+//     const { spotId } = Number(req.body.spotId)
+//     const spot = await Spot.findByPk(spotId);
+//     console.log("this is req in the backend", req.body)
 
-    const booking = await Booking.create({
-        userId: req.user.id,
-        spotId: req.body.spotId,
-        startDate: req.body.startDate,
-        endDate: req.body.endDate
-    })
-    return res.json(booking)
-})
+//     const booking = await Booking.create({
+//         userId: req.user.id,
+//         spotId: req.body.spotId,
+//         startDate: req.body.startDate,
+//         endDate: req.body.endDate
+//     })
+//     return res.json(booking)
+// })
 
 
 
