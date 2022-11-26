@@ -44,23 +44,25 @@ const deleteBookingAC = (bookingId) => {
 
 // Thunks
 // Find all bookings
-export const findAllBookingsThunk = () => async (dispatch) => {
-    const response = await csrfFetch('/api/bookings');
-    if (response.ok) {
-        const data = await response.json();
-        dispatch(findAllBookingsAC(data));
-    }
-}
+// export const findAllBookingsThunk = () => async (dispatch) => {
+//     const response = await csrfFetch('/api/bookings');
+//     if (response.ok) {
+//         const data = await response.json();
+//         dispatch(findAllBookingsAC(data));
+//     }
+// }
 
 // Create a booking based on spot id
 export const createBookingThunk = (payload, spotId) => async (dispatch) => {
-    const response = await csrfFetch(`/api/bookings/${spotId}`, {
+    const reqData = {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(payload)
-    });
+    }
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`, reqData)
+
     if (response.ok) {
         const data = await response.json();
         dispatch(createBookingAC(data));
@@ -111,18 +113,13 @@ const initialState = {};
 const bookingsReducer = (state = initialState, action) => {
     let newState;
     switch (action.type) {
-        case FIND_ALL_BOOKINGS:
-            newState = { ...state };
-            action.bookings.forEach(booking => {
-                newState[booking.id] = booking;
-            });
-            return newState;
         case FIND_BY_SPOT_ID:
-            newState = {...action.bookings}
+            newState = {...action.bookings.Bookings}
             return newState
         case CREATE_BOOKING:
             newState = { ...state };
-            newState[action.booking.id] = action.booking;
+            // newState[action.booking.id] = action.booking;
+            newState[action.booking?.booking?.id] = action.booking?.booking;
             return newState;
         case EDIT_BOOKING:
             newState = { ...state };

@@ -3,9 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { createBookingThunk } from '../../store/bookings'
 import { getBookingsBySpotIdThunk } from '../../store/bookings'
-import LoginFormModal from '../LoginFormModal/index'
 import { useEffect } from 'react'
-import { listAllSpots } from '../../store/spot'
 
 const CreateBooking = () => {
   const dispatch = useDispatch()
@@ -24,21 +22,9 @@ const CreateBooking = () => {
   const [endDate, setEndDate] = useState('')
   const [errors, setErrors] = useState([])
 
-  // *************************************************************************
-
-
-  // Use Effect for Error Handling
-  useEffect(() => {
-    dispatch(getBookingsBySpotIdThunk(spotId))
-    validations()
-  }, [startDate, endDate])
-
-  // ************************************************************************************
-  // Specific Spot Variable
+// ************************************************************************************
+// Error Handling for booking:
   const spot = spots[spotId]
-
-
-  // Error handling for booking
   const cleaningFee = (spot?.price / 10).toFixed(2)
   const serviceFee = (spot?.price / 15).toFixed(2)
   const startDateNum = new Date(startDate) - 0
@@ -69,7 +55,25 @@ const CreateBooking = () => {
           return setErrors(errors)
         })
       }
+  // Use Effect for Error Handling
+    useEffect(() => {
+      dispatch(getBookingsBySpotIdThunk(spotId))
+      validations()
+      }, [startDateNum, endDateNum])
 
+  let errorsLi;
+
+  if (errors.length>0){
+    errorsLi = (
+      <div className='createBookingErrors'>
+        {(errors).map((error, i) => (
+          <div className="errorMessageContainer" key={i}>
+            <div className="errorMessage">{error}</div>
+          </div>
+        ))}
+      </div>
+    )
+  }
 
   // ************************************************************************************
   // Form Submission
@@ -96,17 +100,6 @@ const CreateBooking = () => {
     <div className='booking_container'>
       <div className='booking_container_top'>
         <h2>Book Your Stay!</h2>
-        <div className='form-container'>
-          {/* <div className='create_errors'> */}
-          {submitted &&
-            errors.map((error, ind) => (
-              // <div
-              // key={ind}
-              // className='error-message-container'
-              // >
-              <div className='create_event_error-message'>{error}</div>
-            ))}
-        </div>
         <div className='booking_container_top_left'>
           <div className='booking-price-box'>
             <div className='booking-price-per-night'>
@@ -122,6 +115,9 @@ const CreateBooking = () => {
           </div>
           <div className='input-container'>
             <form onSubmit={handleSubmit}>
+              <div className='CreateBookingErrorContainer'>
+                {errorsLi}
+              </div>
               <label className='form-label'>Start Date</label>
               <input
                 className='input-container'
