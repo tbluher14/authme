@@ -1,5 +1,6 @@
 import {csrfFetch} from './csrf'
 const FIND_ALL_BOOKINGS = 'bookings/FIND_ALL_BOOKINGS';
+const FIND_BY_SPOT_ID = 'bookings/FIND_BY_SPOT_ID';
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 const EDIT_BOOKING = 'bookings/EDIT_BOOKING';
 const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
@@ -11,6 +12,14 @@ const findAllBookingsAC = (bookings) => {
         bookings
     }
 }
+
+const getBookingsBySpotIdAC = (bookings) => {
+    return {
+        type: FIND_BY_SPOT_ID,
+        bookings
+    }
+}
+
 
 const createBookingAC = (booking) => {
     return {
@@ -88,6 +97,14 @@ export const deleteBookingThunk = (payload) => async (dispatch) => {
     }
 }
 
+// Find bookings by spot id
+export const getBookingsBySpotIdThunk = (spotId) => async dispatch => {
+    const response = await csrfFetch(`/api/spots/${spotId}/bookings`);
+    if (response.ok) {
+        const bookings = await response.json()
+        dispatch(getBookingsBySpotIdAC(bookings))
+    }
+}
 
 // Reducer
 const initialState = {};
@@ -100,6 +117,9 @@ const bookingsReducer = (state = initialState, action) => {
                 newState[booking.id] = booking;
             });
             return newState;
+        case FIND_BY_SPOT_ID:
+            newState = {...action.bookings}
+            return newState
         case CREATE_BOOKING:
             newState = { ...state };
             newState[action.booking.id] = action.booking;
