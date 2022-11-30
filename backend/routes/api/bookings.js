@@ -22,10 +22,25 @@ router.get('/current', requireAuth, async (req, res) => {
     const userBookings = await Booking.findAll({
         where: {userId: req.user.id},
         include: [
-            {model: Spot, attributes: {exclude: ['description', 'previewImage', 'createdAt', 'updatedAt']}},
+            {model: Spot},
         ],
     })
-
+    const images = await Image.findAll({
+      where: {
+           previewImage: true
+           },
+      attributes: ['id','url','spotId'],
+           raw: true
+       })
+    // console.log()
+    // attach images to spots
+    userBookings.forEach(booking => {
+      images.forEach(image => {
+          if(image.spotId === booking.spotId) {
+              booking.Spot.previewImage = image.url
+          }
+      })
+  });
     return res.json(userBookings)
 })
 
