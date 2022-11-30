@@ -17,7 +17,7 @@ const UserBookings = () => {
     const formatDate = (date) => {
         let newDate = new Date(date)
         let month = newDate.getMonth() + 1
-        let day = newDate.getDate()
+        let day = newDate.getDate() + 1
         let year = newDate.getFullYear()
         return `${month}-${day}-${year}`
     }
@@ -38,17 +38,17 @@ const UserBookings = () => {
             <>
               <div className="all_spots">
 
-                {bookingsArr.map((ele) => (
+                {bookingsArr?.map((ele) => (
                   <Link
                     to={`/spots/${ele?.Spot?.id}`}
-                    key={ele?.id}
+                    key={ele?.Spot.id}
                     className="single_spot"
                   >
                     <div key={ele.id}>
                       <div className="img">
                         <img
                           src={ele?.Spot?.previewImage}
-                          alt={ele.name}
+                          alt={ele?.Spot?.name}
                           className="spot_image_display"
                         ></img>
                       </div>
@@ -62,7 +62,7 @@ const UserBookings = () => {
                           </i>
                         <div className="spot_rating" id="star_review_score">
                           <div className="rating_tern">
-                          {ele?.avgRating === undefined ? "New!" : `${ele?.Spot.avgRating} / 5`}
+                          {ele?.avgRating === undefined ? "New!" : `${ele?.Spot?.avgRating} / 5`}
                           </div>
                           </div>
                       </div>
