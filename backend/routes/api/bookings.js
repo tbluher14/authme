@@ -139,6 +139,8 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
     })
 })
 
+
+// 
 // // Create a booking based on spot id
 // router.post('/:spotId', requireAuth, async (req, res) => {
 //     const { spotId } = Number(req.body.spotId)
