@@ -14,11 +14,21 @@ const UserBookings = () => {
     const bookingsArr = Object.values(bookings)
     const filteredBookings = bookingsArr.filter(booking => booking?.userId === sessionUser?.id)
     const spots = useSelector(state => state.spots)
-    const filteredSpots = filteredBookings.map(booking => spots[booking?.spotId])
+    let filteredSpots = filteredBookings.map(booking => spots[booking?.spotId])
     const bookingDates = filteredBookings.map(booking =>  [booking?.startDate, booking?.endDate])
-    console.log("this is booking dates", [filteredSpots,bookingDates])
+    // console.log("this is booking dates", [filteredSpots,bookingDates])
+    const combinedObj = {bookingDates, filteredSpots}
+    console.log("this is combinedObj", combinedObj)
 
+    const combineArrs = () => {
+        for (let i = 0; i < filteredSpots.length; i++) {
+            filteredSpots[i].startDate = bookingDates[i][0]
+            filteredSpots[i].endDate = bookingDates[i][1]
+        }
+        return filteredSpots
+    }
 
+    console.log(combineArrs())
 
     const [isLoaded, setIsLoaded] = useState(false)
 
@@ -34,10 +44,10 @@ const UserBookings = () => {
             <>
               <div className="all_spots">
 
-                {filteredSpots?.map((ele) => (
+                {combineArrs().map((ele) => (
                   <Link
-                    to={`/spots/${ele.id}`}
-                    key={ele.id}
+                    to={`/spots/${ele?.id}`}
+                    key={ele?.id}
                     className="single_spot"
                   >
                     <div key={ele.id}>
@@ -64,7 +74,7 @@ const UserBookings = () => {
                       </div>
                         </div>
                         <p className="spot_price">${ele.price} / night</p>
-                        <p className="booking_dates"></p>
+                        {/* <p className="booking_dates">{ele.startDate} - {ele.endDate}</p> */}
                       </div>
                     </div>
                   </Link>
