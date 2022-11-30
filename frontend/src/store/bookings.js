@@ -1,6 +1,6 @@
 import {csrfFetch} from './csrf'
 const FIND_ALL_BOOKINGS = 'bookings/FIND_ALL_BOOKINGS';
-
+const FIND_USER_BOOKINGS = 'bookings/FIND_USER_BOOKINGS';
 const FIND_BY_SPOT_ID = 'bookings/FIND_BY_SPOT_ID';
 const CREATE_BOOKING = 'bookings/CREATE_BOOKING';
 const EDIT_BOOKING = 'bookings/EDIT_BOOKING';
@@ -10,6 +10,13 @@ const DELETE_BOOKING = 'bookings/DELETE_BOOKING';
 const findAllBookingsAC = (bookings) => {
     return {
         type: FIND_ALL_BOOKINGS,
+        bookings
+    }
+}
+
+const findUserBookingsAC = (bookings) => {
+    return {
+        type: FIND_USER_BOOKINGS,
         bookings
     }
 }
@@ -102,6 +109,17 @@ export const getBookingsBySpotIdThunk = (spotId) => async dispatch => {
     }
 }
 
+// Find current user's bookings
+export const findUserBookingsThunk = () => async dispatch => {
+    const response = await csrfFetch(`/api/bookings/current`);
+
+    if (response.ok) {
+        const bookings = await response.json()
+        dispatch(findUserBookingsAC(bookings))
+    }
+}
+
+
 // Find all bookings
 export const findAllBookingsThunk = () => async dispatch => {
     const response = await csrfFetch(`/api/bookings`);
@@ -119,8 +137,11 @@ const bookingsReducer = (state = initialState, action) => {
         case FIND_BY_SPOT_ID:
             newState = {...action.bookings.Bookings}
             return newState
-        case FIND_ALL_BOOKINGS:
+        case FIND_USER_BOOKINGS:
             console.log("this is action.bookings", action.bookings)
+            newState = {...action.bookings}
+            return newState
+        case FIND_ALL_BOOKINGS:
             newState = {...action.bookings}
             return newState
         case CREATE_BOOKING:
