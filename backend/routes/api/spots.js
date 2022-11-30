@@ -86,7 +86,7 @@ const spots = await Spot.findAll({
           let numReviews = 0
           for (let i = 0; i<reviews.length; i++){
             if (spot.id === reviews[i].spotId){
-     
+
               totalStars += reviews[i].stars
               numReviews ++
             }
@@ -741,6 +741,7 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     startDate,
     endDate
   })
+  console.log("this is create booking in the backend", createBooking)
   await createBooking.save()
 
   return res.json(createBooking)

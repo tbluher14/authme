@@ -25,6 +25,7 @@ router.get('/current', requireAuth, async (req, res) => {
             {model: Spot, attributes: {exclude: ['description', 'previewImage', 'createdAt', 'updatedAt']}},
         ],
     })
+
     return res.json(userBookings)
 })
 
@@ -140,7 +141,7 @@ router.delete('/:bookingId', requireAuth, async (req, res) => {
 })
 
 
-// 
+//
 // // Create a booking based on spot id
 // router.post('/:spotId', requireAuth, async (req, res) => {
 //     const { spotId } = Number(req.body.spotId)
