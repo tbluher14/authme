@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import LoginForm from "./components/LoginFormModal/LoginForm";
 import SignupForm from "./components/SignupFormPage/SignupForm";
 import UsersReviews from "./components/Reviews/UserReviews";
+import UserBookings from "./components/Bookings/UserBookings";
 
 
 function App() {
@@ -49,6 +50,9 @@ function App() {
          <Route exact path='/createSpot'>
           <SpotForm/>
          </Route>
+         <Route exact path='/currentBookings'>
+          <UserBookings/>
+          </Route>
          <Route exact path='/'>
             <SplashPage />
           </Route>

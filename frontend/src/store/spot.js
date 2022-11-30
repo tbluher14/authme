@@ -185,6 +185,8 @@ export const thunkUpdateImage = (spotId, imageId, url) => async (dispatch) => {
 
 
 
+
+
 // delete spot by id
 export const deleteSpotById = (spotId) => async (dispatch) => {
 
@@ -215,6 +217,7 @@ const spotReducer = (state = initialState, action) => {
       newState = {}
       return newState
     }
+
     case GET_ALL_SPOTS: {
       newState = {};
       action.spots.forEach(
