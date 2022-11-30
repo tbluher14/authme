@@ -14,9 +14,8 @@ import {Modal} from './context/Modal'
 import { useSelector } from "react-redux";
 import LoginForm from "./components/LoginFormModal/LoginForm";
 import SignupForm from "./components/SignupFormPage/SignupForm";
-import SpotReviews from "./components/Reviews/SpotReviews";
 import UsersReviews from "./components/Reviews/UserReviews";
-import ReviewForm from "./components/Reviews/CreateReview";
+
 
 function App() {
   const dispatch = useDispatch();
