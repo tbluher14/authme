@@ -40,17 +40,18 @@ const CreateBooking = () => {
           if (startDateNum >= endDateNum) {
             errors.push('Checkout cannot be the same as or before Check-in')
           }
-          if ((startDateNum === bookedStartDate) || (startDateNum === bookedEndDate) || (endDateNum === bookedStartDate) || (endDateNum === bookedEndDate)) {
-            errors.push("Chosen dates conflicts with an existing booking")
-          }
-          if ((startDateNum > bookedStartDate) && (startDateNum < bookedEndDate)) {
-            errors.push('Chosen dates conflicts with an existing booking')
-          }
-          if ((startDateNum < bookedStartDate) && (endDateNum > bookedStartDate) && (endDateNum < bookedEndDate)) {
-            errors.push('Chosen dates conflicts with an existing booking')
-          }
-          if ((startDateNum < bookedStartDate) && (endDateNum > bookedEndDate)) {
-            errors.push('Chosen dates conflicts with an existing booking')
+          if (
+          (startDateNum === bookedStartDate) ||
+          (startDateNum === bookedEndDate) ||
+          (endDateNum === bookedStartDate) ||
+          (endDateNum === bookedEndDate) ||
+          ((startDateNum > bookedStartDate) && (startDateNum < bookedEndDate)) ||
+          ((startDateNum > bookedStartDate) && (startDateNum < bookedEndDate)) ||
+          ((startDateNum < bookedStartDate) && (endDateNum > bookedStartDate) && (endDateNum < bookedEndDate)) ||
+          ((startDateNum < bookedStartDate) && (endDateNum > bookedEndDate))
+          )
+          {
+            errors.push('This spot is unavailable for the selected dates')
           }
           return setErrors(errors)
         })
@@ -124,8 +125,6 @@ const CreateBooking = () => {
                 name='Booking Start Date'
                 type='date'
                 value={startDate}
-                // disabled={spotBookings.length > 0}
-                // placeholder={todayDate}
                 onChange={e => setStartDate(e.target.value)}
                 required
               ></input>
@@ -135,7 +134,6 @@ const CreateBooking = () => {
                 name='Booking End Date'
                 type='date'
                 value={endDate}
-                // disabled={spotBookings.length > 0}
                 placeholder='Start Date'
                 onChange={e => setEndDate(e.target.value)}
                 required

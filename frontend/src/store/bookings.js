@@ -43,14 +43,7 @@ const deleteBookingAC = (bookingId) => {
 }
 
 // Thunks
-// Find all bookings
-// export const findAllBookingsThunk = () => async (dispatch) => {
-//     const response = await csrfFetch('/api/bookings');
-//     if (response.ok) {
-//         const data = await response.json();
-//         dispatch(findAllBookingsAC(data));
-//     }
-// }
+
 
 // Create a booking based on spot id
 export const createBookingThunk = (payload, spotId) => async (dispatch) => {
