@@ -50,6 +50,9 @@ const UserBookings = () => {
                           src={ele?.Spot?.previewImage}
                           alt={ele?.Spot?.name}
                           className="spot_image_display"
+                          onError={e => {
+                            e.currentTarget.src = "https://images.unsplash.com/photo-1546593064-053d21199be1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80"
+                          }}
                         ></img>
                       </div>
                       <div className="spot_details">
