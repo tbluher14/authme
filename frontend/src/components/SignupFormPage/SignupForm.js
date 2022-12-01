@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch} from "react-redux";
 
 import * as sessionActions from "../../store/session";
@@ -16,7 +16,35 @@ function SignupForm() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const emailRegX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
+    useEffect(() => {
+      let errors = [];
+
+      if (firstName.length < 2 || firstName.length > 50) {
+        errors.push("first name: First Name must be between 2 and 50 characters.")
+      }
+      if (lastName.length < 2 || lastName.length > 50) {
+        errors.push("last name: Last Name must be between 2 and 50 characters.")
+      }
+      if (username.length < 2 || username.length > 50) {
+        errors.push("username: Username must be between 2 and 50 characters.")
+      }
+      if (!email.match(emailRegX)) {
+        errors.push("email: Email must be valid email address (ex@ex.com).")
+      }
+      if (email.length < 2 || email.length > 50) {
+        errors.push("email: Email must be between 2 and 50 characters.")
+      }
+      if (password.length < 6 || password.length > 50) {
+        errors.push('password: Password must be between 6 and 50 characters.');
+      }
+      if (password !== confirmPassword) {
+        errors.push('password: Passwords must match.');
+      }
+
+      setErrors(errors);
+    }, [firstName, lastName, username, email, password, confirmPassword]);
 
 
     const handleSubmit = async (e) => {
@@ -40,7 +68,7 @@ function SignupForm() {
           .catch(async (res) => {
             const data = await res.json();
 
-            if (data?.errors) setErrors([data.errors]);
+            if (data?.errors) setErrors(data.errors);
             if (password!== confirmPassword){
               errors.push(["Confirm password"])
             }
@@ -61,8 +89,8 @@ function SignupForm() {
             </h2>
           <form className="signup_form" onSubmit={handleSubmit}>
             <ul className="signUp_errors">
-               {errors.map((error, idx) => (
-                 <li key={idx}>{error}</li>
+               {errors.map((error) => (
+                 <li key={error.id}>{error.slice(error.indexOf(':') + 1)}</li>
                  ))}
             </ul>
             <label className="firstName_container">
