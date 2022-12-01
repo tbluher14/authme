@@ -58,11 +58,12 @@ router.post('/', validateSignup, async (req, res) => {
         statusCode: 403,
         errors: {}
       }
+      console.log("this is errors", error)
       const findUserByUsername = await User.findAll({
         where: {username: username}
       })
       if (findUserByUsername.length > 0){
-        error.errors = 'User with that username already exists'
+        error.errors = ['User with that username already exists']
         return res.status(403).json(error)
       }
       const findUserByEmail = await User.findAll({
