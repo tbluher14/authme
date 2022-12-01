@@ -14,3 +14,49 @@
     flex-direction: row;
     align-items: center;
   }
+
+  .review_button_container{
+    display: flex;
+    flex-direction: row;
+    /* margin-bottom: 20px; */
+  }
+
+  .edit-review-button{
+    border: none;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    background-color: #FF385C;
+    color: white;
+    position: relative;
+    bottom: 15px;
+    height: 25px;
+    width: 75px;
+    margin-right: 10px;
+  }
+
+  .edit-review-button:hover{
+    cursor: pointer;
+  }
+
+  .delete-review-button{
+    border: none;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    background-color: #FF385C;
+    color: white;
+    position: relative;
+    bottom: 15px;
+    height: 25px;
+    width: 75px;
+    margin-right: 10px;
+  }
+
+  .delete-review-button:hover{
+    cursor: pointer;
+  }
+
+  .review_stars{
+    margin-bottom: 10px;
+  }

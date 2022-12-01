@@ -1,4 +1,10 @@
-
+.review_text_input{
+    font-family: 'Montserrat', sans-serif;
+    width: 355px;
+    height: 100px;
+    border: 1px solid lightgray;
+    border-radius: 5px;
+}
 
    .review_stars_container{
     /* border: .5px solid #CDCDCD; */
@@ -41,16 +47,24 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    right: 3px;
+    right: 5px;
+    margin-bottom: 0px;
     /* margin-bottom: 20px; */
     font-family: 'Montserrat', sans-serif;
 }
 
+.create_review{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 
+}
 
 .errors_review_submit{
     display: flex;
-    position: relative;
-    bottom: 30px;
-    right: 15px;
+    flex-direction: column;
+    margin-bottom: 35px;
+    color: red;
+    font-size: 14px;
 }

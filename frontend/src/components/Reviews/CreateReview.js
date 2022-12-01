@@ -15,11 +15,6 @@ const ReviewForm = () => {
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
-
-  const errorsArr = Object.values(errors)
-
-
-
   useEffect(() => {
     dispatch (listAllSpots())
     dispatch(getSpotReviews(spotId))
@@ -30,8 +25,11 @@ const ReviewForm = () => {
     if (reviewMessage.length === 1 || reviewMessage.length  > 255 || reviewMessage.length === 0) {
         errors.push('Please enter a review between 2 and 255 characters.')
     }
+    if (stars>5 || stars < 1) {
+        errors.push('Please enter a rating between 1 and 5.')
+    }
     setErrors(errors)
-  }, [reviewMessage])
+  }, [reviewMessage, stars])
 
 
   const handleSubmit = (e) => {
@@ -53,12 +51,12 @@ const ReviewForm = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
+    <form onSubmit={handleSubmit} className="create_review">
+
       <h2 className="review_welcome_header">Create A Review:</h2>
       <ul className="errors_review_submit">
-          {submitted && errorsArr.map((error, idx) => (
-          <li key={idx}>{error}</li>
+          {submitted && errors.map((error, idx) => (
+            <li key={idx}>{error}</li>
         ))}
 
       </ul>
@@ -67,7 +65,7 @@ const ReviewForm = () => {
           <input
             type="number"
             placeholder="Rating"
-            className="review_text_input"
+            className="review_rating_input"
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required
@@ -75,8 +73,8 @@ const ReviewForm = () => {
           </label>
       <label className="review_stars_container">
         <span className="review_stars_text"> Message: </span>
-        <input
-          type="text-area"
+        <textarea
+          type="textarea"
           placeholder="Review Message"
           className="review_text_input"
           value={reviewMessage}
@@ -85,7 +83,6 @@ const ReviewForm = () => {
         />
       </label>
       <button type="submit" className="review_submit">Create Review</button>
-      </div>
     </form>
   );
 };

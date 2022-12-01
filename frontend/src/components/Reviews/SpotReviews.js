@@ -51,28 +51,30 @@ function SpotReviews({ review, spot }) {
 
   return (
     <div>
+      <div className="review_button_container">
     {!editing && sessionUser && sessionUser?.id === review?.userId && (
       <button className='edit-review-button' onClick={() => setEditing(true)}>Edit</button>
       )}
     {!editing && sessionUser && sessionUser?.id === review?.userId && (
       <button className='delete-review-button' onClick={() => dispatch(deleteReview(review?.id))}>Delete</button>
       )}
+      </div>
     {editing ?
         <form onSubmit={handleSubmit}>
-          <textarea
-          className="form-field"
-          type="text"
-          value={reviewMessage}
-          onChange={(e) => setReviewMessage(e.target.value)}
-          placeholder="Edit your review"
-          required
-          />
           <input
           className="form-field"
           value={stars}
           type="number"
           onChange={(e) => setStars(e.target.value)}
           placeholder="Edit your rating"
+          required
+          />
+          <textarea
+          className="form-field"
+          type="text"
+          value={reviewMessage}
+          onChange={(e) => setReviewMessage(e.target.value)}
+          placeholder="Edit your review"
           required
           />
 
@@ -84,9 +86,18 @@ function SpotReviews({ review, spot }) {
         <button className="form-button" type="submit">Submit</button>
       </form>
       :
-      <div>
-      {review?.review}
+      <div className="review_text_container">
+      <div className="review_stars">
+      <i
+        className='starImage'
+        class='fa-solid fa-star'
+        id='spot_details_star'
+      />
       {review?.stars}
+      </div>
+        <div className="review_text">
+      {review?.review}
+      </div>
       </div>
     }
       </div>

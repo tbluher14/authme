@@ -22,7 +22,6 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const sessionUser = useSelector(state => state.session.user)
   const [isLoaded, setIsLoaded] = useState(false)
   const reviewsArr = Object.values(reviews)
-  console.log("this is reviews", reviewsArr)
 
   const averageReview = (reviewsArr) => {
     let total = 0
