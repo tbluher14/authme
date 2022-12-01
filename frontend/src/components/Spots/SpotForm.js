@@ -35,7 +35,7 @@ const SpotForm = ({ spot }) => {
 
 
   const handleSubmit = (e) => {
-
+    window.scrollTo(0, 0);
     e.preventDefault();
     setErrors([]);
     let data = {

@@ -8,6 +8,7 @@ import ReviewForm from '../Reviews/CreateReview'
 import LoginFormModal from '../LoginFormModal'
 import './SpotDetails2.css'
 import CreateBooking from '../Bookings/BookingsBox'
+import { getSpotReviews } from '../../store/review'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams()
@@ -18,15 +19,29 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   const spot = useSelector(state => state.spots[spotId])
   const reviews = useSelector(state => state.reviews)
   const user = useSelector(state => state.session.user)
+  const sessionUser = useSelector(state => state.session.user)
   const [isLoaded, setIsLoaded] = useState(false)
   const reviewsArr = Object.values(reviews)
+  console.log("this is reviews", reviewsArr)
 
+  const averageReview = (reviewsArr) => {
+    let total = 0
+    let count = 0
+    if (reviewsArr.length>0){
+      reviewsArr.forEach(review => {
+        total += review.stars
+        count++
+      })
+    }
+    else { return "New"}
+    return (total / count).toFixed(1)
+  }
 
-  const sessionUser = useSelector(state => state.session.user)
 
   useEffect(
     e => {
       dispatch(findSpotById(spotId))
+      dispatch(getSpotReviews(spotId))
     },
     [dispatch, spotId]
   )
@@ -58,7 +73,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                   id='spot_details_star'
                 />
                 {}
-                <StarReviews spot={spot} />
+                {/* <StarReviews spot={spot} /> */}
+                {averageReview(reviewsArr)}
               </div>
               <h4>
                 {spot?.city}, {spot?.state}
@@ -92,6 +108,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 src={spot?.Images[spot.Images.length - 1]}
                 alt='spot_preview_image'
                 className='spot_image'
+                onError={e => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1546593064-053d21199be1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80"
+                }}
               >
                 {' '}
               </img>
@@ -100,6 +119,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 src={spot?.previewImage}
                 alt='spot_preview_image'
                 className='spot_image'
+                onError={e => {
+                  e.currentTarget.src = "https://images.unsplash.com/photo-1546593064-053d21199be1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80"
+                }}
               ></img>
             )}
           </div>
@@ -145,7 +167,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 class='fa-solid fa-star'
                 id='spot_details_star'
               />
-              <StarReviews spot={spot} />
+              {averageReview(reviewsArr)}
             </div>
           </div>
           <div>

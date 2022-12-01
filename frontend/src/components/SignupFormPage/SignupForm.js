@@ -51,6 +51,7 @@ function SignupForm() {
       e.preventDefault();
 
       // if (password === confirmPassword){
+        if (errors.length > 0) return
         setErrors([])
         await dispatch(
           sessionActions.signup({
@@ -72,11 +73,6 @@ function SignupForm() {
             if (password!== confirmPassword){
               errors.push(["Confirm password"])
             }
-            // const dataString = data.errors
-            // if (dataString) {
-            //   setErrors([dataString])
-            //   return errors
-            // }
           });
         }
       // }
