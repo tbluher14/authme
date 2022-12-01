@@ -156,18 +156,18 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
         </div>
         <div className='bottom_page_review_container'>
           <div className='reviews_header'>
-            <h2>Reviews</h2>
+            <h2 className='reviews_header'>Reviews</h2>
           </div>
-          <h3>Average Review:</h3>
           <div className='bottom_stars_reviews'>
-            <div className='review_avg_bottom'>
+          <h3>Average Review:</h3>
               <i
                 className='starImage'
                 class='fa-solid fa-star'
-                id='spot_details_star'
+                id='avg_review_star'
               />
-              {averageReview(reviewsArr)}
-            </div>
+              <div className='review_average_number'>
+                {averageReview(reviewsArr)}
+                </div>
           </div>
           <div>
             {reviewsArr.map(review => (

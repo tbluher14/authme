@@ -331,7 +331,7 @@
     /* margin-left: 20px; */
     /* margin-right: 15px; */
     height: 100%;
-    left: 5px;
+    /* left: 5px; */
     /* padding-bottom: 5px; */
     /* border-bottom: 1px solid grey; */
 }
@@ -348,7 +348,10 @@
 
 .reviews_header{
     display: flex;
-    position: relative;
+    margin-bottom: 0px;
+    align-items: center;
+    justify-content: center;
+    /* margin-left: 10px; */
 
 }
 .bottom_page_review_container{
@@ -361,7 +364,7 @@
     width: 100%;
     height: 100%;
     border-top: 1px solid grey;
-    margin-bottom: 100px;
+    /* margin-bottom: 100px; */
     /* padding: 10px; */
 }
 
@@ -378,11 +381,7 @@
     bottom: 10px;
 }
 
-.review_avg_bottom{
-    position: relative;
 
-    /* bottom: 10px; */
-}
 .spot_details_review_button{
     border: none;
     border-radius: 7px;
@@ -394,7 +393,6 @@
     color: white;
     position: relative;
     font-family: 'Montserrat', sans-serif;
-
     height: 35px;
     width: 250px;
 }
@@ -411,14 +409,23 @@
     width: 500px;
     height: 100px;
     margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 30px;
     align-items: center;
     padding: 10px;
     justify-content: space-between;
 }
 
 .bottom_stars_reviews{
-    display: inline-flex;
-    position: relative;
-    left: 160px;
-    bottom: 39px;
+    display: flex;
+    flex-direction: row;
  }
+
+ #avg_review_star{
+    margin-left: 10px;
+    margin-top: 22px;
+ }
+.review_average_number{
+    margin-left: 5px;
+    margin-top: 20px;
+}

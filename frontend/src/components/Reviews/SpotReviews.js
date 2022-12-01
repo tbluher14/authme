@@ -49,6 +49,16 @@ function SpotReviews({ review, spot }) {
     }
   }
 
+  const handleDelete = async (e) => {
+    e.preventDefault();
+    const confirm = window.confirm("Are you sure you want to delete this review?")
+
+    if (confirm){
+      await dispatch(deleteReview(review?.id));
+    dispatch(getSpotReviews(spot.id));
+  }
+}
+
   return (
     <div>
       <div className="review_button_container">
@@ -56,7 +66,7 @@ function SpotReviews({ review, spot }) {
       <button className='edit-review-button' onClick={() => setEditing(true)}>Edit</button>
       )}
     {!editing && sessionUser && sessionUser?.id === review?.userId && (
-      <button className='delete-review-button' onClick={() => dispatch(deleteReview(review?.id))}>Delete</button>
+      <button className='delete-review-button' onClick={handleDelete}>Delete</button>
       )}
       </div>
     {editing ?

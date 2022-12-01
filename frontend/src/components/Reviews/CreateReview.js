@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
 import { createNewReview, getSpotReviews } from "../../store/review";
 import { listAllSpots } from "../../store/spot";
@@ -10,10 +10,22 @@ const ReviewForm = () => {
   const dispatch = useDispatch();
   let { spotId } = useParams();
   spotId = Number(spotId);
+
+  const reviews = useSelector((state) => state.reviews);
+  const sessionUser = useSelector((state) => state.session.user);
+
+
   const [reviewMessage, setReviewMessage] = useState("");
   const [stars, setStars] = useState("");
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
+
+  
+  const userHasAReview = Object.values(reviews).some(
+    (review) => review.userId === sessionUser?.id
+  );
+
+  console.log(userHasAReview)
 
   useEffect(() => {
     dispatch (listAllSpots())
@@ -50,7 +62,7 @@ const ReviewForm = () => {
     }
   };
 
-  return (
+  return !userHasAReview && (
     <form onSubmit={handleSubmit} className="create_review">
 
       <h2 className="review_welcome_header">Create A Review:</h2>
