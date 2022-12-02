@@ -30,7 +30,7 @@ const CreateBooking = () => {
   const serviceFee = (spot?.price / 15)
   const startDateNum = new Date(startDate) - 0
   const endDateNum = new Date(endDate) - 0
-  const totalDays = (endDateNum - startDateNum) / 86400000
+  const totalDays = (startDateNum && endDateNum) (endDateNum - startDateNum) / 86400000
   const totalCost = (totalDays * spot?.price) + serviceFee + cleaningFee
   const validations = () => {
         let errors = []
