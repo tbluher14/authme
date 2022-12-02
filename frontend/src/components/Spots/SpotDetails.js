@@ -1,24 +1,24 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, useHistory, NavLink, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-import { findSpotById, deleteSpotById, clearState, listAllSpots } from '../../store/spot'
+import { findSpotById, deleteSpotById, listAllSpots } from '../../store/spot'
+import { getSpotReviews } from '../../store/review'
 import SpotReviews from '../Reviews/SpotReviews'
-import StarReviews from '../Reviews/StarReviews'
 import ReviewForm from '../Reviews/CreateReview'
+import CreateBooking from '../Bookings/BookingsBox'
 import LoginFormModal from '../LoginFormModal'
 import './SpotDetails2.css'
-import CreateBooking from '../Bookings/BookingsBox'
-import { getSpotReviews } from '../../store/review'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams()
   if (!spotId) {spotId = passedSpotId}
   spotId = Number(spotId)
+
+  
   const dispatch = useDispatch()
   const history = useHistory()
   const spot = useSelector(state => state.spots[spotId])
   const reviews = useSelector(state => state.reviews)
-  const user = useSelector(state => state.session.user)
   const sessionUser = useSelector(state => state.session.user)
   const [isLoaded, setIsLoaded] = useState(false)
   const reviewsArr = Object.values(reviews)
@@ -55,6 +55,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
     .then(setIsLoaded(false))
   }
 }
+  const openLoginModal = () => {
+    return <LoginFormModal/>
+  }
 
   return (
     <div className='page_container'>
@@ -186,7 +189,10 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           sessionUser && <ReviewForm spot={spotId} />
         ) : (
           <div className='logged-out-review-container'>
-          <h3>Login to leave a review!</h3><LoginFormModal/>
+
+          <div onClick={() => openLoginModal}>Login to leave a review!
+          </div>
+
           </div>
         )}
         </div>

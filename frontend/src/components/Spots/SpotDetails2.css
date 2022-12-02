@@ -328,12 +328,7 @@
     align-items: center;
     justify-content: center;
     width: 100%;
-    /* margin-left: 20px; */
-    /* margin-right: 15px; */
     height: 100%;
-    /* left: 5px; */
-    /* padding-bottom: 5px; */
-    /* border-bottom: 1px solid grey; */
 }
 
 /* Reviews SECTION ------------------ */
@@ -364,8 +359,6 @@
     width: 100%;
     height: 100%;
     border-top: 1px solid grey;
-    /* margin-bottom: 100px; */
-    /* padding: 10px; */
 }
 
 .review-list-rating {
@@ -380,6 +373,8 @@
     position: relative;
     bottom: 10px;
 }
+
+
 
 
 .spot_details_review_button{

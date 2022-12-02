@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { findAllBookingsThunk, findUserBookingsThunk } from "../../store/bookings"
+import { deleteBookingThunk, findAllBookingsThunk, findUserBookingsThunk } from "../../store/bookings"
 import {listAllSpots} from '../../store/spot'
 
 
@@ -9,21 +9,25 @@ import {listAllSpots} from '../../store/spot'
 
 const UserBookings = () => {
     const dispatch = useDispatch()
+    const [isLoaded, setIsLoaded] = useState(false)
     const bookings = useSelector(state => state.bookings)
-
     const bookingsArr = Object.values(bookings)
 
 
     const formatDate = (date) => {
         let newDate = new Date(date)
-        let month = newDate.getMonth() + 1
-        let day = newDate.getDate() + 1
-        let year = newDate.getFullYear()
-        return `${month}-${day}-${year}`
+        return newDate.toDateString()
     }
 
-
-    const [isLoaded, setIsLoaded] = useState(false)
+    const handleDelete =  (ele) => {
+      const alert = window.confirm('Are you sure you want to delete this spot?')
+        console.log("this is ele arg in the handle delete", ele)
+      if (alert) {
+        dispatch(deleteBookingThunk(ele))
+        .then(dispatch(findUserBookingsThunk()))
+        .then(setIsLoaded(false))
+      }
+    }
 
 
     useEffect(() => {
@@ -37,13 +41,8 @@ const UserBookings = () => {
     return isLoaded && (
             <>
               <div className="all_spots">
-
                 {bookingsArr?.map((ele) => (
-                  <Link
-                  to={`/spots/${ele?.Spot?.id}`}
-                  key={ele?.Spot.id}
-                  className="single_spot"
-                  >
+                  <div className="single_spot" key={ele?.id}>
                     <h4 className="booking_dates_header">Booking Dates </h4>
                   <p className="booking_dates">{formatDate(ele?.startDate)} - {formatDate(ele?.endDate)}</p>
                     <div key={ele?.id}>
@@ -76,9 +75,12 @@ const UserBookings = () => {
 
                       </div>
                     </div>
-                  </Link>
+                  {/* </Link> */}
+                  <button onClick={() => handleDelete(ele)}>Cancel Booking</button>
+                  </div>
                 ))}
               </div>
+
             </>
           );
         };
