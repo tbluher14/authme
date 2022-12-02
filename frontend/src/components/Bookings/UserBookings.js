@@ -1,11 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
-import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { deleteBookingThunk, findAllBookingsThunk, findUserBookingsThunk } from "../../store/bookings"
 import {listAllSpots} from '../../store/spot'
-
-
-
+import { deleteBookingThunk, findUserBookingsThunk } from "../../store/bookings"
 
 const UserBookings = () => {
     const dispatch = useDispatch()
@@ -21,7 +17,6 @@ const UserBookings = () => {
 
     const handleDelete =  (ele) => {
       const alert = window.confirm('Are you sure you want to delete this spot?')
-        console.log("this is ele arg in the handle delete", ele)
       if (alert) {
         dispatch(deleteBookingThunk(ele))
         .then(dispatch(findUserBookingsThunk()))
@@ -76,7 +71,10 @@ const UserBookings = () => {
                       </div>
                     </div>
                   {/* </Link> */}
-                  <button onClick={() => handleDelete(ele)}>Cancel Booking</button>
+                  <button
+                  onClick={() => handleDelete(ele)}
+                  className="user_bookings_delete_button"
+                  >Cancel Booking</button>
                   </div>
                 ))}
               </div>

@@ -20,12 +20,11 @@ const ReviewForm = () => {
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
-  
+
   const userHasAReview = Object.values(reviews).some(
     (review) => review.userId === sessionUser?.id
   );
 
-  console.log(userHasAReview)
 
   useEffect(() => {
     dispatch (listAllSpots())
