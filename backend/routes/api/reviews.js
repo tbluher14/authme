@@ -5,6 +5,14 @@ const { Op } = require("sequelize");
 const router = express.Router();
 
 
+// Get All Reviews
+router.get("/", async (req, res) => {
+    const reviews = await Review.findAll({
+        include: [User, Spot, Image]
+    });
+    return res.json(reviews);
+});
+
 // get Current user's reviews
 router.get('/current', requireAuth, async (req, res) => {
 
