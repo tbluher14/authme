@@ -2,9 +2,11 @@ import { useDispatch, useSelector } from "react-redux"
 import { useEffect, useState } from "react";
 import {listAllSpots} from '../../store/spot'
 import { deleteBookingThunk, findUserBookingsThunk } from "../../store/bookings"
+import { useHistory } from "react-router-dom";
 
 const UserBookings = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [isLoaded, setIsLoaded] = useState(false)
     const bookings = useSelector(state => state.bookings)
     const bookingsArr = Object.values(bookings)
@@ -15,23 +17,24 @@ const UserBookings = () => {
         return newDate.toDateString()
     }
 
-    const handleDelete =  (ele) => {
-      const alert = window.confirm('Are you sure you want to delete this spot?')
-      if (alert) {
-        dispatch(deleteBookingThunk(ele))
+    const handleDelete = async (ele) => {
+      // const alert = window.confirm('Are you sure you want to cancel this booking?')
+      // if (alert) {
+       dispatch(deleteBookingThunk(ele))
         .then(dispatch(findUserBookingsThunk()))
         .then(setIsLoaded(false))
-      }
+      // }
+      history.push('/bookings/current')
+      setIsLoaded(true)
     }
 
 
     useEffect(() => {
-        // dispatch(findAllBookingsThunk())
         dispatch(findUserBookingsThunk())
         dispatch(listAllSpots())
         setIsLoaded(true)
     }
-    , [dispatch])
+    , [])
 
     return isLoaded && (
             <>
@@ -72,7 +75,7 @@ const UserBookings = () => {
                     </div>
                   {/* </Link> */}
                   <button
-                  onClick={() => handleDelete(ele)}
+                  onClick={ () => handleDelete(ele)}
                   className="user_bookings_delete_button"
                   >Cancel Booking</button>
                   </div>

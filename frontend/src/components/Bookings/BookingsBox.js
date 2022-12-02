@@ -56,7 +56,7 @@ const CreateBooking = () => {
           return setErrors(errors)
         })
       }
-      
+
   // Use Effect for Error Handling
     useEffect(() => {
       dispatch(getBookingsBySpotIdThunk(spotId))
@@ -92,7 +92,7 @@ const CreateBooking = () => {
     }
 
     const result = await dispatch(createBookingThunk(payload))
-    .then(history.push(`/currentBookings`))
+    .then(history.push(`/bookings/current`))
     .then(setErrors([]))
 
   }
