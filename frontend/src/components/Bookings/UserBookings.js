@@ -40,11 +40,13 @@ const UserBookings = () => {
 
                 {bookingsArr?.map((ele) => (
                   <Link
-                    to={`/spots/${ele?.Spot?.id}`}
-                    key={ele?.Spot.id}
-                    className="single_spot"
+                  to={`/spots/${ele?.Spot?.id}`}
+                  key={ele?.Spot.id}
+                  className="single_spot"
                   >
-                    <div key={ele.id}>
+                    <h4 className="booking_dates_header">Booking Dates </h4>
+                  <p className="booking_dates">{formatDate(ele?.startDate)} - {formatDate(ele?.endDate)}</p>
+                    <div key={ele?.id}>
                       <div className="img">
                         <img
                           src={ele?.Spot?.previewImage}
@@ -71,7 +73,7 @@ const UserBookings = () => {
                       </div>
                         </div>
                         <p className="spot_price">${ele?.Spot?.price} / night</p>
-                        <p className="booking_dates">{formatDate(ele?.startDate)} - {formatDate(ele?.endDate)}</p>
+
                       </div>
                     </div>
                   </Link>

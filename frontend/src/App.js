@@ -50,7 +50,7 @@ function App() {
          <Route exact path='/createSpot'>
           <SpotForm/>
          </Route>
-         <Route exact path='/currentBookings'>
+         <Route exact path='/bookings/current'>
           <UserBookings/>
           </Route>
          <Route exact path='/'>

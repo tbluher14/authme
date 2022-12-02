@@ -36,7 +36,18 @@
   background-color: 	#DCDCDC;
 }
 
+.userBookings_button{
+  background-color: white;
+  border: none;
+  display: flex;
+  font-family: 'Montserrat', sans-serif;
+  border-radius: 3px;
+  padding: 5px;
+}
 
+.userBookings_button:hover{
+  background-color: 	#DCDCDC;
+}
 .userSpots_button{
   background-color: white;
   border: none;
