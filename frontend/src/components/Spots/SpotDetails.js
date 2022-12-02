@@ -14,7 +14,6 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   if (!spotId) {spotId = passedSpotId}
   spotId = Number(spotId)
 
-
   const dispatch = useDispatch()
   const history = useHistory()
 
