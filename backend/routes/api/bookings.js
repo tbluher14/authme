@@ -32,7 +32,7 @@ router.get('/current', requireAuth, async (req, res) => {
       attributes: ['id','url','spotId'],
            raw: true
        })
-    // console.log()
+
     // attach images to spots
     userBookings.forEach(booking => {
       images.forEach(image => {
@@ -126,8 +126,6 @@ if (endDate < currentDate) {
 router.delete('/:bookingId', requireAuth, async (req, res) => {
     const booking = await Booking.findByPk(req.params.bookingId)
     const currentUser = req.user.id
-
-    console.log("this is the booking in the backend", booking)
 
     if (!booking){
       return res.json({

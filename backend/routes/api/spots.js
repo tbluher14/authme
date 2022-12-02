@@ -741,7 +741,6 @@ router.post('/:spotId/bookings', requireAuth, async(req, res) => {
     startDate,
     endDate
   })
-  console.log("this is create booking in the backend", createBooking)
   await createBooking.save()
 
   return res.json(createBooking)

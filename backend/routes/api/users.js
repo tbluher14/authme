@@ -58,7 +58,6 @@ router.post('/', validateSignup, async (req, res) => {
         statusCode: 403,
         errors: {}
       }
-      console.log("this is errors", error)
       const findUserByUsername = await User.findAll({
         where: {username: username}
       })
