@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { createBookingThunk } from '../../store/bookings'
 import { getBookingsBySpotIdThunk } from '../../store/bookings'
 import { useEffect } from 'react'
+import "../Spots/SpotDetails2.css"
 
 const CreateBooking = () => {
   const dispatch = useDispatch()
@@ -25,11 +26,12 @@ const CreateBooking = () => {
 // ************************************************************************************
 // Error Handling for booking:
   const spot = spots[spotId]
-  const cleaningFee = (spot?.price / 10).toFixed(2)
-  const serviceFee = (spot?.price / 15).toFixed(2)
+  const cleaningFee = (spot?.price / 2)
+  const serviceFee = (spot?.price / 15)
   const startDateNum = new Date(startDate) - 0
   const endDateNum = new Date(endDate) - 0
-
+  const totalDays = (endDateNum - startDateNum) / 86400000
+  const totalCost = (totalDays * spot?.price) + serviceFee + cleaningFee
   const validations = () => {
         let errors = []
 
@@ -102,17 +104,17 @@ const CreateBooking = () => {
   return (
     <div className='booking_container'>
       <div className='booking_container_top'>
-        <h2>Book Your Stay!</h2>
+        <h2 className='booking_box_header'>Book Your Stay!</h2>
         <div className='booking_container_top_left'>
           <div className='booking-price-box'>
             <div className='booking-price-per-night'>
               {startDate && endDate
-                ? // `${spot?.price} per night x ${daysElapsed.toFixed(0)} Nights = $${(spot?.price * daysElapsed)}
-                  `+
-               $${cleaningFee} cleaning fee
-                + $${serviceFee} service fee
-                = $ before taxes
-               `
+                ?
+                `${spot?.price} per night x ${totalDays.toFixed(0)} Nights = $${(spot?.price * totalDays)}`
+                 `+ ${cleaningFee} cleaning fee`
+                `+ $${serviceFee} service fee`
+                `= $${totalCost} before taxes`
+
                 : `Enter Dates to See Price`}
             </div>
           </div>
