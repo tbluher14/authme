@@ -60,3 +60,40 @@
   .review_stars{
     margin-bottom: 10px;
   }
+
+  .edit-form-field{
+    margin-bottom: 10px;
+  }
+
+  .edit_review_header{
+    margin-bottom: 5px;
+    margin-top:10px;
+  }
+
+  .edit-review-field{
+    width: 72%;
+    height: 70%;
+    border-radius: 6px;
+    /* margin-bottom: 00px;÷ */
+    margin-top: 5px;
+    font-family:'Montserrat', sans-serif ;
+  }
+
+  .edit-form-button{
+    border: none;
+    border-radius: 7px;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+    margin-bottom: 0px;
+    font-size: 14px;
+    background-color: #FF385C;
+    color: white;
+    position: relative;
+    bottom: 15px;
+    height: 25px;
+    width: 75px;
+  }
+
+  .review_card_username{
+    margin-bottom: 10px;
+  }

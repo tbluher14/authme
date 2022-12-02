@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useHistory, NavLink, Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { findSpotById, deleteSpotById, listAllSpots } from '../../store/spot'
-import { getSpotReviews } from '../../store/review'
+import { getAllReviewsThunk, getSpotReviews } from '../../store/review'
 import SpotReviews from '../Reviews/SpotReviews'
 import ReviewForm from '../Reviews/CreateReview'
 import CreateBooking from '../Bookings/BookingsBox'
@@ -14,14 +14,18 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   if (!spotId) {spotId = passedSpotId}
   spotId = Number(spotId)
 
-  
+
   const dispatch = useDispatch()
   const history = useHistory()
+
   const spot = useSelector(state => state.spots[spotId])
   const reviews = useSelector(state => state.reviews)
   const sessionUser = useSelector(state => state.session.user)
-  const [isLoaded, setIsLoaded] = useState(false)
+
   const reviewsArr = Object.values(reviews)
+  const filteredReviews = reviewsArr.filter(review => review.spotId === spotId)
+  const [isLoaded, setIsLoaded] = useState(false)
+
 
   const averageReview = (reviewsArr) => {
     let total = 0
@@ -40,7 +44,7 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
   useEffect(
     e => {
       dispatch(findSpotById(spotId))
-      dispatch(getSpotReviews(spotId))
+      dispatch(getAllReviewsThunk())
     },
     [dispatch, spotId]
   )
@@ -53,8 +57,9 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
     const result = await dispatch(deleteSpotById(spotId))
     .then(dispatch(listAllSpots()))
     .then(setIsLoaded(false))
+    }
   }
-}
+
   const openLoginModal = () => {
     return <LoginFormModal/>
   }
@@ -169,11 +174,11 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 id='avg_review_star'
               />
               <div className='review_average_number'>
-                {averageReview(reviewsArr)}
+                {averageReview(filteredReviews)}
                 </div>
           </div>
           <div>
-            {reviewsArr.map(review => (
+            {filteredReviews.map(review => (
               <div className='review_container'>
                 <SpotReviews
                   review={review}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteReview, editReview, getSpotReviews } from "../../store/review";
+import { deleteReview, editReview, getAllReviewsThunk, getSpotReviews } from "../../store/review";
+import { getAllUsersThunk } from "../../store/session";
 import "./SpotReviews.css";
 
 function SpotReviews({ review, spot }) {
@@ -8,6 +9,9 @@ function SpotReviews({ review, spot }) {
   const reviewsObj = useSelector((state) => state.reviews)
   const reviews = Object.values(reviewsObj);
   const sessionUser = useSelector((state) => state.session.user);
+  // const filteredReviews = reviews.filter((review) => review.spotId === spot.id);
+
+  console.log("this is review prop", review)
 
   const [reviewMessage, setReviewMessage] = useState("");
   const [stars, setStars] = useState(0);
@@ -25,8 +29,9 @@ function SpotReviews({ review, spot }) {
 
 
   useEffect(() => {
-    dispatch(getSpotReviews(spot?.id));
-  }, [dispatch, spot?.id]);
+    dispatch(getAllReviewsThunk())
+
+  }, [dispatch]);
 
 
   if (!reviews.length) {
@@ -70,9 +75,12 @@ function SpotReviews({ review, spot }) {
       )}
       </div>
     {editing ?
+    <div>
+      <h4 className="edit_review_header">Edit Your Review</h4>
+
         <form onSubmit={handleSubmit}>
           <input
-          className="form-field"
+          className="edit-stars-field"
           value={stars}
           type="number"
           onChange={(e) => setStars(e.target.value)}
@@ -80,7 +88,7 @@ function SpotReviews({ review, spot }) {
           required
           />
           <textarea
-          className="form-field"
+          className="edit-review-field"
           type="text"
           value={reviewMessage}
           onChange={(e) => setReviewMessage(e.target.value)}
@@ -90,12 +98,15 @@ function SpotReviews({ review, spot }) {
 
         <div>
           {submitted && errors.map(errors => (
-            <div className='errors'>{errors}</div>
+            <div className='editing_errors'>{errors}</div>
             ))}
         </div>
-        <button className="form-button" type="submit">Submit</button>
+        <button className="edit-form-button" type="submit">Submit</button>
       </form>
+    </div>
       :
+      <div>
+      <div className="review_card_username">{review?.User?.username}</div>
       <div className="review_text_container">
       <div className="review_stars">
       <i
@@ -107,6 +118,7 @@ function SpotReviews({ review, spot }) {
       </div>
         <div className="review_text">
       {review?.review}
+      </div>
       </div>
       </div>
     }
