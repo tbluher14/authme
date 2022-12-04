@@ -43,7 +43,7 @@ const ReviewForm = () => {
   }, [reviewMessage, stars])
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitted(true)
     if (errors.length === 0){
@@ -53,7 +53,7 @@ const ReviewForm = () => {
       };
 
       if (reviewMessage.length >= 1 && reviewMessage.length <= 255) {
-        const awaitedReview = dispatch(createNewReview(data, spotId));
+        const awaitedReview = await dispatch(createNewReview(data, spotId));
         dispatch(getSpotReviews(spotId));
         setReviewMessage("")
         setSubmitted(false)

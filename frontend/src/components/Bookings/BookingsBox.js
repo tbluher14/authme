@@ -30,8 +30,12 @@ const CreateBooking = () => {
   const serviceFee = (spot?.price / 15)
   const startDateNum = new Date(startDate) - 0
   const endDateNum = new Date(endDate) - 0
-  const totalDays = (startDateNum && endDateNum) (endDateNum - startDateNum) / 86400000
-  const totalCost = (totalDays * spot?.price) + serviceFee + cleaningFee
+  // const totalDays = () => {
+  //   if (startDateNum && endDateNum) {
+  //     return (startDateNum && endDateNum) (endDateNum - startDateNum) / 86400000
+  //   }
+  // }
+  // const totalCost = (totalDays * spot?.price) + serviceFee + cleaningFee
   const validations = () => {
         let errors = []
 
@@ -107,7 +111,7 @@ const CreateBooking = () => {
         <h2 className='booking_box_header'>Book Your Stay!</h2>
         <div className='booking_container_top_left'>
           <div className='booking-price-box'>
-            <div className='booking-price-per-night'>
+            {/* <div className='booking-price-per-night'>
               {startDate && endDate
                 ?
                 `${spot?.price} per night x ${totalDays.toFixed(0)} Nights = $${(spot?.price * totalDays)}`
@@ -116,7 +120,7 @@ const CreateBooking = () => {
                 `= $${totalCost} before taxes`
 
                 : `Enter Dates to See Price`}
-            </div>
+            </div> */}
           </div>
           <div className='input-container'>
             <form onSubmit={handleSubmit}>

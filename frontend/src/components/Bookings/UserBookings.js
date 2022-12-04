@@ -29,7 +29,7 @@ const UserBookings = () => {
     }
 
 
-    useEffect(() => {
+    useEffect( () => {
         dispatch(findUserBookingsThunk())
         dispatch(listAllSpots())
         setIsLoaded(true)
