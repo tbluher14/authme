@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { createBookingThunk } from '../../store/bookings'
 import { getBookingsBySpotIdThunk } from '../../store/bookings'
 import { useEffect } from 'react'
-import "../Spots/SpotDetails2.css"
+import "../Spots/SpotDetails.css"
 
 const CreateBooking = () => {
   const dispatch = useDispatch()
@@ -76,7 +76,7 @@ const CreateBooking = () => {
       <div className='createBookingErrors'>
         {(errors).map((error, i) => (
           <div className="errorMessageContainer" key={i}>
-            <div className="errorMessage">{error}</div>
+            <div className="create-booking-error-message">{error}</div>
           </div>
         ))}
       </div>

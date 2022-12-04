@@ -7,7 +7,7 @@ import SpotReviews from '../Reviews/SpotReviews'
 import ReviewForm from '../Reviews/CreateReview'
 import CreateBooking from '../Bookings/BookingsBox'
 import LoginFormModal from '../LoginFormModal'
-import './SpotDetails2.css'
+import './SpotDetails.css'
 
 const SpotDetails = ({ passedSpotId, hideButtons }) => {
   let { spotId } = useParams()

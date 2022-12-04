@@ -281,13 +281,22 @@
     position: relative;
     bottom: 10px;
     left: 15px;
-
 }
 
 .bottom_half_price_description{
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.create-booking-error-message{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
+    margin-bottom: 5px;
 }
 
 .create-booking-button{
