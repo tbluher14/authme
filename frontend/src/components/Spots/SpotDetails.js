@@ -191,9 +191,8 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
           sessionUser && <ReviewForm spot={spotId} />
         ) : (
           <div className='logged-out-review-container'>
-
-          <div onClick={() => openLoginModal}>Login to leave a review!
-          </div>
+          <h4 className='logged-out-review-header'>Log In to Leave a Review:</h4>
+          <LoginFormModal />
 
           </div>
         )}

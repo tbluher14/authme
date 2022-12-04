@@ -28,7 +28,7 @@ const CreateBooking = () => {
   const spot = spots[spotId]
   const cleaningFee = (spot?.price / 2)
   const serviceFee = (spot?.price / 15)
-  const startDateNum = new Date(startDate) -0
+  const startDateNum = new Date(startDate) - 0
   const endDateNum = new Date(endDate) - 0
   // const totalDays = () => {
   //   if (startDateNum && endDateNum) {

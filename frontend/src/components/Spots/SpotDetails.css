@@ -470,3 +470,15 @@
     margin-left: 5px;
     margin-top: 20px;
 }
+
+.logged-out-review-container{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.logged-out-review-header{
+    margin-right: 20px;
+}
