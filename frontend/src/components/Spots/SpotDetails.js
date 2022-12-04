@@ -176,7 +176,6 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 {averageReview(filteredReviews)}
                 </div>
           </div>
-          <div>
             {filteredReviews.map(review => (
               <div className='review_container'>
                 <SpotReviews
@@ -186,7 +185,6 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 />
               </div>
             ))}
-          </div>
           </div>
         <div className='create-review-spot-details'>
         {sessionUser ? (

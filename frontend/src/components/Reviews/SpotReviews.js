@@ -9,12 +9,10 @@ function SpotReviews({ review, spot }) {
   const reviewsObj = useSelector((state) => state.reviews)
   const reviews = Object.values(reviewsObj);
   const sessionUser = useSelector((state) => state.session.user);
-  // const filteredReviews = reviews.filter((review) => review.spotId === spot.id);
 
-  console.log("this is review prop", review)
 
-  const [reviewMessage, setReviewMessage] = useState("");
-  const [stars, setStars] = useState(0);
+  const [reviewMessage, setReviewMessage] = useState(review.review);
+  const [stars, setStars] = useState(review.stars);
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
   const [editing, setEditing] = useState(false);
@@ -24,8 +22,11 @@ function SpotReviews({ review, spot }) {
     if (reviewMessage.length === 1 || reviewMessage.length > 255 || reviewMessage.length === 0) {
       errors.push('Please enter a review between 2 and 255 characters.')
     }
+    if (stars > 5 || stars < 1) {
+      errors.push('Please enter a rating between 1 and 5.')
+    }
     setErrors(errors)
-  }, [reviewMessage])
+  }, [reviewMessage, stars])
 
 
   useEffect(() => {
@@ -67,12 +68,14 @@ function SpotReviews({ review, spot }) {
   return (
     <div>
       <div className="review_button_container">
+        <div className="review_buttons">
     {!editing && sessionUser && sessionUser?.id === review?.userId && (
       <button className='edit-review-button' onClick={() => setEditing(true)}>Edit</button>
       )}
     {!editing && sessionUser && sessionUser?.id === review?.userId && (
       <button className='delete-review-button' onClick={handleDelete}>Delete</button>
       )}
+      </div>
       </div>
     {editing ?
     <div>
