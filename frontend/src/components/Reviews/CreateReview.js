@@ -16,14 +16,12 @@ const ReviewForm = () => {
 
 
   const [reviewMessage, setReviewMessage] = useState("");
-  const [stars, setStars] = useState("");
+  const [stars, setStars] = useState("Rating");
   const [errors, setErrors] = useState([]);
   const [submitted, setSubmitted] = useState(false);
 
 
-  const userHasAReview = Object.values(reviews).some(
-    (review) => review.userId === sessionUser?.id
-  );
+  const userHasAReview = Object.values(reviews).filter(review => review.userId === sessionUser.id && review.spotId === spotId).length > 0
 
 
   useEffect(() => {
