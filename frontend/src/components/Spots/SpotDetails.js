@@ -80,10 +80,10 @@ const SpotDetails = ({ passedSpotId, hideButtons }) => {
                 />
                 {}
                 {/* <StarReviews spot={spot} /> */}
-                {averageReview(reviewsArr)}
+                {averageReview(filteredReviews)}
               </div>
               <h4>
-                {spot?.city}, {spot?.state}
+                - {spot?.city}, {spot?.state}
               </h4>
             </div>
             <div className='header_container_bottom_half_edit_delete'>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { clearState, thunkUpdateImage } from "../../store/spot";
+import {  thunkUpdateImage } from "../../store/spot";
 import { editASpot, findSpotById, listAllSpots } from "../../store/spot";
 import './EditSpot.css'
 
@@ -23,12 +23,9 @@ const EditSpot = () => {
   const updateLng = (e) => setSelectedSpot({...selectedSpot, lng:e.target.value});
   const updateDescription = (e) => setSelectedSpot({...selectedSpot, description:e.target.value});
   // const updatePreviewImage = (e) => setSelectedSpot({...selectedSpot, previewImage:e.target.value});
-  const [savedSpotId, setSavedSpotId] = useState(spotId)
   const [previewImage, setPreviewImage] = useState('')
 
 useEffect(() => {
-  // if (!spotId) history.push('/')
-
   async function fetchData() {
     const response = await dispatch(findSpotById(spotId));
     setSelectedSpot(response)
@@ -79,7 +76,7 @@ useEffect(() => {
     .catch(async (res) => {
         const data = await res.json();
         setSubmitSuccess(false)
- 
+
         if (data.errors) {setErrors(Object.values(data.errors))}
     })
   }

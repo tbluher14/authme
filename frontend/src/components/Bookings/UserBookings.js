@@ -36,6 +36,10 @@ const UserBookings = () => {
     }
     , [])
 
+    if (bookingsArr.length === 0){
+      return (<h2 className="user-bookings-none-header">Oh No! No Bookings Yet!</h2>)
+    }
+
     return isLoaded && (
             <>
               <div className="all_spots">

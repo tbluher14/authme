@@ -28,7 +28,7 @@ const CreateBooking = () => {
   const spot = spots[spotId]
   const cleaningFee = (spot?.price / 2)
   const serviceFee = (spot?.price / 15)
-  const startDateNum = new Date(startDate) - 0
+  const startDateNum = new Date(startDate) -0
   const endDateNum = new Date(endDate) - 0
   // const totalDays = () => {
   //   if (startDateNum && endDateNum) {
@@ -40,8 +40,8 @@ const CreateBooking = () => {
         let errors = []
 
         bookings?.map((booking) => {
-          let bookedStartDate = (new Date(booking?.startDate) - 0)
-          let bookedEndDate = (new Date(booking?.endDate) - 0)
+          let bookedStartDate = (new Date(booking?.startDate) -0 )
+          let bookedEndDate = (new Date(booking?.endDate) -0 )
 
           if (startDateNum >= endDateNum) {
             errors.push('Checkout cannot be the same as or before Check-in')
