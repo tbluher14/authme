@@ -36,7 +36,7 @@ Hosted On:
 
 ## Site Resources: 
 
-* [Gulp Live Link](http://authmetestdeploy.herokuapp.com/)
+* [bestBnB Live Link](http://authmetestdeploy.herokuapp.com/)
 * [API Routes](https://github.com/tbluher14/Gulp/wiki/API-Routes)
 * [Database Schema](https://github.com/tbluher14/Gulp/wiki/Database-Schema)
 * [MVP Features](https://github.com/tbluher14/Gulp/wiki/MVP-Features)
@@ -63,17 +63,27 @@ Hosted On:
 
 - List your home on BestBnB! Fill out the required fields and click submit to be taken to your newly created "Spot" page
 
+## Edit your Spot:
+
 <img width="681" alt="Screen Shot 2022-12-05 at 9 30 04 AM" src="https://user-images.githubusercontent.com/97054477/205690181-e2e8b527-971e-4a23-a625-b7ec3a0cad00.png">
 
 <img width="450" alt="Screen Shot 2022-12-05 at 9 30 14 AM" src="https://user-images.githubusercontent.com/97054477/205690197-2f7b0925-1336-4e23-b342-68bf97912ca0.png">
 
 - Make edits to your home to update any details! 
 
-## Add/Delete Menu Items as a Business Owner: 
+## Add/Edit/Delete Reviews: 
 
-<img width="294" alt="Screen Shot 2022-10-21 at 12 01 31 PM" src="https://user-images.githubusercontent.com/97054477/197260221-9220b1fb-0fc5-4594-b17b-f493179115b8.png">
+<img width="703" alt="Screen Shot 2022-12-05 at 9 33 26 AM" src="https://user-images.githubusercontent.com/97054477/205690923-cbaf744f-2a5f-4f6b-b884-d6a65e47a694.png">
 
-- After listing your business, you'll want to let other users know what all you offer! 
+<img width="693" alt="Screen Shot 2022-12-05 at 9 33 00 AM" src="https://user-images.githubusercontent.com/97054477/205691192-5a7f2743-3850-4f75-a5ed-704c654f2022.png">
+
+- After staying at someone's spot, leave a review to let them know how it was! 
+
+## Edit a Review
+
+<img width="665" alt="Screen Shot 2022-12-05 at 9 33 11 AM" src="https://user-images.githubusercontent.com/97054477/205691287-c14ad8c1-274f-481b-a535-126eb2347301.png">
+
+
 
 <img width="615" alt="Screen Shot 2022-10-21 at 12 00 59 PM" src="https://user-images.githubusercontent.com/97054477/197260222-233f0ddf-5059-4fae-8194-7735a312265a.png">
 
