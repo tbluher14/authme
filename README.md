@@ -40,7 +40,7 @@ Hosted On:
 * [API Routes](https://github.com/tbluher14/Gulp/wiki/API-Routes)
 * [Database Schema](https://github.com/tbluher14/Gulp/wiki/Database-Schema)
 * [MVP Features](https://github.com/tbluher14/Gulp/wiki/MVP-Features)
-* [React State Shape](https://github.com/tbluher14/Gulp/wiki/React-State-Shape)
+* [React State Shape](https://github.com/tbluher14/bestBnB/wiki/React-State-Shape)
 * [User Stories](https://github.com/tbluher14/Gulp/wiki/User-Stories)
 
 
