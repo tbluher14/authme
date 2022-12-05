@@ -75,30 +75,28 @@ Hosted On:
 
 <img width="703" alt="Screen Shot 2022-12-05 at 9 33 26 AM" src="https://user-images.githubusercontent.com/97054477/205690923-cbaf744f-2a5f-4f6b-b884-d6a65e47a694.png">
 
-<img width="693" alt="Screen Shot 2022-12-05 at 9 33 00 AM" src="https://user-images.githubusercontent.com/97054477/205691192-5a7f2743-3850-4f75-a5ed-704c654f2022.png">
-
 - After staying at someone's spot, leave a review to let them know how it was! 
 
-## Edit a Review
+## Edit/Delete a Review:
+
+<img width="693" alt="Screen Shot 2022-12-05 at 9 33 00 AM" src="https://user-images.githubusercontent.com/97054477/205691192-5a7f2743-3850-4f75-a5ed-704c654f2022.png">
 
 <img width="665" alt="Screen Shot 2022-12-05 at 9 33 11 AM" src="https://user-images.githubusercontent.com/97054477/205691287-c14ad8c1-274f-481b-a535-126eb2347301.png">
 
+- Had a change of heart? You can always go back and edit or delete your review
 
+## Create A Booking, My Bookings, and Delete a Booking:
 
-<img width="615" alt="Screen Shot 2022-10-21 at 12 00 59 PM" src="https://user-images.githubusercontent.com/97054477/197260222-233f0ddf-5059-4fae-8194-7735a312265a.png">
+<img width="343" alt="Screen Shot 2022-12-05 at 9 36 55 AM" src="https://user-images.githubusercontent.com/97054477/205692137-81fe3927-c59f-4232-8fcd-6ee08f207431.png">
 
-- List your businesses's delicious menu items with their menu name, price, and a valid image url displaying the food! 
+- Plan your next vacation using the booking tool on a Spot's page
 
-## Add Review: 
+<img width="247" alt="Screen Shot 2022-12-05 at 9 36 46 AM" src="https://user-images.githubusercontent.com/97054477/205692233-1b0d6e3b-e2fd-45a0-980f-ee99472bd14c.png">
 
-<img width="585" alt="Screen Shot 2022-10-21 at 12 05 53 PM" src="https://user-images.githubusercontent.com/97054477/197260960-8da31701-4d13-4fb6-a67d-7f3da354c90a.png">
+- To see your bookings, navigate to "My Bookings" from the drop down menu 
 
-- Check out other user's establishments and if you see one you've been to, leave them a review letting them know how your expierence was! 
+<img width="993" alt="Screen Shot 2022-12-05 at 9 37 05 AM" src="https://user-images.githubusercontent.com/97054477/205692317-0eb321ac-9d68-4296-b6a2-939001cfbe6d.png">
 
-## Edit/Delete A Review:
-
-<img width="343" alt="Screen Shot 2022-10-21 at 12 06 43 PM" src="https://user-images.githubusercontent.com/97054477/197261071-c2e4829d-3fac-4814-8433-09422d605708.png">
-
-- If you change your mind on a business and would like to change or remove your review, no worries, just click edit or delete review! 
+- If you need to cancel a booking, you can do some from the My Bookings page
 
 
