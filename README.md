@@ -19,10 +19,15 @@ Frontend:
 
 
 Backend:
-![image](https://user-images.githubusercontent.com/97054477/205687326-c09b8426-198b-4c77-bc05-c9f469a2f723.png)
-![image](https://user-images.githubusercontent.com/97054477/205687452-c3e4bece-2c4f-451f-9f94-15ae422d3560.png)
 
+![image](https://user-images.githubusercontent.com/97054477/205688656-4b01cef5-1708-4311-a06c-fc7f70f34b13.png)
+![image](https://user-images.githubusercontent.com/97054477/205688696-338de124-fb78-4dc9-ab7e-3b8e4c80964f.png)
 
+Database:
+![image](https://user-images.githubusercontent.com/97054477/205688804-a78ebfe8-6d5e-44db-b56f-3f094466e2f9.png)
+
+Hosted On:
+![image](https://user-images.githubusercontent.com/97054477/205688918-464135a3-4422-47d1-866e-ae78ebe43dbd.png)
 
 
 <br>
