@@ -38,7 +38,7 @@ Hosted On:
 
 * [bestBnB Live Link](http://authmetestdeploy.herokuapp.com/)
 * [API Routes](https://github.com/tbluher14/bestBnB/wiki/API-Docs)
-* [Database Schema](https://github.com/tbluher14/Gulp/wiki/Database-Schema)
+* [Database Schema](https://github.com/tbluher14/bestBnB/wiki/Database-Schema)
 * [MVP Features](https://github.com/tbluher14/Gulp/wiki/MVP-Features)
 * [React State Shape](https://github.com/tbluher14/bestBnB/wiki/React-State-Shape)
 * [User Stories](https://github.com/tbluher14/Gulp/wiki/User-Stories)
