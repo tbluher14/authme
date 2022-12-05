@@ -1,4 +1,4 @@
-# First Solo Full Stack Project - bestBnbB
+# First Solo Full Stack Project - bestBnB
 
 This is our clone of AirBnB, created for our App Academy's 24 week immersive bootcamp.
 
@@ -24,9 +24,11 @@ Backend:
 ![image](https://user-images.githubusercontent.com/97054477/205688696-338de124-fb78-4dc9-ab7e-3b8e4c80964f.png)
 
 Database:
+
 ![image](https://user-images.githubusercontent.com/97054477/205688804-a78ebfe8-6d5e-44db-b56f-3f094466e2f9.png)
 
 Hosted On:
+
 ![image](https://user-images.githubusercontent.com/97054477/205688918-464135a3-4422-47d1-866e-ae78ebe43dbd.png)
 
 
@@ -34,7 +36,7 @@ Hosted On:
 
 ## Site Resources: 
 
-* [Gulp Live Link](https://gulped.herokuapp.com/)
+* [Gulp Live Link](http://authmetestdeploy.herokuapp.com/)
 * [API Routes](https://github.com/tbluher14/Gulp/wiki/API-Routes)
 * [Database Schema](https://github.com/tbluher14/Gulp/wiki/Database-Schema)
 * [MVP Features](https://github.com/tbluher14/Gulp/wiki/MVP-Features)
@@ -45,24 +47,27 @@ Hosted On:
 ## Features: 
 ## Login or Signup as a New User: 
 
-<img width="578" alt="Screen Shot 2022-10-21 at 11 44 14 AM" src="https://user-images.githubusercontent.com/97054477/197257397-70e39350-5101-4aac-889b-9c408cd65eff.png">
+<img width="461" alt="Screen Shot 2022-12-05 at 9 27 38 AM" src="https://user-images.githubusercontent.com/97054477/205689485-a241b9d8-9a85-48e8-990f-25fb5f8fe245.png">
 
-- Sign up for our site with a valid email and user name and have access to all of Gulped's functionality
+<img width="526" alt="Screen Shot 2022-12-05 at 9 26 27 AM" src="https://user-images.githubusercontent.com/97054477/205689526-9e1fed56-0a08-4ea8-81ab-999b609a91dc.png">
 
-<img width="577" alt="Screen Shot 2022-10-21 at 11 44 04 AM" src="https://user-images.githubusercontent.com/97054477/197257179-7cb27071-df91-428e-a458-2f7202830e56.png">
-
+- Sign up for bestBnB with a valid email and user name and have access to all of Gulped's functionality
 - You can use you newly created account to log in
 - Or you can log in as a demo user 
 
-## Create/Edit/Delete A Business: 
+## Create/Edit/Delete A Spot: 
 
-<img width="578" alt="Screen Shot 2022-10-21 at 11 49 19 AM" src="https://user-images.githubusercontent.com/97054477/197259137-425cb957-809c-4bac-b063-637dac491d65.png">
+<img width="251" alt="Screen Shot 2022-12-05 at 9 29 30 AM" src="https://user-images.githubusercontent.com/97054477/205689952-fa0c7c7f-e208-40ef-b0a9-3c3bac9cb8b8.png">
 
-- List your business on Gulped! Fill out the required fields and click submit to be taken to your newly created Gulped page
+<img width="466" alt="Screen Shot 2022-12-05 at 9 29 22 AM" src="https://user-images.githubusercontent.com/97054477/205689975-fd1f34a5-8d0b-4e98-b9b9-4d6d7ce2bd59.png">
 
-<img width="524" alt="Screen Shot 2022-10-21 at 12 00 17 PM" src="https://user-images.githubusercontent.com/97054477/197259919-386510f8-255c-45e4-b5c2-2f4cbf9f3bc5.png">
+- List your home on BestBnB! Fill out the required fields and click submit to be taken to your newly created "Spot" page
 
-- Make edits to your business as things change! 
+<img width="681" alt="Screen Shot 2022-12-05 at 9 30 04 AM" src="https://user-images.githubusercontent.com/97054477/205690181-e2e8b527-971e-4a23-a625-b7ec3a0cad00.png">
+
+<img width="450" alt="Screen Shot 2022-12-05 at 9 30 14 AM" src="https://user-images.githubusercontent.com/97054477/205690197-2f7b0925-1336-4e23-b342-68bf97912ca0.png">
+
+- Make edits to your home to update any details! 
 
 ## Add/Delete Menu Items as a Business Owner: 
 
