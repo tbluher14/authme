@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { listAllSpots } from "../../store/spot";
 import "./SplashPage.css";
 import starImage from '../Reviews/StaticAssets/starImage.png'
+import Footer from "./footer";
 
 
 
@@ -60,6 +61,7 @@ const Homepage = () => {
             </div>
           </Link>
         ))}
+        <Footer />
       </div>
     </>
   );

@@ -1,4 +1,6 @@
-* About Me Page */
+
+
+
 .about-container{
     display: flex;
     flex-direction: column;
@@ -9,6 +11,20 @@
 
 }
 
+.about-body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    /* margin-left: 200px; */
+    /* margin-right: 100px; */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    text-align: center;
+}
 .about-header{
     display: flex;
     flex-direction: column;
@@ -28,7 +44,7 @@
     align-items: center;
     justify-content: center;
     margin-top: 20px;
-    margin-bottom: 20px;
+    /* margin-bottom: 20px; */
     margin-left: 100px;
     margin-right: 100px;
     font-family: 'Montserrat', sans-serif;
@@ -41,6 +57,10 @@
     height: 280px;
     width: 270px;
     border-radius: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
 }
 
 .about-technologies-header{
@@ -76,14 +96,21 @@
 
 .about-technologies-image{
     margin-left: 5px;
+    border-radius: 0px;
+    width: 90px;
+    height: 20px;
     box-shadow: 1px 1px 1px 1px lightgray;
 }
 
-.page-header{
+.about-page-header{
     text-shadow: 1px 1px 1px lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: black;
     text-decoration: underline;
     text-decoration-line: 1px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .github-linkedin-logos{

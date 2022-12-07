@@ -59,6 +59,7 @@ function ProfileButton({ user }) {
           <button onClick={showUsersReviews} className="userReviews_button">My Reviews</button>
           <button onClick={showUsersSpots} className="userSpots_button">My Spots</button>
           <button onClick={showUsersBookings} className="userBookings_button">My Bookings</button>
+          <button onClick={() => history.push('/about')} className="userBookings_button">About</button>
           {/* <NavLink to="/currentUser/spots" className="my_spots">
             My Spots
           </NavLink>
