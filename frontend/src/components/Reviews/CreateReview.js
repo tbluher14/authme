@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect, useParams } from "react-router-dom";
+import ReactStars from 'react-rating-stars-component'
 import { createNewReview, getSpotReviews } from "../../store/review";
 import { listAllSpots } from "../../store/spot";
 import './CreateReview.css'
@@ -71,13 +72,17 @@ const ReviewForm = () => {
       </ul>
         <label className="review_stars_container">
           <span className='review_stars_text'>Stars:</span>
-          <input
+          {/* <input
             type="number"
             placeholder="Rating"
             className="review_rating_input"
             value={stars}
             onChange={(e) => setStars(e.target.value)}
             required
+          /> */}
+          <ReactStars
+            value={stars}
+            onChange={(e) => setStars(e)}
           />
           </label>
       <label className="review_stars_container">
