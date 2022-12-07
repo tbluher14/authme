@@ -28,7 +28,13 @@ const UsersSpots = () => {
         <Link to={`/spots/${ele.id}`} key={ele.id}>
           <div key={ele.id} className="users_spots">
             <div>
-              <img src={ele.previewImage} alt={ele.name}></img>
+              <img
+              src={ele.previewImage}
+              alt={ele.name}
+              onError={e => {
+                e.currentTarget.src = "https://images.unsplash.com/photo-1546593064-053d21199be1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80"
+              }}
+              ></img>
             </div>
             <div>
               <h3>{ele.name}</h3>
