@@ -13,20 +13,26 @@ const UserBookings = () => {
 
 
     const formatDate = (date) => {
-        let newDate = new Date(date)
-        return newDate.toDateString()
+        let newDate = (new Date(date) + 1)
+        const dateArr = newDate.toString().split(' ')
+        const dateParse = parseInt(dateArr[2]) + 1
+        const dateString = dateArr[1] + " " + dateParse + ", " + dateArr[3]
+        return dateString
     }
 
-    const handleDelete = async (ele) => {
-      // const alert = window.confirm('Are you sure you want to cancel this booking?')
-      // if (alert) {
-       dispatch(deleteBookingThunk(ele))
+    const handleDelete = (ele) => {
+      const result = window.confirm("Are you sure you would like to cancel this booking?")
+      console.log("this is ele.id in handleDelete", ele.id)
+      if(result){
+        // setIsLoaded(false)
+         dispatch(deleteBookingThunk(ele.id))
         .then(dispatch(findUserBookingsThunk()))
-        .then(setIsLoaded(false))
-      // }
-      history.push('/bookings/current')
-      setIsLoaded(true)
+        .then( history.push('/bookings/current'))
+        // .then(listAllSpots())
+        .then(setIsLoaded(true))
+      }
     }
+
 
 
     useEffect( () => {
@@ -78,10 +84,10 @@ const UserBookings = () => {
                       </div>
                     </div>
                   {/* </Link> */}
-                  <button
+                  <div
                   onClick={ () => handleDelete(ele)}
                   className="user_bookings_delete_button"
-                  >Cancel Booking</button>
+                  >Cancel Booking</div>
                   </div>
                 ))}
               </div>

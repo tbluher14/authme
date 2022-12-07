@@ -26,16 +26,9 @@ const CreateBooking = () => {
 // ************************************************************************************
 // Error Handling for booking:
   const spot = spots[spotId]
-  const cleaningFee = (spot?.price / 2)
-  const serviceFee = (spot?.price / 15)
   const startDateNum = new Date(startDate) - 0
   const endDateNum = new Date(endDate) - 0
-  // const totalDays = () => {
-  //   if (startDateNum && endDateNum) {
-  //     return (startDateNum && endDateNum) (endDateNum - startDateNum) / 86400000
-  //   }
-  // }
-  // const totalCost = (totalDays * spot?.price) + serviceFee + cleaningFee
+
   const validations = () => {
         let errors = []
 
@@ -97,10 +90,10 @@ const CreateBooking = () => {
       userId: sessionUser.id
     }
 
-    const result = await dispatch(createBookingThunk(payload))
+    // const result = await
+    dispatch(createBookingThunk(payload))
     .then(history.push(`/bookings/current`))
     .then(setErrors([]))
-
   }
   }
 

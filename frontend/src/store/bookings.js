@@ -86,20 +86,17 @@ export const editBookingThunk = (payload) => async (dispatch) => {
 }
 
 // Delete a booking based on booking id
-export const deleteBookingThunk = (payload) => async (dispatch) => {
-
-    const response = await csrfFetch(`/api/bookings/${payload.id}`, {
-        method: 'DELETE',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(payload)
+export const deleteBookingThunk = (bookingId) => async (dispatch) => {
+    console.log("this is bookingid in THUNK", bookingId)
+    // console.log(payload)
+    const response =  csrfFetch(`/api/bookings/${bookingId}`, {
     });
-
+    console.log("THIS IS RESPONSE IN THE THUNK", response)
     if (response.ok) {
-        const data = await response.json();
-        dispatch(deleteBookingAC(data));
+        // const data = await response.json();
+        dispatch(deleteBookingAC(bookingId));
     }
+    return response
 }
 
 // Find bookings by spot id
@@ -140,7 +137,6 @@ const bookingsReducer = (state = initialState, action) => {
             newState = {...action.bookings.Bookings}
             return newState
         case FIND_USER_BOOKINGS:
-
             newState = {...action.bookings}
             return newState
         case FIND_ALL_BOOKINGS:
@@ -155,7 +151,9 @@ const bookingsReducer = (state = initialState, action) => {
             newState[action.booking.id] = action.booking;
             return newState;
         case DELETE_BOOKING:
-            newState = { ...state };
+            newState = { ...state};
+            console.log("this is new state", newState)
+            console.log("this is action", action)
             delete newState[action.bookingId];
             return newState;
         default:
