@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { createNewSpot } from "../../store/spot";
 import * as sessionActions from "../../store/session";
 import "./SpotForm.css";
@@ -24,7 +24,7 @@ const SpotForm = ({ spot }) => {
   const showLoginModal = useSelector((state) => state.session.showLoginModal);
   const showSignupModal = useSelector((state) => state.session.showSignupModal);
 
-
+  const history = useHistory()
 
   useEffect(() => {
     if (!user && !showLoginModal && !showSignupModal) {
@@ -58,6 +58,7 @@ const SpotForm = ({ spot }) => {
     .then(async (res) => {
       setSubmitSuccess(true);
       setErrors([])
+      history.push(`/spots/${res.id}`);
 
     })
     .catch(async (res) => {
