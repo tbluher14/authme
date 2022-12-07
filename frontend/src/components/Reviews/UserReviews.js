@@ -23,11 +23,15 @@ function UsersReviews() {
   }, [dispatch]);
 
   const removeReview = (reviewId) => async (e) => {
-    e.preventDefault();
-    await dispatch(deleteReview(reviewId));
-    await dispatch(getUserReviews());
+    const result = window.confirm("Are you sure you want to delete this review?")
 
-    history.push("/reviews/current");
+    if (result){
+      e.preventDefault();
+      await dispatch(deleteReview(reviewId));
+      await dispatch(getUserReviews());
+
+      history.push("/reviews/current");
+    }
   };
 
   if (userReviews.length === 0) {
