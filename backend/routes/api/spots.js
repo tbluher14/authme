@@ -159,7 +159,7 @@ const error = {
       error.errors.state = "State is required"
       return res.status(400).json(error)
     }
-    if (state.length<3) {
+    if (state.length<2) {
       error.errors.address = "Please enter a valid state"
 
       return res.status(400).json(error)
@@ -169,8 +169,8 @@ const error = {
 
       return res.status(400).json(error)
     }
-    if (city.length>16){
-      error.errors.address = "Please only enter the first 16 characters of the city"
+    if (city.length>20){
+      error.errors.address = "Please only enter the first 20 characters of the city"
 
       return res.status(400).json(error)
     }
@@ -311,7 +311,7 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 
         return res.status(400).json(error)
       }
-      if (state.length<3) {
+      if (state.length<2) {
         error.errors.address = "Please enter a valid state"
 
         return res.status(400).json(error)
@@ -326,8 +326,8 @@ router.put("/:spotId", requireAuth, async (req, res) => {
 
         return res.status(400).json(error)
       }
-      if (city.length>16){
-        error.errors.address = "Please only enter the first 16 characters of the city"
+      if (city.length>20){
+        error.errors.address = "Please only enter the first 20 characters of the city"
 
         return res.status(400).json(error)
       }
