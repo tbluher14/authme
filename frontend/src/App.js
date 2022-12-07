@@ -60,6 +60,9 @@ function App() {
          <Route exact path='/'>
             <SplashPage />
           </Route>
+          <Route exact path='/search'>
+          <QueriedSpot />
+          </Route>
         </Switch>
       )}
         {showLoginModal && (
