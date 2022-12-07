@@ -21,29 +21,24 @@ const Footer = () => {
             <div className="footer__right">
             <div className="footer__right__links">
                 <ul className="footer__right__ul">
-                <li>
-                    <a href="#" onClick={() => history.push('/about')}>
+                <li className="footer_li">
+                    <a href="#" className="footer_a" onClick={() => history.push('/about')}>
                         About Me
                         </a>
                 </li>
-                <li>
-                    <a href="https://github.com/tbluher14/bestBnB" target="_blank">
-                    <img className='home-page-github' src={github} alt="logo"></img>
+                <li className="footer_li">
+                    <a href="https://github.com/tbluher14/bestBnB" className="footer_a" target="_blank">
+                    <img className='footer-github' src={github} alt="logo"></img>
                         GitHub
                      </a>
                 </li>
-                <li>
-                    <a href="https://www.linkedin.com/in/tom-bluher-172321115/" target="_blank">
+                <li className="footer_li">
+                    <a href="https://www.linkedin.com/in/tom-bluher-172321115/"  className="footer_a" target="_blank">
                         LinkedIn
-                    <img className='home-page-linkedin' src={linkedin} alt='logo'></img>
+                    <img className='footer-linkedin' src={linkedin} alt='logo'></img>
                     </a>
                 </li>
-                <li>
-                    <a href="#">Privacy & Terms</a>
-                </li>
-                <li>
-                    <a href="#">Ad Choices</a>
-                </li>
+
             </ul>
             </div>
             </div>
