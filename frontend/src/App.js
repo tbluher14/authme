@@ -16,6 +16,7 @@ import LoginForm from "./components/LoginFormModal/LoginForm";
 import SignupForm from "./components/SignupFormPage/SignupForm";
 import UsersReviews from "./components/Reviews/UserReviews";
 import UserBookings from "./components/Bookings/UserBookings";
+import About from "./components/About/about";
 
 
 function App() {
@@ -52,6 +53,9 @@ function App() {
          </Route>
          <Route exact path='/bookings/current'>
           <UserBookings/>
+          </Route>
+          <Route exact path='/about'>
+            <About />
           </Route>
          <Route exact path='/'>
             <SplashPage />
