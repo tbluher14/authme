@@ -15,7 +15,6 @@ const ReviewForm = () => {
   const reviews = useSelector((state) => state.reviews);
   const sessionUser = useSelector((state) => state.session.user);
 
-
   const [reviewMessage, setReviewMessage] = useState("");
   const [stars, setStars] = useState("Rating");
   const [errors, setErrors] = useState([]);

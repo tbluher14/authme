@@ -48,13 +48,21 @@ function UsersReviews() {
                   {review.Spot.name}
                 </div>
                   <div className="my_ind_review_stars">{review.stars} out of 5 stars</div>
-              <div className="my_review_text">{review.review}</div>
+              <div id="my_review_text">{review.review}</div>
+              <div className="my_review_button_container">
+              <button
+                onClick={() => history.push(`/spots/${review.Spot.id}`)}
+                className="my_review_spot_button"
+              >
+                Go To Review
+              </button>
               <button
                 onClick={removeReview(review.id)}
                 className="delete_review"
               >
                 Delete Review
               </button>
+              </div>
             </div>
           </div>
         ))}
