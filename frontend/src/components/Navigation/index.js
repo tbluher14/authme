@@ -68,7 +68,7 @@ function Navigation({ isLoaded }) {
             />
             <span className="bestbnb_logo">bestBnB</span>
           </NavLink>
-        <div className='navbar-search-container'>
+        {/* <div className='navbar-search-container'>
         <input
           className='navbar-search-box'
           type="text"
@@ -79,9 +79,8 @@ function Navigation({ isLoaded }) {
         </input>
         <button onClick={handleSearch} className='navbar-search-button'>
           <i className="fa-solid fa-magnifying-glass" id="mag-glass"></i>
-        </button>
-
-      </div>
+        </button> */}
+      {/* </div> */}
         </div>
         {sessionUser &&
         // <div className='become_host'>
