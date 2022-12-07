@@ -17,6 +17,7 @@ import SignupForm from "./components/SignupFormPage/SignupForm";
 import UsersReviews from "./components/Reviews/UserReviews";
 import UserBookings from "./components/Bookings/UserBookings";
 import About from "./components/About/about";
+import QueriedSpot from "./components/queriedSpot/QueriedSpot";
 
 
 function App() {
