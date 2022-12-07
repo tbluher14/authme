@@ -3,7 +3,6 @@ import "../SplashPage/SplashPage.css"
 
 
 const SpotCard = ({ spot }) => {
-    const { id, name, previewImage, price, description, city, state, country, hostId } = spot;
 
 return (
     <Link

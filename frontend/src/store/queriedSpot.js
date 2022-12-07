@@ -7,7 +7,7 @@ export const searchSpotAC = (spots) => ({
 })
 
 // search thunk
-export const searchspotThunk = (name) => async (dispatch) => {
+export const searchSpotThunk = (name) => async (dispatch) => {
   const res = await fetch(`/api/spots/search?name=${name}`)
   if (res.ok) {
       const spots = await res.json()

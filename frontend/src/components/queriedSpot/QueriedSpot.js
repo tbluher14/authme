@@ -2,10 +2,8 @@ import { useEffect  } from 'react'
 import { useLocation } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux'
 import { searchSpotThunk } from '../../store/queriedSpot'
-// import SpotCar from '../Events/EventCard';
-
-import '../../index.css'
 import SpotCard from '../Spots/SpotCard';
+import '../../index.css'
 
 const QueriedSpot = () => {
   const dispatch = useDispatch();
