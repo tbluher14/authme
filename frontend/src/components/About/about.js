@@ -23,7 +23,7 @@ const About = () => {
                 <div className='about-body-text'>
                     My favorite technologies include React and Redux, but I also enjoy database engineering with technologies like SQLAlchemy.
                     In my free time, I enjoy hiking with my dog, snowboarding, and going to concerts around Denver. I am very passionate about
-                    music and the outdoors, and turn help bridge the gap between software development and my hobbies, I created this clone of AirBnB,
+                    music and the outdoors, and to bridge the gap between software development and my hobbies, I created this clone of AirBnB,
                     but with a focus on the outdoors and ski-in-ski-out houses. I hope you enjoy it!
                 </div>
                 <div className="github-linkedin-logos">

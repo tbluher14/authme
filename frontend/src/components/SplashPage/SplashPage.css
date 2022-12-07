@@ -10,6 +10,8 @@ img {
     align-items: flex-start;
   }
 
+
+
   a:link {
     text-decoration: none;
   }
@@ -31,7 +33,7 @@ img {
     /* margin-bottom: 10px; */
 
     padding-left: auto;
-    padding-bottom: 20px;
+    /* padding-bottom: 20px; */
     justify-content: center;
     align-items: center;
     font-family: 'Montserrat', sans-serif;
