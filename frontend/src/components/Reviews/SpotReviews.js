@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteReview, editReview, getAllReviewsThunk, getSpotReviews } from "../../store/review";
-import { getAllUsersThunk } from "../../store/session";
+import ReactStars from 'react-rating-stars-component'
+
 import "./SpotReviews.css";
 
 function SpotReviews({ review, spot }) {
@@ -82,13 +83,9 @@ function SpotReviews({ review, spot }) {
       <h4 className="edit_review_header">Edit Your Review</h4>
 
         <form onSubmit={handleSubmit}>
-          <input
-          className="edit-stars-field"
-          value={stars}
-          type="number"
-          onChange={(e) => setStars(e.target.value)}
-          placeholder="Edit your rating"
-          required
+        <ReactStars
+            value={stars}
+            onChange={(e) => setStars(e)}
           />
           <textarea
           className="edit-review-field"

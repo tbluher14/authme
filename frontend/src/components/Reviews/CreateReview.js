@@ -72,14 +72,7 @@ const ReviewForm = () => {
       </ul>
         <label className="review_stars_container">
           <span className='review_stars_text'>Stars:</span>
-          {/* <input
-            type="number"
-            placeholder="Rating"
-            className="review_rating_input"
-            value={stars}
-            onChange={(e) => setStars(e.target.value)}
-            required
-          /> */}
+
           <ReactStars
             value={stars}
             onChange={(e) => setStars(e)}
