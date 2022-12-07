@@ -2,6 +2,7 @@ import '../../index.css'
 import headshot from './headshot.png'
 import github from './github.png'
 import linkedin from './linkedin.png'
+import './about.css'
 
 const About = () => {
 
