@@ -789,6 +789,21 @@ router.get('/:spotId/bookings', requireAuth, async (req, res) => {
 })
 // ***************************************************************************************
 
+// search spots
 
+router.get('/search', async (req, res) => {
+  const { city, state, country, name } = req.query;
+  console.log(req)
+  const spots = await Spot.findAll({
+    where: {
+      'name': name,
+    },
+    include: {
+      model: Image,
+      attributes: ['id', 'url', 'imageableId'],
+    }
+  })
+  return res.json(spots)
+})
 
 module.exports = router

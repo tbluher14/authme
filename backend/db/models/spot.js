@@ -63,6 +63,11 @@ module.exports = (sequelize, DataTypes) => {
     previewImage:
     {
       type: DataTypes.TEXT
+    },
+    search:
+    {
+      type: DataTypes.TEXT,
+      allowNull: true
     }
   }, {
     sequelize,
