@@ -1,4 +1,4 @@
-import React, { useEffect, } from "react";
+import React, { useEffect, useState, } from "react";
 import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listAllSpots } from "../../store/spot";
@@ -12,10 +12,24 @@ const Homepage = () => {
   const dispatch = useDispatch();
   const allSpotsObj = useSelector((state) => state.spots);
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
+  const [filter, setFilter] = useState("");
+  console.log(filter)
+  console.log(allSpots)
+
+
+  const handleFilter = () => {
+    if (filter === "") {
+      return allSpots;
+    } else {
+      console.log()
+      return allSpots.filter((ele) =>
+      ele.tags == filter);
+    }
+  }
+
 
   useEffect(() => {
     dispatch(listAllSpots());
-
   }, [dispatch]);
 
   if (!allSpots) return null;
@@ -23,8 +37,13 @@ const Homepage = () => {
   return (
     <>
       <div className="all_spots">
-
-        {allSpots.map((ele) => (
+        <div className="category_container">
+          <div className="category">
+            <h3 className="category_title" onClick={() => setFilter("Cabin")}
+              >Cabin</h3>
+            </div>
+            </div>
+        {handleFilter().map((ele) => (
           <Link
             to={`/spots/${ele.id}`}
             key={ele.id}
