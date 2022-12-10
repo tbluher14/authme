@@ -23,8 +23,7 @@ const Homepage = () => {
   return (
     <>
       <div className="all_spots">
-        <img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Fsearch%3Fk%3Dunder%2Bconstruction&psig=AOvVaw3eqzzS0wW4V2l2EY8pfY8s&ust=1670720479154000&source=images&cd=vfe&ved=0CA4QjRxqFwoTCKj34_bs7fsCFQAAAAAdAAAAABAE"
-        />
+
         {allSpots.map((ele) => (
           <Link
             to={`/spots/${ele.id}`}
