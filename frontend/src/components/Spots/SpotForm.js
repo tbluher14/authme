@@ -202,14 +202,13 @@ const SpotForm = ({ spot }) => {
         </label>
         <label className="address_container">
         Tags:
-        </label>
           <select
             value={tagA}
             placeholder="tags"
             className="tag_drop"
             onChange={(e) => setTagA((e.target.value))}
             required
-          >
+            >
            <option value={"Mountains"}>Mountains</option>
            <option value={"Forest"}>Forest</option>
            <option value={"Cabin"}>Cabin</option>
@@ -217,16 +216,16 @@ const SpotForm = ({ spot }) => {
            <option value={"Secluded"}>Secluded</option>
            <option value={"Wifi Available"}>Wifi Available</option>
         </select>
+            </label>
         <label className="address_container">
         Tags:
-        </label>
           <select
             value={tagB}
             className="tag_drop"
             placeholder="tags"
             onChange={(e) => setTagB((e.target.value))}
             required
-          >
+            >
            <option value={"Mountains"}>Mountains</option>
            <option value={"Forest"}>Forest</option>
            <option value={"Cabin"}>Cabin</option>
@@ -234,6 +233,7 @@ const SpotForm = ({ spot }) => {
            <option value={"Secluded"}>Secluded</option>
            <option value={"Wifi Available"}>Wifi Available</option>
           </select>
+            </label>
 
         <button type="submit" className="create_spot_button">Submit Spot</button>
       </form>
