@@ -20,6 +20,8 @@ const SpotForm = ({ spot }) => {
   const [description, setDescription] = useState(spot?.description ?? "");
   const [price, setPrice] = useState(spot?.price ?? "");
   const [errors, setErrors] = useState([]);
+  const [tagA, setTagA] = useState("")
+  const [tagB, setTagB] = useState('')
   const [tags, setTags] = useState([])
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const showLoginModal = useSelector((state) => state.session.showLoginModal);
@@ -38,6 +40,7 @@ const SpotForm = ({ spot }) => {
   const handleSubmit = (e) => {
     window.scrollTo(0, 0);
     e.preventDefault();
+    setTags([tagA, tagB])
     setErrors([]);
     let data = {
       address: address,
@@ -50,7 +53,7 @@ const SpotForm = ({ spot }) => {
       description: description,
       price: price,
       previewImage: previewImage,
-      tags: [tags]
+      tags: tags
     };
 
 
@@ -197,16 +200,41 @@ const SpotForm = ({ spot }) => {
             required
           />
         </label>
-          <label className="address_container">
-        <span className="address_text">Tags:</span>
-          <input
-            type="select"
-            value={tags}
-            placeholder="img-url"
-            onChange={(e) => setTags((e.target.value))}
-            required
-          />
+        <label className="address_container">
+        Tags:
         </label>
+          <select
+            value={tagA}
+            placeholder="tags"
+            className="tag_drop"
+            onChange={(e) => setTagA((e.target.value))}
+            required
+          >
+           <option value={"Mountains"}>Mountains</option>
+           <option value={"Forest"}>Forest</option>
+           <option value={"Cabin"}>Cabin</option>
+           <option value={"Close to Skiing"}>Close to Skiing</option>
+           <option value={"Secluded"}>Secluded</option>
+           <option value={"Wifi Available"}>Wifi Available</option>
+        </select>
+        <label className="address_container">
+        Tags:
+        </label>
+          <select
+            value={tagB}
+            className="tag_drop"
+            placeholder="tags"
+            onChange={(e) => setTagB((e.target.value))}
+            required
+          >
+           <option value={"Mountains"}>Mountains</option>
+           <option value={"Forest"}>Forest</option>
+           <option value={"Cabin"}>Cabin</option>
+           <option value={"Close to Skiing"}>Close to Skiing</option>
+           <option value={"Secluded"}>Secluded</option>
+           <option value={"Wifi Available"}>Wifi Available</option>
+          </select>
+
         <button type="submit" className="create_spot_button">Submit Spot</button>
       </form>
     </div>
