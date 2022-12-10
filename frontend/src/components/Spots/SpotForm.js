@@ -20,6 +20,7 @@ const SpotForm = ({ spot }) => {
   const [description, setDescription] = useState(spot?.description ?? "");
   const [price, setPrice] = useState(spot?.price ?? "");
   const [errors, setErrors] = useState([]);
+  const [tags, setTags] = useState([])
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const showLoginModal = useSelector((state) => state.session.showLoginModal);
   const showSignupModal = useSelector((state) => state.session.showSignupModal);
@@ -49,6 +50,7 @@ const SpotForm = ({ spot }) => {
       description: description,
       price: price,
       previewImage: previewImage,
+      tags: [tags]
     };
 
 
@@ -192,6 +194,16 @@ const SpotForm = ({ spot }) => {
             value={previewImage}
             placeholder="img-url"
             onChange={(e) => setPreviewImage((e.target.value))}
+            required
+          />
+        </label>
+          <label className="address_container">
+        <span className="address_text">Tags:</span>
+          <input
+            type="select"
+            value={tags}
+            placeholder="img-url"
+            onChange={(e) => setTags((e.target.value))}
             required
           />
         </label>
