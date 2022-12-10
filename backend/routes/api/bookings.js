@@ -125,8 +125,8 @@ if (endDate < currentDate) {
 //delete a booking
 router.delete('/:bookingId', requireAuth, async (req, res) => {
   console.log("this is req", req.params.bookingId)
+  const booking = await Booking.findByPk(req.params.bookingId)
   console.log("this is booking in the backend", booking)
-    const booking = await Booking.findByPk(req.params.bookingId)
     const currentUser = req.user.id
 
   //   if (!booking){
