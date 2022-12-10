@@ -33,7 +33,7 @@ function UsersReviews() {
       history.push("/reviews/current");
     }
   };
-
+;
   if (userReviews.length === 0) {
     return <p>Oh no! No reviews yet.</p>;
   }
