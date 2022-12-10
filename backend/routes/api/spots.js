@@ -122,7 +122,8 @@ router.post('/', requireAuth, async (req, res, next) => {
         name,
         description,
         price,
-        previewImage
+        previewImage,
+        tags
       } = req.body;
 
 
@@ -233,7 +234,8 @@ const error = {
       name,
       description,
       price,
-      previewImage
+      previewImage,
+      tags
     });
 
     return res.json(201, newSpot);

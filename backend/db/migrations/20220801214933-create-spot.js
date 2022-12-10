@@ -35,6 +35,9 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
+      tags: {
+        type: Sequelize.JSON
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,

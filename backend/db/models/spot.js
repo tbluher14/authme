@@ -56,6 +56,11 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    tags: {
+      type: DataTypes.JSON,
+      allowNull: true,
+      defaultValue: []
+    },
     ownerId: {
       type: DataTypes.INTEGER,
       allowNull: false
