@@ -87,11 +87,9 @@ export const editBookingThunk = (payload) => async (dispatch) => {
 
 // Delete a booking based on booking id
 export const deleteBookingThunk = (bookingId) => async (dispatch) => {
-    console.log("this is bookingid in THUNK", bookingId)
-    // console.log(payload)
-    const response =  csrfFetch(`/api/bookings/${bookingId}`, {
+    const response =  await csrfFetch(`/api/bookings/${bookingId}`, {
+        method: "DELETE"
     });
-    console.log("THIS IS RESPONSE IN THE THUNK", response)
     if (response.ok) {
         // const data = await response.json();
         dispatch(deleteBookingAC(bookingId));
