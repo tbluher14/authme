@@ -29,6 +29,7 @@ const SpotForm = ({ spot }) => {
 
   const history = useHistory()
 
+
   useEffect(() => {
     if (!user && !showLoginModal && !showSignupModal) {
       dispatch(sessionActions.setShowLoginModal(true));
@@ -40,7 +41,8 @@ const SpotForm = ({ spot }) => {
   const handleSubmit = (e) => {
     window.scrollTo(0, 0);
     e.preventDefault();
-    setTags([tagA, tagB])
+    // setTags([tagA, tagB])
+
     setErrors([]);
     let data = {
       address: address,
@@ -53,7 +55,7 @@ const SpotForm = ({ spot }) => {
       description: description,
       price: price,
       previewImage: previewImage,
-      tags: tags
+      tags: [tagA, tagB]
     };
 
 
@@ -73,17 +75,14 @@ const SpotForm = ({ spot }) => {
 
       setSubmitSuccess(false)
 
-      // const errors = [data.errors]
+
 
       setErrors(Object.values(data.errors));
       }
     });
-    return data
   };
 
-  if (submitSuccess) {
-    return <Redirect to='/' />;
-  }
+
 
   return (
     <div className="form_input">
