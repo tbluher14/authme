@@ -14,18 +14,22 @@ const Homepage = () => {
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
   const [filter, setFilter] = useState("");
   console.log(filter)
-  console.log(allSpots)
+  // console.log(allSpots)
+
+  const oneSpot = allSpots.map(ele => ele.tags)
+  console.log("this is one spot", oneSpot)
 
 
   const handleFilter = () => {
-    if (filter === "") {
+    if (filter === "" && allSpots) {
       return allSpots;
     } else {
-      console.log()
-      return allSpots.filter((ele) =>
-      ele.tags == filter);
+      return allSpots?.filter((ele) =>
+      ele?.tags == filter);
     }
   }
+
+  console.log('this is handle filter', handleFilter())
 
 
   useEffect(() => {
@@ -39,7 +43,7 @@ const Homepage = () => {
       <div className="all_spots">
         <div className="category_container">
           <div className="category">
-            <h3 className="category_title" onClick={() => setFilter("Cabin")}
+            <h3 className="category_title" onClick={() => setFilter(`\"Cabin\"`)}
               >Cabin</h3>
             </div>
             </div>

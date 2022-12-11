@@ -36,7 +36,9 @@ const SpotForm = ({ spot }) => {
     }
 
   });
-
+  // setTags([tagA, tagB])
+  // console.log("this is tags array", [tagA, tagB])
+  // console.log("this is tags", tags)
 
   const handleSubmit = (e) => {
     window.scrollTo(0, 0);
@@ -208,12 +210,12 @@ const SpotForm = ({ spot }) => {
             onChange={(e) => setTagA((e.target.value))}
             required
             >
-           <option value={"Mountains"}>Mountains</option>
-           <option value={"Forest"}>Forest</option>
-           <option value={"Cabin"}>Cabin</option>
-           <option value={"Close to Skiing"}>Close to Skiing</option>
-           <option value={"Secluded"}>Secluded</option>
-           <option value={"Wifi Available"}>Wifi Available</option>
+           <option value="Mountains">Mountains</option>
+           <option value="Forest">Forest</option>
+           <option value="Cabin">Cabin</option>
+           <option value="Close to Skiing">Close to Skiing</option>
+           <option value="Secluded">Secluded</option>
+           <option value="Wifi Available">Wifi Available</option>
         </select>
             </label>
         <label className="address_container">

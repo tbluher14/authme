@@ -15,6 +15,7 @@ function SignupForm() {
     const [lastName, setLastName] = useState('')
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
+    const [submitted, setSubmitted] = useState(false)
 
     const emailRegX = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/
 
@@ -49,7 +50,7 @@ function SignupForm() {
 
     const handleSubmit = async (e) => {
       e.preventDefault();
-
+      setSubmitted(true)
       // if (password === confirmPassword){
         if (errors.length > 0) return
         setErrors([])
@@ -85,7 +86,7 @@ function SignupForm() {
             </h2>
           <form className="signup_form" onSubmit={handleSubmit}>
             <ul className="signUp_errors">
-               {errors.map((error) => (
+               {submitted && errors.map((error) => (
                  <li key={error.id}>{error.slice(error.indexOf(':') + 1)}</li>
                  ))}
             </ul>
