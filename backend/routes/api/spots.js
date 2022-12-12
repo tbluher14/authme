@@ -9,6 +9,7 @@ const sequelize = require('sequelize');
 const { route } = require('./reviews');
 const booking = require('../../db/models/booking');
 const spot = require('../../db/models/spot');
+const { singlePublicFileUpload } = require('../../awsS3');
 
 // validate spot
 const validateSpot = [
@@ -223,6 +224,8 @@ const error = {
       error.errors.previewImage = "Please include a valid url to the image"
       return res.status(400).json(error)
     }
+
+    // const image = await singlePublicFileUpload(req.file)
     const newSpot = await Spot.create({
       ownerId: id,
       address,
@@ -235,7 +238,8 @@ const error = {
       description,
       price,
       previewImage,
-      tags
+      tagA,
+      tagB
     });
 
     return res.json(201, newSpot);

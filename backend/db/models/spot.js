@@ -56,10 +56,15 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
-    tags: {
-      type: DataTypes.JSON,
+    tagA: {
+      type: DataTypes.TEXT,
       allowNull: true,
-      defaultValue: []
+      // defaultValue: [],
+    },
+    tagB: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      // defaultValue: [],
     },
     ownerId: {
       type: DataTypes.INTEGER,
@@ -68,7 +73,11 @@ module.exports = (sequelize, DataTypes) => {
     previewImage:
     {
       type: DataTypes.TEXT
-    }
+    },
+    // image: {
+    //   type: DataTypes.TEXT,
+    //   allowNull:true
+    // }
   }, {
     sequelize,
     modelName: 'Spot',

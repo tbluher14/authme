@@ -35,9 +35,15 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
-      tags: {
-        type: Sequelize.JSON
+      tagA: {
+        type: Sequelize.TEXT
       },
+      tagB: {
+        type: Sequelize.TEXT
+      },
+      // image:{
+      //   type: Sequelize.TEXT
+      // },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
