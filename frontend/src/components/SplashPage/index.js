@@ -1,119 +1,152 @@
-import React, { useEffect, useState, } from "react";
-import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
-import { listAllSpots } from "../../store/spot";
-import "./SplashPage.css";
-import Footer from "./footer";
-
-
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { listAllSpots } from '../../store/spot'
+import './SplashPage.css'
+import Footer from './footer'
 
 const Homepage = () => {
-  const dispatch = useDispatch();
-  const allSpotsObj = useSelector((state) => state.spots);
-  const allSpots = Object.values(allSpotsObj); //changing to array to .map
-  const [filter, setFilter] = useState("");
-
+  const dispatch = useDispatch()
+  const allSpotsObj = useSelector(state => state.spots)
+  const allSpots = Object.values(allSpotsObj) //changing to array to .map
+  const [filter, setFilter] = useState('')
 
   const handleFilter = () => {
-    if (filter === "" && allSpots) {
-      return allSpots;
+    if (filter === '' && allSpots) {
+      return allSpots
     } else {
-      const filteredSpots = allSpots?.filter((ele) =>
-        ele.tagA === filter || ele.tagB === filter || (ele.tagA && ele.tagB) === filter
+      const filteredSpots = allSpots?.filter(
+        ele =>
+          ele.tagA === filter ||
+          ele.tagB === filter ||
+          (ele.tagA && ele.tagB) === filter
       )
-      return filteredSpots;
+      return filteredSpots
     }
   }
 
-
-
   useEffect(() => {
-    dispatch(listAllSpots());
-  }, [dispatch]);
+    dispatch(listAllSpots())
+  }, [dispatch])
 
-  if (!allSpots) return null;
+  if (!allSpots) return null
 
   return (
     <>
-
-        <div className="category_container">
-          <div className="category">
-          <div className="individual_category">
-          <i class="fa-solid fa-house" id="catergory_icon" onClick={() => setFilter("Cabin")}>
-            <div className="category_text">Cabin</div>
-          </i>
-          </div>
-          <div className="individual_category">
-          <i class="fa-solid fa-mountain-sun" onClick={() => setFilter("Mountain")} id="catergory_icon">
-          <div className="category_text">Mountains</div>
-          </i>
-          </div>
-          <div className="individual_category">
-          <i class="fa-solid fa-tree" onClick={() => setFilter("Forest")} id="catergory_icon" >
-          <div className="category_text">Forest</div>
-          </i>
-          </div>
-          <div className="individual_category">
-          <i class="fa-solid fa-snowflake" onClick={() => setFilter("Close to Skiing")} id="catergory_icon" >
-          <div className="category_text">Close to Skiing</div>
-          </i>
-          </div>
-          <div className="individual_category">
-          <i class="fa-solid fa-moon" onClick={() => setFilter("Secluded")} id="catergory_icon" >
-            <div className="category_text">Secluded</div>
-          </i>
-          </div>
-          <div className="individual_category">
-          <i class="fa-solid fa-wifi" onClick={() => setFilter("Wifi Available")} id="catergory_icon" >
-          <div className="category_text">Wifi</div>
-          </i>
-          </div>
-          <div className="individual_category">
-          <i class="fa-solid fa-person-skiing" onClick={() => setFilter('Ski-In/Ski-Out')} id="catergory_icon" >
-          <div className="category_text">Ski-In/Ski-Out</div>
+      <div className='category_container'>
+        <div className='category'>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-list'
+              onClick={() => setFilter('')}
+              id='category_icon'
+            >
+              {' '}
             </i>
-            </div>
-            <div className="individual_category">
-          <i class="fa-solid fa-hot-tub-person" onClick={() => setFilter("Hot Tub")} id="catergory_icon" >
-          <div className="category_text">Hot Tub</div>
-            </i>
-            </div>
-            </div>
-            </div>
-          <div className="all_spots">
-        {handleFilter().map((ele) => (
-          <Link
-          to={`/spots/${ele.id}`}
-          key={ele.id}
-          className="single_spot"
-          >
+            <div className='category_text'>All Spots</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-house'
+              id='catergory_icon'
+              onClick={() => setFilter('Cabin')}
+            ></i>
+            <div className='category_text'>Cabin</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-mountain-sun'
+              onClick={() => setFilter('Mountain')}
+              id='catergory_icon'
+            ></i>
+            <div className='category_text'>Mountains</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-tree'
+              onClick={() => setFilter('Forest')}
+              id='catergory_icon'
+            ></i>
+            <div className='category_text'>Forest</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-snowflake'
+              onClick={() => setFilter('Close to Skiing')}
+              id='catergory_icon'
+            ></i>
+            <div className='category_text'>Close to Skiing</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-moon'
+              onClick={() => setFilter('Secluded')}
+              id='catergory_icon'
+            ></i>
+            <div className='category_text'>Secluded</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-wifi'
+              onClick={() => setFilter('Wifi Available')}
+              id='catergory_icon'
+            ></i>
+            <div className='category_text'>Wifi</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-person-skiing'
+              onClick={() => setFilter('Ski-In/Ski-Out')}
+              id='catergory_icon'
+            ></i>
+            <div className='category_text'>Ski-In/Ski-Out</div>
+          </div>
+          <div className='individual_category'>
+            <i
+              class='fa-solid fa-hot-tub-person'
+              onClick={() => setFilter('Hot Tub')}
+              id='catergory_icon'
+            ></i>
+            <div className='category_text'>Hot Tub</div>
+          </div>
+        </div>
+      </div>
+      <div className='all_spots'>
+        {handleFilter().map(ele => (
+          <Link to={`/spots/${ele.id}`} key={ele.id} className='single_spot'>
             <div key={ele.id}>
-              <div className="img">
+              <div className='img'>
                 <img
                   src={ele.previewImage}
                   alt={ele.name}
-                  className="spot_image_display"
+                  className='spot_image_display'
                   onError={e => {
-                    e.currentTarget.src = "https://images.unsplash.com/photo-1546593064-053d21199be1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80"
+                    e.currentTarget.src =
+                      'https://images.unsplash.com/photo-1546593064-053d21199be1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80'
                   }}
-                  ></img>
+                ></img>
               </div>
-              <div className="spot_details">
-              <div className="spot_info">
-                <h3 className="spot_location">
-                  {ele.city}, {ele.state}
-                </h3>
-                <div className="rating_star_container">
-                <i className="star_img" class="fa-solid fa-star" id="splash_page_star">
-                  </i>
-                <div className="spot_rating" id="star_review_score">
-                  <div className="rating_tern">
-                  {ele?.avgRating === undefined ? "New!" : `${ele.avgRating} / 5`}
+              <div className='spot_details'>
+                <div className='spot_info'>
+                  <h3 className='spot_location'>
+                    {ele.city}, {ele.state}
+                  </h3>
+                  <div className='rating_star_container'>
+                    <i
+                      className='star_img'
+                      class='fa-solid fa-star'
+                      id='splash_page_star'
+                    ></i>
+                    <div className='spot_rating' id='star_review_score'>
+                      <div className='rating_tern'>
+                        {ele?.avgRating === undefined
+                          ? 'New!'
+                          : `${ele.avgRating} / 5`}
+                      </div>
+                    </div>
                   </div>
-                  </div>
-              </div>
                 </div>
-                <p className="spot_price">${ele.price} / night</p>
+                <p className='spot_price'>${ele.price} / night</p>
               </div>
             </div>
           </Link>
@@ -121,7 +154,7 @@ const Homepage = () => {
         <Footer />
       </div>
     </>
-  );
-};
+  )
+}
 
-export default Homepage;
+export default Homepage
