@@ -19,7 +19,7 @@ const Homepage = () => {
       return allSpots;
     } else {
       const filteredSpots = allSpots?.filter((ele) =>
-        ele.tagA === filter || ele.tagB === filter
+        ele.tagA === filter || ele.tagB === filter || (ele.tagA && ele.tagB) === filter
       )
       return filteredSpots;
     }
