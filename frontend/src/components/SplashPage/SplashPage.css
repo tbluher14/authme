@@ -200,6 +200,10 @@ img {
   color: black;
 }
 
+.category_text:hover{
+  cursor: pointer;
+}
+
 .category_container{
   display: flex;
   flex-direction: column;
@@ -224,4 +228,9 @@ img {
   align-items: center;
   justify-content: center;
   margin-right: 20px;
+}
+
+.individual_category:hover{
+  cursor: pointer;
+  background-color: #f5f5f5;
 }
