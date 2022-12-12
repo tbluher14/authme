@@ -216,6 +216,8 @@ const SpotForm = ({ spot }) => {
            <option value="Close to Skiing">Close to Skiing</option>
            <option value="Secluded">Secluded</option>
            <option value="Wifi Available">Wifi Available</option>
+           <option value="Ski-In/Ski-Out">Ski-In/Ski-Out</option>
+           <option value="Hot Tub">Hot Tub</option>
         </select>
             </label>
         <label className="address_container">
@@ -233,6 +235,8 @@ const SpotForm = ({ spot }) => {
            <option value={"Close to Skiing"}>Close to Skiing</option>
            <option value={"Secluded"}>Secluded</option>
            <option value={"Wifi Available"}>Wifi Available</option>
+           <option value="Ski-In/Ski-Out">Ski-In/Ski-Out</option>
+           <option value="Hot Tub">Hot Tub</option>
           </select>
             </label>
 

@@ -20,16 +20,20 @@ const Homepage = () => {
   console.log("this is one spot", oneSpot)
 
 
-  const handleFilter = () => {
-    if (filter === "" && allSpots) {
-      return allSpots;
-    } else {
-      return allSpots?.filter((ele) =>
-      ele?.tags == filter);
-    }
-  }
+  // const handleFilter = () => {
+  //   if (filter === "" && allSpots) {
+  //     return allSpots;
+  //   } else {
+  //     return allSpots?.filter((ele) =>
+  //       if (ele?.tags.length > 0){
+  //         console.log(ele?.tags, "this inside the filter0"))
+  //     }
 
-  console.log('this is handle filter', handleFilter())
+  //     // ele?.tags == filter);
+  //   }
+  // }
+
+  // console.log('this is handle filter', handleFilter())
 
 
   useEffect(() => {
@@ -47,7 +51,7 @@ const Homepage = () => {
               >Cabin</h3>
             </div>
             </div>
-        {handleFilter().map((ele) => (
+        {allSpots.map((ele) => (
           <Link
             to={`/spots/${ele.id}`}
             key={ele.id}
