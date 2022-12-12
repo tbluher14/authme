@@ -22,7 +22,7 @@ const SpotForm = ({ spot }) => {
   const [errors, setErrors] = useState([]);
   const [tagA, setTagA] = useState("")
   const [tagB, setTagB] = useState('')
-  const [tags, setTags] = useState([])
+
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const showLoginModal = useSelector((state) => state.session.showLoginModal);
   const showSignupModal = useSelector((state) => state.session.showSignupModal);
@@ -36,14 +36,12 @@ const SpotForm = ({ spot }) => {
     }
 
   });
-  // setTags([tagA, tagB])
-  // console.log("this is tags array", [tagA, tagB])
-  // console.log("this is tags", tags)
+
 
   const handleSubmit = (e) => {
     window.scrollTo(0, 0);
     e.preventDefault();
-    // setTags([tagA, tagB])
+
 
     setErrors([]);
     let data = {
@@ -57,7 +55,8 @@ const SpotForm = ({ spot }) => {
       description: description,
       price: price,
       previewImage: previewImage,
-      tags: [tagA, tagB]
+      tagA: tagA,
+      tagB: tagB,
     };
 
 

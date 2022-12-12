@@ -13,27 +13,19 @@ const Homepage = () => {
   const allSpotsObj = useSelector((state) => state.spots);
   const allSpots = Object.values(allSpotsObj); //changing to array to .map
   const [filter, setFilter] = useState("");
-  console.log(filter)
-  // console.log(allSpots)
-
-  const oneSpot = allSpots.map(ele => ele.tags)
-  console.log("this is one spot", oneSpot)
 
 
-  // const handleFilter = () => {
-  //   if (filter === "" && allSpots) {
-  //     return allSpots;
-  //   } else {
-  //     return allSpots?.filter((ele) =>
-  //       if (ele?.tags.length > 0){
-  //         console.log(ele?.tags, "this inside the filter0"))
-  //     }
+  const handleFilter = () => {
+    if (filter === "" && allSpots) {
+      return allSpots;
+    } else {
+      const filteredSpots = allSpots?.filter((ele) =>
+        ele.tagA === filter || ele.tagB === filter
+      )
+      return filteredSpots;
+    }
+  }
 
-  //     // ele?.tags == filter);
-  //   }
-  // }
-
-  // console.log('this is handle filter', handleFilter())
 
 
   useEffect(() => {
@@ -47,11 +39,11 @@ const Homepage = () => {
       <div className="all_spots">
         <div className="category_container">
           <div className="category">
-            <h3 className="category_title" onClick={() => setFilter(`\"Cabin\"`)}
-              >Cabin</h3>
+          <i class="fa-light fa-cabin"></i>
+           
             </div>
             </div>
-        {allSpots.map((ele) => (
+        {handleFilter().map((ele) => (
           <Link
             to={`/spots/${ele.id}`}
             key={ele.id}

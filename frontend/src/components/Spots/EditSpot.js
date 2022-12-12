@@ -22,7 +22,9 @@ const EditSpot = () => {
   const updateLat = (e) => setSelectedSpot({...selectedSpot, lat:e.target.value});
   const updateLng = (e) => setSelectedSpot({...selectedSpot, lng:e.target.value});
   const updateDescription = (e) => setSelectedSpot({...selectedSpot, description:e.target.value});
-  // const updatePreviewImage = (e) => setSelectedSpot({...selectedSpot, previewImage:e.target.value});
+  const updateTagA = (e) => setSelectedSpot({...selectedSpot, tagA:e.target.value});
+  const updateTagB = (e) => setSelectedSpot({...selectedSpot, tagB:e.target.value});
+
   const [previewImage, setPreviewImage] = useState('')
 
 useEffect(() => {
@@ -219,6 +221,44 @@ if (submitSuccess) {
 
           />
       </label>
+      <label className="address_container">
+        Tags:
+          <select
+            value={selectedSpot.tagA}
+            placeholder="tags"
+            className="tag_drop"
+            onChange={updateTagA}
+            required
+            >
+           <option value="Mountains">Mountains</option>
+           <option value="Forest">Forest</option>
+           <option value="Cabin">Cabin</option>
+           <option value="Close to Skiing">Close to Skiing</option>
+           <option value="Secluded">Secluded</option>
+           <option value="Wifi Available">Wifi Available</option>
+           <option value="Ski-In/Ski-Out">Ski-In/Ski-Out</option>
+           <option value="Hot Tub">Hot Tub</option>
+        </select>
+            </label>
+        <label className="address_container">
+        Tags:
+          <select
+            value={selectedSpot.tagB}
+            className="tag_drop"
+            placeholder="tags"
+            onChange={updateTagB}
+            required
+            >
+           <option value={"Mountains"}>Mountains</option>
+           <option value={"Forest"}>Forest</option>
+           <option value={"Cabin"}>Cabin</option>
+           <option value={"Close to Skiing"}>Close to Skiing</option>
+           <option value={"Secluded"}>Secluded</option>
+           <option value={"Wifi Available"}>Wifi Available</option>
+           <option value="Ski-In/Ski-Out">Ski-In/Ski-Out</option>
+           <option value="Hot Tub">Hot Tub</option>
+          </select>
+            </label>
       <button type="submit" className="submit_edits">Confirm Changes</button>
       </div>
     </form>
