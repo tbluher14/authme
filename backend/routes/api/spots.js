@@ -124,7 +124,8 @@ router.post('/', requireAuth, async (req, res, next) => {
         description,
         price,
         previewImage,
-        tags
+        tagA,
+        tagB
       } = req.body;
 
 
