@@ -20,16 +20,18 @@ const UserBookings = () => {
         return dateString
     }
 
-    const handleDelete = async (ele) => {
+    const handleDelete = async ( ele) => {
+      // e.preventDefault()
       const result = window.confirm("Are you sure you would like to cancel this booking?")
 
       if(result){
         setIsLoaded(false)
         await dispatch(deleteBookingThunk(ele.id))
-        .then(dispatch(findUserBookingsThunk()))
-        .then( history.push('/bookings/current'))
+        dispatch(findUserBookingsThunk())
+        // .then( history.push('/bookings/current'))
         .then(setIsLoaded(true))
       }
+      history.push('/bookings/current')
     }
 
 
