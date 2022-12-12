@@ -43,7 +43,9 @@ const Homepage = () => {
             >
               {' '}
             </i>
-            <div className='category_text'>All Spots</div>
+            <div className='category_text'
+            onClick={() => setFilter('')}
+            >All Spots</div>
           </div>
           <div className='individual_category'>
             <i
@@ -51,7 +53,7 @@ const Homepage = () => {
               id='catergory_icon'
               onClick={() => setFilter('Cabin')}
             ></i>
-            <div className='category_text'>Cabin</div>
+            <div className='category_text'onClick={() => setFilter('Cabin')}>Cabin</div>
           </div>
           <div className='individual_category'>
             <i
@@ -59,7 +61,9 @@ const Homepage = () => {
               onClick={() => setFilter('Mountain')}
               id='catergory_icon'
             ></i>
-            <div className='category_text'>Mountains</div>
+            <div className='category_text'
+            onClick={() => setFilter('Mountain')}
+            >Mountains</div>
           </div>
           <div className='individual_category'>
             <i
@@ -67,7 +71,9 @@ const Homepage = () => {
               onClick={() => setFilter('Forest')}
               id='catergory_icon'
             ></i>
-            <div className='category_text'>Forest</div>
+            <div className='category_text'
+            onClick={() => setFilter('Forest')}
+            >Forest</div>
           </div>
           <div className='individual_category'>
             <i
@@ -75,7 +81,9 @@ const Homepage = () => {
               onClick={() => setFilter('Close to Skiing')}
               id='catergory_icon'
             ></i>
-            <div className='category_text'>Close to Skiing</div>
+            <div className='category_text'
+            onClick={() => setFilter('Close to Skiing')}
+            >Close to Skiing</div>
           </div>
           <div className='individual_category'>
             <i
@@ -83,7 +91,9 @@ const Homepage = () => {
               onClick={() => setFilter('Secluded')}
               id='catergory_icon'
             ></i>
-            <div className='category_text'>Secluded</div>
+            <div className='category_text'
+            onClick={() => setFilter('Secluded')}
+            >Secluded</div>
           </div>
           <div className='individual_category'>
             <i
@@ -91,7 +101,9 @@ const Homepage = () => {
               onClick={() => setFilter('Wifi Available')}
               id='catergory_icon'
             ></i>
-            <div className='category_text'>Wifi</div>
+            <div className='category_text'
+            onClick={() => setFilter('Wifi Available')}
+            >Wifi</div>
           </div>
           <div className='individual_category'>
             <i
@@ -99,7 +111,9 @@ const Homepage = () => {
               onClick={() => setFilter('Ski-In/Ski-Out')}
               id='catergory_icon'
             ></i>
-            <div className='category_text'>Ski-In/Ski-Out</div>
+            <div className='category_text'
+            onClick={() => setFilter('Ski-In/Ski-Out')}
+            >Ski-In/Ski-Out</div>
           </div>
           <div className='individual_category'>
             <i
@@ -107,7 +121,9 @@ const Homepage = () => {
               onClick={() => setFilter('Hot Tub')}
               id='catergory_icon'
             ></i>
-            <div className='category_text'>Hot Tub</div>
+            <div className='category_text'
+            onClick={() => setFilter('Hot Tub')}
+            >Hot Tub</div>
           </div>
         </div>
       </div>
