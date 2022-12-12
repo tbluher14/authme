@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { listAllSpots } from "../../store/spot";
 import "./SplashPage.css";
-import starImage from '../Reviews/StaticAssets/starImage.png'
 import Footer from "./footer";
 
 
@@ -38,16 +37,24 @@ const Homepage = () => {
     <>
       <div className="all_spots">
         <div className="category_container">
-          <div className="category">
-          <i class="fa-light fa-cabin"></i>
-           
+          <div className="category">categories
+          <i class="fa-solid fa-house" onClick={() => setFilter("Cabin")}>
+            <div>Cabin</div>
+          </i>
+          <i class="fa-solid fa-mountain-sun" onClick={() => setFilter("Mountain")}>Mountain</i>
+          <i class="fa-solid fa-tree" onClick={() => setFilter("Forest")}>Forest</i>
+          <i class="fa-solid fa-snowflake" onClick={() => setFilter("Close to Skiing")}>Close to Skiing</i>
+          <i class="fa-solid fa-moon" onClick={() => setFilter("Secluded")}>Secluded</i>
+          <i class="fa-solid fa-wifi" onClick={() => setFilter("Wifi Available")}>Wifi Available</i>
+          <i class="fa-solid fa-person-skiing" onClick={() => setFilter('Ski-In/Ski-Out')}>Ski-In/Ski-Out</i>
+          <i class="fa-solid fa-hot-tub-person" onClick={() => setFilter("Hot Tub")}>Hot Tub</i>
             </div>
             </div>
         {handleFilter().map((ele) => (
           <Link
-            to={`/spots/${ele.id}`}
-            key={ele.id}
-            className="single_spot"
+          to={`/spots/${ele.id}`}
+          key={ele.id}
+          className="single_spot"
           >
             <div key={ele.id}>
               <div className="img">
@@ -58,7 +65,7 @@ const Homepage = () => {
                   onError={e => {
                     e.currentTarget.src = "https://images.unsplash.com/photo-1546593064-053d21199be1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1550&q=80"
                   }}
-                ></img>
+                  ></img>
               </div>
               <div className="spot_details">
               <div className="spot_info">
