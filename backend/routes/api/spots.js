@@ -385,6 +385,8 @@ router.put("/:spotId", requireAuth, async (req, res) => {
     spot.name = name;
     spot.description = description;
     spot.price = price;
+    spot.tagA = req.body.tagA;
+    spot.tagB = req.body.tagB;
 
 
     await spot.save();

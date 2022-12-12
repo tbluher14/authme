@@ -27,7 +27,7 @@ module.exports = {
         description: 'Built by Alta photographer and local legend, Tom Plofchan, the Alta PhotoHaus has been an important part of Altas storied history since the late 1960s. Situated in a prime location across from the Alta Lodge and Alta Ski Area Wildcat base area, this 2 bedroom plus open loft, 2 bath Alta ski condo boasts a rich legacy and offers guests the epitome of modern luxury in the mountains.',
         price: 400,
         ownerId: 1,
-        tagA: 'Cabin',
+        tagA: 'Close to Skiing',
         tagB: 'Forest'
 
       },
@@ -57,7 +57,7 @@ module.exports = {
         description: 'Classic chalet meets industrial chic at this contemporary villa within The Colony. A glass elevator leads past steel support beams and gear art in the soaring great room to a basement wonderland with a cinema, games room, and even a sports court for basketball, racquetball, and wallyball. Ski right to the intermediate and advanced Flat Iron run, then cozy up by the fire or in the alfresco hot tub.',
         price: 700,
         ownerId: 3,
-        tagA: 'Mountains',
+        tagA: 'Hot Tub',
         tagB: 'Wifi Available'
 
       },
@@ -103,7 +103,7 @@ module.exports = {
         price: 650,
         ownerId: 1,
         tagA: 'Forest',
-        tagB: 'Forest'
+        tagB: 'Mountains'
 
       },
       {
@@ -118,7 +118,7 @@ module.exports = {
         description: "Stay in style at one of Deer Valley’s most legendary properties at a Stein Eriksen Residences - 5 Bedroom villa. These luxury vacation rentals are a contemporary expansion of the venerable Stein Eriksen Lodge in the heart of Silver Lake Village, and pair the lodge’s famed five-star service with a great location on the Silver Dollar ski run.",
         price: 1000,
         ownerId: 1,
-        tagA: 'Mountains',
+        tagA: 'Ski-in/Ski-out',
         tagB: 'Mountains'
 
       },
@@ -134,8 +134,8 @@ module.exports = {
         description: 'Your holiday at Stein Eriksen includes a full breakfast buffet during winter and the use of private ski lockers. Guests are also welcome at the shared indoor/outdoor infinity pool, al-fresco hot tubs, firepits and fitness center. Each 5-Bedroom Residence has its own balcony with a hot tub, as well as indoor entertaining areas featuring a satellite TV, sound system, Wi-Fi and wine fridge.',
         price: 600,
         ownerId: 1,
-        tagA: 'Secluded',
-        tagB: 'Forest'
+        tagA: 'Mountains',
+        tagB: 'Close to Skiing'
 
       },
       {
@@ -167,7 +167,7 @@ module.exports = {
         price: 850,
         ownerId: 1,
         tagA: 'Secluded',
-        tagB: 'Secluded'
+        tagB: 'Mountains'
 
       },
       {
@@ -215,7 +215,7 @@ module.exports = {
         price: 500,
         ownerId: 1,
         tagA: 'Forest',
-        tagB: 'Wifi Available'
+        tagB: 'Mountains'
       },
       {
         // 14
@@ -244,7 +244,7 @@ module.exports = {
         description: 'Charming Rustic Loft apartment on the beautiful grounds of Wadley Farms. With spectacular views of our gardens, vineyard, Mount Timpanogos and Castle, there really is no other place like it. Located at the base of the Wasatch mountains there is a lifetime of outdoor recreation only minutes away. Whether you are attending an event on-site, or are here for work or vacation, this is the place for you. Located at the base of the Wasatch mountains there is a lifetime of outdoor recreation only minutes away.',
         price: 750,
         ownerId: 1,
-        tagA: 'Mountain',
+        tagA: 'Mountains',
         tagB: 'Ski-In/Ski-Out'
       },
       {
@@ -260,7 +260,7 @@ module.exports = {
         price: 600,
         ownerId: 1,
         tagA: 'Hot Tub',
-        tagB: 'Secluded'
+        tagB: 'Close to Skiing'
       },
       {
         // 17
