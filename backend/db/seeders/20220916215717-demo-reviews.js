@@ -29,10 +29,64 @@ module.exports = {
       },
       {
       userId: 3,
-      spotId: 2,
+      spotId: 4,
       review: 'What a lovely place to stay!',
       stars: 4
       },
+      {
+        userId: 3,
+        spotId: 5,
+        review: 'What a lovely place to stay!',
+        stars: 3
+        },
+        {
+          userId: 3,
+          spotId: 6,
+          review: 'What a lovely place to stay!',
+          stars: 3
+          },
+          {
+            userId: 3,
+            spotId: 7,
+            review: 'What a lovely place to stay!',
+            stars: 5
+            },
+            {
+              userId: 3,
+              spotId: 8,
+              review: 'What a lovely place to stay!',
+              stars: 4
+              },
+              {
+                userId: 3,
+                spotId: 10,
+                review: 'What a lovely place to stay!',
+                stars: 4
+                },
+                {
+                  userId: 3,
+                  spotId: 11,
+                  review: 'What a lovely place to stay!',
+                  stars: 2
+                  },
+                  {
+                    userId: 3,
+                    spotId: 12,
+                    review: 'What a lovely place to stay!',
+                    stars: 5
+                    },
+                    {
+                      userId: 3,
+                      spotId: 14,
+                      review: 'What a lovely place to stay!',
+                      stars: 4
+                      },
+                      {
+                        userId: 3,
+                        spotId: 15,
+                        review: 'What a lovely place to stay!',
+                        stars: 5
+                        },
     ],
     {}
    )
