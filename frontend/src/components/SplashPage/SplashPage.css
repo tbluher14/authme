@@ -181,19 +181,47 @@ img {
 
 
 /* Categories */
-#cabin{
+#category_icon{
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  margin-left: 10px;
 
+
+}
+
+.category_text{
+  font-size: 10px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: bold;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  color: black;
 }
 
 .category_container{
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.category{
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.individual_category{
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

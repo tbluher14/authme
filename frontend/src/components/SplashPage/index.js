@@ -35,21 +35,52 @@ const Homepage = () => {
 
   return (
     <>
-      <div className="all_spots">
+
         <div className="category_container">
-          <div className="category">categories
-          <i class="fa-solid fa-house" onClick={() => setFilter("Cabin")}>
-            <div>Cabin</div>
+          <div className="category">
+          <div className="individual_category">
+          <i class="fa-solid fa-house" id="catergory_icon" onClick={() => setFilter("Cabin")}>
+            <div className="category_text">Cabin</div>
           </i>
-          <i class="fa-solid fa-mountain-sun" onClick={() => setFilter("Mountain")}>Mountain</i>
-          <i class="fa-solid fa-tree" onClick={() => setFilter("Forest")}>Forest</i>
-          <i class="fa-solid fa-snowflake" onClick={() => setFilter("Close to Skiing")}>Close to Skiing</i>
-          <i class="fa-solid fa-moon" onClick={() => setFilter("Secluded")}>Secluded</i>
-          <i class="fa-solid fa-wifi" onClick={() => setFilter("Wifi Available")}>Wifi Available</i>
-          <i class="fa-solid fa-person-skiing" onClick={() => setFilter('Ski-In/Ski-Out')}>Ski-In/Ski-Out</i>
-          <i class="fa-solid fa-hot-tub-person" onClick={() => setFilter("Hot Tub")}>Hot Tub</i>
+          </div>
+          <div className="individual_category">
+          <i class="fa-solid fa-mountain-sun" onClick={() => setFilter("Mountain")} id="catergory_icon">
+          <div className="category_text">Mountains</div>
+          </i>
+          </div>
+          <div className="individual_category">
+          <i class="fa-solid fa-tree" onClick={() => setFilter("Forest")} id="catergory_icon" >
+          <div className="category_text">Forest</div>
+          </i>
+          </div>
+          <div className="individual_category">
+          <i class="fa-solid fa-snowflake" onClick={() => setFilter("Close to Skiing")} id="catergory_icon" >
+          <div className="category_text">Close to Skiing</div>
+          </i>
+          </div>
+          <div className="individual_category">
+          <i class="fa-solid fa-moon" onClick={() => setFilter("Secluded")} id="catergory_icon" >
+            <div className="category_text">Secluded</div>
+          </i>
+          </div>
+          <div className="individual_category">
+          <i class="fa-solid fa-wifi" onClick={() => setFilter("Wifi Available")} id="catergory_icon" >
+          <div className="category_text">Wifi</div>
+          </i>
+          </div>
+          <div className="individual_category">
+          <i class="fa-solid fa-person-skiing" onClick={() => setFilter('Ski-In/Ski-Out')} id="catergory_icon" >
+          <div className="category_text">Ski-In/Ski-Out</div>
+            </i>
+            </div>
+            <div className="individual_category">
+          <i class="fa-solid fa-hot-tub-person" onClick={() => setFilter("Hot Tub")} id="catergory_icon" >
+          <div className="category_text">Hot Tub</div>
+            </i>
             </div>
             </div>
+            </div>
+          <div className="all_spots">
         {handleFilter().map((ele) => (
           <Link
           to={`/spots/${ele.id}`}
