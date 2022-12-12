@@ -12,7 +12,7 @@ const Homepage = () => {
   const [filter, setFilter] = useState('')
 
   const handleFilter = () => {
-    if (filter === '' && allSpots) {
+    if (filter === '') {
       return allSpots
     } else {
       const filteredSpots = allSpots?.filter(
@@ -58,11 +58,11 @@ const Homepage = () => {
           <div className='individual_category'>
             <i
               class='fa-solid fa-mountain-sun'
-              onClick={() => setFilter('Mountain')}
+              onClick={() => setFilter('Mountains')}
               id='catergory_icon'
             ></i>
             <div className='category_text'
-            onClick={() => setFilter('Mountain')}
+            onClick={() => setFilter('Mountains')}
             >Mountains</div>
           </div>
           <div className='individual_category'>
